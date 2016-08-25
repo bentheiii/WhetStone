@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using WhetStone.WordsPlay;
+using WhetStone.WordPlay;
 using WhetStone.Fielding;
 using WhetStone.Funnels;
 using WhetStone.Looping;
@@ -10,7 +10,7 @@ using WhetStone.NumbersMagic;
 using WhetStone.SystemExtensions;
 using WhetStone.Units;
 using WhetStone.Units.Angles;
-using WhetStone.WordsPlay.Parsing;
+using WhetStone.WordPlay.Parsing;
 
 namespace WhetStone.Complex
 {
@@ -20,16 +20,11 @@ namespace WhetStone.Complex
         {
             if (powpower.Equals(0))
                 return new ComplexNumber(1, 0);
-            if (powbase >= 0)
-            {
-                double r = Math.Pow(powbase, powpower.RealPart);
-                double a = powpower.ImaginaryPart * Math.Log(powbase);
-                return new ComplexNumber(a, r, ComplexRepresentations.Polar);
-            }
-            else
-            {
+            if (!(powbase >= 0))
                 return (-powbase).pow(powpower)*Math.E.pow(-Math.PI*powpower.ImaginaryPart)*ComplexNumber.FromPolar(Math.PI*powpower.RealPart);
-            }
+            double r = Math.Pow(powbase, powpower.RealPart);
+            double a = powpower.ImaginaryPart * Math.Log(powbase);
+            return new ComplexNumber(a, r, ComplexNumber.ComplexRepresentations.Polar);
         }
         public static ComplexNumber pow(this int powbase, ComplexNumber powpower)
         {
@@ -46,16 +41,17 @@ namespace WhetStone.Complex
             return ((double)logpow).log(logbase, number);
         }
     }
-    public enum ComplexRepresentations { Polar, Rectangular };
+    
     public sealed class ComplexNumber : IComparable<ComplexNumber>, IComparable<int>, IComparable<double>, IFormattable
     {
+        public enum ComplexRepresentations { Polar, Rectangular };
         private class ComplexField : Field<ComplexNumber>
         {
             public ComplexField() : base(0, 1, Math.E) { }
             public override ComplexNumber add(ComplexNumber a, ComplexNumber b) => a + b;
             public override ComplexNumber pow(ComplexNumber a, ComplexNumber b) => a.pow(b);
             public override int Compare(ComplexNumber x, ComplexNumber y) => x.CompareTo(y);
-            public override ComplexNumber Factorial(int x) => (x.factorial());
+            public override ComplexNumber Factorial(int x) => (x.Factorial());
             public override ComplexNumber fromInt(int x) => x;
             public override ComplexNumber fromInt(ulong x) => x;
             public override ComplexNumber abs(ComplexNumber x) => (x.abs());
@@ -327,50 +323,50 @@ namespace WhetStone.Complex
         }
         public double abs()
         {
-            return this.Radius;
+            return Radius;
         }
         public ComplexNumber pow(double power)
         {
-            double a = (this.Angle * power).InUnits(Angle.Radian);
-            double r = Math.Pow(this.Radius, power);
+            double a = (Angle * power).InUnits(Angle.Radian);
+            double r = Math.Pow(Radius, power);
             return FromPolar(a, r);
         }
         public ComplexNumber pow(int power)
         {
-            return this.pow((double)power);
+            return pow((double)power);
         }
         public ComplexNumber pow(ComplexNumber powpower)
         {
             if (powpower.Equals(Zero))
                 return One;
-            if (this.Equals(Zero))
+            if (Equals(Zero))
                 return Zero;
-            var r = this.Radius.pow(powpower.RealPart);
-            var a = Math.E.pow(-this.Angle.InUnits(Angle.Radian) * powpower.ImaginaryPart);
-            var res = FromPolar(this.Angle.InUnits(Angle.Radian) * powpower.RealPart + Math.Log(this.Radius) * powpower.ImaginaryPart);
+            var r = Radius.pow(powpower.RealPart);
+            var a = Math.E.pow(-Angle.InUnits(Angle.Radian) * powpower.ImaginaryPart);
+            var res = FromPolar(Angle.InUnits(Angle.Radian) * powpower.RealPart + Math.Log(Radius) * powpower.ImaginaryPart);
             return r * a * res;
         }
         public ComplexNumber log(int logbase, int number=0)
         {
-            return this.log((double)logbase, number);
+            return log((double)logbase, number);
         }
         /// <summary>
         /// number represents Angle representation (θ = θ + 2πk)
         /// </summary>
         public ComplexNumber log(double logbase = Math.E, int number = 0)
         {
-            if (this.Equals(Zero))
+            if (Equals(Zero))
                 throw new ArithmeticException("Cannot log 0");
             if (logbase <= 0)
                 throw new ArithmeticException("cannot use logarithm of non-positive base");
-            return new ComplexNumber(Math.Log(this.Radius), this.Angle.InUnits(Angle.Radian) + Math.PI * 2 * number) / Math.Log(logbase);
+            return new ComplexNumber(Math.Log(Radius), Angle.InUnits(Angle.Radian) + Math.PI * 2 * number) / Math.Log(logbase);
         }
         /// <summary>
         /// number represents Angle representation (θ = θ + 2πk)
         /// </summary>
         public ComplexNumber log(ComplexNumber logbase, int number = 0)
         {
-            ComplexNumber a = this.log(number: number);
+            ComplexNumber a = log(number: number);
             ComplexNumber b = logbase.log(number: number);
             return a / b;
         }
@@ -398,7 +394,7 @@ namespace WhetStone.Complex
         }
         public ComplexNumber Acos()
         {
-            return Math.PI / 2 - this.Asin();
+            return Math.PI / 2 - Asin();
         }
         public ComplexNumber Cosh()
         {
@@ -420,47 +416,47 @@ namespace WhetStone.Complex
         }
         public IEnumerable<ComplexNumber> roots(int power)
         {
-            return Loops.Range(power).Select(a => getnumberedroot(power, a));
+            return range.Range(power).Select(a => getnumberedroot(power, a));
         }
         private ComplexNumber getnumberedroot(int power, int number)
         {
-            double a = (this.Angle.InUnits(Angle.Radian) + 2 * Math.PI * number) / power;
-            double r = Math.Pow(this.Radius, 1.0 / power);
+            double a = (Angle.InUnits(Angle.Radian) + 2 * Math.PI * number) / power;
+            double r = Math.Pow(Radius, 1.0 / power);
             return FromPolar(a, r);
         }
         public ComplexNumber Conjugate()
         {
-            return FromRectangular(this.RealPart, -this.ImaginaryPart);
+            return FromRectangular(RealPart, -ImaginaryPart);
         }
         public bool Isreal()
         {
-            return this.ImaginaryPart == 0;
+            return ImaginaryPart == 0;
         }
         public bool Isimaginary()
         {
-            return this.RealPart == 0;
+            return RealPart == 0;
         }
         public bool Iscomplex()
         {
-            return this.RealPart != 0 && this.ImaginaryPart != 0;
+            return RealPart != 0 && ImaginaryPart != 0;
         }
         public bool Iszero()
         {
-            return this.RealPart == 0 && this.ImaginaryPart == 0;
+            return RealPart == 0 && ImaginaryPart == 0;
         }
         public bool IsGaussian()
         {
-            return RealPart.whole() && ImaginaryPart.whole();
+            return RealPart%1==0 && ImaginaryPart%1==0;
         }
         public bool isGaussianPrime()
         {
-            if (this.Iszero() || !this.IsGaussian())
+            if (Iszero() || !IsGaussian())
                 return false;
             if (Iscomplex())
-                return ((int)(RealPart*RealPart + ImaginaryPart*ImaginaryPart)).isPrime();
+                return ((int)(RealPart*RealPart + ImaginaryPart*ImaginaryPart)).IsPrime();
             if (ImaginaryPart == 0)
-                return ((int)RealPart.abs()).TrueMod(4) == 3 && ((int)RealPart.abs()).isPrime();
-            return ((int)ImaginaryPart.abs()).TrueMod(4) == 3 && ((int)ImaginaryPart.abs()).isPrime();
+                return ((int)RealPart.abs()).TrueMod(4) == 3 && ((int)RealPart.abs()).IsPrime();
+            return ((int)ImaginaryPart.abs()).TrueMod(4) == 3 && ((int)ImaginaryPart.abs()).IsPrime();
         }
         public override bool Equals(object obj)
         {
@@ -471,7 +467,7 @@ namespace WhetStone.Complex
                 return false;
             try
             {
-                return this.RealPart.Equals(Convert.ToDouble(obj));
+                return RealPart.Equals(Convert.ToDouble(obj));
             }
             catch (Exception)
             {
@@ -480,11 +476,11 @@ namespace WhetStone.Complex
         }
         public override int GetHashCode()
         {
-            return this.RealPart.GetHashCode() ^ this.ImaginaryPart.GetHashCode() ^ this.Angle.GetHashCode();
+            return RealPart.GetHashCode() ^ ImaginaryPart.GetHashCode() ^ Angle.GetHashCode();
         }
         public int CompareTo(ComplexNumber other)
         {
-            if (this.Iszero())
+            if (Iszero())
             {
                 if (other.Iszero())
                     return 0;
@@ -492,17 +488,17 @@ namespace WhetStone.Complex
             }
             if (other.Iszero())
                 return -other.CompareTo(this);
-            if (other.Angle.Equals(this.Angle))
-                return this.Radius.CompareTo(other.Radius);
+            if (other.Angle.Equals(Angle))
+                return Radius.CompareTo(other.Radius);
             throw new ArgumentException("cannot compare complexes of different arguments");
         }
         public int CompareTo(int other)
         {
-            return this.CompareTo((double)other);
+            return CompareTo((double)other);
         }
         public int CompareTo(double other)
         {
-            return this.CompareTo((ComplexNumber)other);
+            return CompareTo((ComplexNumber)other);
         }
         public override string ToString()
         {
@@ -531,21 +527,21 @@ namespace WhetStone.Complex
             {
                 string realformat = split[1];
                 string imagformat = split[2];
-                if (this.Isreal())
-                    return this.RealPart.ToString(realformat,provider);
-                if (this.Isimaginary())
-                    return this.ImaginaryPart.ToString(imagformat,provider) + "i";
-                return this.RealPart.ToString(realformat, provider) + (this.ImaginaryPart < 0 ? "" : "+") + this.ImaginaryPart.ToString(imagformat, provider) + "i";
+                if (Isreal())
+                    return RealPart.ToString(realformat,provider);
+                if (Isimaginary())
+                    return ImaginaryPart.ToString(imagformat,provider) + "i";
+                return RealPart.ToString(realformat, provider) + (ImaginaryPart < 0 ? "" : "+") + ImaginaryPart.ToString(imagformat, provider) + "i";
             }
             if (split[1] == "P")
             {
                 string radiusformat = split[1];
                 string angleformat = split[2];
-                if (this.Radius == 1)
-                    return "CiS(" + this.Angle.ToString(angleformat) + ")";
-                if (this.Radius == 0)
+                if (Radius == 1)
+                    return "CiS(" + Angle.ToString(angleformat) + ")";
+                if (Radius == 0)
                     return "0";
-                return this.Radius.ToString(radiusformat,provider) + "CiS(" + this.Angle.ToString(angleformat) + ")";
+                return Radius.ToString(radiusformat,provider) + "CiS(" + Angle.ToString(angleformat) + ")";
             }
             throw new FormatException("Format must either be empty or start with a R or a P");
         }
@@ -553,8 +549,8 @@ namespace WhetStone.Complex
         {
             return new ExplicitMatrix<double>(new[,]
                 {
-                    {this.RealPart,-this.ImaginaryPart},
-                    {this.ImaginaryPart, this.RealPart}
+                    {RealPart,-ImaginaryPart},
+                    {ImaginaryPart, RealPart}
                 });
         }
         public static implicit operator ComplexNumber(double d)
@@ -567,18 +563,18 @@ namespace WhetStone.Complex
         }
         private static readonly Funnel<string, ComplexNumber> DefaultParsers = new Funnel<string, ComplexNumber>
             {
-                new Parser<ComplexNumber>($@"^(?<re>{WordPlay.RegexDouble})(((?<im>(\+|-){WordPlay.RegexDoubleNoSign})[i,j])?$", m =>
+                new Parser<ComplexNumber>($@"^(?<re>{commonRegex.RegexDouble})(((?<im>(\+|-){commonRegex.RegexDoubleNoSign})[i,j])?$", m =>
                     new ComplexNumber(double.Parse(m.Groups["re"].Value),
                         m.Groups["im"].Value.Length == 0 ? 0 : double.Parse(m.Groups["im"].Value))),
-                new Parser<ComplexNumber>($@"^(?<im>{WordPlay.RegexDouble})i$", m =>
+                new Parser<ComplexNumber>($@"^(?<im>{commonRegex.RegexDouble})i$", m =>
                     new ComplexNumber(0, m.Groups["im"].Value.Length == 0 ? 0 : double.Parse(m.Groups["im"].Value))),
                 new Parser<ComplexNumber>(
-                    $@"^(?<r>{WordPlay.RegexDouble})?(CIS|cis|Cis)\((?<a>{WordPlay.RegexDouble})\)$", m =>
+                    $@"^(?<r>{commonRegex.RegexDouble})?(CIS|cis|Cis)\((?<a>{commonRegex.RegexDouble})\)$", m =>
                         new ComplexNumber(double.Parse(m.Groups["a"].Value),
                             m.Groups["r"].Value.Length == 0 ? 1 : double.Parse(m.Groups["r"].Value),
                             ComplexRepresentations.Polar)),
                 new Parser<ComplexNumber>(
-                    $@"^(?<r>{WordPlay.RegexDouble})?(CIS|cis|Cis)\((?<a>{WordPlay.RegexDouble})(°|d|degrees)\)$", m =>
+                    $@"^(?<r>{commonRegex.RegexDouble})?(CIS|cis|Cis)\((?<a>{commonRegex.RegexDouble})(°|d|degrees)\)$", m =>
                         new ComplexNumber(double.Parse(m.Groups["a"].Value) * Math.PI / 180,
                             m.Groups["r"].Value.Length == 0 ? 1 : double.Parse(m.Groups["r"].Value),
                             ComplexRepresentations.Polar))
@@ -593,24 +589,4 @@ namespace WhetStone.Complex
             return DefaultParsers.Process(x);
         }
     }
-    public static class ComplexComparers
-    {
-        public static readonly IComparer<ComplexNumber> TotalOrder = new TotalOrderClass(), PartialOrder = new PartialOrderClass(); 
-        private class TotalOrderClass : IComparer<ComplexNumber>
-        {
-            public int Compare(ComplexNumber x, ComplexNumber y)
-            {
-                var radii = x.Radius.CompareTo(y.Radius);
-                return radii != 0 ? radii : x.Angle.Arbitrary.CompareTo(y.Angle.Arbitrary);
-            }
-        }
-        private class PartialOrderClass : IComparer<ComplexNumber>
-        {
-            public int Compare(ComplexNumber x, ComplexNumber y)
-            {
-                return x.CompareTo(y);
-            }
-        }
-    }
-    
 }

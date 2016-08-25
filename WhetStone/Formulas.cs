@@ -4,13 +4,14 @@ using System.Linq;
 using WhetStone.Arrays;
 using WhetStone.Comparison;
 using WhetStone.Complex;
+using WhetStone.Dictionaries;
 using WhetStone.Factory;
 using WhetStone.Fielding;
 using WhetStone.Funnels;
 using WhetStone.Looping;
 using WhetStone.Matrix;
 using WhetStone.NumbersMagic;
-
+//todo keep this?
 namespace WhetStone.Formulas
 {
     using static Fields;
@@ -157,7 +158,7 @@ namespace WhetStone.Formulas
         {
             var f = getField<T>();
             int ret = 0;
-            foreach (int i in Loops.Range(10))
+            foreach (int i in range.Range(10))
             {
                 if (this.hasValue(f.fromInt(i)))
                     ret ^= this[f.fromInt(i)].GetHashCode();
@@ -173,7 +174,7 @@ namespace WhetStone.Formulas
         {
             var field = getField<T>();
             T step = field.divide(field.subtract(end, start), field.fromInt(order+1));
-            var x = Loops.IRange(start, end, step);
+            var x = range.IRange(start, end, step);
             var y = x.Select(a => f[a]);
             return fromDataPoints(x, y);
         }
@@ -189,7 +190,7 @@ namespace WhetStone.Formulas
             foreach (Tuple<T, T> tuple in com)
             {
                 T pow = f.one;
-                foreach (int col in Loops.Range(c))
+                foreach (int col in range.Range(c))
                 {
                     pa[row, col] = pow;
                     pow = f.multiply(pow, tuple.Item1);
@@ -261,7 +262,7 @@ namespace WhetStone.Formulas
             Formula<T> cur = @this;
             T factorial = f.one;
             T count = f.zero;
-            foreach (int i in Loops.Range(componentcount))
+            foreach (int i in range.Range(componentcount))
             {
                 ret.Add(f.multiply(f.Invert(factorial), cur[arountpoint]) * ((arountpoint - Formula<T>.x) ^ i));
                 count = f.add(count, f.one);
@@ -324,13 +325,16 @@ namespace WhetStone.Formulas
             {
                 if (pformula._arg2 is ConstantFormula<T>)
                 {
-                    optimised |= ret.AggregateDefinition(pformula._arg1, pformula._arg2, (a, b) => a + b);
+                    ret.AggregateValue(pformula._arg1, pformula._arg2, (a, b) => a + b);
+                    optimised |= ret.ContainsKey(pformula._arg1);
                     return;
                 }
-                optimised |= ret.AggregateDefinition(pformula._arg2, pformula._arg1, (a, b) => a + b);
+                ret.AggregateValue(pformula._arg2, pformula._arg1, (a, b) => a + b);
+                optimised |= ret.ContainsKey(pformula._arg2);
                 return;
             }
-            optimised |= ret.AggregateDefinition(@this, getField<T>().one, (a, b) => a + b);
+            ret.AggregateValue(@this, getField<T>().one, (a, b) => a + b);
+            optimised |= ret.ContainsKey(@this);
         }
         public static ISet<Formula<T>> getProductComponents<T>(this Formula<T> @this, out bool optimised)
         {
@@ -383,10 +387,12 @@ namespace WhetStone.Formulas
             ExponentFormula<T> pformula = @this as ExponentFormula<T>;
             if (pformula != null)
             {
-                optimised |= ret.AggregateDefinition(pformula._base, pformula._pow, (a, b) => a + b);
+                ret.AggregateValue(pformula._base, pformula._pow, (a, b) => a + b);
+                optimised |= ret.ContainsKey(pformula._base);
                 return;
             }
-            optimised |= ret.AggregateDefinition(@this, getField<T>().one, (a, b) => a + b);
+            ret.AggregateValue(@this, getField<T>().one, (a, b) => a + b);
+            optimised |= ret.ContainsKey(@this);
         }
         public static T approximateIntegral<T>(this Formula<T> @this, T start, T end, int segments)
         {

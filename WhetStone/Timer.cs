@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using WhetStone.Units.Frequencies;
-using WhetStone.WordsPlay;
+using WhetStone.WordPlay;
 
 namespace WhetStone.Timer
 {

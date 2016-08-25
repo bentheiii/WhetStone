@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WhetStone.Arrays
+{
+    //todo: comparer extentions?
+    public static class allEqual
+    {
+        public static bool AllEqual<T>(this IEnumerable<T> @this, IEqualityComparer<T> comp = null)
+        {
+            comp = comp ?? EqualityComparer<T>.Default;
+            return @this.All(a => comp.Equals(a, @this.First()));
+        }
+    }
+}

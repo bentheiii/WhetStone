@@ -8,7 +8,7 @@ using WhetStone.Shapes.Lines;
 using WhetStone.SystemExtensions;
 using WhetStone.Units;
 using WhetStone.Units.Angles;
-
+//todo keep this?
 namespace WhetStone.Shapes
 {
     public static class PointExtentions
@@ -175,7 +175,7 @@ namespace WhetStone.Shapes
         {
             public virtual float Area()
             {
-                return this.WhetStones().Trail2(true).Sum(a => a.Item1.X * a.Item2.Y - a.Item1.Y * a.Item1.X) / 2;
+                return this.WhetStones().Trail(2,true).Sum(a => a[0].X * a[1].Y - a[0].Y * a[1].X) / 2;
             }
             public virtual float Perimiter()
             {
@@ -188,7 +188,7 @@ namespace WhetStone.Shapes
             public abstract IEnumerable<PointF> WhetStones();
             public virtual IEnumerable<LineSegment> Segments()
             {
-                return this.WhetStones().Trail2(true).Select(a => new LineSegment(a.Item1, a.Item2));
+                return this.WhetStones().Trail(2,true).Select(a => new LineSegment(a[0], a[1]));
             }
             public virtual IPolygon Rotate(Angle angle)
             {
@@ -355,7 +355,7 @@ namespace WhetStone.Shapes
             {
                 var rot = new Angle(1.0 / _sides, Angle.Turn);
                 var ret = _center.add(_radius, 0);
-                foreach (int i in Loops.Range(_sides))
+                foreach (int i in range.Range(_sides))
                 {
                     yield return ret;
                     ret = ret.RotateAround(this.Center(), rot);
@@ -371,7 +371,7 @@ namespace WhetStone.Shapes
             }
             public override float Area()
             {
-                return _points.Trail2(true).Sum(a => a.Item1.X * a.Item2.Y - a.Item1.Y * a.Item1.X) / 2;
+                return _points.Trail(2,true).Sum(a => a[0].X * a[1].Y - a[0].Y * a[1].X) / 2;
             }
             public override IEnumerable<PointF> WhetStones()
             {

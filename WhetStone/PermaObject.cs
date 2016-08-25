@@ -11,10 +11,11 @@ using WhetStone.Looping;
 using WhetStone.Path;
 using WhetStone.Serializations;
 using WhetStone.Units.Time;
-using WhetStone.WordsPlay;
+using WhetStone.WordPlay;
 
 namespace WhetStone.PermanentObject
 {
+    //todo disable sharing, rework deleteondispose
     public interface ISafeDeletable : IDisposable
     {
         bool DeleteOnDispose { get; set; }
@@ -22,28 +23,30 @@ namespace WhetStone.PermanentObject
         FileShare share { get; }
         bool AllowCaching { get; }
     }
-    public interface IPermaObject<T> : ISafeDeletable
+    public abstract class IPermaObject<T> : ISafeDeletable
     {
-        T tryParse(out Exception ex);
-        T value { get; set; }
-        string name { get; }
+        public abstract T tryParse(out Exception ex);
+        public abstract T value { get; set; }
+        public abstract string name { get; }
+        public abstract bool DeleteOnDispose { get; set; }
+        public abstract FileAccess access { get; }
+        public abstract FileShare share { get; }
+        public abstract bool AllowCaching { get; }
+        public abstract void Dispose();
+        public void MutauteValue(Func<T, T> mutation)
+        {
+            this.value = mutation(this.value);
+        }
+        public void MutauteValue(Action<T> mutation)
+        {
+            var v = this.value;
+            mutation(v);
+            this.value = v;
+        }
     }
     public static class PermaObject
     {
-        public static bool Exists(string name)
-        {
-            return File.Exists(name);
-        }
-        public static void MutauteValue<T>(this IPermaObject<T> @this, Func<T, T> mutation)
-        {
-            @this.value = mutation(@this.value);
-        }
-        public static void MutauteValue<T>(this IPermaObject<T> @this, Action<T> mutation)
-        {
-            var v = @this.value;
-            mutation(v);
-            @this.value = v;
-        }
+        
         public static string LocalName<T>(this IPermaObject<T> @this)
         {
             var s = @this.name;
@@ -63,20 +66,20 @@ namespace WhetStone.PermanentObject
     public class PermaObject<T> : IPermaObject<T>
     {
         private readonly FileStream _stream;
-        public FileAccess access { get; }
-        public FileShare share { get; }
-        public bool AllowCaching { get; }
-        public bool DeleteOnDispose { get; set; }
+        public override FileAccess access { get; }
+        public override FileShare share { get; }
+        public override bool AllowCaching { get; }
+        public override bool DeleteOnDispose { get; set; }
         private readonly Func<byte[], T> _read;
         private readonly Func<T, byte[]> _write;
          private Tuple<T,bool> _cache;
-        public PermaObject(string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true) : this(a => (T)Serialization.Deserialize(a), a=>Serialization.Serialize(a), name, deleteOnDispose, access, share, mode, valueIfCreated,allowCaching) { }
+        public PermaObject(string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true) : this(a => (T)serialize.Deserialize(a), a=>serialize.Serialize(a), name, deleteOnDispose, access, share, mode, valueIfCreated,allowCaching) { }
         public PermaObject(Func<byte[], T> read, Func<T, byte[]> write, string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T),bool allowCaching = true)
         {
             name = System.IO.Path.GetFullPath(name);
             if (mode == FileMode.Truncate || mode == FileMode.Append)
                 throw new ArgumentException("truncate and append modes are not supported", nameof(mode));
-            bool create = !PermaObject.Exists(name);
+            bool create = !File.Exists(name);
             if (mode != FileMode.Open && valueIfCreated == null)
                 throw new ArgumentException("is the default value is null, the PermaObject cannot be newly created");
             if (deleteOnDispose && (!create && share != FileShare.None))
@@ -96,7 +99,7 @@ namespace WhetStone.PermanentObject
                 this.value = valueIfCreated;
             _cache = (this.share == FileShare.None && allowCaching) ? Tuple.Create(default(T), false) : null;
         }
-        public T tryParse(out Exception ex)
+        public override T tryParse(out Exception ex)
         {
             ex = null;
             if (!access.HasFlag(FileAccess.Read))
@@ -117,7 +120,7 @@ namespace WhetStone.PermanentObject
                 return default(T);
             }
         }
-        public T value
+        public override T value
         {
             get
             {
@@ -140,14 +143,14 @@ namespace WhetStone.PermanentObject
                     _cache = Tuple.Create(value, true);
             }
         }
-        public string name
+        public override string name
         {
             get
             {
                 return _stream.Name;
             }
         }
-        public void Dispose()
+        public override void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -162,24 +165,24 @@ namespace WhetStone.PermanentObject
             }
         }
     }
-    public interface ISyncPermaObject<T> : IPermaObject<T>
+    public abstract class ISyncPermaObject<T> : IPermaObject<T>
     {
-        T getFresh(DateTime earliestTime);
-        T getFresh(TimeSpan maxInterval);
-        DateTime getLatestUpdateTime();
+        public abstract T getFresh(DateTime earliestTime);
+        public abstract T getFresh(TimeSpan maxInterval);
+        public abstract DateTime getLatestUpdateTime();
     }
     public class SyncPermaObject<T> : ISyncPermaObject<T>
     {
         internal const string PERMA_OBJ_UPDATE_EXTENSION = ".permaobjupdate";
         private readonly PermaObject<T> _int;
         private readonly PermaObject<DateTime> _update;
-        public SyncPermaObject( string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true) : this(a => (T)Serialization.Deserialize(a), a=>Serialization.Serialize(a), name, deleteOnDispose, access, share, mode, valueIfCreated,allowCaching) { }
+        public SyncPermaObject( string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true) : this(a => (T)serialize.Deserialize(a), a=>serialize.Serialize(a), name, deleteOnDispose, access, share, mode, valueIfCreated,allowCaching) { }
         public SyncPermaObject(Func<byte[], T> read, Func<T, byte[]> write, string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true)
         {
             _int = new PermaObject<T>(read,write,name,deleteOnDispose, access, share, mode, valueIfCreated,allowCaching);
             _update = new PermaObject<DateTime>(FilePath.MutateFileName(name, a=> "__LATESTUPDATE_"+a), deleteOnDispose, access, share, mode, DateTime.Now,allowCaching);
         }
-        public T getFresh(TimeSpan maxInterval)
+        public override T getFresh(TimeSpan maxInterval)
         {
             return getFresh(maxInterval, maxInterval.Divide(2));
         }
@@ -191,7 +194,7 @@ namespace WhetStone.PermanentObject
             }
             return this.value;
         }
-        public T getFresh(DateTime earliestTime)
+        public override T getFresh(DateTime earliestTime)
         {
             return getFresh(earliestTime, TimeSpan.FromSeconds(0.5));
         }
@@ -203,17 +206,17 @@ namespace WhetStone.PermanentObject
             }
             return this.value;
         }
-        public DateTime getLatestUpdateTime()
+        public override DateTime getLatestUpdateTime()
         {
             Exception e;
             var a = _update.tryParse(out e);
             return (e == null) ? a : DateTime.MinValue;
         }
-        public T tryParse(out Exception ex)
+        public override T tryParse(out Exception ex)
         {
             return _int.tryParse(out ex);
         }
-        public T value
+        public override T value
         {
             get
             {
@@ -225,35 +228,35 @@ namespace WhetStone.PermanentObject
                 _int.value = value;
             }
         }
-        public string name
+        public override string name
         {
             get
             {
                 return _int.name;
             }
         }
-        public FileAccess access
+        public override FileAccess access
         {
             get
             {
                 return _int.access;
             }
         }
-        public FileShare share
+        public override FileShare share
         {
             get
             {
                 return _int.share;
             }
         }
-        public bool AllowCaching
+        public override bool AllowCaching
         {
             get
             {
                 return _int.AllowCaching;
             }
         }
-        public bool DeleteOnDispose
+        public override bool DeleteOnDispose
         {
             get
             {
@@ -272,7 +275,7 @@ namespace WhetStone.PermanentObject
                 _update.Dispose();
             }
         }
-        public void Dispose()
+        public override void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
@@ -321,7 +324,7 @@ namespace WhetStone.PermanentObject
             }
             private readonly T _valueIfCreated;
             public bool SupportMultiAccess => _data.share != FileShare.None;
-            public PermaList(string name, int length=0, int offset = 2, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true) : this(length, offset,a => (T)Serialization.Deserialize(a), a => Serialization.Serialize(a), name, deleteOnDispose, access, share, mode, valueIfCreated,allowCaching) { }
+            public PermaList(string name, int length=0, int offset = 2, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true) : this(length, offset,a => (T)serialize.Deserialize(a), a => serialize.Serialize(a), name, deleteOnDispose, access, share, mode, valueIfCreated,allowCaching) { }
             //if array already exists, the length and offset parameters are ignored
             public PermaList(int length, int offset ,Func<byte[], T> read, Func<T, byte[]> write, string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, T valueIfCreated = default(T), bool allowCaching = true)
             {
@@ -347,7 +350,7 @@ namespace WhetStone.PermanentObject
                 if (SupportMultiAccess || overridemulti)
                 {
                     _array?.Do(a=> { a.DeleteOnDispose = false; a.Dispose();});
-                    this._array = Loops.Range(this._data.value.offset, _data.value.offset + _data.value.length).Select(getperma).ToList();
+                    this._array = range.Range(this._data.value.offset, _data.value.offset + _data.value.length).Select(getperma).ToList();
                 }
             }
             public int IndexOf(T item)
@@ -372,7 +375,7 @@ namespace WhetStone.PermanentObject
                 {
                     _data.MutauteValue(a => new PermaObjArrayData(a.length + 1, a.offset));
                     updateArr(true);
-                    foreach (var i in Loops.Range(index, this.length - 1).Reverse())
+                    foreach (var i in range.Range(index, this.length - 1).Reverse())
                     {
                         this[i + 1] = this[i];
                     }
@@ -394,7 +397,7 @@ namespace WhetStone.PermanentObject
                 }
                 else
                 {
-                    foreach (var i in Loops.Range(index, this.length - 1))
+                    foreach (var i in range.Range(index, this.length - 1))
                     {
                         this[i] = this[i + 1];
                     }
@@ -469,7 +472,7 @@ namespace WhetStone.PermanentObject
                     iPermaObject.DeleteOnDispose = false;
                     iPermaObject.Dispose();
                 }
-                foreach (var fileindex in Loops.Range(_data.value.offset,_data.value.offset+_data.value.length).Reverse())
+                foreach (var fileindex in range.Range(_data.value.offset,_data.value.offset+_data.value.length).Reverse())
                 {
                     File.Move(getname(fileindex),getname(fileindex+offset));
                 }
@@ -571,7 +574,7 @@ namespace WhetStone.PermanentObject
             }
             public bool allowCaching { get; }
             private readonly V _vvalueIfCreated;
-            public PermaDictionary(string name, bool allowCaching = true, FileAccess access = FileAccess.ReadWrite, bool deleteOnDispose = false, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, V vvalueIfCreated = default(V)) : this(a=> (K)Serialization.Deserialize(a), a=>Serialization.Serialize(a), a => (V)Serialization.Deserialize(a), a => Serialization.Serialize(a), name, allowCaching, access, deleteOnDispose, share, mode, vvalueIfCreated) { }
+            public PermaDictionary(string name, bool allowCaching = true, FileAccess access = FileAccess.ReadWrite, bool deleteOnDispose = false, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate, V vvalueIfCreated = default(V)) : this(a=> (K)serialize.Deserialize(a), a=>serialize.Serialize(a), a => (V)serialize.Deserialize(a), a => serialize.Serialize(a), name, allowCaching, access, deleteOnDispose, share, mode, vvalueIfCreated) { }
             public PermaDictionary(Func<byte[], K> kread, Func<K, byte[]> kwrite, Func<byte[], V> vread, Func<V, byte[]> vwrite, string name, bool allowCaching, FileAccess access = FileAccess.ReadWrite, bool deleteOnDispose = false, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate,  V vvalueIfCreated = default(V))
             {
                 _kread = kread;
@@ -600,14 +603,14 @@ namespace WhetStone.PermanentObject
                 {
                     split.Add(NumberSerialization.FullCodeSerializer.DecodeSpecifiedLength(val,out val));
                 }
-                _dic = split.Group2().Select(a => Tuple.Create(_kread(a.Item1.Select(x=>(byte)x).ToArray()), getVPerma(a.Item2))).ToDictionary();
+                _dic = split.Chunk(2).Select(a => Tuple.Create(_kread(a[0].Select(x=>(byte)x).ToArray()), getVPerma(a[1]))).ToDictionary();
             }
             private string SaveDictionaryToString()
             {
                 return
                     _dic.SelectMany(
                         a => new [] { NumberSerialization.FullCodeSerializer.EncodeSpecificLength(_kwrite(a.Key).Select(x=>(char)x).ConvertToString()), NumberSerialization.FullCodeSerializer.EncodeSpecificLength(a.Value.name)})
-                        .ToPrintable("", "", "");
+                        .StrConcat("");
             }
             
             public IEnumerator<KeyValuePair<K, V>> GetEnumerator()
@@ -624,7 +627,7 @@ namespace WhetStone.PermanentObject
                 LoadDictionary();
                 if (!_dic.ContainsKey(item.Key))
                 {
-                    _dic.Add(item.Key, getVPerma(NumberSerialization.AlphaNumbreicSerializer.ToString((ulong)(_data.value.nextname + 1)).Reverse().ConvertToString()));
+                    _dic.Add(item.Key, getVPerma(NumberSerialization.AlphaNumericSerializer.ToString((ulong)(_data.value.nextname + 1)).Reverse().ConvertToString()));
                     _data.MutauteValue(a => new PermaDictionaryData(a.nextname + 1, SaveDictionaryToString()));
                 }
                 _dic[item.Key].value = item.Value;
@@ -785,7 +788,7 @@ namespace WhetStone.PermanentObject
             private int _holdUpdateFlag = 0;
             public string name { get; }
             public bool SupportMultiAccess => (_definitions.share != FileShare.None);
-            public PermaLabeledDictionary(string name, string defSeperator=null, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate) : this(a => (T)Serialization.Deserialize(a), a => Serialization.Serialize(a), name, defSeperator, deleteOnDispose,access,share,mode) { }
+            public PermaLabeledDictionary(string name, string defSeperator=null, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate) : this(a => (T)serialize.Deserialize(a), a => serialize.Serialize(a), name, defSeperator, deleteOnDispose,access,share,mode) { }
             public PermaLabeledDictionary(Func<byte[], T> read, Func<T, byte[]> write, string name, string defSeperator=null, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate)
             {
                 _definitions = new PermaObject<string>(name, deleteOnDispose,access,share, mode,"");
@@ -899,7 +902,7 @@ namespace WhetStone.PermanentObject
                 get
                 {
                     this.RefreshDefinitions();
-                    return _dic.Values.SelectToArray(a => a.value);
+                    return _dic.Values.Select(a => a.value).ToArray();
                 }
             }
             public IEnumerator<KeyValuePair<string, T>> GetEnumerator()
@@ -1000,7 +1003,7 @@ namespace WhetStone.PermanentObject
         {
             private readonly PermaLabeledDictionary<T> _int;
             private readonly PermaObject<long> _maxname;
-            public PermaCollection(string name,  bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate) : this(a => (T)Serialization.Deserialize(a), a => Serialization.Serialize(a), name, deleteOnDispose,access,share,mode) { }
+            public PermaCollection(string name,  bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate) : this(a => (T)serialize.Deserialize(a), a => serialize.Serialize(a), name, deleteOnDispose,access,share,mode) { }
             public PermaCollection(Func<byte[], T> read, Func<T, byte[]> write, string name, bool deleteOnDispose = false, FileAccess access = FileAccess.ReadWrite, FileShare share = FileShare.None, FileMode mode = FileMode.OpenOrCreate)
             {
                 _int = new PermaLabeledDictionary<T>(read,write,name,null, deleteOnDispose, access, share, mode);

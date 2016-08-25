@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using WhetStone.Arrays;
 using WhetStone.Looping;
 using WhetStone.NumbersMagic;
-using WhetStone.RecursiveQuerier;
 using WhetStone.SystemExtensions;
-using WhetStone.WordsPlay;
+using WhetStone.WordPlay;
 using Microsoft.CSharp.RuntimeBinder;
 using Numerics;
-
+//todo fix namespace
 namespace WhetStone.Fielding {
     public class FieldWrapper<T> : IComparable<T>, IComparable<FieldWrapper<T>>, IEquatable<T>, IEquatable<FieldWrapper<T>>
     {
@@ -412,106 +410,6 @@ namespace WhetStone.Fielding {
         }
         public virtual FieldShape shape => FieldShape.None;
     }
-    public class ImpotentField<T> : Field<T>
-    {
-        public override T zero => default(T);
-        public override T one => default(T);
-        public override T negativeone => default(T);
-        public override T naturalbase => default(T);
-        public override int Compare(T x, T y) => 0;
-        public override T Conjugate(T a) => a;
-        public override T Factorial(int x) => default(T);
-        public override GenerationType GenType => GenerationType.None;
-        public override T Generate(IEnumerable<byte> bytes, Tuple<T, T> bounds = null, object special = null) => default(T);
-        public override T Invert(T x) => x;
-        public override bool Invertible => false;
-        public override bool ModduloAble => false;
-        public override bool Negatable => false;
-        public override T Negate(T x) => x;
-        public override OrderType Order => OrderType.NoOrder;
-        public override bool Parsable => false;
-        public override T Parse(string s) => default(T);
-        public override T Pow(T @base, int x) => @base;
-        public override string String(T a) => a.ToString();
-        public override T abs(T x) => x;
-        public override T add(T a, T b) => a;
-        public override T divide(T a, T b) => a;
-        public override T fromFraction(double a) => default(T);
-        public override T fromFraction(int numerator, int denumerator) => default(T);
-        public override T fromInt(int x) => default(T);
-        public override T fromInt(ulong x) => default(T);
-        public override bool isNegative(T x) => false;
-        public override T log(T a) => default(T);
-        public override T mod(T a, T b) => a;
-        public override T multiply(T a, T b) => a;
-        public override T pow(T a, T b) => a;
-        public override FieldShape shape => FieldShape.None;
-        public override T subtract(T a, T b) => a;
-        public override double? toDouble(T a) => null;
-    }
-    public class QueryEnabledField<T> : Field<T>
-    {
-        public const ulong DefaultMaxFromIntQuery = 256;
-        public const ulong DefaultMaxPowBaseQuery = 20;
-        public const ulong DefaultMaxPowExpQuery = 16;
-        public const ulong DefaultMaxFactorialQuery = 20;
-        public ulong MaxFromIntQuery = DefaultMaxFromIntQuery;
-        public ulong MaxPowBaseQuery = DefaultMaxPowBaseQuery;
-        public ulong MaxPowExpQuery = DefaultMaxPowExpQuery;
-        public ulong MaxFactorialQuery = DefaultMaxFactorialQuery;
-
-        private readonly HalvingQuerier<T> _fromIntQuerier;
-        private readonly IDictionary<T, HalvingQuerier<T>> _powDictionary;
-        private readonly LazyArray<T> _factorialQuerier;
-        public QueryEnabledField(T zero, T one, T naturalbase) : base(zero,one,naturalbase)
-        {
-            // ReSharper disable DoNotCallOverridableMethodsInConstructor
-            _fromIntQuerier = new HalvingQuerier<T>(this.one,this.add,this.zero);
-            _powDictionary = new Dictionary<T, HalvingQuerier<T>>();
-            _factorialQuerier = new LazyArray<T>((i, array) => i == 0 ? this.one : this.multiply(this.fromInt(i),array[i-1]));
-            // ReSharper restore DoNotCallOverridableMethodsInConstructor
-        }
-        public override T fromInt(ulong x)
-        {
-            return x < MaxFromIntQuery ? _fromIntQuerier[(int)x] : base.fromInt(x);
-        }
-        public override T Pow(T @base, int x)
-        {
-            //check if exponential is valid
-            if (x > 0 && (uint)x < MaxPowExpQuery)
-            {
-                //check if key for base exists
-                if (!_powDictionary.ContainsKey(@base))
-                {
-                    //check if base is valid
-                    var d = toDouble(@base) ?? 0.5;
-                    if (d%1 != 0 || d > MaxPowBaseQuery)
-                        //base isn't valid
-                        return base.Pow(@base, x);
-                    //base is valid, initialize halver
-                    _powDictionary[@base] = new HalvingQuerier<T>(@base,this.multiply, this.one);
-                }
-                //if it does, then it's valid
-                return _powDictionary[@base][x];
-            }
-            //exponential isn't valid
-            return base.Pow(@base, x);
-        }
-        public override T Factorial(int x)
-        {
-            return (x>0 && (ulong)x < MaxFactorialQuery) ? _factorialQuerier[x] : base.Factorial(x);
-        }
-        public void ResetQueriers()
-        {
-            MaxFromIntQuery = DefaultMaxFromIntQuery;
-            MaxPowBaseQuery = DefaultMaxPowBaseQuery;
-            MaxPowExpQuery = DefaultMaxPowExpQuery;
-            MaxFactorialQuery = DefaultMaxFactorialQuery;
-            _fromIntQuerier.Clear();
-            _powDictionary.Clear();
-            _factorialQuerier.Clear();
-        }
-    }
     public static class Fields
     {
         #region stock
@@ -521,7 +419,7 @@ namespace WhetStone.Fielding {
             public override double add(double a, double b) => a+b;
             public override double pow(double a, double b) => Math.Pow(a,b);
             public override int Compare(double x, double y) => x.CompareTo(y);
-            public override double Factorial(int x) => x.factorial();
+            public override double Factorial(int x) => x.Factorial();
             public override double fromInt(int x) => x;
             public override double fromInt(ulong x) => x;
             public override double abs(double x) => Math.Abs(x);
@@ -575,7 +473,7 @@ namespace WhetStone.Fielding {
             public override float add(float a, float b) => a + b;
             public override float pow(float a, float b) => a.pow(b);
             public override int Compare(float x, float y) => x.CompareTo(y);
-            public override float Factorial(int x) => x.factorial();
+            public override float Factorial(int x) => x.Factorial();
             public override float fromInt(int x) => x;
             public override float fromInt(ulong x) => x;
             public override float abs(float x) => Math.Abs(x);
@@ -629,7 +527,7 @@ namespace WhetStone.Fielding {
             public override decimal add(decimal a, decimal b) => a + b;
             public override decimal pow(decimal a, decimal b) => a.pow(b);
             public override int Compare(decimal x, decimal y) => x.CompareTo(y);
-            public override decimal Factorial(int x) => x.factorial();
+            public override decimal Factorial(int x) => x.Factorial();
             public override decimal fromInt(int x) => x;
             public override decimal fromInt(ulong x) => x;
             public override decimal abs(decimal x) => Math.Abs(x);
@@ -683,7 +581,7 @@ namespace WhetStone.Fielding {
             public override int add(int a, int b) => a + b;
             public override int pow(int a, int b) => a.pow(b);
             public override int Compare(int x, int y) => x.CompareTo(y);
-            public override int Factorial(int x) => (int)x.factorial();
+            public override int Factorial(int x) => (int)x.Factorial();
             public override int fromInt(int x) => x;
             public override int fromInt(ulong x) => (int)x;
             public override int abs(int x) => Math.Abs(x);
@@ -730,7 +628,7 @@ namespace WhetStone.Fielding {
             public override long add(long a, long b) => a + b;
             public override long pow(long a, long b) => a.pow(b);
             public override int Compare(long x, long y) => x.CompareTo(y);
-            public override long Factorial(int x) => (long) x.factorial();
+            public override long Factorial(int x) => (long) x.Factorial();
             public override long fromInt(int x) => x;
             public override long fromInt(ulong x) => (long) x;
             public override long abs(long x) => Math.Abs(x);
@@ -777,7 +675,7 @@ namespace WhetStone.Fielding {
             public override uint add(uint a, uint b) => a + b;
             public override uint pow(uint a, uint b) => a.pow(b);
             public override int Compare(uint x, uint y) => x.CompareTo(y);
-            public override uint Factorial(int x) => (uint)x.factorial();
+            public override uint Factorial(int x) => (uint)x.Factorial();
             public override uint fromInt(int x)
             {
                 if (x < 0)
@@ -833,7 +731,7 @@ namespace WhetStone.Fielding {
             public override ulong add(ulong a, ulong b) => a + b;
             public override ulong pow(ulong a, ulong b) => a.pow(b);
             public override int Compare(ulong x, ulong y) => x.CompareTo(y);
-            public override ulong Factorial(int x) => x.factorial();
+            public override ulong Factorial(int x) => x.Factorial();
             public override ulong fromInt(int x)
             {
                 if (x < 0)
@@ -889,7 +787,7 @@ namespace WhetStone.Fielding {
             public override byte add(byte a, byte b) => (byte)(a + b);
             public override byte pow(byte a, byte b) => a.pow(b);
             public override int Compare(byte x, byte y) => x.CompareTo(y);
-            public override byte Factorial(int x) => (byte)x.factorial();
+            public override byte Factorial(int x) => (byte)x.Factorial();
             public override byte fromInt(int x)
             {
                 if (x < 0)
@@ -945,7 +843,7 @@ namespace WhetStone.Fielding {
             public override sbyte add(sbyte a, sbyte b) => (sbyte)(a + b);
             public override sbyte pow(sbyte a, sbyte b) => a.pow(b);
             public override int Compare(sbyte x, sbyte y) => x.CompareTo(y);
-            public override sbyte Factorial(int x) => (sbyte)x.factorial();
+            public override sbyte Factorial(int x) => (sbyte)x.Factorial();
             public override sbyte fromInt(int x)
             {
                 return (sbyte)x;
@@ -999,7 +897,7 @@ namespace WhetStone.Fielding {
             public override short add(short a, short b) => (short)(a + b);
             public override short pow(short a, short b) => a.pow(b);
             public override int Compare(short x, short y) => x.CompareTo(y);
-            public override short Factorial(int x) => (short)x.factorial();
+            public override short Factorial(int x) => (short)x.Factorial();
             public override short fromInt(int x)
             {
                 return (short)x;
@@ -1053,7 +951,7 @@ namespace WhetStone.Fielding {
             public override ushort add(ushort a, ushort b) => (ushort)(a + b);
             public override ushort pow(ushort a, ushort b) => a.pow(b);
             public override int Compare(ushort x, ushort y) => x.CompareTo(y);
-            public override ushort Factorial(int x) => (ushort)x.factorial();
+            public override ushort Factorial(int x) => (ushort)x.Factorial();
             public override ushort fromInt(int x)
             {
                 if (x < 0)
@@ -1184,7 +1082,7 @@ namespace WhetStone.Fielding {
                 if (!string.IsNullOrEmpty(bounds?.Item1) && !string.IsNullOrEmpty(bounds.Item2))
                     charbounds = Tuple.Create(bounds.Item1[0], bounds.Item2[0]);
                 var cf = getField<char>();
-                return bytes.Group(sizeof(char)).Select(a => cf.Generate(a,charbounds)).Take(length).ConvertToString();
+                return bytes.Chunk(sizeof(char)).Select(a => cf.Generate(a,charbounds)).Take(length).ConvertToString();
             }
             public override string fromFraction(double a)
             {
@@ -1269,7 +1167,7 @@ namespace WhetStone.Fielding {
             public override BigRational add(BigRational a, BigRational b) => a + b;
             public override BigRational pow(BigRational a, BigRational b) => a.pow(b,new BigRational(1,a.Denominator));
             public override int Compare(BigRational x, BigRational y) => x.CompareTo(y);
-            public override BigRational Factorial(int x) => x.factorial();
+            public override BigRational Factorial(int x) => x.Factorial();
             public override BigRational fromInt(int x) => x;
             public override BigRational fromInt(ulong x) => x;
             public override BigRational abs(BigRational x) =>  x.abs();
@@ -1318,7 +1216,7 @@ namespace WhetStone.Fielding {
             public override BigInteger add(BigInteger a, BigInteger b) => a + b;
             public override BigInteger pow(BigInteger a, BigInteger b) => a.pow(b);
             public override int Compare(BigInteger x, BigInteger y) => x.CompareTo(y);
-            public override BigInteger Factorial(int x) => x.factorial();
+            public override BigInteger Factorial(int x) => x.Factorial();
             public override BigInteger fromInt(int x) => x;
             public override BigInteger fromInt(ulong x) => x;
             public override BigInteger abs(BigInteger x) => BigInteger.Abs(x);
