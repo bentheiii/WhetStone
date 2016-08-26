@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class toArray
     {

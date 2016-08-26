@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using WhetStone.Arrays;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class str2DConcat
     {
@@ -14,7 +12,7 @@ namespace WhetStone.Arrays
                                                      string linediv = null)
         {
             linediv = linediv ?? Environment.NewLine;
-            var cols = arr.Collumns();
+            var cols = arr.Columns();
             int[] collengths = cols.Select(a => a.Max(x => x.ToString().Length)).ToArray();
             StringBuilder ret = new StringBuilder();
             for (int i = 0; i < arr.GetLength(0); i++)

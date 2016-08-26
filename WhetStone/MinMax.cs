@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.Fielding;
 
-namespace WhetStone.NumbersMagic
+namespace WhetStone.Comparison
 {
     public static class minmax
     {
@@ -65,9 +61,10 @@ namespace WhetStone.NumbersMagic
             min = temp;
             return true;
         }
-        public static bool MinMax<T>(ref T min, ref T max)
+        public static bool MinMax<T>(ref T min, ref T max, IComparer<T> comp = null)
         {
-            if (min.ToFieldWrapper() < max)
+            comp = comp ?? Comparer<T>.Default;
+            if (comp.Compare(min,max) <= 0)
             {
                 return false;
             }

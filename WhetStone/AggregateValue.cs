@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WhetStone.Arrays;
-
-namespace WhetStone.Dictionaries
+//moneys
+namespace WhetStone.Looping
 {
     //todo hooking
     public static class aggregateValue

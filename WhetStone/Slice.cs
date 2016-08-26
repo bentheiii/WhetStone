@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using WhetStone.Looping;
 using WhetStone.LockedStructures;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     //todo steps
     //todo mutability?

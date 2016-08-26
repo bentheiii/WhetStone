@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class fill2D
     {

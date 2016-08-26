@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WhetStone.Arrays;
-using WhetStone.Dictionaries;
 
 namespace WhetStone.Looping
 {

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {

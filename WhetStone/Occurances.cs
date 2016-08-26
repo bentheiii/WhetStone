@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using WhetStone.Looping;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class occurances
     {

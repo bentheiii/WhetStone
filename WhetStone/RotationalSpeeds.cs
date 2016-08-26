@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.Funnels;
 using WhetStone.Units.Angles;
 using WhetStone.WordPlay;
@@ -55,11 +52,11 @@ namespace WhetStone.Units.RotationalSpeeds
             TurnsPerSecond = new RotationalSpeed(Math.PI);
             TurnsPerMinute = new RotationalSpeed(1.0/60, TurnsPerSecond);
             DefaultParsers = new Lazy<Funnel<string, RotationalSpeed>>(() => new Funnel<string, RotationalSpeed>(
-                new Parser<RotationalSpeed>($@"^({commonRegex.RegexDouble}) ?(tpm)$",
+                new Parser<RotationalSpeed>($@"^({CommonRegex.RegexDouble}) ?(tpm)$",
                     m => new RotationalSpeed(double.Parse(m.Groups[1].Value), TurnsPerMinute)),
-                new Parser<RotationalSpeed>($@"^({commonRegex.RegexDouble}) ?(tps)$",
+                new Parser<RotationalSpeed>($@"^({CommonRegex.RegexDouble}) ?(tps)$",
                     m => new RotationalSpeed(double.Parse(m.Groups[1].Value), TurnsPerSecond)),
-                new Parser<RotationalSpeed>($@"^({commonRegex.RegexDouble}) ?(rps)$",
+                new Parser<RotationalSpeed>($@"^({CommonRegex.RegexDouble}) ?(rps)$",
                     m => new RotationalSpeed(double.Parse(m.Groups[1].Value), RadiansPerSeconds))
                 ));
         }

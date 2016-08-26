@@ -1,5 +1,5 @@
 ﻿using System;
-using WhetStone.Arrays;
+using WhetStone.Looping;
 
 namespace WhetStone.Random
 {

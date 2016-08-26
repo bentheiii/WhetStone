@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.Comparison;
-using WhetStone.Looping;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class concat2D
     {

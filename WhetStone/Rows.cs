@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WhetStone.Looping;
+﻿using System.Collections.Generic;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class rows
     {

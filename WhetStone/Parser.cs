@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-
-using WhetStone.Arrays;
 using WhetStone.Funnels;
 
 namespace WhetStone.WordPlay.Parsing

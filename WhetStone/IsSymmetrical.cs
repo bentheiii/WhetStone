@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WhetStone.Arrays;
-using WhetStone.Looping;
 using WhetStone.NumbersMagic;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class isSymmetrical
     {

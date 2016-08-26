@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace WhetStone
+namespace WhetStone.Looping
 {
     public static class orderBy
     {

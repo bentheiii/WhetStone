@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using WhetStone.Arrays;
+using WhetStone.Looping;
 using WhetStone.WordPlay;
 
 namespace WhetStone.Units
@@ -28,7 +28,7 @@ namespace WhetStone.Units
         {
             return unit.FromArbitrary(@this.Arbitrary);
         }
-        internal static string StringFromUnitDictionary<T>(this T @this, string format, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IScaleUnit<T>, string>> unitDictionary, bool pre = false)
+        public static string StringFromUnitDictionary<T>(this T @this, string format, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IScaleUnit<T>, string>> unitDictionary, bool pre = false)
             where T : ScaleMeasurement
         {
             string[] split = format.SmartSplit("_", "(", ")");
@@ -59,7 +59,7 @@ namespace WhetStone.Units
                 return id + dat;
             return dat + id;
         }
-        internal static string StringFromDeltaDictionary<T>(this T @this, string format, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IDeltaUnit<T>, string>> unitDictionary, bool pre = false)
+        public static string StringFromDeltaDictionary<T>(this T @this, string format, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IDeltaUnit<T>, string>> unitDictionary, bool pre = false)
             where T : DeltaMeasurement
         {
             string[] split = format.SmartSplit("_", "(", ")");

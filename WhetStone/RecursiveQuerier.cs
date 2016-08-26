@@ -1,5 +1,5 @@
 ﻿using System;
-using WhetStone.Arrays;
+using WhetStone.Looping;
 using WhetStone.Fielding;
 
 namespace WhetStone.RecursiveQuerier

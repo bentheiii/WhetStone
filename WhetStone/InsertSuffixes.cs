@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using WhetStone.Arrays;
 
-namespace WhetStone.Dictionaries
+namespace WhetStone.Looping
 {
     public static class insertSuffixes
     {

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.Funnels;
 using WhetStone.NumbersMagic;
 using WhetStone.Units.RotationalSpeeds;
@@ -72,10 +69,10 @@ namespace WhetStone.Units.Angles
         }
         private static readonly Lazy<Funnel<string, Angle>> DefaultParsers =
             new Lazy<Funnel<string, Angle>>(() => new Funnel<string, Angle>(
-                new Parser<Angle>($@"^({commonRegex.RegexDouble}) ?(turns?|t)$", m => new Angle(double.Parse(m.Groups[1].Value), Turn)),
-                new Parser<Angle>($@"^({commonRegex.RegexDouble}) ?(°|degrees?|d)$", m => new Angle(double.Parse(m.Groups[1].Value), Degree)),
-                new Parser<Angle>($@"^({commonRegex.RegexDouble}) ?(rad|㎭|radians?|c|r)$", m => new Angle(double.Parse(m.Groups[1].Value), Radian)),
-                new Parser<Angle>($@"^({commonRegex.RegexDouble}) ?(grad|g|gradians?|gon)$", m => new Angle(double.Parse(m.Groups[1].Value), Gradian))
+                new Parser<Angle>($@"^({CommonRegex.RegexDouble}) ?(turns?|t)$", m => new Angle(double.Parse(m.Groups[1].Value), Turn)),
+                new Parser<Angle>($@"^({CommonRegex.RegexDouble}) ?(°|degrees?|d)$", m => new Angle(double.Parse(m.Groups[1].Value), Degree)),
+                new Parser<Angle>($@"^({CommonRegex.RegexDouble}) ?(rad|㎭|radians?|c|r)$", m => new Angle(double.Parse(m.Groups[1].Value), Radian)),
+                new Parser<Angle>($@"^({CommonRegex.RegexDouble}) ?(grad|g|gradians?|gon)$", m => new Angle(double.Parse(m.Groups[1].Value), Gradian))
                 ));
         public static Angle Parse(string s)
         {

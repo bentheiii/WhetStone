@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WhetStone.Looping;
+﻿using System.Collections.Generic;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class columns
     {
-        public static IEnumerable<IEnumerable<T>> Collumns<T>(this T[,] @this)
+        public static IEnumerable<IEnumerable<T>> Columns<T>(this T[,] @this)
         {
             return range.Range(@this.GetLength(1)).Select(a => range.Range(@this.GetLength(0)).Select(x => @this[x, a]));
         }

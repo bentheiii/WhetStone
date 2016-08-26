@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Fielding;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class getSum
     {

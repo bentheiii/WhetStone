@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.Funnels;
-using WhetStone.Units;
 using WhetStone.WordPlay;
 using WhetStone.WordPlay.Parsing;
 
@@ -53,9 +49,9 @@ namespace WhetStone.Units.Frequencies
             MegaHertz = new Frequency(1000);
             GigaHertz = new Frequency(1000 * 1000);
             DefaultParsers = new Lazy<Funnel<string, Frequency>>(() => new Funnel<string, Frequency>(
-                new Parser<Frequency>($@"^({commonRegex.RegexDouble}) ?(hz|hertz)$", m => new Frequency(double.Parse(m.Groups[1].Value), Hertz)),
-                new Parser<Frequency>($@"^({commonRegex.RegexDouble}) ?(mhz|megahertz)$", m => new Frequency(double.Parse(m.Groups[1].Value), MegaHertz)),
-                new Parser<Frequency>($@"^({commonRegex.RegexDouble}) ?(ghz|gigahertz)$", m => new Frequency(double.Parse(m.Groups[1].Value), GigaHertz))
+                new Parser<Frequency>($@"^({CommonRegex.RegexDouble}) ?(hz|hertz)$", m => new Frequency(double.Parse(m.Groups[1].Value), Hertz)),
+                new Parser<Frequency>($@"^({CommonRegex.RegexDouble}) ?(mhz|megahertz)$", m => new Frequency(double.Parse(m.Groups[1].Value), MegaHertz)),
+                new Parser<Frequency>($@"^({CommonRegex.RegexDouble}) ?(ghz|gigahertz)$", m => new Frequency(double.Parse(m.Groups[1].Value), GigaHertz))
                 ));
         }
         public static double operator *(Frequency a, TimeSpan b)

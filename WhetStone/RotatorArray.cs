@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.SpecialNumerics;
 using WhetStone.SystemExtensions;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public sealed class RotatorArray<T> : IList<T>
     {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using WhetStone.Arrays;
 using WhetStone.Looping;
 
 namespace WhetStone.LockedStructures

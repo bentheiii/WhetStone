@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
-using WhetStone.Arrays;
+using WhetStone.Looping;
 
 namespace WhetStone.Random
 {

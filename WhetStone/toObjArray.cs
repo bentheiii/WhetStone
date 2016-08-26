@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     // ReSharper disable once InconsistentNaming
     public static class toObjArray

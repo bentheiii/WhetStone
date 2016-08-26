@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WhetStone.Fielding;
 using WhetStone.Looping;
 
-namespace WhetStone
+namespace WhetStone.Looping
 {
     public static class partialProducts
     {

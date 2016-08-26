@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using WhetStone.Looping;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.NumbersMagic;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class isWithinBounds
     {

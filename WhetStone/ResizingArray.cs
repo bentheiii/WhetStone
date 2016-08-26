@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using WhetStone.Looping;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public class ResizingArray<T> : ICollection<T>, IReadOnlyList<T>
     {

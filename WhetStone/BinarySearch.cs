@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using WhetStone.NumbersMagic;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class binarySearch
     {

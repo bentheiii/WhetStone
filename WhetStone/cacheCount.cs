@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using WhetStone.LockedStructures;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
     public static class cacheCount
     {

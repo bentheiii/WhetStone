@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WhetStone.Arrays
+namespace WhetStone.Looping
 {
-    public class SymmetricMatrix<T>
+    public class Symmetric2DArray<T>
     {
         private readonly T[] _data;
         private int Size { get; }
         public bool Reflexive { get; }
-        public SymmetricMatrix(int size, bool reflexive = true)
+        public Symmetric2DArray(int size, bool reflexive = true)
         {
             this.Size = size;
             if (Size < 0)
