@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
     public static class getSize
     {
-        public static IEnumerable<int> GetSize(this Array mat)
+        public static LockedList<int> GetSize(this Array mat)
         {
             return range.Range(mat.Rank).Select(mat.GetLength);
         }

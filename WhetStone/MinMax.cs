@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Numerics;
-using WhetStone.Fielding;
 
 namespace WhetStone.Comparison
 {

@@ -178,5 +178,4 @@ namespace WhetStone.Funnels
 			this.Add(p.toProcessor());
 		}
 	}
-    
 }

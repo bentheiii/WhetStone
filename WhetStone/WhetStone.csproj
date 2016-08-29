@@ -37,6 +37,7 @@
       <HintPath>..\packages\LiteDB.2.0.2\lib\net35\LiteDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -78,7 +79,6 @@
     <Compile Include="DynamicComparer.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="EnumerableComparer.cs" />
-    <Compile Include="EnumerableCountCache.cs" />
     <Compile Include="EnumerableEqualityComparer.cs" />
     <Compile Include="Enumerate.cs" />
     <Compile Include="EnumerationHook.cs" />
@@ -125,6 +125,7 @@
     <Compile Include="ReverseComparer.cs" />
     <Compile Include="RotationalSpeeds.cs" />
     <Compile Include="Select.cs" />
+    <Compile Include="SelectMany.cs" />
     <Compile Include="ShaGenerator.cs" />
     <Compile Include="SmartSplit.cs" />
     <Compile Include="Split.cs" />

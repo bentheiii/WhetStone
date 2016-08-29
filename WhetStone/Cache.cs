@@ -13,10 +13,12 @@ namespace WhetStone.Looping
         private class EnumerableCache<T> : LockedList<T>
         {
             private readonly IEnumerator<T> _tor;
+            private readonly int? _sourceSize;
             private readonly IList<T> _cache;
             private bool _formed = false;
             public EnumerableCache(IEnumerable<T> tor)
             {
+                _sourceSize = tor.RecommendSize();
                 _tor = tor.GetEnumerator();
                 _cache = new List<T>();
             }
@@ -57,6 +59,8 @@ namespace WhetStone.Looping
             {
                 get
                 {
+                    if (_sourceSize.HasValue)
+                        return _sourceSize.Value;
                     if (!_formed)
                         InflateToIndex(null);
                     return _cache.Count;

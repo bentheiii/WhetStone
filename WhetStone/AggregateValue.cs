@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-//moneys
 namespace WhetStone.Looping
 {
     //todo hooking

@@ -29,30 +29,32 @@ namespace WhetStone
                 }
             }
         }
+        public static IEnumerable<IList<T>> Trail<T>(this IList<T> @this, int trailLength, bool wrap = false)
+        {
+            if (wrap)
+            {
+                @this = @this.Concat(@this.Slice(0,trailLength - 1));
+            }
+            return new TrailList<T>(@this,trailLength);
+        }
         public static IEnumerable<T[]> Trail<T>(this IEnumerable<T> @this, int trailLength, bool wrap = false)
         {
-            while (true)
+            var buffer = new LinkedList<T>();
+            if (wrap)
             {
-                var buffer = new LinkedList<T>();
-                if (wrap)
+                @this = @this.Concat(@this.Take(trailLength - 1));
+            }
+            foreach (T t in @this)
+            {
+                buffer.AddLast(t);
+                while (buffer.Count > trailLength)
                 {
-                    @this = (@this).Concat(@this.Take(trailLength - 1));
-                    wrap = false;
-                    continue;
+                    buffer.RemoveFirst();
                 }
-                foreach (T t in @this)
+                if (buffer.Count == trailLength)
                 {
-                    buffer.AddLast(t);
-                    while (buffer.Count > trailLength)
-                    {
-                        buffer.RemoveFirst();
-                    }
-                    if (buffer.Count == trailLength)
-                    {
-                        yield return buffer.ToArray();
-                    }
+                    yield return buffer.ToArray();
                 }
-                break;
             }
         }
     }

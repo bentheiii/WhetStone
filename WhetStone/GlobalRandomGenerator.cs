@@ -34,21 +34,11 @@ namespace WhetStone.Random
             EnsureGeneratorExists(Thread.CurrentThread);
             return _dic[Thread.CurrentThread].Int(min, max);
         }
-        public static void reset()
+        public static void reset(Thread thread = null, int? seed = null)
         {
-            reset(Thread.CurrentThread);
-        }
-        public static void reset(Thread t)
-        {
-            reset(DateTime.Now.GetHashCode() ^ Process.GetCurrentProcess().GetHashCode() ^ Thread.CurrentThread.GetHashCode(), t);
-        }
-        public static void reset(int seed)
-        {
-            reset(seed, Thread.CurrentThread);
-        }
-        public static void reset(int seed, Thread t)
-        {
-            _dic[t] = new LocalRandomGenerator(seed);
+            _dic[thread ?? Thread.CurrentThread] =
+                new LocalRandomGenerator(seed ??
+                                         (DateTime.Now.GetHashCode() ^ Process.GetCurrentProcess().GetHashCode() ^ Thread.CurrentThread.GetHashCode()));
         }
     }
 }

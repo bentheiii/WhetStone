@@ -13,7 +13,7 @@ namespace WhetStone.Looping
                 var ts = @this as IList<T>;
                 ts = ts ?? (@this as IReadOnlyList<T>)?.ToLockedList();
                 if (ts != null)
-                    return count > 0 ? ts.Slice(start, count) : ts.Slice(start);
+                    return count > 0 ? ts.Slice(start, count+start) : ts.Slice(start);
             }
             var temp = @this.Skip(start).Step(step);
             return count >= 0 ? temp.Take(count) : temp;
