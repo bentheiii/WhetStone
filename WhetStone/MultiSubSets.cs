@@ -8,11 +8,11 @@ namespace WhetStone.Looping
     {
         public static IEnumerable<IEnumerable<int>> MultiSubSets(this IEnumerable<int> @this, bool inclusive = true)
         {
-            return @this.Select(a => (inclusive ? range.IRange(a) : range.Range(a)).ToArray()).ToArray().Join();
+            return @this.Select(a => inclusive ? range.IRange(a) : range.Range(a)).ToArray().Join();
         }
         public static IEnumerable<IEnumerable<T>> MultiSubSets<T>(this IEnumerable<T> @this, bool inclusive = true)
         {
-            return @this.Select(a => (inclusive ? range.IRange(a) : range.Range(a)).ToArray()).ToArray().Join();
+            return @this.Select(a => inclusive ? range.IRange(a) : range.Range(a)).ToArray().Join();
         }
         public static IEnumerable<IEnumerable<Tuple<T, int>>> MultiSubSets<T>(this IEnumerable<Tuple<T, int>> @this, bool inclusive = true)
         {

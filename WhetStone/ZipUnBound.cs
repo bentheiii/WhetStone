@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 using WhetStone.Tuples;
 
 namespace WhetStone.Looping
@@ -133,19 +134,19 @@ namespace WhetStone.Looping
 
         public static LockedList<Tuple<T1,T2>> ZipUnbound<T1, T2>(this IList<T1> a, IList<T2> b, T1 defa = default(T1), T2 defb = default(T2))
         {
-            return ZipUnbound(new [] { (IList)a, (IList)b }, defa, defb).Select(x => x.ToTuple<T1, T2>());
+            return ZipUnbound(new [] { a.ToGeneral(), b.ToGeneral() }, defa, defb).Select(x => x.ToTuple<T1, T2>());
         }
         public static LockedList<Tuple<T1, T2, T3>> ZipUnbound<T1, T2, T3>(this IList<T1> a, IList<T2> b, IList<T3> c, T1 defa = default(T1), T2 defb = default(T2), T3 defc = default (T3))
         {
-            return ZipUnbound(new[] { (IList)a, (IList)b, (IList)c }, defa, defb, defc).Select(x => x.ToTuple<T1, T2, T3>());
+            return ZipUnbound(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral() }, defa, defb, defc).Select(x => x.ToTuple<T1, T2, T3>());
         }
         public static LockedList<Tuple<T1, T2, T3, T4>> ZipUnbound<T1, T2, T3, T4>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d , T1 defa = default(T1), T2 defb = default(T2), T3 defc = default(T3), T4 defd = default(T4))
         {
-            return ZipUnbound(new[] { (IList)a, (IList)b, (IList)c, (IList)d }, defa, defb, defc, defd).Select(x => x.ToTuple<T1, T2, T3, T4>());
+            return ZipUnbound(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral(), d.ToGeneral() }, defa, defb, defc, defd).Select(x => x.ToTuple<T1, T2, T3, T4>());
         }
         public static LockedList<Tuple<T1, T2, T3, T4, T5>> ZipUnbound<T1, T2, T3, T4, T5>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d, IList<T5> e, T1 defa = default(T1), T2 defb = default(T2), T3 defc = default(T3), T4 defd = default(T4), T5 defe = default(T5))
         {
-            return ZipUnbound(new[] { (IList)a, (IList)b, (IList)c, (IList)d, (IList)e }, defa, defb, defc, defd, defe).Select(x => x.ToTuple<T1, T2, T3, T4, T5>());
+            return ZipUnbound(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral(), d.ToGeneral(), e.ToGeneral() }, defa, defb, defc, defd, defe).Select(x => x.ToTuple<T1, T2, T3, T4, T5>());
         }
     }
 }

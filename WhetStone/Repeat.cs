@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
@@ -17,15 +18,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                var f = _count;
-                while (f != 0)
-                {
-                    foreach (T t in _source)
-                    {
-                        yield return t;
-                    }
-                    f--;
-                }
+                return range.Range(_count).SelectMany(i => _source).GetEnumerator();
             }
             public override int Count
             {
@@ -63,15 +56,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                var f = _count;
-                while (f != 0)
-                {
-                    foreach (T t in _source)
-                    {
-                        yield return t;
-                    }
-                    f--;
-                }
+                return range.Range(_count).SelectMany(i => _source).GetEnumerator();
             }
             public override int Count
             {
@@ -95,13 +80,7 @@ namespace WhetStone.Looping
         }
         public static IEnumerable<T> Repeat<T>(this IEnumerable<T> @this, int count)
         {
-            foreach (int i in range.Range(count))
-            {
-                foreach (var t in @this)
-                {
-                    yield return t;
-                }
-            }
+            return range.Range(count).SelectMany(i => @this);
         }
     }
 }

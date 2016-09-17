@@ -54,7 +54,7 @@ namespace WhetStone.Looping
         public void AddRange(IEnumerable<T> x)
         {
             int c = x.Count();
-            ResizeTo(Count + c - 1);
+            ResizeTo(Count + c);
             foreach (var i in countUp.CountUp(Count).Zip(x))
             {
                 _arr[i.Item1] = i.Item2;

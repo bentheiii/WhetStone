@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 using WhetStone.Tuples;
 
 namespace WhetStone.Looping
@@ -18,7 +19,11 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<IEnumerable<T>> GetEnumerator()
             {
-                return range.Range(Count).Select(i => _sources.Select(a => a[i])).GetEnumerator();
+                var tor = _sources.Select(a => a.GetEnumerator()).ToArray();
+                while (tor.All(a => a.MoveNext()))
+                {
+                    yield return tor.Select(a => a.Current);
+                }
             }
             public override int Count
             {
@@ -44,7 +49,11 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<IEnumerable> GetEnumerator()
             {
-                return range.Range(Count).Select(i => _sources.Select(a => a[i])).GetEnumerator();
+                var tor = _sources.Select(a => a.GetEnumerator()).ToArray();
+                while (tor.All(a => a.MoveNext()))
+                {
+                    yield return tor.Select(a => a.Current);
+                }
             }
             public override int Count
             {
@@ -105,19 +114,19 @@ namespace WhetStone.Looping
 
         public static LockedList<Tuple<T1, T2>> Zip<T1, T2>(this IList<T1> a, IList<T2> b)
         {
-            return Zip(new[] { (IList)a, (IList)b }).Select(x => x.ToTuple<T1, T2>());
+            return Zip(new[] { a.ToGeneral(), b.ToGeneral() }).Select(x => x.ToTuple<T1, T2>());
         }
         public static LockedList<Tuple<T1, T2,T3>> Zip<T1, T2, T3>(this IList<T1> a, IList<T2> b, IList<T3> c)
         {
-            return Zip(new[] { (IList)a, (IList)b, (IList) c}).Select(x => x.ToTuple<T1, T2,T3>());
+            return Zip(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral()}).Select(x => x.ToTuple<T1, T2,T3>());
         }
         public static LockedList<Tuple<T1, T2, T3, T4>> Zip<T1, T2, T3, T4>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d)
         {
-            return Zip(new[] { (IList)a, (IList)b, (IList)c, (IList)d }).Select(x => x.ToTuple<T1, T2, T3, T4>());
+            return Zip(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral(), d.ToGeneral() }).Select(x => x.ToTuple<T1, T2, T3, T4>());
         }
         public static LockedList<Tuple<T1, T2, T3, T4, T5>> Zip<T1, T2, T3, T4, T5>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d, IList<T5> e)
         {
-            return Zip(new[] { (IList)a, (IList)b, (IList)c, (IList)d, (IList)e }).Select(x => x.ToTuple<T1, T2, T3, T4, T5>());
+            return Zip(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral(), d.ToGeneral(), e.ToGeneral() }).Select(x => x.ToTuple<T1, T2, T3, T4, T5>());
         }
     }
 }

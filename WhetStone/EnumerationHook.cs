@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.Guard;
 
 namespace WhetStone.Looping
 {
@@ -14,5 +15,6 @@ namespace WhetStone.Looping
                 postYield?.Invoke(t);
             }
         }
+        
     }
 }

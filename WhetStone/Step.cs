@@ -4,7 +4,6 @@ namespace WhetStone.Looping
 {
     public static class step
     {
-        //todo slice integration
         public static IEnumerable<T> Step<T>(this IEnumerable<T> @this, int step = 2, int start = 0)
         {
             int c = start;

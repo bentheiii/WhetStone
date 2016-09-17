@@ -24,7 +24,7 @@ namespace WhetStone.Looping
         }
         public static IList<T> Slice<T>(this IList<T> @this, int start)
         {
-            return Slice(@this, start, @this.Count - start);
+            return Slice(@this, start, @this.Count);
         }
         private class ListSlice<T> : IList<T>
         {

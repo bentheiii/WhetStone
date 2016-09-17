@@ -32,6 +32,30 @@ namespace WhetStone.Looping
                     return positionBind.Position.Middle;
                 }
             }
+            public override bool Contains(positionBind.Position item)
+            {
+                return item.HasFlag(positionBind.Position.Middle) && !item.HasFlag(positionBind.Position.Last);
+            }
+            public override int IndexOf(positionBind.Position item)
+            {
+                switch (item)
+                {
+                    case (positionBind.Position.First | positionBind.Position.Middle):
+                        return 0;
+                    case positionBind.Position.Middle:
+                        return 1;
+                    default:
+                        return -1;
+                }
+            }
+            public override bool Equals(object obj)
+            {
+                return obj is InfiniteLockedList;
+            }
+            public override int GetHashCode()
+            {
+                return typeof(InfiniteLockedList).GetHashCode();
+            }
         }
     }
 }

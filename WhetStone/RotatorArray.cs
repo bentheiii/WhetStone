@@ -20,15 +20,15 @@ namespace WhetStone.Looping
         }
         public int IndexOf(T item)
         {
-            return ((IList)_items).IndexOf(item);
+            return ((IList<T>)_items).IndexOf(item);
         }
         void IList<T>.Insert(int index, T item)
         {
-            ((IList)_items).Insert(index, item);
+            ((IList<T>)_items).Insert(index, item);
         }
         void IList<T>.RemoveAt(int index)
         {
-            ((IList)_items).RemoveAt(index);
+            ((IList<T>)_items).RemoveAt(index);
         }
         public T this[int i]
         {
@@ -80,11 +80,11 @@ namespace WhetStone.Looping
         }
         void ICollection<T>.Add(T item)
         {
-            ((IList)_items).Add(item);
+            ((IList<T>)_items).Add(item);
         }
         void ICollection<T>.Clear()
         {
-            ((IList)_items).Clear();
+            ((IList<T>)_items).Clear();
         }
         public bool Contains(T item)
         {

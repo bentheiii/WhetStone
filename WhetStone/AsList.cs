@@ -15,7 +15,7 @@ namespace WhetStone.Looping
             if (r != null)
                 return r.ToLockedList();
             var s = @this as string;
-            if (s != null)
+            if (s != null && typeof(T) == typeof(char))
                 return (IList<T>)new LockedListStringAdaptor(s);
             return @this.ToArray();
         }
