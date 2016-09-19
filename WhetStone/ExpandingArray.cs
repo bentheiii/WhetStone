@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WhetStone.Looping
 {
-    public class ExpandingArray<T> : IEnumerable<T>
+    public class ExpandingArray<T> : IList<T>
     {
         private readonly List<T> _data;
         public T defaultValue { get; }
@@ -19,6 +19,18 @@ namespace WhetStone.Looping
                 _data.Capacity = newsize;
                 _data.AddRange(defaultValue.Enumerate().Repeat(newsize - _data.Count));
             }
+        }
+        public int IndexOf(T item)
+        {
+            return _data.IndexOf(item);
+        }
+        public void Insert(int index, T item)
+        {
+            _data.Insert(index, item);
+        }
+        public void RemoveAt(int index)
+        {
+            _data.RemoveAt(index);
         }
         public T this[int ind]
         {
@@ -53,6 +65,22 @@ namespace WhetStone.Looping
         public bool Contains(T item)
         {
             return item.Equals(defaultValue) || _data.Contains(item);
+        }
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            _data.CopyTo(array, arrayIndex);
+        }
+        public bool Remove(T item)
+        {
+            return _data.Remove(item) || item.Equals(defaultValue);
+        }
+        public int Count => int.MaxValue;
+        public bool IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
         }
     }
 }

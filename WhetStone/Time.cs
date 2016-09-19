@@ -6,13 +6,13 @@ namespace WhetStone.Units.Time
     {
         public static TimeSpan Divide(this TimeSpan t, double divisor)
         {
-            return multiply(t, 1.0 / divisor);
+            return Multiply(t, 1.0 / divisor);
         }
         public static double Divide(this TimeSpan t, TimeSpan divisor)
         {
             return (t.Ticks / (double)divisor.Ticks);
         }
-        public static TimeSpan multiply(this TimeSpan t, double factor)
+        public static TimeSpan Multiply(this TimeSpan t, double factor)
         {
             return new TimeSpan((long)(t.Ticks * factor));
         }

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace WhetStone.Looping
@@ -18,6 +21,10 @@ namespace WhetStone.Looping
                 b.Append(t);
             }
             return b.ToString();
+        }
+        public static string StrConcat<T>(this IEnumerable<T> a, string seperator, string format, IFormatProvider prov = null) where T:IFormattable
+        {
+            return a.Select(x => x.ToString(format, prov ?? CultureInfo.CurrentCulture)).StrConcat(seperator);
         }
         public static string StrConcat<K, V>(this IDictionary<K, V> a, string definitionSeperator = ":", string seperator = ", ")
         {

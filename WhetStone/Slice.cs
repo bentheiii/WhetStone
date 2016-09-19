@@ -16,15 +16,21 @@ namespace WhetStone.Looping
         /// <param name="start"></param>
         /// <param name="max"></param>
         /// <param name="steps"></param>
+        /// <param name="length"></param>
         /// <returns></returns>
-        public static IList<T> Slice<T>(this IList<T> @this, int start, int max, int steps=1)
+        public static IList<T> Slice<T>(this IList<T> @this, int start, int? max = null, int steps=1, int? length = null)
         {
+            if (max.HasValue && length.HasValue)
+                throw new ArgumentException("either max or length must be null");
+            if (length.HasValue)
+                max = length - start;
+            if (max == null)
+                max = @this.Count;
             var s = @this as ListSlice<T>;
-            return s != null ? s.ReSlice(start, max, steps) : new ListSlice<T>(@this, start, max, steps);
-        }
-        public static IList<T> Slice<T>(this IList<T> @this, int start)
-        {
-            return Slice(@this, start, @this.Count);
+            var ret = s != null ? s.ReSlice(start, max.Value, steps) : new ListSlice<T>(@this, start, max.Value, steps);
+            if (ret.Count < 0)
+                throw new ArgumentOutOfRangeException();
+            return ret;
         }
         private class ListSlice<T> : IList<T>
         {

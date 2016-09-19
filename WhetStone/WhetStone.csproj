@@ -136,6 +136,7 @@
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="Repeat.cs" />
+    <Compile Include="Reverse.cs" />
     <Compile Include="ReverseComparer.cs" />
     <Compile Include="RotationalSpeeds.cs" />
     <Compile Include="Select.cs" />

@@ -7,7 +7,6 @@ namespace NumberStone
     {
         public static int SmallestFactor(this int value)
         {
-            //todo: increase this, ignore evens
             if (value <= 1)
                 throw new ArithmeticException("cannot find prime factorization of a non-positive number");
             if (value%2 == 0)
@@ -166,7 +165,7 @@ namespace NumberStone
             if (value < val.Length*2 + 2)
                 return val[(value-3)/2];
             bool? pbl = value.IsPrimeByList();
-            if (pbl.HasValue && pbl.Value)
+            if (pbl ?? false)
             {
                 return value;
             }

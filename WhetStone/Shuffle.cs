@@ -42,5 +42,14 @@ namespace WhetStone.Looping
                 denom--;
             }
         }
+        public static T Pick<T>(this IList<T> @this, RandomGenerator gen = null)
+        {
+            gen = gen ?? new GlobalRandomGenerator();
+            return @this[gen.Int(@this.Count)];
+        }
+        public static IEnumerable<T> Pick<T>(this IList<T> @this, int count, RandomGenerator gen = null)
+        {
+            return @this.Join(count, @join.CartesianType.NoReflexive | @join.CartesianType.NoSymmatry).Pick(gen).Reverse();
+        }
     }
 }

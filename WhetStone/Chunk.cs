@@ -26,7 +26,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    return _source.SubEnumerable(index*_chunksize, _chunksize).ToArray();
+                    return _source.Slice(index*_chunksize, length: _chunksize);
                 }
             }
         }

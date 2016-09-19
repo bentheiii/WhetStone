@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WhetStone.Looping
 {
-    public class ResizingArray<T> : ICollection<T>, IReadOnlyList<T>
+    public class ResizingArray<T> : IList<T>, IReadOnlyList<T>
     {
         public ResizingArray(int capacity = 0)
         {
@@ -21,7 +21,11 @@ namespace WhetStone.Looping
         }
         public bool Remove(T item)
         {
-            throw new NotSupportedException();
+            var ind = IndexOf(item);
+            if (ind == -1)
+                return false;
+            RemoveAt(ind);
+            return true;
         }
         public int Count { get; private set; } = 0;
         public bool IsReadOnly
@@ -81,6 +85,32 @@ namespace WhetStone.Looping
         {
             return this.GetEnumerator();
         }
+        public int IndexOf(T item)
+        {
+            return arr.CountBind().FirstOrDefault(a => a.Item1.Equals(item),Tuple.Create(default(T),-1)).Item2;
+        }
+        public void Insert(int index, T item)
+        {
+            if (index == Count)
+            {
+                Add(item);
+                return;
+            }
+            Add(default(T));
+            foreach (int i in range.Range(Count - 1, index))
+            {
+                _arr[i] = _arr[i - 1];
+            }
+            _arr[index] = item;
+        }
+        public void RemoveAt(int index)
+        {
+            foreach (int i in range.Range(index,Count-1))
+            {
+                _arr[i] = _arr[i + 1];
+            }
+            Count--;
+        }
         public T this[int index]
         {
             get
@@ -88,6 +118,12 @@ namespace WhetStone.Looping
                 if (index >= Count)
                     throw new ArgumentOutOfRangeException();
                 return _arr[index];
+            }
+            set
+            {
+                if (index >= Count)
+                    throw new ArgumentOutOfRangeException();
+                _arr[index] = value;
             }
         }
         public static implicit operator T[] (ResizingArray<T> @this)

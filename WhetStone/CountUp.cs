@@ -44,42 +44,42 @@ namespace WhetStone.Looping
             }
         }
         private class CountList : LockedList<int>
-    {
-        private readonly int _start;
-        private readonly int _step;
-        public CountList(int start, int step)
         {
-            _start = start;
-            _step = step;
-        }
-        public override IEnumerator<int> GetEnumerator()
-        {
-            var ret = _start;
-            for (int i = 0; i < Count; i++)
+            private readonly int _start;
+            private readonly int _step;
+            public CountList(int start, int step)
             {
-                yield return ret;
-                ret += _step;
+                _start = start;
+                _step = step;
+            }
+            public override IEnumerator<int> GetEnumerator()
+            {
+                var ret = _start;
+                for (int i = 0; i < Count; i++)
+                {
+                    yield return ret;
+                    ret += _step;
+                }
+            }
+            public override bool Contains(int item)
+            {
+                return (item - _start)%_step == 0;
+            }
+            public override int Count { get; } = int.MaxValue;
+            public override int IndexOf(int item)
+            {
+                if (!Contains(item))
+                    return -1;
+                return (item - _start)/_step;
+            }
+            public override int this[int index]
+            {
+                get
+                {
+                    return this._start + this._step*index;
+                }
             }
         }
-        public override bool Contains(int item)
-        {
-            return (item - _start) % _step == 0;
-        }
-        public override int Count { get; } = int.MaxValue;
-        public override int IndexOf(int item)
-        {
-            if (!Contains(item))
-                return -1;
-            return (item - _start) / _step;
-        }
-        public override int this[int index]
-        {
-            get
-            {
-                return this._start + this._step * index;
-            }
-        }
-    }
         public static LockedList<int> CountUp(int start = 0, int step = 1)
         {
             return new CountList(start, step);
