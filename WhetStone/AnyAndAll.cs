@@ -10,7 +10,7 @@ namespace WhetStone.Looping
             bool any = false;
             foreach (T t in @this)
             {
-                if (cond(t) == false)
+                if (!cond(t))
                     return false;
                 any = true;
             }

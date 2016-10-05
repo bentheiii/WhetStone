@@ -9,16 +9,14 @@ namespace NumberStone
 {
     public static class factors
     {
-        public static IEnumerable<int> Factors(this int x)
+        public static LockedList<int> Factors(this int x)
         {
             if (x <= 0)
                 throw new ArithmeticException("cannot find factorization of a non-positive number");
             var primes = x.Primefactors().ToLookup(a => a).Select(a => Tuple.Create(a.Key, a.Count())).ToArray();
-            IList<IList<int>> rangelist = primes.Select(a => (IList<int>)range.IRange(a.Item2).Select(z => a.Item1.pow(z)).ToArray());
-            foreach (var primesubsets in rangelist.Join())
-            {
-                yield return primesubsets.GetProduct((a, b) => a*b);
-            }
+            IList<IList<int>> rangelist = primes.Select(a => (IList<int>)yieldAggregate.YieldAggregate((t)=>t*a.Item1,1).Take(a.Item2+1).ToArray());
+            var j = rangelist.Join();
+            return j.Select(a => a.GetProduct((t, y) => t*y));
         }
     }
 }

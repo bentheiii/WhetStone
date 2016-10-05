@@ -106,6 +106,7 @@
     <Compile Include="InsertSuffixes.cs" />
     <Compile Include="IProccesor.cs" />
     <Compile Include="IsPrime.cs" />
+    <Compile Include="IsSorted.cs" />
     <Compile Include="IsWithin.cs" />
     <Compile Include="Join.cs" />
     <Compile Include="LeastCommonMultiple.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="TypeFunnel.cs" />
     <Compile Include="Uniques.cs" />
     <Compile Include="Units.cs" />
+    <Compile Include="UnsignedDiff.cs" />
     <Compile Include="ValueOrDefault.cs" />
     <Compile Include="Where.cs" />
     <Compile Include="Parser.cs" />

@@ -67,7 +67,7 @@ namespace WhetStone.Looping
         }
         public void Clear()
         {
-            _arr = new T[0];
+            Count = 0;
         }
         public bool Contains(T item)
         {
@@ -128,7 +128,6 @@ namespace WhetStone.Looping
         }
         public static implicit operator T[] (ResizingArray<T> @this)
         {
-            Array.Resize(ref @this._arr, @this.Count);
             return @this.arr;
         }
     }

@@ -7,11 +7,11 @@ namespace WhetStone.Looping
     {
         public static T[] ToArray<T>(this IEnumerable<T> @this, Action<int> reporter, bool limitToCapacity = false)
         {
-            return ToArray(@this, @this.RecommendSize() ?? 0, (arg1, i) => reporter?.Invoke(i), limitToCapacity);
+            return ToArray(@this, @this.RecommendCount() ?? 0, (arg1, i) => reporter?.Invoke(i), limitToCapacity);
         }
         public static T[] ToArray<T>(this IEnumerable<T> @this, Action<T, int> reporter, bool limitToCapacity = false)
         {
-            return ToArray(@this, @this.RecommendSize() ?? 0, reporter, limitToCapacity);
+            return ToArray(@this, @this.RecommendCount() ?? 0, reporter, limitToCapacity);
         }
         public static T[] ToArray<T>(this IEnumerable<T> @this, int capacity, bool limitToCapacity = false)
         {

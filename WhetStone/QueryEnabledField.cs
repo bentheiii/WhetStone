@@ -4,7 +4,7 @@ using WhetStone.RecursiveQuerier;
 
 namespace WhetStone.Fielding
 {
-    public class QueryEnabledField<T> : Field<T>
+    public abstract class QueryEnabledField<T> : Field<T>
     {
         public const ulong DefaultMaxFromIntQuery = 256;
         public const ulong DefaultMaxPowBaseQuery = 20;
@@ -18,14 +18,20 @@ namespace WhetStone.Fielding
         private readonly HalvingQuerier<T> _fromIntQuerier;
         private readonly IDictionary<T, HalvingQuerier<T>> _powDictionary;
         private readonly LazyArray<T> _factorialQuerier;
-        public QueryEnabledField(T zero, T one, T naturalbase) : base(zero,one,naturalbase)
+        public QueryEnabledField(T zero, T one, T naturalbase)
         {
+            this.zero = zero;
+            this.one = one;
+            this.naturalbase = naturalbase;
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             _fromIntQuerier = new HalvingQuerier<T>(this.one,this.add,this.zero);
             _powDictionary = new Dictionary<T, HalvingQuerier<T>>();
             _factorialQuerier = new LazyArray<T>((i, array) => i == 0 ? this.one : this.multiply(this.fromInt(i),array[i-1]));
             // ReSharper restore DoNotCallOverridableMethodsInConstructor
         }
+        public override T zero { get; }
+        public override T one { get; }
+        public override T naturalbase { get; }
         public override T fromInt(ulong x)
         {
             return x < MaxFromIntQuery ? _fromIntQuerier[(int)x] : base.fromInt(x);

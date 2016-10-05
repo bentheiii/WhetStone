@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
-    public class LazyArray<T> : IEnumerable<T>
+    public class LazyArray<T> : LockedList<T>
     {
         private readonly Func<int, LazyArray<T>, T> _generator;
         private readonly ExpandingArray<T> _data;
@@ -20,11 +21,11 @@ namespace WhetStone.Looping
         {
             return _initialized[index];
         }
-        public void RemoveAt(int index)
+        public void ClearAt(int index)
         {
             _initialized[index] = false;
         }
-        public T this[int ind]
+        public override T this[int ind]
         {
             get
             {
@@ -35,15 +36,12 @@ namespace WhetStone.Looping
                 return ret;
             }
         }
-        public IEnumerator<T> GetEnumerator()
+        public override IEnumerator<T> GetEnumerator()
         {
             return countUp.CountUp().Select(a => this[a]).GetEnumerator();
         }
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-        public void Clear()
+        public override int Count => _data.Count;
+        public void ClearAll()
         {
             _data.Clear();
             _initialized.Clear();

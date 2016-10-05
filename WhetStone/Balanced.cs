@@ -26,7 +26,7 @@ namespace WhetStone.Looping
                 int c = @this.Count(opener);
                 return c % 2 == 0 && (!maxdepth.HasValue || (c == 0 || maxdepth >= 1));
             }
-            var count = @this.RecommendSize();
+            var count = @this.RecommendCount();
             int ret = 0;
             Guard<int> index = new Guard<int>();
             foreach (var t in @this.CountBind().Detach(index))

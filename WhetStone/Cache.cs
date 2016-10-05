@@ -10,6 +10,10 @@ namespace WhetStone.Looping
         {
             return new EnumerableCache<T>(@this);
         }
+        public static IList<T> Cache<T>(this IList<T> @this)
+        {
+            return new LazyArray<T>(i => @this[i]);
+        }
         private class EnumerableCache<T> : LockedList<T>
         {
             private readonly IEnumerator<T> _tor;
@@ -18,7 +22,7 @@ namespace WhetStone.Looping
             private bool _formed = false;
             public EnumerableCache(IEnumerable<T> tor)
             {
-                _sourceSize = tor.RecommendSize();
+                _sourceSize = tor.RecommendCount();
                 _tor = tor.GetEnumerator();
                 _cache = new List<T>();
             }

@@ -16,7 +16,7 @@ namespace WhetStone.Looping
         }
         public static bool IsSymmetrical<T>(this IEnumerable<T> @this, IEqualityComparer<T> c)
         {
-            int? count = @this.RecommendSize();
+            int? count = @this.RecommendCount();
             int len = count / 2 ?? int.MaxValue;
             return @this.Zip(@this.Reverse()).Take(len).All(a => c.Equals(a.Item1, a.Item2));
         }

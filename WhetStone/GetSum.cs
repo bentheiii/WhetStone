@@ -10,7 +10,7 @@ namespace WhetStone.Looping
         public static T GetSum<T>(this IEnumerable<T> toAdd, Func<T, T, T> adder = null)
         {
             var f = Fields.getField<T>();
-            return GetSum(toAdd, f.zero, f.add);
+            return GetSum(toAdd, f.zero, adder);
         }
         public static T GetSum<T>(this IEnumerable<T> toAdd, T initial, Func<T, T, T> adder = null)
         {

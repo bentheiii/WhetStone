@@ -7,6 +7,31 @@ namespace WhetStone.Looping
 {
     public static class concat
     {
+        private class ConcatEnumerable<T> : LockedCollection<T>
+        {
+            private readonly IEnumerable<IEnumerable<T>> _source;
+            public ConcatEnumerable(IEnumerable<IEnumerable<T>> source)
+            {
+                _source = source;
+            }
+            public override IEnumerator<T> GetEnumerator()
+            {
+                foreach (var v in _source)
+                {
+                    foreach (var t in v)
+                    {
+                        yield return t;
+                    }
+                }
+            }
+            public override int Count
+            {
+                get
+                {
+                    return _source.Sum(a => a.Count());
+                }
+            }
+        }
         private class ConcatList<T> : LockedList<T>
         {
             private readonly IList<IEnumerable<T>> _source;
@@ -97,9 +122,9 @@ namespace WhetStone.Looping
         {
             return new ConcatListList<T>(new [] {@this,other});
         }
-        public static IEnumerable<T> Concat<T>(this IEnumerable<IEnumerable<T>> a)
+        public static LockedCollection<T> Concat<T>(this IEnumerable<IEnumerable<T>> a)
         {
-            return a.SelectMany(i => i);
+            return new ConcatEnumerable<T>(a);
         }
     }
 }

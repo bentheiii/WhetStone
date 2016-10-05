@@ -9,7 +9,6 @@ using WhetStone.SystemExtensions;
 using WhetStone.WordPlay;
 using Microsoft.CSharp.RuntimeBinder;
 using Numerics;
-//todo fix namespace
 namespace WhetStone.Fielding {
     public class FieldWrapper<T> : IComparable<T>, IComparable<FieldWrapper<T>>, IEquatable<T>, IEquatable<FieldWrapper<T>>
     {
@@ -214,106 +213,40 @@ namespace WhetStone.Fielding {
     {
         None = 0, Linear = 1, Discrete = 2, HalfFinite = Linear|4, Finite = HalfFinite|Discrete|8, 
     }
-    public class Field<T> : IComparer<T>, IEqualityComparer<T>, Field
+    public abstract class Field<T> : IComparer<T>, IEqualityComparer<T>, Field
     {
-        public Field() : this(default(T), default(T), default(T)) { }
-        public Field(T zero, T one, T naturalbase)
-        {
-            this.zero = zero;
-            this.one = one;
-            this.naturalbase = naturalbase;
-        }
-        public virtual T zero { get; }
-        public virtual T one { get; }
-        public virtual T naturalbase { get; }
+        public abstract T zero { get; }
+        public abstract T one { get; }
+        public abstract T naturalbase { get; }
         public virtual T negativeone => Negate(one);
         public virtual T Negate(T x)
         {
-            return -((dynamic)x);
+            return subtract(zero,x);
         }
         public virtual T Invert(T x)
         {
             return divide(one,x);
         }
-        public virtual T multiply(T a, T b)
-        {
-            return (dynamic)a * b;
-        }
-        public virtual T divide(T a, T b)
-        {
-            return (dynamic)a / b;
-        }
-        public virtual T add(T a, T b)
-        {
-            return (dynamic)a + b;
-        }
-        public virtual T subtract(T a, T b)
-        {
-            return (dynamic)a - b;
-        }
-        public virtual T Conjugate(T a)
-        {
-            try
-            {
-                return ((dynamic) a).conjugate();
-            }
-            catch (RuntimeBinderException)
-            {
-                return a;
-            }
-        }
-        public virtual T pow(T a, T b)
-        {
-            try
-            {
-                return ((dynamic)a).pow(b);
-            }
-            catch (RuntimeBinderException)
-            {
-                return (dynamic)a^b;
-            }
-        }
-        public virtual T log(T a)
-        {
-            return ((dynamic)a).log();
-        }
+        public abstract T multiply(T a, T b);
+        public abstract T divide(T a, T b);
+        public abstract T add(T a, T b);
+        public abstract T subtract(T a, T b);
+        public abstract T Conjugate(T a);
+        public abstract T pow(T a, T b);
+        public abstract T log(T a);
         public virtual T log(T a, T b)
         {
             return divide(log(a),log(b));
         }
-        public virtual T mod(T a, T b)
-        {
-            return (dynamic)a % b;
-        }
-        public virtual double? toDouble(T a)
-        {
-            return ((dynamic)this.abs(a));
-        }
+        public abstract T mod(T a, T b);
+        public abstract double? toDouble(T a);
         public virtual string String(T a)
         {
             return a.ToString();
         }
-        public virtual bool Invertible
-        {
-            get
-            {
-                return true;
-            }
-        }
-        public virtual bool Negatable
-        {
-            get
-            {
-                return true;
-            }
-        }
-        public virtual bool ModduloAble
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public virtual bool Invertible => true;
+        public virtual bool Negatable => true;
+        public virtual bool ModduloAble => true;
         public virtual bool isNegative(T x)
         {
             return this.Compare(zero, x) > 0;
@@ -413,6 +346,69 @@ namespace WhetStone.Fielding {
     public static class Fields
     {
         #region stock
+        private class DynamicField<T> : QueryEnabledField<T>
+        {
+            public DynamicField() : base((T)(dynamic)0, (T)(dynamic)1, (T)(dynamic)2)
+            {
+            }
+            public override T multiply(T a, T b)
+            {
+                return a * (dynamic)b;
+            }
+            public override T divide(T a, T b)
+            {
+                return a / (dynamic)b;
+            }
+            public override T add(T a, T b)
+            {
+                return a + (dynamic)b;
+            }
+            public override T subtract(T a, T b)
+            {
+                return a - (dynamic)b;
+            }
+            public override T Conjugate(T a)
+            {
+                try
+                {
+                    return ((dynamic)a).Conjugate();
+                }
+                catch (RuntimeBinderException)
+                {
+                    return a;
+                }
+            }
+            public override T pow(T a, T b)
+            {
+                try
+                {
+                    return ((dynamic)a).pow(b);
+                }
+                catch (RuntimeBinderException)
+                {
+                    return (dynamic)a^b;
+                }
+            }
+            public override T log(T a)
+            {
+                return ((dynamic)a).log();
+            }
+            public override T mod(T a, T b)
+            {
+                return a % (dynamic)b;
+            }
+            public override double? toDouble(T a)
+            {
+                try
+                {
+                    return (double)(dynamic)a;
+                }
+                catch (RuntimeBinderException)
+                {
+                    return null;
+                }
+            }
+        }
         private class DoubleField : QueryEnabledField<double>
         {
             public DoubleField() : base(0, 1, Math.E) { }
@@ -1373,7 +1369,7 @@ namespace WhetStone.Fielding {
                 }
                 try
                 {
-                    return new Field<T>((T)(dynamic)0, (T)(dynamic)1, (T)(dynamic)2);
+                    return new DynamicField<T>();
                 }
                 catch (Exception)
                 {

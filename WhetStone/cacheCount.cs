@@ -1,51 +1,46 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
     public static class cacheCount
     {
-        public static LockedCollection<T> CacheCount<T>(this IEnumerable<T> @this)
+        private class CountCache<T> : LockedCollection<T>
         {
-            return new EnumerableCountCache<T>(@this);
-        }
-        private class EnumerableCountCache<T> : LockedCollection<T>
-        {
-            private readonly IEnumerable<T> _inner;
             private int? _count;
-            public EnumerableCountCache(IEnumerable<T> inner)
+            private readonly IEnumerable<T> _source;
+            public CountCache(IEnumerable<T> source)
             {
-                _inner = inner;
-                _count = _inner.RecommendSize();
+                _source = source;
+                _count = source.RecommendCount();
             }
             public override IEnumerator<T> GetEnumerator()
             {
                 int c = 0;
-                foreach (var t in _inner)
+                foreach (T t in _source)
                 {
-                    yield return t;
                     c++;
+                    yield return t;
                 }
-                if (_count == null)
-                {
-                    _count = c;
-                }
-
-            }
-            public override bool Contains(T item)
-            {
-                return _inner.Contains(item);
+                _count = c;
             }
             public override int Count
             {
                 get
                 {
-                    if (!_count.HasValue)
-                        _count = _inner.Count();
+                    if (_count == null)
+                        _count = _source.Count();
                     return _count.Value;
                 }
             }
+        }
+        public static LockedCollection<T> CacheCount<T>(this IEnumerable<T> @this)
+        {
+            return new CountCache<T>(@this);
         }
     }
 }

@@ -8,16 +8,43 @@ namespace WhetStone.Looping
     {
         public static int CompareCount<T0, T1>(this IEnumerable<T0> @this, IEnumerable<T1> other)
         {
-            int? rect = @this.RecommendSize();
-            if (rect.HasValue)
+
+            int? rect = @this.RecommendCount();
+            int? reco = other.RecommendCount();
+
+            if (reco.HasValue && rect.HasValue)
+                return rect.Value.CompareTo(reco.Value);
+            if (reco.HasValue) //rect is null
             {
-                int? reco = other.RecommendSize();
-                if (reco.HasValue)
-                    return rect.Value.CompareTo(reco.Value);
+                int c = 0;
+                foreach (var t0 in @this)
+                {
+                    c++;
+                    if (c >= reco.Value + 1)
+                        return 1;
+                }
+                if (c == reco.Value)
+                    return 0;
+                return -1;
             }
-            var tor = new IEnumerator[] { @this.GetEnumerator(), other.GetEnumerator() };
+            if (rect.HasValue) //reco is null
+            {
+                int c = 0;
+                foreach (var t0 in other)
+                {
+                    c++;
+                    if (c >= rect.Value + 1)
+                        return -1;
+                }
+                if (c == rect.Value)
+                    return 0;
+                return 1;
+            }
+
+
+            var tor = new IEnumerator[] {@this.GetEnumerator(), other.GetEnumerator()}.AsEnumerable();
             var next = tor.Select(a => a.MoveNext()).ToArray();
-            while (next.All(a => a))
+            while (next.All())
             {
                 next = tor.Select(a => a.MoveNext()).ToArray();
             }

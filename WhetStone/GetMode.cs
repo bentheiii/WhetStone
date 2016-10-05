@@ -20,10 +20,11 @@ namespace WhetStone.Looping
         {
             return GetMode(tosearch, EqualityComparer<T>.Default, out index);
         }
-        public static T GetMode<T>(this IEnumerable<T> tosearch)
+        public static T GetMode<T>(this IEnumerable<T> tosearch, IEqualityComparer<T> comparer = null)
         {
             int prox;
-            return tosearch.GetMode(out prox);
+            comparer = comparer ?? EqualityComparer<T>.Default;
+            return tosearch.GetMode(comparer, out prox);
         }
     }
 }

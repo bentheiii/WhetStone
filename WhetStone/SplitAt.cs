@@ -25,7 +25,7 @@ namespace WhetStone.Looping
                 }
             }
             var recsize = 0;
-            int? recl = @this.RecommendSize();
+            int? recl = @this.RecommendCount();
             if (recl.HasValue)
                 recsize = recl.Value - lengths.Sum();
             var final = new ResizingArray<T>(recsize);

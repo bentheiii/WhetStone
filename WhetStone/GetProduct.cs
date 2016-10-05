@@ -10,11 +10,11 @@ namespace WhetStone.Looping
         public static T GetProduct<T>(this IEnumerable<T> toAdd, Func<T, T, T> multiplier = null)
         {
             var f = Fields.getField<T>();
-            return GetProduct(toAdd, f.one, f.multiply);
+            return GetProduct(toAdd, f.one, multiplier);
         }
         public static T GetProduct<T>(this IEnumerable<T> toAdd, T initial, Func<T, T, T> multiplier = null)
         {
-            multiplier = multiplier ?? Fields.getField<T>().add;
+            multiplier = multiplier ?? Fields.getField<T>().multiply;
             return toAdd.Aggregate(initial, multiplier);
         }
     }

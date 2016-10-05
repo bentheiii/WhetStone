@@ -10,7 +10,7 @@ namespace WhetStone.Looping
         {
             if (predicate != null)
                 @this = @this.Where(predicate);
-            var rec = @this.RecommendSize();
+            var rec = @this.RecommendCount();
             if (rec.HasValue)
                 return rec.Value >= minCount;
             return @this.Skip(minCount - 1).Any();
