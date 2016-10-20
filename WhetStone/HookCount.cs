@@ -8,11 +8,22 @@ namespace WhetStone.Looping
     {
         public static IEnumerable<T> HookCount<T>(this IEnumerable<T> @this, IGuard<int> sink)
         {
-            return @this.HookAggregate(sink, (i, t) => i + 1, 0);
+            sink.value = 0;
+            foreach (var t in @this)
+            {
+                sink.value++;
+                yield return t;
+            }
         }
         public static IEnumerable<T> HookCount<T>(this IEnumerable<T> @this, IGuard<int> sink, Func<T, bool> critiria)
         {
-            return @this.HookAggregate(sink, (i, t) => critiria(t) ? i + 1 : i, 0);
+            sink.value = 0;
+            foreach (var t in @this)
+            {
+                if (critiria(t))
+                    sink.value++;
+                yield return t;
+            }
         }
     }
 }

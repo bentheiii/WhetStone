@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.NetworkInformation;
 using WhetStone.Looping;
 
@@ -19,7 +18,7 @@ namespace WhetStone.Enviroment
                     sMacAddress = adapter.GetPhysicalAddress().ToString();
                 }
             }
-            return range.Range(0, sMacAddress.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(sMacAddress.Substring(x, 2), 16));
+            return range.Range(0, sMacAddress.Length,2).Select(x => Convert.ToByte(sMacAddress.Substring(x, 2), 16));
         }
     }
 }

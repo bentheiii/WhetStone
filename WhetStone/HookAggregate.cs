@@ -17,11 +17,15 @@ namespace WhetStone.Looping
         }
         public static IEnumerable<T> HookAggregate<T>(this IEnumerable<T> @this, IGuard<T> sink, Func<T, T, T> aggregator)
         {
-            IGuard<positionBind.Position> pos = new Guard<positionBind.Position>();
-            foreach (T t in @this.PositionBind().Detach(pos))
+            IEnumerator<T> tor = @this.GetEnumerator();
+            if (!tor.MoveNext())
+                yield break;
+            sink.value = tor.Current;
+            yield return tor.Current;
+            while (tor.MoveNext())
             {
-                sink.value = pos.value.HasFlag(positionBind.Position.First) ? t : aggregator(sink.value, t);
-                yield return t;
+                sink.value = aggregator(sink.value, tor.Current);
+                yield return tor.Current;
             }
         }
     }

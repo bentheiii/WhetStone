@@ -19,14 +19,14 @@ namespace NumberStone
         }
         public static int Divisibility(this BigInteger n, BigInteger b)
         {
+            if (n == 1 || b > n || n % b != 0)
+                return 0;
             var l = BigInteger.Log(n, 2);
             if (l > 32)
             {
                 var q = new HalvingQuerier<BigInteger>(b, (x, y) => x * y, 1);
                 return binarySearch.BinarySearch(a => (n % q[a]).IsZero, 0, (int)(l / BigInteger.Log(b, 2)) + 2);
             }
-            if (n == 1 || b > n || n % b != 0)
-                return 0;
             var sq = b * b;
             var th = sq * b;
             var fo = th * b;

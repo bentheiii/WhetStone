@@ -42,18 +42,14 @@ namespace WhetStone.Looping
         }
         public void ResizeTo(int lastindex)
         {
-            if (lastindex == 0)
-            {
-                _arr = new T[0];
-                return;
-            }
             while (!_arr.IsWithinBounds(lastindex))
-                Array.Resize(ref _arr, arr.Length == 0 ? lastindex + 1 : Math.Max(arr.Length * 2, lastindex + 1));
+                Array.Resize(ref _arr, Math.Max(arr.Length * 2, lastindex + 1));
         }
         public void Add(T x)
         {
-            ResizeTo(Count + 1);
-            _arr[Count++] = x;
+            ResizeTo(Count);
+            _arr[Count] = x;
+            Count++;
         }
         public void AddRange(IEnumerable<T> x)
         {

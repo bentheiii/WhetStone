@@ -23,9 +23,7 @@ namespace WhetStone.Looping
                     if (c >= reco.Value + 1)
                         return 1;
                 }
-                if (c == reco.Value)
-                    return 0;
-                return -1;
+                return c == reco.Value ? 0 : -1;
             }
             if (rect.HasValue) //reco is null
             {
@@ -36,9 +34,7 @@ namespace WhetStone.Looping
                     if (c >= rect.Value + 1)
                         return -1;
                 }
-                if (c == rect.Value)
-                    return 0;
-                return 1;
+                return c == rect.Value ? 0 : 1;
             }
 
 

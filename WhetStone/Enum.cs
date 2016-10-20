@@ -26,7 +26,7 @@ namespace WhetStone.Looping
         public static IEnumerable<T> EnumFlags<T>(this T filter) where T : struct, IConvertible
         {
             var f = (Enum)(dynamic)filter;
-            return EnumFlags<T>().Cast<Enum>().Where(a => (f.HasFlag(a))).Cast<T>();
+            return EnumFlags<T>().Cast<Enum>().Where(a => f.HasFlag(a)).Cast<T>();
         }
     }
 }

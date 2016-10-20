@@ -102,6 +102,7 @@
     <Compile Include="HookLast.cs" />
     <Compile Include="IFunnel.cs" />
     <Compile Include="ImpotentField.cs" />
+    <Compile Include="Indices.cs" />
     <Compile Include="Infinite.cs" />
     <Compile Include="InsertSuffixes.cs" />
     <Compile Include="IProccesor.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="IsWithin.cs" />
     <Compile Include="Join.cs" />
     <Compile Include="LeastCommonMultiple.cs" />
+    <Compile Include="ListDoubleSided.cs" />
     <Compile Include="LocalRandomGenerator.cs" />
     <Compile Include="LockedCollection.cs" />
     <Compile Include="LockedCollectionReadOnlyAdaptor.cs" />
@@ -142,6 +144,7 @@
     <Compile Include="RotationalSpeeds.cs" />
     <Compile Include="Select.cs" />
     <Compile Include="SelectMany.cs" />
+    <Compile Include="SequenceEqual.cs" />
     <Compile Include="ShaGenerator.cs" />
     <Compile Include="SmallestFactors.cs" />
     <Compile Include="SmartSplit.cs" />

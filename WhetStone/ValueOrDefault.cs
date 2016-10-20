@@ -9,5 +9,9 @@ namespace WhetStone.Looping
             G val;
             return @this.TryGetValue(key, out val) ? val : defaultval;
         }
+        public static T ValueOrDefault<T>(this IList<T> @this, int ind, T defaultval = default(T))
+        {
+            return ind < @this.Count ? @this[ind] : defaultval;
+        }
     }
 }

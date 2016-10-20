@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.Comparison;
 
 namespace WhetStone.Looping
 {
@@ -10,10 +11,10 @@ namespace WhetStone.Looping
             comp = comp ?? EqualityComparer<T>.Default;
             return @this.Count(a => comp.Equals(a, query));
         }
-        public static int Count<T>(this IEnumerable<T> @this, IEnumerable<T> query, IEqualityComparer<T> comp = null)
+        public static int Count<T>(this IEnumerable<T> @this, IEnumerable<T> query, IEqualityComparer<IEnumerable<T>> comp = null)
         {
-            comp = comp ?? EqualityComparer<T>.Default;
-            return @this.Trail(query.Count()).Count(a => a.SequenceEqual(query, comp));
+            comp = comp ?? new EnumerableEqualityCompararer<T>();
+            return @this.Trail(query.Count()).Count(a => comp.Equals(@this,a));
         }
     }
 }

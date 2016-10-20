@@ -8,15 +8,33 @@ namespace WhetStone.Streams
 {
     public static class loop
     {
-        public static IEnumerable<string> Loop(this TextReader @this)
+        public static IEnumerable<string> Loop(this TextReader @this, int? length = null, bool cache = true)
         {
-            return generate.Generate(@this.ReadLine).TakeWhile(a => a != null);
+            IEnumerable<string> ret;
+            if (length == null)
+                ret = generate.Generate(@this.ReadLine);
+            else
+            {
+                var buffer = new char[length.Value];
+                ret = generate.Generate(() =>
+                {
+                    int read = @this.Read(buffer, 0, length.Value);
+                    return read == 0 ? null : new string(buffer,0,read);
+                });
+            }
+            ret = ret.TakeWhile(a => a != null);
+            if (cache)
+                ret = ret.Cache();
+            return ret;
         }
-        public static IEnumerable<byte> Loop(this Stream @this)
+        public static IEnumerable<byte> Loop(this Stream @this, bool cache = false)
         {
             if (!@this.CanRead)
                 throw new ArgumentException("stream is unreadable");
-            return generate.Generate(@this.ReadByte).TakeWhile(a => a > 0).Select(a => (byte)a);
+            var ret = generate.Generate(@this.ReadByte).TakeWhile(a => a > 0).Select(a => (byte)a);
+            if (cache)
+                ret = ret.Cache();
+            return ret;
         }
     }
 }

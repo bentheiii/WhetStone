@@ -9,11 +9,39 @@ namespace WhetStone
     {
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink)
         {
-            return @this.HookAggregate(sink, (t0, t1) => Tuple.Create(t1), null);
+            sink.value = null;
+            foreach (var t in @this)
+            {
+                sink.value = Tuple.Create(t);
+                yield return t;
+            }
         }
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink, Func<T, bool> critiria)
         {
-            return @this.HookAggregate(sink, (t0, t1) => critiria(t1) ? Tuple.Create(t1) : t0, null);
+            sink.value = null;
+            foreach (var t in @this)
+            {
+                if (critiria(t))
+                    sink.value = Tuple.Create(t);
+                yield return t;
+            }
+        }
+        public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink)
+        {
+            foreach (var t in @this)
+            {
+                sink.value = t;
+                yield return t;
+            }
+        }
+        public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink, Func<T, bool> critiria)
+        {
+            foreach (var t in @this)
+            {
+                if (critiria(t))
+                    sink.value = t;
+                yield return t;
+            }
         }
     }
 }

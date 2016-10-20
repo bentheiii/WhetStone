@@ -46,5 +46,13 @@ namespace WhetStone.Looping
             _data.Clear();
             _initialized.Clear();
         }
+        public void fill(IList<T> arr, int start = 0)
+        {
+            foreach (var tuple in arr.CountBind(start))
+            {
+                _initialized[tuple.Item2] = true;
+                _data[tuple.Item2] = tuple.Item1;
+            }
+        }
     }
 }

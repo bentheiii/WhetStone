@@ -42,7 +42,7 @@ namespace WhetStone.Looping
             {
                 if (ret.Count >= chunkSize)
                 {
-                    yield return ret.arr;
+                    yield return ret.ToArray();
                     ret.Clear();
                 }
                 if (!en.MoveNext())

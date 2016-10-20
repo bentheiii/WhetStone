@@ -14,7 +14,7 @@ namespace WhetStone.Looping
         {
             return @this.Any(cond) ? @this.First(cond) : def;
         }
-        public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any)
+        public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any, T def = default(T))
         {
             foreach (T t in @this)
             {
@@ -25,7 +25,7 @@ namespace WhetStone.Looping
                 }
             }
             any = false;
-            return default(T);
+            return def;
         }
     }
 }
