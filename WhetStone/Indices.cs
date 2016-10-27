@@ -11,7 +11,11 @@ namespace WhetStone.Looping
         }
         public static IList<int[]> Indices(this Array @this)
         {
-            return range.Range(@this.Rank).Select(a => range.Range(@this.GetLowerBound(a), @this.GetUpperBound(a)).AsList()).Join();
+            return range.Range(@this.Rank).Select(a => range.Range(@this.GetLowerBound(a), @this.GetUpperBound(a)+1).AsList()).Join();
+        }
+        public static IList<int> Indices<T>(this T[] @this)
+        {
+            return range.Range(@this.GetLowerBound(0), @this.GetUpperBound(0)+1);
         }
     }
 }

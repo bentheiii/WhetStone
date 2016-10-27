@@ -19,9 +19,9 @@ namespace WhetStone.Functional
         {
             return x => Tuple.Create(f0(x), f1(x), f2(x));
         }
-        public static Func<T, IEnumerable<R>> Adjoin<T, R>(params Func<T, R>[] @this)
+        public static Func<T, R[]> Adjoin<T, R>(params Func<T, R>[] @this)
         {
-            return x => @this.Select(a => a(x));
+            return x => @this.Select(a => a(x)).ToArray();
         }
         public static Func<R0, R2> Compose<R0, R1, R2>(this Func<R1, R2> @this, Func<R0, R1> other)
         {

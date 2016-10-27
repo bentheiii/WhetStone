@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace WhetStone.Looping
 {
@@ -11,7 +10,7 @@ namespace WhetStone.Looping
             private readonly int[] _cors;
             public Coordinate(params int[] cors)
             {
-                this._cors = cors;
+                _cors = cors;
             }
             public override int GetHashCode()
             {
@@ -20,7 +19,7 @@ namespace WhetStone.Looping
             public override bool Equals(object obj)
             {
                 Coordinate? c = obj as Coordinate?;
-                return c != null && this._cors.SequenceEqual(c.Value._cors);
+                return c != null && _cors.SequenceEqual(c.Value._cors);
             }
             public override string ToString()
             {

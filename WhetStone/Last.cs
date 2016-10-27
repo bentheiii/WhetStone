@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace WhetStone.Looping
 {
@@ -8,23 +7,43 @@ namespace WhetStone.Looping
     {
         public static T LastOrDefault<T>(this IEnumerable<T> @this, T def)
         {
-            return !@this.Any() ? def : @this.Last();
+            var ret = def;
+            foreach (T t in @this)
+            {
+                ret = t;
+            }
+            return ret;
         }
-        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def)
+        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def = default(T))
         {
-            return @this.Any(cond) ? @this.Last(cond) : def;
-        }
-        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any)
-        {
-            T ret = default(T);
-            any = false;
+            var ret = def;
             foreach (T t in @this)
             {
                 if (cond(t))
+                    ret = t;
+            }
+            return ret;
+        }
+        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any, T def = default(T))
+        {
+            T ret;
+            any = false;
+            var tor = @this.GetEnumerator();
+            while (true)
+            {
+                if (!tor.MoveNext())
+                    return def;
+                if (cond(tor.Current))
                 {
                     any = true;
-                    ret = t;
+                    ret = tor.Current;
+                    break;
                 }
+            }
+            while (!tor.MoveNext())
+            {
+                if (cond(tor.Current))
+                    ret = tor.Current;
             }
             return ret;
         }

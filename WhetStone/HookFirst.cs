@@ -38,9 +38,7 @@ namespace WhetStone.Looping
             {
                 yield return tor.Current;
             }
-            //return @this.HookAggregate(sink, (t0, t1) => (t0 == null && critiria(t1)) ? Tuple.Create(t1) : t0, null);
         }
-
         public static IEnumerable<T> HookFirst<T>(this IEnumerable<T> @this, IGuard<T> sink)
         {
             var tor = @this.GetEnumerator();
@@ -71,7 +69,6 @@ namespace WhetStone.Looping
             {
                 yield return tor.Current;
             }
-            //return @this.HookAggregate(sink, (t0, t1) => (t0 == null && critiria(t1)) ? Tuple.Create(t1) : t0, null);
         }
     }
 }

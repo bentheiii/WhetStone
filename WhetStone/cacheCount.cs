@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
@@ -20,13 +17,23 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                int c = 0;
-                foreach (T t in _source)
+                if (_count.HasValue)
                 {
-                    c++;
-                    yield return t;
+                    foreach (var t in _source)
+                    {
+                        yield return t;
+                    }
                 }
-                _count = c;
+                else
+                {
+                    int c = 0;
+                    foreach (T t in _source)
+                    {
+                        c++;
+                        yield return t;
+                    }
+                    _count = c;
+                }
             }
             public override int Count
             {

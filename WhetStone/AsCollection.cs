@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
     public static class asCollection
     {
-        public static ICollection<T> AsCollection<T>(this IEnumerable<T> @this)
+        public static ICollection<T> AsCollection<T>(this IEnumerable<T> @this, bool force = true)
         {
             var l = @this as ICollection<T>;
             if (l != null)
@@ -13,7 +14,7 @@ namespace WhetStone.Looping
             var r = @this as IReadOnlyCollection<T>;
             if (r != null)
                 return r.ToLockedCollection();
-            return @this.AsList();
+            return force ? @this.ToList() : null;
         }
     }
 }

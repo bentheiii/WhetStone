@@ -13,8 +13,8 @@ namespace NumberStone
         {
             if (x <= 0)
                 throw new ArithmeticException("cannot find factorization of a non-positive number");
-            var primes = x.Primefactors().ToLookup(a => a).Select(a => Tuple.Create(a.Key, a.Count())).ToArray();
-            IList<IList<int>> rangelist = primes.Select(a => (IList<int>)yieldAggregate.YieldAggregate((t)=>t*a.Item1,1).Take(a.Item2+1).ToArray());
+            var primes = x.Primefactors().ToOccurancesSorted().ToArray();
+            IList<IList<int>> rangelist = primes.Select(a => (IList<int>)yieldAggregate.YieldAggregate(t=>t*a.Item1,1).Take(a.Item2+1).ToArray());
             var j = rangelist.Join();
             return j.Select(a => a.GetProduct((t, y) => t*y));
         }

@@ -27,7 +27,7 @@ namespace WhetStone.Streams
                 ret = ret.Cache();
             return ret;
         }
-        public static IEnumerable<byte> Loop(this Stream @this, bool cache = false)
+        public static IEnumerable<byte> Loop(this Stream @this, bool cache = true)
         {
             if (!@this.CanRead)
                 throw new ArgumentException("stream is unreadable");

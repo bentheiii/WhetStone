@@ -21,7 +21,7 @@ namespace WhetStone.Looping
             }
             public IEnumerator<T> GetEnumerator()
             {
-                return _source.AsEnumerable().Reverse().GetEnumerator();
+                return Enumerable.Select(_source.Indices(), i => _source[_source.Count - i - 1]).GetEnumerator();
             }
             IEnumerator IEnumerable.GetEnumerator()
             {

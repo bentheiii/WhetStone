@@ -6,7 +6,7 @@ namespace WhetStone.Looping
 {
     public static class asList
     {
-        public static IList<T> AsList<T>(this IEnumerable<T> @this)
+        public static IList<T> AsList<T>(this IEnumerable<T> @this, bool force = true)
         {
             var l = @this as IList<T>;
             if (l != null)
@@ -17,7 +17,7 @@ namespace WhetStone.Looping
             var s = @this as string;
             if (s != null && typeof(T) == typeof(char))
                 return (IList<T>)new LockedListStringAdaptor(s);
-            return @this.ToArray();
+            return force ? @this.ToList() : null;
         }
     }
 }

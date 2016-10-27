@@ -48,26 +48,39 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public static IEnumerable<T[]> Join<T>(this IEnumerable<T> @this, int cartesLength, CartesianType t = CartesianType.AllPairs)
+        private static IEnumerable<T[]> JoinAllPairs<T>(this IEnumerable<T> @this, int cartesLength)
+        {
+            var tors = @this.Enumerate(cartesLength).Select(a => a.GetEnumerator()).ToArray();
+            //initialization
+                if (tors.Any(a => !a.MoveNext()))
+                    yield break;
+            //yield initial
+            yield return tors.Select(a => a.Current).ToArray();
+            while (true)
+            {
+                int nexttorind = 0;
+                while (true)
+                {
+                    if (!tors.IsWithinBounds(nexttorind))
+                        yield break;
+                    if (!tors[nexttorind].MoveNext())
+                    {
+                        tors[nexttorind] = @this.GetEnumerator();
+                        tors[nexttorind].MoveNext();
+                        nexttorind++;
+                    }
+                    else
+                        break;
+                }
+                yield return tors.Select(a => a.Current).ToArray();
+            }
+        }
+        private static IEnumerable<T[]> JoinMonoDescendingPairs<T>(this IEnumerable<T> @this, int cartesLength)
         {
             var tors = @this.Enumerate().Repeat(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
             //initialization
-            if (t.HasFlag(CartesianType.NoReflexive))
-            {
-                foreach (var enumerator in tors.CountBind())
-                {
-                    foreach (var i in range.Range(tors.Length - enumerator.Item2))
-                    {
-                        if (!enumerator.Item1.MoveNext())
-                            yield break;
-                    }
-                }
-            }
-            else
-            {
                 if (tors.Any(a => !a.MoveNext()))
                     yield break;
-            }
             //yield initial
             yield return tors.Select(a => a.Current.Item1).ToArray();
             while (true)
@@ -85,12 +98,12 @@ namespace WhetStone.Looping
                     }
                     else
                     {
-                        if (t.HasFlag(CartesianType.NoSymmatry) && nexttorind > 0)
+                        if (nexttorind > 0)
                         {
                             bool retry = false;
                             foreach (var i in range.Range(0, nexttorind))
                             {
-                                foreach (int i1 in range.Range(tors[nexttorind].Current.Item2 + (t.HasFlag(CartesianType.NoReflexive) ? i + 1 : 0)))
+                                foreach (int i1 in range.Range(tors[nexttorind].Current.Item2))
                                 {
                                     if (!tors[nexttorind - i - 1].MoveNext())
                                     {
@@ -115,13 +128,125 @@ namespace WhetStone.Looping
                         break;
                     }
                 }
-                if (t.HasFlag(CartesianType.NoReflexive) && !t.HasFlag(CartesianType.NoSymmatry) &&
-                        tors.Join(CartesianType.NoReflexive | CartesianType.NoSymmatry).Any(
+                yield return tors.Select(a => a.Current.Item1).ToArray();
+            }
+        }
+        private static IEnumerable<T[]> JoinDescendingPairs<T>(this IEnumerable<T> @this, int cartesLength)
+        {
+            var tors = @this.Enumerate().Repeat(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
+            //initialization
+            foreach (var enumerator in tors.CountBind())
+            {
+                foreach (var i in range.Range(tors.Length - enumerator.Item2))
+                {
+                    if (!enumerator.Item1.MoveNext())
+                        yield break;
+                }
+            }
+            //yield initial
+            yield return tors.Select(a => a.Current.Item1).ToArray();
+            while (true)
+            {
+                int nexttorind = 0;
+                while (true)
+                {
+                    if (!tors.IsWithinBounds(nexttorind))
+                        yield break;
+                    if (!tors[nexttorind].MoveNext())
+                    {
+                        tors[nexttorind] = @this.CountBind().GetEnumerator();
+                        tors[nexttorind].MoveNext();
+                        nexttorind++;
+                    }
+                    else
+                    {
+                        if (nexttorind > 0)
+                        {
+                            bool retry = false;
+                            foreach (var i in range.Range(0, nexttorind))
+                            {
+                                foreach (int i1 in range.Range(tors[nexttorind].Current.Item2 + i + 1))
+                                {
+                                    if (!tors[nexttorind - i - 1].MoveNext())
+                                    {
+                                        retry = true;
+                                        break;
+                                    }
+                                }
+                                if (retry)
+                                    break;
+                            }
+                            if (retry)
+                            {
+                                foreach (int i in range.IRange(nexttorind))
+                                {
+                                    tors[i] = @this.CountBind().GetEnumerator();
+                                    tors[i].MoveNext();
+                                }
+                                nexttorind++;
+                                continue;
+                            }
+                        }
+                        break;
+                    }
+                }
+                yield return tors.Select(a => a.Current.Item1).ToArray();
+            }
+        }
+        private static IEnumerable<T[]> JoinNoReflexive<T>(this IEnumerable<T> @this, int cartesLength)
+        {
+            var tors = @this.Enumerate().Repeat(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
+            //initialization
+                foreach (var enumerator in tors.CountBind())
+                {
+                    foreach (var i in range.Range(tors.Length - enumerator.Item2))
+                    {
+                        if (!enumerator.Item1.MoveNext())
+                            yield break;
+                    }
+                }
+            //yield initial
+            yield return tors.Select(a => a.Current.Item1).ToArray();
+            while (true)
+            {
+                int nexttorind = 0;
+                while (true)
+                {
+                    if (!tors.IsWithinBounds(nexttorind))
+                        yield break;
+                    if (!tors[nexttorind].MoveNext())
+                    {
+                        tors[nexttorind] = @this.CountBind().GetEnumerator();
+                        tors[nexttorind].MoveNext();
+                        nexttorind++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (tors.Join(CartesianType.NoReflexive | CartesianType.NoSymmatry).Any(
                             a => a.Item1.Current.Item2 == a.Item2.Current.Item2))
                 {
                     continue;
                 }
                 yield return tors.Select(a => a.Current.Item1).ToArray();
+            }
+        }
+        public static IEnumerable<T[]> Join<T>(this IEnumerable<T> @this, int cartesLength, CartesianType t = CartesianType.AllPairs)
+        {
+            switch (t)
+            {
+                case CartesianType.AllPairs:
+                    return JoinAllPairs(@this,cartesLength);
+                case CartesianType.NoReflexive:
+                    return JoinNoReflexive(@this,cartesLength);
+                case CartesianType.NoSymmatry:
+                    return JoinMonoDescendingPairs(@this,cartesLength);
+                case CartesianType.NoReflexive | CartesianType.NoSymmatry:
+                    return JoinDescendingPairs(@this,cartesLength);
+                default:
+                    throw new NotSupportedException();
             }
         }
         public static IEnumerable<T[]> Join<T>(this IList<IEnumerable<T>> @this)

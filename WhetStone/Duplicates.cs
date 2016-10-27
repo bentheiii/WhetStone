@@ -24,7 +24,7 @@ namespace WhetStone.Looping
         public static IEnumerable<T> DuplicatesSorted<T>(this IEnumerable<T> arr, IEqualityComparer<T> comp = null, int minoccurances = 2)
         {
             comp = comp ?? EqualityComparer<T>.Default;
-            return arr.ToOccurancesSorted(comp).Where(a => a.Value >= minoccurances).Select(a => a.Key);
+            return arr.ToOccurancesSorted(comp).Where(a => a.Item2 >= minoccurances).Select(a => a.Item1);
         }
     }
 }

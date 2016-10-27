@@ -8,7 +8,7 @@ namespace WhetStone.Looping
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> @this, T divisor, IEqualityComparer<T> comp = null)
         {
             comp = comp ?? EqualityComparer<T>.Default;
-            return Split<T>(@this, a => comp.Equals(divisor, a));
+            return Split(@this, a => comp.Equals(divisor, a));
         }
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> @this, Func<T, bool> divisorDetector)
         {

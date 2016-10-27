@@ -15,9 +15,9 @@ namespace WhetStone.Comparison
             int ret = 0;
             foreach (var z in x.Zip(y))
             {
+                ret = _int.Compare(z.Item1, z.Item2);
                 if (ret != 0)
                     break;
-                ret = _int.Compare(z.Item1, z.Item2);
             }
             return ret;
         }

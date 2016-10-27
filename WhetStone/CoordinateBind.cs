@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace WhetStone.Looping
 {
@@ -31,11 +30,11 @@ namespace WhetStone.Looping
         }
         public static IEnumerable<Tuple<object, int[]>> CoordinateBind(this Array @this)
         {
-            return @this.GetSize().Select(range.Range).ToArray().Join().Select(a => Tuple.Create(@this.GetValue(a), a));
+            return @this.Indices().Select(a => Tuple.Create(@this.GetValue(a), a));
         }
         public static IEnumerable<Tuple<T, int[]>> CoordinateBind<T>(this Array @this)
         {
-            return @this.GetSize().Select(range.Range).ToArray().Join().Select(a => Tuple.Create((T)@this.GetValue(a), a));
+            return @this.Indices().Select(a => Tuple.Create((T)@this.GetValue(a), a));
         }
         public static IEnumerable<Tuple<T, int, int>> CoordinateBind<T>(this IEnumerable<IEnumerable<T>> @this)
         {

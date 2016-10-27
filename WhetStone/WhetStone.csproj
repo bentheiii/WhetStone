@@ -94,6 +94,7 @@
     <Compile Include="FunctionComparer.cs" />
     <Compile Include="Generate.cs" />
     <Compile Include="Chunk.cs" />
+    <Compile Include="GetBounds.cs" />
     <Compile Include="GlobalRandomGenerator.cs" />
     <Compile Include="GreatestCommonDivisor.cs" />
     <Compile Include="HookAggregate.cs" />
@@ -157,7 +158,6 @@
     <Compile Include="SwitchUnbound.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="ToArrayTuple.cs" />
-    <Compile Include="ToBytes.cs" />
     <Compile Include="ToDictionary.cs" />
     <Compile Include="ToEnumerable.cs" />
     <Compile Include="ToGenList.cs" />

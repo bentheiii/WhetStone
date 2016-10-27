@@ -7,14 +7,15 @@ namespace WhetStone.Looping
     {
         public static bool AnyAndAll<T>(this IEnumerable<T> @this, Func<T, bool> cond)
         {
-            bool any = false;
-            foreach (T t in @this)
+            var tor = @this.GetEnumerator();
+            if (!tor.MoveNext() || !cond(tor.Current))
+                return false;
+            while (tor.MoveNext())
             {
-                if (!cond(t))
+                if (!cond(tor.Current))
                     return false;
-                any = true;
             }
-            return any;
+            return true;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace WhetStone.Looping
         }
         public static IList<T> Cache<T>(this IList<T> @this)
         {
-            return new LazyArray<T>(i => @this[i]);
+            return new ListCache<T>(@this);
         }
         private class EnumerableCache<T> : LockedList<T>
         {
@@ -68,6 +68,51 @@ namespace WhetStone.Looping
                     if (!_formed)
                         InflateToIndex(null);
                     return _cache.Count;
+                }
+            }
+        }
+        private class ListCache<T> : LockedList<T>
+        {
+            private readonly IList<T> _source;
+            private readonly T[] _cache;
+            private readonly bool[] _initialized;
+            public ListCache(IList<T> source)
+            {
+                _source = source;
+                int count = _source.Count;
+                _cache = new T[count];
+                _initialized = new bool[count];
+            }
+            private void initialize(int ind)
+            {
+                _cache[ind] = _source[ind];
+                _initialized[ind] = true;
+            }
+            public override T this[int ind]
+            {
+                get
+                {
+                    if (ind < 0)
+                        throw new ArgumentOutOfRangeException("ind cannot be negative");
+                    if (!_initialized[ind])
+                        initialize(ind);
+                    return _cache[ind];
+                }
+            }
+            public override IEnumerator<T> GetEnumerator()
+            {
+                foreach (int i in _cache.Indices())
+                {
+                    if (!_initialized[i])
+                        initialize(i);
+                    yield return _cache[i];
+                }
+            }
+            public override int Count
+            {
+                get
+                {
+                    return _source.Count;
                 }
             }
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace WhetStone.Looping
 {
@@ -8,11 +7,17 @@ namespace WhetStone.Looping
     {
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, T def)
         {
-            return !@this.Any() ? def : @this.First();
+            var tor = @this.GetEnumerator();
+            return !tor.MoveNext() ? def : tor.Current;
         }
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def)
         {
-            return @this.Any(cond) ? @this.First(cond) : def;
+            foreach (T t in @this)
+            {
+                if (cond(t))
+                    return t;
+            }
+            return def;
         }
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any, T def = default(T))
         {
