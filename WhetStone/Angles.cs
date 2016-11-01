@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Numerics;
 using WhetStone.Funnels;
 using WhetStone.NumbersMagic;
 using WhetStone.Units.RotationalSpeeds;
@@ -12,35 +13,35 @@ namespace WhetStone.Units.Angles
     //in most conventions, 0 means aligned with the x axis
     public class Angle : IUnit<Angle>, ScaleMeasurement, DeltaMeasurement, IComparable<Angle>
     {
-        public Angle(double val, IUnit<Angle> unit, bool normalize = false) : this(unit.ToArbitrary(val), normalize) { }
-        public Angle(double arbitrary, bool normalize = false)
+        public Angle(BigRational val, IUnit<Angle> unit, bool normalize = false) : this(unit.ToArbitrary(val), normalize) { }
+        public Angle(BigRational arbitrary, bool normalize = false)
         {
-            _sin = new Lazy<double>(() => Math.Sin(Arbitrary));
-            _cos = new Lazy<double>(() => Math.Cos(Arbitrary));
+            _sin = new Lazy<double>(() => Math.Sin((double)Arbitrary));
+            _cos = new Lazy<double>(() => Math.Cos((double)Arbitrary));
             if (normalize)
                 arbitrary = arbitrary.TrueMod(2 * Math.PI);
             this.Arbitrary = arbitrary;
         }
-        public double Arbitrary { get; }
-        double ScaleMeasurement.Arbitrary
+        public BigRational Arbitrary { get; }
+        BigRational ScaleMeasurement.Arbitrary
         {
             get
             {
                 return this.Arbitrary;
             }
         }
-        double DeltaMeasurement.Arbitrary
+        BigRational DeltaMeasurement.Arbitrary
         {
             get
             {
                 return this.Arbitrary;
             }
         }
-        public override double FromArbitrary(double arb)
+        public override BigRational FromArbitrary(BigRational arb)
         {
             return arb / Arbitrary;
         }
-        public override double ToArbitrary(double val)
+        public override BigRational ToArbitrary(BigRational val)
         {
             return val * Arbitrary;
         }
@@ -103,14 +104,14 @@ namespace WhetStone.Units.Angles
         }
         public static Angle operator +(Angle a, Angle b)
         {
-            double c = a.Arbitrary + b.Arbitrary;
+            var c = a.Arbitrary + b.Arbitrary;
             return new Angle(c);
         }
         public static Angle operator -(Angle a, Angle b)
         {
             return a + (-b);
         }
-        public static double operator /(Angle a, Angle b)
+        public static BigRational operator /(Angle a, Angle b)
         {
             return a.Arbitrary / b.Arbitrary;
         }

@@ -1,7 +1,18 @@
-﻿namespace WhetStone.NumbersMagic
+﻿using Numerics;
+
+namespace WhetStone.NumbersMagic
 {
     public static class trueMod
     {
+        public static BigRational TrueMod(this BigRational a, BigRational b)
+        {
+            var ret = a;
+            if (ret < 0)
+                ret = b + a % b;
+            if (ret >= b)
+                ret = ret % b;
+            return ret;
+        }
         public static double TrueMod(this double a, double b)
         {
             var ret = a;

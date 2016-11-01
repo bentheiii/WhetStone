@@ -36,17 +36,17 @@ namespace WhetStone.Looping
         {
             return @this.Indices().Select(a => Tuple.Create((T)@this.GetValue(a), a));
         }
-        public static IEnumerable<Tuple<T, int, int>> CoordinateBind<T>(this IEnumerable<IEnumerable<T>> @this)
+        public static IEnumerable<Tuple<T, Tuple<int, int>>> CoordinateBind<T>(this IEnumerable<IEnumerable<T>> @this)
         {
             foreach (var t1 in @this.CountBind())
             {
                 foreach (var t0 in t1.Item1.CountBind())
                 {
-                    yield return Tuple.Create(t0.Item1, t1.Item2, t0.Item2);
+                    yield return Tuple.Create(t0.Item1, Tuple.Create(t1.Item2, t0.Item2));
                 }
             }
         }
-        public static IEnumerable<Tuple<T, int, int, int>> CoordinateBind<T>(this IEnumerable<IEnumerable<IEnumerable<T>>> @this)
+        public static IEnumerable<Tuple<T, Tuple<int, int, int>>> CoordinateBind<T>(this IEnumerable<IEnumerable<IEnumerable<T>>> @this)
         {
             foreach (var t2 in @this.CountBind())
             {
@@ -54,7 +54,7 @@ namespace WhetStone.Looping
                 {
                     foreach (var t0 in t1.Item1.CountBind())
                     {
-                        yield return Tuple.Create(t0.Item1, t2.Item2, t1.Item2, t0.Item2);
+                        yield return Tuple.Create(t0.Item1, Tuple.Create(t2.Item2, t1.Item2, t0.Item2));
                     }
                 }
             }

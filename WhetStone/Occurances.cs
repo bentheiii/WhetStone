@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,21 +10,29 @@ namespace WhetStone.Looping
         {
             c = c ?? EqualityComparer<T>.Default;
             var tor = @this.GetEnumerator();
-            while (tor.MoveNext())
+            int ret = 0;
+            T mem = default(T);
+            foreach (var t in @this)
             {
-                int ret = 0;
-                T member = tor.Current;
-                while (c.Equals(member,tor.Current))
+                if (ret == 0)
+                {
+                    ret = 1;
+                    mem = t;
+                    continue;
+                }
+                if (c.Equals(mem, t))
                 {
                     ret++;
-                    if (!tor.MoveNext())
-                    {
-                        yield return new Tuple<T, int>(member,ret);
-                        yield break;
-                    }
                 }
-                yield return new Tuple<T, int>(member, ret);
+                else
+                {
+                    yield return Tuple.Create(mem, ret);
+                    mem = t;
+                    ret = 1;
+                }
             }
+            if (ret != 0)
+                yield return Tuple.Create(mem, ret);
         }
         public static IDictionary<T, int> ToOccurances<T>(this IEnumerable<T> arr, IEqualityComparer<T> c = null)
         {

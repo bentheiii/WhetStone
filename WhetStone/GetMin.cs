@@ -10,11 +10,18 @@ namespace WhetStone.Looping
         {
             if (!tosearch.Any())
                 throw new ArgumentException("cannot be empty", nameof(tosearch));
-            T ret = tosearch.First();
+            bool any = false;
+            T ret = default(T);
             index = 0;
             int i = 1;
-            foreach (T var in tosearch.Skip(1))
+            foreach (T var in tosearch)
             {
+                if (!any)
+                {
+                    any = true;
+                    ret = var;
+                    continue;
+                }
                 if (compare.Compare(var, ret) < 0)
                 {
                     ret = var;

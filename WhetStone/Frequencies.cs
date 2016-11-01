@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Numerics;
 using WhetStone.Funnels;
 using WhetStone.WordPlay;
 using WhetStone.WordPlay.Parsing;
@@ -9,28 +10,28 @@ namespace WhetStone.Units.Frequencies
     //arbitrary is hertz
     public class Frequency : IUnit<Frequency>, ScaleMeasurement, DeltaMeasurement, IComparable<Frequency>
     {
-        public Frequency(double val, IDeltaUnit<Frequency> unit) : this(unit.ToArbitrary(val)) { }
-        public Frequency(double arbitrary)
+        public Frequency(BigRational val, IDeltaUnit<Frequency> unit) : this(unit.ToArbitrary(val)) { }
+        public Frequency(BigRational arbitrary)
         {
             this.Arbitrary = arbitrary;
         }
-        public double Arbitrary { get; }
+        public BigRational Arbitrary { get; }
         public int CompareTo(Frequency other)
         {
             return Arbitrary.CompareTo(other.Arbitrary);
         }
-        double DeltaMeasurement.Arbitrary
+        BigRational DeltaMeasurement.Arbitrary
         {
             get
             {
                 return this.Arbitrary;
             }
         }
-        public override double FromArbitrary(double arb)
+        public override BigRational FromArbitrary(BigRational arb)
         {
             return arb / Arbitrary;
         }
-        public override double ToArbitrary(double val)
+        public override BigRational ToArbitrary(BigRational val)
         {
             return val * Arbitrary;
         }
@@ -54,15 +55,15 @@ namespace WhetStone.Units.Frequencies
                 new Parser<Frequency>($@"^({CommonRegex.RegexDouble}) ?(ghz|gigahertz)$", m => new Frequency(double.Parse(m.Groups[1].Value), GigaHertz))
                 ));
         }
-        public static double operator *(Frequency a, TimeSpan b)
+        public static BigRational operator *(Frequency a, TimeSpan b)
         {
             return a.Arbitrary * b.TotalSeconds;
         }
-        public static TimeSpan operator /(double a, Frequency b)
+        public static TimeSpan operator /(BigRational a, Frequency b)
         {
-            return TimeSpan.FromSeconds(a / b.Arbitrary);
+            return TimeSpan.FromSeconds((double)(a / b.Arbitrary));
         }
-        public static double operator *(TimeSpan b, Frequency a)
+        public static BigRational operator *(TimeSpan b, Frequency a)
         {
             return a.Arbitrary * b.TotalSeconds;
         }
@@ -84,14 +85,14 @@ namespace WhetStone.Units.Frequencies
         }
         public static Frequency operator +(Frequency a, Frequency b)
         {
-            double c = a.Arbitrary + b.Arbitrary;
+            var c = a.Arbitrary + b.Arbitrary;
             return new Frequency(c);
         }
         public static Frequency operator -(Frequency a, Frequency b)
         {
             return a + (-b);
         }
-        public static double operator /(Frequency a, Frequency b)
+        public static BigRational operator /(Frequency a, Frequency b)
         {
             return a.Arbitrary / b.Arbitrary;
         }

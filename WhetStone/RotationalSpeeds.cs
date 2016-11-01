@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Numerics;
 using WhetStone.Funnels;
 using WhetStone.Units.Angles;
 using WhetStone.WordPlay;
@@ -10,30 +11,30 @@ namespace WhetStone.Units.RotationalSpeeds
     //arbitrary is RPS
     public class RotationalSpeed : IUnit<RotationalSpeed>, ScaleMeasurement, DeltaMeasurement, IComparable<RotationalSpeed>
     {
-        public RotationalSpeed(double val, IDeltaUnit<RotationalSpeed> unit) : this(unit.ToArbitrary(val))
+        public RotationalSpeed(BigRational val, IDeltaUnit<RotationalSpeed> unit) : this(unit.ToArbitrary(val))
         {
         }
-        public RotationalSpeed(double arbitrary)
+        public RotationalSpeed(BigRational arbitrary)
         {
             this.Arbitrary = arbitrary;
         }
-        public double Arbitrary { get; }
+        public BigRational Arbitrary { get; }
         public int CompareTo(RotationalSpeed other)
         {
             return Arbitrary.CompareTo(other.Arbitrary);
         }
-        double DeltaMeasurement.Arbitrary
+        BigRational DeltaMeasurement.Arbitrary
         {
             get
             {
                 return this.Arbitrary;
             }
         }
-        public override double FromArbitrary(double arb)
+        public override BigRational FromArbitrary(BigRational arb)
         {
             return arb/Arbitrary;
         }
-        public override double ToArbitrary(double val)
+        public override BigRational ToArbitrary(BigRational val)
         {
             return val*Arbitrary;
         }
@@ -65,7 +66,7 @@ namespace WhetStone.Units.RotationalSpeeds
             return new Angle(a.Arbitrary*b.TotalSeconds);
         }
 
-        public static double operator *(TimeSpan b, RotationalSpeed a)
+        public static BigRational operator *(TimeSpan b, RotationalSpeed a)
         {
             return a.Arbitrary*b.TotalSeconds;
         }
@@ -87,14 +88,14 @@ namespace WhetStone.Units.RotationalSpeeds
         }
         public static RotationalSpeed operator +(RotationalSpeed a, RotationalSpeed b)
         {
-            double c = a.Arbitrary + b.Arbitrary;
+            var c = a.Arbitrary + b.Arbitrary;
             return new RotationalSpeed(c);
         }
         public static RotationalSpeed operator -(RotationalSpeed a, RotationalSpeed b)
         {
             return a + (-b);
         }
-        public static double operator /(RotationalSpeed a, RotationalSpeed b)
+        public static BigRational operator /(RotationalSpeed a, RotationalSpeed b)
         {
             return a.Arbitrary/b.Arbitrary;
         }

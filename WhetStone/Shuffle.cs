@@ -20,7 +20,6 @@ namespace WhetStone.Looping
         }
         public static T Pick<T>(this IEnumerable<T> @this, RandomGenerator gen = null)
         {
-            gen = gen ?? new GlobalRandomGenerator();
             return @this.Pick(1, gen).First();
         }
         public static IEnumerable<T> Pick<T>(this IEnumerable<T> @this, int count, RandomGenerator gen = null)

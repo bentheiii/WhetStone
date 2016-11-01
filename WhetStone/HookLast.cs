@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Guard;
-using WhetStone.Looping;
 
 namespace WhetStone
 {

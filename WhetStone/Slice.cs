@@ -23,7 +23,7 @@ namespace WhetStone.Looping
             if (max.HasValue && length.HasValue)
                 throw new ArgumentException("either max or length must be null");
             if (length.HasValue)
-                max = length - start;
+                max = length*steps + start;
             if (max == null)
                 max = @this.Count;
             var s = @this as ListSlice<T>;
