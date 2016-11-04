@@ -6,33 +6,48 @@ using WhetStone.WordPlay;
 
 namespace WhetStone.Units
 {
-    public interface ScaleMeasurement : IFormattable
+    public interface ScaleMeasurement<T> : IFormattable where T : ScaleMeasurement<T>
     {
         //convention: measurement.arbitrary+delta.arbitrary = (measurement+delta).arbitrary
         BigRational Arbitrary { get; }
+        IDictionary<string, Tuple<IScaleUnit<T>, string>> scaleDictionary { get; }
     }
-    public interface DeltaMeasurement : IFormattable
+    public interface DeltaMeasurement<T> : IFormattable where T : DeltaMeasurement<T>
     {
         BigRational Arbitrary { get; }
+        IDictionary<string, Tuple<IDeltaUnit<T>, string>> deltaDictionary { get; }
     }
     public static class UnitExtensions
     {
-        public static BigRational InUnits<T>(this T @this, IUnit<T> unit) where T : ScaleMeasurement, DeltaMeasurement
+        public static double InUnits<T>(this T @this, IUnit<T> unit) where T : ScaleMeasurement<T>, DeltaMeasurement<T>
         {
-            return unit.FromArbitrary(((ScaleMeasurement)@this).Arbitrary);
+            return (double)unit.FromArbitrary(((ScaleMeasurement<T>)@this).Arbitrary);
         }
-        public static BigRational InUnits<T>(this T @this, IScaleUnit<T> unit) where T : ScaleMeasurement
+        public static double InUnits<T>(this T @this, IScaleUnit<T> unit) where T : ScaleMeasurement<T>
+        {
+            return (double)unit.FromArbitrary(@this.Arbitrary);
+        }
+        public static double InUnits<T>(this T @this, IDeltaUnit<T> unit) where T : DeltaMeasurement<T>
+        {
+            return (double)unit.FromArbitrary(@this.Arbitrary);
+        }
+        public static BigRational InUnitsExact<T>(this T @this, IUnit<T> unit) where T : ScaleMeasurement<T>, DeltaMeasurement<T>
+        {
+            return unit.FromArbitrary(((ScaleMeasurement<T>)@this).Arbitrary);
+        }
+        public static BigRational InUnitsExact<T>(this T @this, IScaleUnit<T> unit) where T : ScaleMeasurement<T>
         {
             return unit.FromArbitrary(@this.Arbitrary);
         }
-        public static BigRational InUnits<T>(this T @this, IDeltaUnit<T> unit) where T : DeltaMeasurement
+        public static BigRational InUnitsExact<T>(this T @this, IDeltaUnit<T> unit) where T : DeltaMeasurement<T>
         {
             return unit.FromArbitrary(@this.Arbitrary);
         }
-        public static string StringFromUnitDictionary<T>(this T @this, string format, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IScaleUnit<T>, string>> unitDictionary, bool pre = false)
-            where T : ScaleMeasurement
+        public static string StringFromUnitDictionary<T>(this T @this, string doubleformat, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IScaleUnit<T>, string>> unitDictionary, bool pre = false)
+            where T : ScaleMeasurement<T>
         {
-            string[] split = format.SmartSplit("_", "(", ")");
+            doubleformat = doubleformat ?? "";
+            string[] split = doubleformat.SmartSplit("_", "(", ")");
             while (split.Length != 3)
             {
                 switch (split.Length)
@@ -61,10 +76,11 @@ namespace WhetStone.Units
                 return id + dat;
             return dat + id;
         }
-        public static string StringFromDeltaDictionary<T>(this T @this, string format, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IDeltaUnit<T>, string>> unitDictionary, bool pre = false)
-            where T : DeltaMeasurement
+        public static string StringFromDeltaDictionary<T>(this T @this, string doubleformat, string defaultunit, IFormatProvider formatProvider, IDictionary<string, Tuple<IDeltaUnit<T>, string>> unitDictionary, bool pre = false)
+            where T : DeltaMeasurement<T>
         {
-            string[] split = format.SmartSplit("_", "(", ")");
+            doubleformat = doubleformat ?? "";
+            string[] split = doubleformat.SmartSplit("_", "(", ")");
             while (split.Length != 3)
             {
                 switch (split.Length)
@@ -94,21 +110,24 @@ namespace WhetStone.Units
         }
     }
     // ReSharper disable once UnusedTypeParameter
-    public interface IScaleUnit<T> where T : ScaleMeasurement
+    public interface IScaleUnit<T> where T : ScaleMeasurement<T>
     {
         BigRational FromArbitrary(BigRational arb);
         BigRational ToArbitrary(BigRational val);
     }
     // ReSharper disable once UnusedTypeParameter
-    public interface IDeltaUnit<T> where T : DeltaMeasurement
+    public interface IDeltaUnit<T> where T : DeltaMeasurement<T>
     {
         BigRational FromArbitrary(BigRational arb);
         BigRational ToArbitrary(BigRational val);
     }
-    public abstract class IUnit<T> : IScaleUnit<T>, IDeltaUnit<T> where T : ScaleMeasurement, DeltaMeasurement
+    public abstract class IUnit<T> : IScaleUnit<T>, IDeltaUnit<T> where T : ScaleMeasurement<T>, DeltaMeasurement<T>
     {
         public abstract BigRational FromArbitrary(BigRational arb);
         public abstract BigRational ToArbitrary(BigRational val);
+        public abstract IDictionary<string, Tuple<IUnit<T>, string>> unitDictionary { get; }
+        public IDictionary<string, Tuple<IDeltaUnit<T>, string>> deltaDictionary => unitDictionary.Select(a=>Tuple.Create<IDeltaUnit<T>,string>(a.Item1,a.Item2));
+        public IDictionary<string, Tuple<IScaleUnit<T>, string>> scaleDictionary => unitDictionary.Select(a => Tuple.Create<IScaleUnit<T>, string>(a.Item1, a.Item2));
         BigRational IScaleUnit<T>.FromArbitrary(BigRational arb)
         {
             return this.FromArbitrary(arb);
@@ -126,31 +145,15 @@ namespace WhetStone.Units
             return this.ToArbitrary(val);
         }
     }
-    public class Unit<T> : IUnit<T> where T : ScaleMeasurement, DeltaMeasurement
-    {
-        private readonly BigRational _faFactor;
-        //val = arbitrary*factor
-        public Unit(BigRational faFactor)
-        {
-            _faFactor = faFactor;
-        }
-        public override BigRational FromArbitrary(BigRational arb)
-        {
-            return arb * _faFactor;
-        }
-        public override BigRational ToArbitrary(BigRational val)
-        {
-            return val / _faFactor;
-        }
-    }
-    public class ScaleUnit<T> : IScaleUnit<T> where T : ScaleMeasurement
+    public class ScaleUnit<T> : IScaleUnit<T> where T : ScaleMeasurement<T>
     {
         private readonly BigRational _faFactor;
         private readonly BigRational _faBias;
         //val = arbitrary*factor + bias
-        public ScaleUnit(BigRational faFactor, BigRational faBias = new BigRational())
+        public ScaleUnit(IDictionary<string, Tuple<IScaleUnit<T>, string>> scaleDictionary, BigRational faFactor,  BigRational faBias = new BigRational())
         {
             _faFactor = faFactor;
+            this.scaleDictionary = scaleDictionary;
             _faBias = faBias;
         }
         public BigRational FromArbitrary(BigRational arb)
@@ -161,14 +164,16 @@ namespace WhetStone.Units
         {
             return (val - _faBias) / _faFactor;
         }
+        public IDictionary<string, Tuple<IScaleUnit<T>, string>> scaleDictionary { get; }
     }
-    public class DeltaUnit<T> : IDeltaUnit<T> where T : DeltaMeasurement
+    public class DeltaUnit<T> : IDeltaUnit<T> where T : DeltaMeasurement<T>
     {
         private readonly BigRational _faFactor;
         //val = arbitrary*factor
-        public DeltaUnit(BigRational faFactor)
+        public DeltaUnit(IDictionary<string, Tuple<IDeltaUnit<T>, string>> deltaDictionary, BigRational faFactor)
         {
             _faFactor = faFactor;
+            this.deltaDictionary = deltaDictionary;
         }
         public BigRational FromArbitrary(BigRational arb)
         {
@@ -178,6 +183,6 @@ namespace WhetStone.Units
         {
             return val / _faFactor;
         }
+        public IDictionary<string, Tuple<IDeltaUnit<T>, string>> deltaDictionary { get; }
     }
-    
 }

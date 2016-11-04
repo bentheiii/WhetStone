@@ -66,6 +66,8 @@
     <Compile Include="Choose.cs" />
     <Compile Include="CommonRegex.cs" />
     <Compile Include="ComparerToEquator.cs" />
+    <Compile Include="CompundUnit\CU01.cs" />
+    <Compile Include="CompundUnit\CU20.cs" />
     <Compile Include="Concat.cs" />
     <Compile Include="ConditionFunnel.cs" />
     <Compile Include="ConstantRandomGenerator.cs" />

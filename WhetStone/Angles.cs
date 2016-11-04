@@ -11,10 +11,11 @@ namespace WhetStone.Units.Angles
 {
     //arbitrary is radians
     //in most conventions, 0 means aligned with the x axis
-    public class Angle : IUnit<Angle>, ScaleMeasurement, DeltaMeasurement, IComparable<Angle>
+    public class Angle : IUnit<Angle>, ScaleMeasurement<Angle>, DeltaMeasurement<Angle>, IComparable<Angle>
     {
         public Angle(BigRational val, IUnit<Angle> unit, bool normalize = false) : this(unit.ToArbitrary(val), normalize) { }
-        public Angle(BigRational arbitrary, bool normalize = false)
+        public Angle(BigRational arbitrary) : this(arbitrary, false) {}
+        public Angle(BigRational arbitrary, bool normalize)
         {
             _sin = new Lazy<double>(() => Math.Sin((double)Arbitrary));
             _cos = new Lazy<double>(() => Math.Cos((double)Arbitrary));
@@ -23,14 +24,14 @@ namespace WhetStone.Units.Angles
             this.Arbitrary = arbitrary;
         }
         public BigRational Arbitrary { get; }
-        BigRational ScaleMeasurement.Arbitrary
+        BigRational ScaleMeasurement<Angle>.Arbitrary
         {
             get
             {
                 return this.Arbitrary;
             }
         }
-        BigRational DeltaMeasurement.Arbitrary
+        BigRational DeltaMeasurement<Angle>.Arbitrary
         {
             get
             {
@@ -119,15 +120,18 @@ namespace WhetStone.Units.Angles
         {
             return this.ToString("");
         }
+        private static readonly IDictionary<string, Tuple<IUnit<Angle>, string>> _udic = new Dictionary<string, Tuple<IUnit<Angle>, string>>(4)
+        {
+            ["R"] = Tuple.Create<IUnit<Angle>, string>(Radian, "rad"),
+            ["D"] = Tuple.Create<IUnit<Angle>, string>(Degree, "\u00b0"),
+            ["G"] = Tuple.Create<IUnit<Angle>, string>(Gradian, "gon"),
+            ["T"] = Tuple.Create<IUnit<Angle>, string>(Turn, "\u03c4")
+        };
+        public override IDictionary<string, Tuple<IUnit<Angle>, string>> unitDictionary => _udic;
         //accepted formats (R|D|G|T)_{double format}_{symbol}
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            IDictionary<string, Tuple<IScaleUnit<Angle>, string>> unitDictionary = new Dictionary<string, Tuple<IScaleUnit<Angle>, string>>(4);
-            unitDictionary["R"] = Tuple.Create<IScaleUnit<Angle>, string>(Radian, "rad");
-            unitDictionary["D"] = Tuple.Create<IScaleUnit<Angle>, string>(Degree, "\u00b0");
-            unitDictionary["G"] = Tuple.Create<IScaleUnit<Angle>, string>(Gradian, "gon");
-            unitDictionary["T"] = Tuple.Create<IScaleUnit<Angle>, string>(Turn, "\u03c4");
-            return this.StringFromUnitDictionary(format, "R", formatProvider, unitDictionary);
+            return this.StringFromUnitDictionary(format, "R", formatProvider, scaleDictionary);
         }
         public override int GetHashCode()
         {

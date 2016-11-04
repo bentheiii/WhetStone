@@ -8,7 +8,7 @@ using WhetStone.WordPlay.Parsing;
 namespace WhetStone.Units.Frequencies
 {
     //arbitrary is hertz
-    public class Frequency : IUnit<Frequency>, ScaleMeasurement, DeltaMeasurement, IComparable<Frequency>
+    public class Frequency : IUnit<Frequency>, ScaleMeasurement<Frequency>, DeltaMeasurement<Frequency>, IComparable<Frequency>
     {
         public Frequency(BigRational val, IDeltaUnit<Frequency> unit) : this(unit.ToArbitrary(val)) { }
         public Frequency(BigRational arbitrary)
@@ -20,7 +20,7 @@ namespace WhetStone.Units.Frequencies
         {
             return Arbitrary.CompareTo(other.Arbitrary);
         }
-        BigRational DeltaMeasurement.Arbitrary
+        BigRational DeltaMeasurement<Frequency>.Arbitrary
         {
             get
             {
@@ -100,14 +100,17 @@ namespace WhetStone.Units.Frequencies
         {
             return this.ToString("");
         }
+        private static readonly IDictionary<string, Tuple<IUnit<Frequency>, string>> _udic = new Dictionary<string, Tuple<IUnit<Frequency>, string>>(3)
+        {
+            ["H"] = Tuple.Create<IUnit<Frequency>, string>(Hertz, "hz"),
+            ["M"] = Tuple.Create<IUnit<Frequency>, string>(MegaHertz, "mhz"),
+            ["G"] = Tuple.Create<IUnit<Frequency>, string>(GigaHertz, "ghz")
+        };
+        public override IDictionary<string, Tuple<IUnit<Frequency>, string>> unitDictionary => _udic;
         //accepted formats (H|M|G|R)_{double format}_{symbol}
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            IDictionary<string, Tuple<IScaleUnit<Frequency>, string>> unitDictionary = new Dictionary<string, Tuple<IScaleUnit<Frequency>, string>>(1);
-            unitDictionary["H"] = Tuple.Create<IScaleUnit<Frequency>, string>(Hertz, "hz");
-            unitDictionary["M"] = Tuple.Create<IScaleUnit<Frequency>, string>(MegaHertz, "mhz");
-            unitDictionary["G"] = Tuple.Create<IScaleUnit<Frequency>, string>(GigaHertz, "ghz");
-            return this.StringFromUnitDictionary(format, "H", formatProvider, unitDictionary);
+            return this.StringFromUnitDictionary(format, "H", formatProvider, scaleDictionary);
         }
         public override int GetHashCode()
         {

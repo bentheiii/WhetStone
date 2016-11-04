@@ -12,8 +12,9 @@ namespace WhetStone.Looping
         }
         public static void Append<T>(ref T[] @this, IEnumerable<T> toAdd)
         {
+            var oldlen = @this.Length;
             Array.Resize(ref @this, @this.Length + toAdd.Count());
-            foreach (var t in toAdd.CountBind(@this.Length))
+            foreach (var t in toAdd.CountBind(oldlen))
             {
                 @this[t.Item2] = t.Item1;
             }

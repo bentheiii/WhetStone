@@ -9,7 +9,7 @@ using WhetStone.WordPlay.Parsing;
 namespace WhetStone.Units.RotationalSpeeds
 {
     //arbitrary is RPS
-    public class RotationalSpeed : IUnit<RotationalSpeed>, ScaleMeasurement, DeltaMeasurement, IComparable<RotationalSpeed>
+    public class RotationalSpeed : IUnit<RotationalSpeed>, ScaleMeasurement<RotationalSpeed>, DeltaMeasurement<RotationalSpeed>, IComparable<RotationalSpeed>
     {
         public RotationalSpeed(BigRational val, IDeltaUnit<RotationalSpeed> unit) : this(unit.ToArbitrary(val))
         {
@@ -23,7 +23,7 @@ namespace WhetStone.Units.RotationalSpeeds
         {
             return Arbitrary.CompareTo(other.Arbitrary);
         }
-        BigRational DeltaMeasurement.Arbitrary
+        BigRational DeltaMeasurement<RotationalSpeed>.Arbitrary
         {
             get
             {
@@ -103,15 +103,17 @@ namespace WhetStone.Units.RotationalSpeeds
         {
             return this.ToString("");
         }
+        private static readonly IDictionary<string, Tuple<IUnit<RotationalSpeed>, string>> _udic = new Dictionary<string, Tuple<IUnit<RotationalSpeed>, string>>(3)
+        {
+            ["RPS"] = Tuple.Create<IUnit<RotationalSpeed>, string>(RadiansPerSeconds, "rps"),
+            ["TPM"] = Tuple.Create<IUnit<RotationalSpeed>, string>(TurnsPerMinute, "tpm"),
+            ["TPS"] = Tuple.Create<IUnit<RotationalSpeed>, string>(TurnsPerSecond, "tps")
+        };
+        public override IDictionary<string, Tuple<IUnit<RotationalSpeed>, string>> unitDictionary => _udic;
         //accepted formats (RPS|TPM|TPS)_{double format}_{symbol}
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            IDictionary<string, Tuple<IScaleUnit<RotationalSpeed>, string>> unitDictionary =
-                new Dictionary<string, Tuple<IScaleUnit<RotationalSpeed>, string>>(1);
-            unitDictionary["RPS"] = Tuple.Create<IScaleUnit<RotationalSpeed>, string>(RadiansPerSeconds, "rps");
-            unitDictionary["TPM"] = Tuple.Create<IScaleUnit<RotationalSpeed>, string>(TurnsPerMinute, "tpm");
-            unitDictionary["TPS"] = Tuple.Create<IScaleUnit<RotationalSpeed>, string>(TurnsPerSecond, "tps");
-            return this.StringFromUnitDictionary(format, "RPS", formatProvider, unitDictionary);
+            return this.StringFromUnitDictionary(format, "RPS", formatProvider, scaleDictionary);
         }
         public override int GetHashCode()
         {
