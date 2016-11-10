@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NumberStone;
 using WhetStone.LockedStructures;
+using WhetStone.NumbersMagic;
 using WhetStone.Tuples;
 
 namespace WhetStone.Looping
@@ -346,167 +347,6 @@ namespace WhetStone.Looping
                 }
             }
         }
-        private class JointMetaListAllPairs<T> : LockedList<T[]>
-        {
-            private readonly IList<T> _source;
-            private readonly int _length;
-            public JointMetaListAllPairs(IList<T> source, int length)
-            {
-                _source = source;
-                _length = length;
-            }
-            public override IEnumerator<T[]> GetEnumerator()
-            {
-                return this._source.AsEnumerable().Join(_length).GetEnumerator();
-            }
-            public override int Count
-            {
-                get
-                {
-                    return (int)Math.Pow(_source.Count, _length);
-                }
-            }
-            public override T[] this[int index]
-            {
-                get
-                {
-                    var ret = new T[_length];
-                    foreach (var i in range.Range(_length))
-                    {
-                        ret[i] = _source[index%_source.Count];
-                        index /= _source.Count;
-                    }
-                    return ret;
-                }
-            }
-        }
-        private class JointMetaListMonoDescendingPairs<T> : LockedList<T[]>
-        {
-            private readonly IList<T> _source;
-            private readonly int _length;
-            public JointMetaListMonoDescendingPairs(IList<T> source, int length)
-            {
-                _source = source;
-                _length = length;
-            }
-            public override IEnumerator<T[]> GetEnumerator()
-            {
-                return this._source.AsEnumerable().Join(_length, CartesianType.NoSymmatry).GetEnumerator();
-            }
-            public override int Count
-            {
-                get
-                {
-                    return (int)choose.Choose(_source.Count + _length - 1, _length);
-                }
-            }
-            private static IEnumerable<int> iterationIndices(int length, int maxnum, int index)
-            {
-                if (maxnum == 0 || length == 0)
-                    return new int[0];
-                int cutoff = (int)choose.Choose(maxnum + length - 2, length - 1);
-                int prevcutoff = 0;
-                int first = 0;
-                while (index >= cutoff)
-                {
-                    prevcutoff = cutoff;
-                    first++;
-                    cutoff += (int)choose.Choose(maxnum + length - first - 2, length - 1);
-                }
-                return iterationIndices(length - 1, maxnum - first, index - prevcutoff).Select(a => a + first).Concat((first).Enumerate());
-            }
-            public override T[] this[int index]
-            {
-                get
-                {
-                    return iterationIndices(_length, _source.Count, index).Select(a => _source[a]).ToArray();
-                }
-            }
-        }
-        private class JointMetaListDescendingPairs<T> : LockedList<T[]>
-        {
-            private readonly IList<T> _source;
-            private readonly int _length;
-            public JointMetaListDescendingPairs(IList<T> source, int length)
-            {
-                _source = source;
-                _length = length;
-            }
-            public override IEnumerator<T[]> GetEnumerator()
-            {
-                return this._source.AsEnumerable().Join(_length, CartesianType.NoSymmatry | CartesianType.NoReflexive).GetEnumerator();
-            }
-            public override int Count
-            {
-                get
-                {
-                    return (int)choose.Choose(_source.Count, _length);
-                }
-            }
-            private static IEnumerable<int> iterationIndices(int length, int maxnum, int index)
-            {
-                if (maxnum == 0 || length == 0)
-                    return new int[0];
-                int cutoff = (int)choose.Choose(maxnum - 1, length - 1);
-                int prevcutoff = 0;
-                int first = 0;
-                while (index >= cutoff)
-                {
-                    prevcutoff = cutoff;
-                    first++;
-                    cutoff += (int)choose.Choose(maxnum - first - 1, length - 1);
-                }
-                return (iterationIndices(length - 1, maxnum - first - 1, index - prevcutoff).Select(a => a + first + 1)).Concat((first).Enumerate());
-            }
-            public override T[] this[int index]
-            {
-                get
-                {
-                    return iterationIndices(_length,_source.Count,index).Select(a=>_source[a]).ToArray();
-                }
-            }
-        }
-        private class JointMetaListNoReflexive<T> : LockedList<T[]>
-        {
-            private readonly IList<T> _source;
-            private readonly int _length;
-            public JointMetaListNoReflexive(IList<T> source, int length)
-            {
-                _source = source;
-                _length = length;
-            }
-            public override IEnumerator<T[]> GetEnumerator()
-            {
-                return this._source.AsEnumerable().Join(_length, CartesianType.NoReflexive).GetEnumerator();
-            }
-            public override int Count
-            {
-                get
-                {
-                    BigProduct p = new BigProduct();
-                    p.MultiplyFactorial(_source.Count);
-                    p.DivideFactorial(_source.Count - _length);
-                    return (int)p.toNum();
-                }
-            }
-            public override T[] this[int index]
-            {
-                get
-                {
-                    if (_length == 1)
-                        return new[] { _source[index] };
-                    BigProduct gap = new BigProduct();
-                    gap.MultiplyFactorial(_source.Count - 1);
-                    gap.DivideFactorial(_source.Count - _length);
-                    int g = (int)gap.toNum();
-                    var first = _source[index / g];
-                    return new JointMetaListNoReflexive<T>(_source.Except(first).ToArray(), _length - 1)[index % g].Concat(first.Enumerate()).ToArray();
-                }
-            }
-        }
-
-        //todo convert from ints already this is dumb
-        //todo mutative choose
 
         public class JointMetaListAllPairs : LockedList<int[]>
         {
@@ -551,7 +391,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    return (int)Math.Pow(_maxind+1, _length);
+                    return (int)Math.Pow(_maxind, _length);
                 }
             }
             public override int[] this[int index]
@@ -636,14 +476,16 @@ namespace WhetStone.Looping
                     int offset = 0;
                     foreach (int i in ret.Indices().Reverse())
                     {
-                        int cutoff = (int)choose.Choose(max - 1, len - 1);
+                        var choose = new BinomialCoefficient(max-1, len-1);
+                        int cutoff = choose.value;
                         int prevcutoff = 0;
                         int first = 0;
                         while (index >= cutoff)
                         {
                             prevcutoff = cutoff;
                             first++;
-                            cutoff += (int)choose.Choose(max - first - 1, len - 1);
+                            choose.ReduceSuper();
+                            cutoff += choose.value;
                         }
                         ret[i] = first + offset;
                         offset += (first + 1);
@@ -719,14 +561,16 @@ namespace WhetStone.Looping
                     int offset = 0;
                     foreach (int i in ret.Indices().Reverse())
                     {
-                        int cutoff = (int)choose.Choose(max + len - 2, len - 1);
+                        var choose = new BinomialCoefficient(max+len-2,len-1);
+                        int cutoff = choose.value;
                         int prevcutoff = 0;
                         int first = 0;
                         while (index >= cutoff)
                         {
                             prevcutoff = cutoff;
                             first++;
-                            cutoff += (int)choose.Choose(max + len - first - 2, len - 1);
+                            choose.ReduceSuper();
+                            cutoff += choose.value;
                         }
                         ret[i] = first + offset;
                         offset += first;
@@ -749,12 +593,11 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<int[]> GetEnumerator()
             {
-                return GetEnumerator(range.Range(_maxind), _length).Select(a => a.ToArray()).GetEnumerator();
+                return GetEnumerator(new HashSet<int>(range.Range(_maxind)), _length).Select(a => a.ToArray()).GetEnumerator();
             }
-            //todo sortedsed here too
-            private static IEnumerable<IEnumerable<int>> GetEnumerator(IEnumerable<int> source, int length)
+            private static IEnumerable<IEnumerable<int>> GetEnumerator(ICollection<int> source, int length)
             {
-                if (length > source.Count())
+                if (length > source.Count)
                 {
                     yield break;
                 }
@@ -763,12 +606,14 @@ namespace WhetStone.Looping
                     yield return new int[0];
                     yield break;
                 }
-                foreach (int i in source)
+                foreach (int i in source.ToArray())
                 {
-                    foreach (var v in GetEnumerator(source.Except(i),length-1))
+                    source.Remove(i);
+                    foreach (var v in GetEnumerator(source,length-1))
                     {
                         yield return v.Concat(i.Enumerate());
                     }
+                    source.Add(i);
                 }
             }
             public override int Count
@@ -781,8 +626,7 @@ namespace WhetStone.Looping
                     return (int)p.toNum();
                 }
             }
-            //todo sortedset here? it would work...
-            private static IList<int> indices(IEnumerable<int> source, int length, int index)
+            private static IList<int> indices(ICollection<int> source, int length, int index)
             {
                 if (length == 1)
                     return new[] { source.ElementAt(index) };
@@ -791,13 +635,14 @@ namespace WhetStone.Looping
                 gap.DivideFactorial(source.Count() - length);
                 int g = (int)gap.toNum();
                 var first = source.ElementAt(index / g);
-                return indices(source.Except(first).ToArray(), length - 1,index % g).Concat(first.Enumerate()).ToArray();
+                source.Remove(first);
+                return indices(source, length - 1,index % g).Concat(first.Enumerate()).ToArray();
             }
             public override int[] this[int index]
             {
                 get
                 {
-                    return indices(range.Range(_maxind), _length, index).ToArray();
+                    return indices(new SortedSet<int>(range.Range(_maxind)), _length, index).ToArray();
                 }
             }
         }

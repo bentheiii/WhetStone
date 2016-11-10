@@ -60,6 +60,7 @@
     <Compile Include="Append.cs" />
     <Compile Include="Attach.cs" />
     <Compile Include="BigProduct.cs" />
+    <Compile Include="BinomialCoefficient.cs" />
     <Compile Include="ByteEnumeratorGenerator.cs" />
     <Compile Include="Cache.cs" />
     <Compile Include="CacheCount.cs" />
