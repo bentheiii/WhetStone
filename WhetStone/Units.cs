@@ -70,7 +70,7 @@ namespace WhetStone.Units
             if (!unitDictionary.ContainsKey(split[0]))
                 throw new FormatException("Unit Specifier not Recognized");
             var val = @this.InUnits(unitDictionary[split[0]].Item1);
-            string dat = ((double)val).ToString(split[1], formatProvider);
+            string dat = val.ToString(split[1], formatProvider);
             var id = unitDictionary[split[0]].Item2;
             if (pre)
                 return id + dat;
@@ -102,7 +102,7 @@ namespace WhetStone.Units
             }
             if (!unitDictionary.ContainsKey(split[0]))
                 throw new FormatException("Unit Specifier not Recognized");
-            var dat = ((double)@this.InUnits(unitDictionary[split[0]].Item1)).ToString(split[1], formatProvider);
+            var dat = @this.InUnits(unitDictionary[split[0]].Item1).ToString(split[1], formatProvider);
             var id = unitDictionary[split[0]].Item2;
             if (pre)
                 return id + dat;

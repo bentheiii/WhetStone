@@ -18,7 +18,7 @@ namespace WhetStone.Fielding
         private readonly HalvingQuerier<T> _fromIntQuerier;
         private readonly IDictionary<T, HalvingQuerier<T>> _powDictionary;
         private readonly LazyArray<T> _factorialQuerier;
-        public QueryEnabledField(T zero, T one, T naturalbase)
+        protected QueryEnabledField(T zero, T one, T naturalbase)
         {
             this.zero = zero;
             this.one = one;

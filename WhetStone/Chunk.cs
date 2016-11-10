@@ -36,23 +36,25 @@ namespace WhetStone.Looping
         }
         public static IEnumerable<IList<T>> Chunk<T>(this IEnumerable<T> @this, int chunkSize)
         {
-            var en = @this.GetEnumerator();
-            var ret = new ResizingArray<T>(chunkSize);
-            while (true)
+            using (var en = @this.GetEnumerator())
             {
-                if (ret.Count >= chunkSize)
+                var ret = new ResizingArray<T>(chunkSize);
+                while (true)
                 {
-                    yield return ret.ToArray();
-                    //ret = new ResizingArray<T>(chunkSize);
-                    ret.Clear();
+                    if (ret.Count >= chunkSize)
+                    {
+                        yield return ret.ToArray();
+                        //ret = new ResizingArray<T>(chunkSize);
+                        ret.Clear();
+                    }
+                    if (!en.MoveNext())
+                    {
+                        if (ret.Count > 0)
+                            yield return ret.arr;
+                        yield break;
+                    }
+                    ret.Add(en.Current);
                 }
-                if (!en.MoveNext())
-                {
-                    if (ret.Count > 0)
-                        yield return ret.arr;
-                    yield break;
-                }
-                ret.Add(en.Current);
             }
         }
         public static LockedList<IList<T>> Chunk<T>(this IList<T> @this)

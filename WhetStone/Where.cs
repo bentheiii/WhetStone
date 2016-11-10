@@ -9,5 +9,10 @@ namespace WhetStone.Looping
         {
             return @this.Where(toinclude.Contains);
         }
+        public static IEnumerable<T> Where<T>(this IEnumerable<T> @this, IEqualityComparer<T> comp , params T[] toinclude)
+        {
+            comp = comp ?? EqualityComparer<T>.Default;
+            return @this.Where(a=>toinclude.Contains(a,comp));
+        }
     }
 }

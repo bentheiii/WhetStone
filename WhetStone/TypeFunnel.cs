@@ -17,11 +17,11 @@ namespace WhetStone.Funnels
         }
         public void Add<T>(Func<T, RT> p) where T : class, PT
         {
-            Add(((T processed, out RT returnval) =>
+            Add((T processed, out RT returnval) =>
             {
                 returnval = p(processed);
                 return true;
-            }));
+            });
         }
         public void Add<T>(IProccesor<T, RT> p) where T : class, PT
         {

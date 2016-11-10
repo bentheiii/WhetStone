@@ -128,6 +128,7 @@
     <Compile Include="MacAddress.cs" />
     <Compile Include="Merge.cs" />
     <Compile Include="MinMax.cs" />
+    <Compile Include="MultiCollection.cs" />
     <Compile Include="MultiSubSets.cs" />
     <Compile Include="MutateOnEnumeration.cs" />
     <Compile Include="OrderBy.cs" />

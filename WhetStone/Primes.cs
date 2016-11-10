@@ -18,11 +18,10 @@ namespace NumberStone
             while (true)
             {
                 i += 2;
-                int i1 = i;
                 if (!i.isProbablyPrime(3))
                     continue;
                 int sqrt = i.sqrt().ceil() + 1;
-                if (ret.TakeWhile(a => a < sqrt + 1).All(a => i1 % a != 0))
+                if (ret.TakeWhile(a => a < sqrt + 1).All(a => i % a != 0))
                 {
                     ret.Add(i);
                     yield return i;

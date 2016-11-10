@@ -53,7 +53,7 @@ namespace WhetStone
                 }
                 if (buffer.Count == trailLength)
                 {
-                    yield return buffer.ToArray();
+                    yield return buffer.ToArray(trailLength);
                 }
             }
         }

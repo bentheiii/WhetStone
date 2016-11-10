@@ -2,28 +2,7 @@
 
 namespace WhetStone.Timer
 {
-	public interface ITimer
-	{
-		bool paused { get; }
-		void Pause();
-		void Resume();
-		TimeSpan timeSinceStart { get; }
-	}
-	public static class TimerExtentions
-	{
-		public static void togglePause(this ITimer @this)
-		{
-			if (@this.paused)
-			{
-				@this.Resume();
-			}
-			else
-			{
-				@this.Pause();
-			}
-		}
-	}
-	public class IdleTimer : ITimer
+	public class IdleTimer
 	{
 		private DateTime _startTime = DateTime.Now;
 		private IdleTimer _timePaused;

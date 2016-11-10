@@ -46,9 +46,9 @@ namespace WhetStone.Looping
             gen = gen ?? new GlobalRandomGenerator();
             return @this[gen.Int(@this.Count)];
         }
-        public static IEnumerable<T> Pick<T>(this IList<T> @this, int count, RandomGenerator gen = null)
+        public static IList<T> Pick<T>(this IList<T> @this, int count, RandomGenerator gen = null)
         {
-            return @this.Join(count, @join.CartesianType.NoReflexive | @join.CartesianType.NoSymmatry).Pick(gen).Reverse();
+            return range.Range(@this.Count).Join(count, @join.CartesianType.NoReflexive | @join.CartesianType.NoSymmatry).Pick(gen).Select(a=>@this[a]).Reverse();
         }
     }
 }

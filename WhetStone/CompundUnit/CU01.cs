@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Numerics;
 using WhetStone.Looping;
-using WhetStone.Units;
 
-namespace WhetStone.CompundUnit
+namespace WhetStone.Units
 {
     public class CompundUnit0Num1Denum<T0>
         : IUnit<CompundUnit0Num1Denum<T0>>, ScaleMeasurement<CompundUnit0Num1Denum<T0>>, DeltaMeasurement<CompundUnit0Num1Denum<T0>>,
@@ -73,6 +72,17 @@ namespace WhetStone.CompundUnit
         public static CompundUnit0Num1Denum<T0> operator /(CompundUnit0Num1Denum<T0> @this, BigRational a)
         {
             return new CompundUnit0Num1Denum<T0>(@this.Arbitrary * a);
+        }
+        public static T0 operator /(BigRational a, CompundUnit0Num1Denum<T0> @this)
+        {
+            return (T0)typeof(T0).GetConstructor(new[] { typeof(BigRational) }).Invoke(new object[] { a/@this.Arbitrary });
+        }
+    }
+    public static partial class CompundUnitExtentions
+    {
+        public static CompundUnit0Num1Denum<T> Inv<T>(this T @this) where T : IUnit<T>, ScaleMeasurement<T>, DeltaMeasurement<T>
+        {
+            return new CompundUnit0Num1Denum<T>(@this);
         }
     }
 }

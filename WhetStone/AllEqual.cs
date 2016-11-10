@@ -13,14 +13,16 @@ namespace WhetStone.Looping
         public static bool AllEqualToFirst<T>(this IEnumerable<T> @this, IEqualityComparer<T> comp = null)
         {
             comp = comp ?? EqualityComparer<T>.Default;
-            IEnumerator<T> tor = @this.GetEnumerator();
-            if (!tor.MoveNext())
-                return true;
-            T mem = tor.Current;
-            while (tor.MoveNext())
+            using (IEnumerator<T> tor = @this.GetEnumerator())
             {
-                if (!comp.Equals(mem, tor.Current))
-                    return false;
+                if (!tor.MoveNext())
+                    return true;
+                T mem = tor.Current;
+                while (tor.MoveNext())
+                {
+                    if (!comp.Equals(mem, tor.Current))
+                        return false;
+                }
             }
             return true;
         }
