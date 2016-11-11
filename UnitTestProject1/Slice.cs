@@ -4,7 +4,7 @@ using WhetStone.Looping;
 namespace Tests
 {
     [TestClass]
-    public class Test
+    public class SliceTest
     {
         [TestMethod]
         public void Single()
@@ -26,8 +26,8 @@ namespace Tests
         public void Simple()
         {
             var val = new[] { 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 }.Slice(3, 8, 2);
-            int v = 30;
             Assert.AreEqual(val.Count,3);
+            int v = 30;
             foreach (int i in val)
             {
                 Assert.AreEqual(v, i);

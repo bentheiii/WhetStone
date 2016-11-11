@@ -484,7 +484,7 @@ namespace WhetStone.Looping
                         {
                             prevcutoff = cutoff;
                             first++;
-                            choose.ReduceSuper();
+                            choose.DecreaseSuper();
                             cutoff += choose.value;
                         }
                         ret[i] = first + offset;
@@ -569,7 +569,7 @@ namespace WhetStone.Looping
                         {
                             prevcutoff = cutoff;
                             first++;
-                            choose.ReduceSuper();
+                            choose.DecreaseSuper();
                             cutoff += choose.value;
                         }
                         ret[i] = first + offset;
@@ -593,7 +593,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<int[]> GetEnumerator()
             {
-                return GetEnumerator(new HashSet<int>(range.Range(_maxind)), _length).Select(a => a.ToArray()).GetEnumerator();
+                return GetEnumerator(new SortedSet<int>(range.Range(_maxind)), _length).Select(a => a.ToArray()).GetEnumerator();
             }
             private static IEnumerable<IEnumerable<int>> GetEnumerator(ICollection<int> source, int length)
             {
@@ -631,8 +631,8 @@ namespace WhetStone.Looping
                 if (length == 1)
                     return new[] { source.ElementAt(index) };
                 BigProduct gap = new BigProduct();
-                gap.MultiplyFactorial(source.Count() - 1);
-                gap.DivideFactorial(source.Count() - length);
+                gap.MultiplyFactorial(source.Count - 1);
+                gap.DivideFactorial(source.Count - length);
                 int g = (int)gap.toNum();
                 var first = source.ElementAt(index / g);
                 source.Remove(first);
