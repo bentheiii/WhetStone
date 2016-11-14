@@ -48,7 +48,7 @@ namespace WhetStone.Looping
         }
         public static IList<T> Pick<T>(this IList<T> @this, int count, RandomGenerator gen = null)
         {
-            return range.Range(@this.Count).Join(count, @join.CartesianType.NoReflexive | @join.CartesianType.NoSymmatry).Pick(gen).Select(a=>@this[a]).Reverse();
+            return range.Range(@this.Count).Join(count, join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry).Pick(gen).Select(a=>@this[a]).Reverse();
         }
     }
 }

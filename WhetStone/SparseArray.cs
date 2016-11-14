@@ -30,9 +30,11 @@ namespace WhetStone.Looping
                 if (other._cors.Length != _cors.Length)
                     return _cors.Length.CompareTo(other._cors.Length);
                 int ret = 0;
-                var cors = _cors.Zip(other._cors).GetEnumerator();
-                while (ret == 0 && cors.MoveNext())
-                    ret = cors.Current.Item1.CompareTo(cors.Current.Item2);
+                using (var cors = _cors.Zip(other._cors).GetEnumerator())
+                {
+                    while (ret == 0 && cors.MoveNext())
+                        ret = cors.Current.Item1.CompareTo(cors.Current.Item2);
+                }
                 return ret;
             }
         }

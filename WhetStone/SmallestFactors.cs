@@ -11,6 +11,7 @@ namespace NumberStone
                 throw new ArithmeticException("cannot find prime factorization of a non-positive number");
             if (value%2 == 0)
                 return 2;
+            // ReSharper disable once RedundantExplicitArraySize
             int[] val = new int[4999]
                 #region array
             {

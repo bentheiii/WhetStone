@@ -127,11 +127,8 @@ namespace WhetStone.Looping
         }
         public static LockedList<int> Range(int start, int max, int step)
         {
-            //try rewrite
             if (step >= 0)
-            {
                 return new RangeList(start, max, step);
-            }
             return Range(-start, -max, -step).Select(a => -a);
         }
         public static LockedList<int> Range(int start, int max)

@@ -211,7 +211,7 @@ namespace WhetStone.Fielding {
     [Flags]
     public enum FieldShape
     {
-        None = 0, Linear = 1, Discrete = 2, HalfFinite = Linear|4, Finite = HalfFinite|Discrete|8, 
+        None = 0, Linear = 1, Discrete = 2, HalfFinite = Linear|4, Finite = HalfFinite|Discrete|8 
     }
     public abstract class Field<T> : IComparer<T>, IEqualityComparer<T>, Field
     {
@@ -448,14 +448,11 @@ namespace WhetStone.Fielding {
                     ulong n = BitConverter.ToUInt64(seedn.ToArray(), 0)%d;
                     return n / (double)d;
                 }
-                else
-                {
-                    var max = bounds.Item2;
-                    var min = bounds.Item1;
-                    var @base = Generate(bytes);
-                    @base *= (max-min);
-                    return @base + min;
-                }
+                var max = bounds.Item2;
+                var min = bounds.Item1;
+                var @base = Generate(bytes);
+                @base *= (max-min);
+                return @base + min;
             }
             public override FieldShape shape => FieldShape.Linear;
             public override double fromFraction(double a)
@@ -503,14 +500,11 @@ namespace WhetStone.Fielding {
                     ulong n = BitConverter.ToUInt64(seedn.ToArray(), 0) % d;
                     return n / (float)d;
                 }
-                else
-                {
-                    var max = bounds.Item2;
-                    var min = bounds.Item1;
-                    var @base = Generate(bytes);
-                    @base *= (max - min);
-                    return @base + min;
-                }
+                var max = bounds.Item2;
+                var min = bounds.Item1;
+                var @base = Generate(bytes);
+                @base *= (max - min);
+                return @base + min;
             }
             public override float fromFraction(double a)
             {
@@ -557,14 +551,11 @@ namespace WhetStone.Fielding {
                     ulong n = BitConverter.ToUInt64(seedn.ToArray(), 0) % d;
                     return n / (decimal)d;
                 }
-                else
-                {
-                    var max = bounds.Item2;
-                    var min = bounds.Item1;
-                    var @base = Generate(bytes);
-                    @base *= (max - min);
-                    return @base + min;
-                }
+                var max = bounds.Item2;
+                var min = bounds.Item1;
+                var @base = Generate(bytes);
+                @base *= (max - min);
+                return @base + min;
             }
             public override decimal fromFraction(double a)
             {
@@ -1192,14 +1183,11 @@ namespace WhetStone.Fielding {
                 {
                     return getField<decimal>().Generate(bytes);
                 }
-                else
-                {
-                    var max = bounds.Item2;
-                    var min = bounds.Item1;
-                    var @base = Generate(bytes);
-                    @base *= (max - min);
-                    return @base + min;
-                }
+                var max = bounds.Item2;
+                var min = bounds.Item1;
+                var @base = Generate(bytes);
+                @base *= (max - min);
+                return @base + min;
             }
             public override BigRational fromFraction(double a)
             {

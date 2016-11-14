@@ -12,13 +12,15 @@ namespace WhetStone.Looping
                 throw new Exception("array length must divide row length evenly");
             int dim2Length = a.Count() / dim0Length;
             T[,] ret = new T[dim0Length, dim2Length];
-            var tor = a.GetEnumerator();
-            for (int i = 0; i < dim0Length; i++)
+            using (var tor = a.GetEnumerator())
             {
-                for (int j = 0; j < dim2Length; j++)
+                for (int i = 0; i < dim0Length; i++)
                 {
-                    tor.MoveNext();
-                    ret[i, j] = tor.Current;
+                    for (int j = 0; j < dim2Length; j++)
+                    {
+                        tor.MoveNext();
+                        ret[i, j] = tor.Current;
+                    }
                 }
             }
             return ret;

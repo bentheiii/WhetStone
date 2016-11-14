@@ -46,7 +46,7 @@ namespace WhetStone.Fielding
                 {
                     //check if base is valid
                     var d = toDouble(@base) ?? 0.5;
-                    if (d%1 != 0 || d > MaxPowBaseQuery)
+                    if (d%1.0 != 0 || d > MaxPowBaseQuery)
                         //base isn't valid
                         return base.Pow(@base, x);
                     //base is valid, initialize halver

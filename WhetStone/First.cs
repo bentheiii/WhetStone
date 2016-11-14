@@ -7,8 +7,10 @@ namespace WhetStone.Looping
     {
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, T def)
         {
-            var tor = @this.GetEnumerator();
-            return !tor.MoveNext() ? def : tor.Current;
+            using (var tor = @this.GetEnumerator())
+            {
+                return !tor.MoveNext() ? def : tor.Current;
+            }
         }
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def)
         {

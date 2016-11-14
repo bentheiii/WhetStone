@@ -20,12 +20,16 @@ namespace WhetStone.Looping
             if (r >= Size || c >= Size)
                 throw new IndexOutOfRangeException();
             if (r > c)
-                return getindex(c, r);
+            {
+                var temp = r;
+                r = c;
+                c = temp;
+            }
             if (Reflexive)
-                return (int)(r * (Size - (r + 1) / 2.0) + c);
+                return (int)(r*(Size - (r + 1)/2.0) + c);
             if (r == c)
                 throw new IndexOutOfRangeException("this matrix is non-reflexive");
-            return (int)(r * (Size - (r + 3) / 2.0) + c - 1);
+            return (int)(r*(Size - (r + 3)/2.0) + c - 1);
         }
         public int length
         {

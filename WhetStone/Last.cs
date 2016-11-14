@@ -28,22 +28,24 @@ namespace WhetStone.Looping
         {
             T ret;
             any = false;
-            var tor = @this.GetEnumerator();
-            while (true)
+            using (var tor = @this.GetEnumerator())
             {
-                if (!tor.MoveNext())
-                    return def;
-                if (cond(tor.Current))
+                while (true)
                 {
-                    any = true;
-                    ret = tor.Current;
-                    break;
+                    if (!tor.MoveNext())
+                        return def;
+                    if (cond(tor.Current))
+                    {
+                        any = true;
+                        ret = tor.Current;
+                        break;
+                    }
                 }
-            }
-            while (!tor.MoveNext())
-            {
-                if (cond(tor.Current))
-                    ret = tor.Current;
+                while (!tor.MoveNext())
+                {
+                    if (cond(tor.Current))
+                        ret = tor.Current;
+                }
             }
             return ret;
         }

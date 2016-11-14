@@ -37,23 +37,25 @@ namespace WhetStone.Looping
         public static IEnumerable<Tuple<T, Position>> PositionBind<T>(this IEnumerable<T> @this)
         {
             bool first = true;
-            var num = @this.GetEnumerator();
-            bool last = !num.MoveNext();
-            while (!last)
+            using (var num = @this.GetEnumerator())
             {
-                var v = num.Current;
-                last = !num.MoveNext();
-                Position ret = Position.Middle;
-                if (first)
+                bool last = !num.MoveNext();
+                while (!last)
                 {
-                    ret |= Position.First;
-                    first = false;
+                    var v = num.Current;
+                    last = !num.MoveNext();
+                    Position ret = Position.Middle;
+                    if (first)
+                    {
+                        ret |= Position.First;
+                        first = false;
+                    }
+                    if (last)
+                    {
+                        ret |= Position.Last;
+                    }
+                    yield return Tuple.Create(v, ret);
                 }
-                if (last)
-                {
-                    ret |= Position.Last;
-                }
-                yield return Tuple.Create(v, ret);
             }
         }
         public static IList<Tuple<T, Position>> PositionBind<T>(this IList<T> @this)
