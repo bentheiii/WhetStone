@@ -19,6 +19,7 @@ namespace WhetStone.NumbersMagic
         }
         private void init()
         {
+
             _val.MultiplyFactorial(super);
             _val.DivideFactorial(sub);
             _val.DivideFactorial(super-sub);
@@ -64,6 +65,26 @@ namespace WhetStone.NumbersMagic
                 _val.Multiply(super - sub - i);
             }
             sub += div;
+        }
+        public void DecreaseBoth(int div = 1)
+        {
+            foreach (int i in range.Range(div))
+            {
+                _val.Multiply(sub-div);
+                _val.Divide(super-div);
+            }
+            sub -= div;
+            super -= div;
+        }
+        public void IncreaseBoth(int div = 1)
+        {
+            foreach (int i in range.Range(div))
+            {
+                _val.Divide(sub - div);
+                _val.Multiply(super - div);
+            }
+            sub += div;
+            super += div;
         }
     }
 }

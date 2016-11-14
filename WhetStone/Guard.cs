@@ -105,7 +105,7 @@ namespace WhetStone.Guard
         /// is called whenever the value is looked at, has no parameters
         /// </summary>
         public event GuardDrawHandler drawn;
-        public EventGuard() : base(default(T)) {}
+        public EventGuard(){}
         public EventGuard(T load)
         {
             value = load;

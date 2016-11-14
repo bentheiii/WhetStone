@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,6 +25,7 @@ namespace WhetStone.Looping
         {
             _occurance.EnsureValue(item);
             _occurance[item]+=amount;
+            Count += amount;
         }
         public void Add(T item)
         {
@@ -32,6 +34,7 @@ namespace WhetStone.Looping
         public void Clear()
         {
             _occurance.Clear();
+            Count = 0;
         }
         public bool Contains(T item)
         {
@@ -57,9 +60,23 @@ namespace WhetStone.Looping
                 _occurance.Remove(item);
             else
                 _occurance[item]-=amount;
+            Count -= amount;
             return true;
         }
-        public int Count => _occurance.Values.Sum();
+        public int Count { get; private set; } = 0;
         public bool IsReadOnly => false;
+        public T this[int ind]
+        {
+            get
+            {
+                foreach (KeyValuePair<T, int> i in _occurance)
+                {
+                    if (i.Value > ind)
+                        return i.Key;
+                    ind -= i.Value;
+                }
+                throw new IndexOutOfRangeException();
+            }
+        }
     }
 }

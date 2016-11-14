@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using WhetStone.NumbersMagic;
 
 namespace WhetStone.Looping
 {
@@ -21,7 +21,15 @@ namespace WhetStone.Looping
             {
                 throw new ArgumentException("T must be an enumerated type with [Flags] attribute");
             }
-            return System.Enum.GetValues(typeof(T)).Cast<int>().Where(a => a.CountSetBits() == 1).Cast<T>();
+            long shown = 0;
+            foreach (T t in Enum<T>())
+            {
+                var i = t.ToInt64(CultureInfo.CurrentCulture);
+                if ((shown & i) == i)
+                    continue;
+                shown |= i;
+                yield return t;
+            }
         }
         public static IEnumerable<T> EnumFlags<T>(this T filter) where T : struct, IConvertible
         {

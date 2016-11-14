@@ -14,8 +14,7 @@ namespace WhetStone.Units.Angles
     public class Angle : IUnit<Angle>, ScaleMeasurement<Angle>, DeltaMeasurement<Angle>, IComparable<Angle>
     {
         public Angle(BigRational val, IUnit<Angle> unit, bool normalize = false) : this(unit.ToArbitrary(val), normalize) { }
-        public Angle(BigRational arbitrary) : this(arbitrary, false) {}
-        public Angle(BigRational arbitrary, bool normalize)
+        public Angle(BigRational arbitrary, bool normalize = false)
         {
             _sin = new Lazy<double>(() => Math.Sin((double)Arbitrary));
             _cos = new Lazy<double>(() => Math.Cos((double)Arbitrary));

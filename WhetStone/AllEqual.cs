@@ -31,7 +31,7 @@ namespace WhetStone.Looping
             comp = comp ?? EqualityComparer<T>.Default;
             return @this.Trail(2).Select(a => a.ToTuple2()).All(a => comp.Equals(a.Item1, a.Item2));
         }
-        public static bool AllEqualToEachOther<T>(this IEnumerable<T> @this, IEqualityComparer<T> comp = null, @join.CartesianType type = @join.CartesianType.NoReflexive | @join.CartesianType.NoSymmatry)
+        public static bool AllEqualToEachOther<T>(this IEnumerable<T> @this, IEqualityComparer<T> comp = null, join.CartesianType type = join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry)
         {
             comp = comp ?? EqualityComparer<T>.Default;
             return @this.Join(type).All(a => comp.Equals(a.Item1, a.Item2));
