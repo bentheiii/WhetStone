@@ -114,6 +114,7 @@
     <Compile Include="Join.cs" />
     <Compile Include="KahanSum.cs" />
     <Compile Include="LeastCommonMultiple.cs" />
+    <Compile Include="LinkedListBatchRemover.cs" />
     <Compile Include="ListDoubleSided.cs" />
     <Compile Include="LocalRandomGenerator.cs" />
     <Compile Include="LockedCollection.cs" />
@@ -155,7 +156,6 @@
     <Compile Include="Split.cs" />
     <Compile Include="SplitWriter.cs" />
     <Compile Include="Step.cs" />
-    <Compile Include="SubEnumerable.cs" />
     <Compile Include="Subsets.cs" />
     <Compile Include="Switch.cs" />
     <Compile Include="SwitchUnbound.cs" />

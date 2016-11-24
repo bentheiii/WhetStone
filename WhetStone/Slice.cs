@@ -115,6 +115,18 @@ namespace WhetStone.Looping
                 return GetEnumerator();
             }
         }
-        
+
+        public static IEnumerable<T> Slice<T>(this IEnumerable<T> @this, int start = 0, int? max = null, int steps = 1, int? length = null)
+        {
+            var ts = @this.AsList(false);
+            if (ts != null)
+                return ts.Slice(start,max,steps,length);
+            if (max.HasValue && length.HasValue)
+                throw new ArgumentException("either max or length must be null");
+            if (length.HasValue)
+                max = length * steps + start;
+            var temp = @this.Skip(start).Step(steps);
+            return max != null? temp.Take((max.Value-start)/steps) : temp;
+        }
     }
 }

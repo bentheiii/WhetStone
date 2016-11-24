@@ -25,7 +25,7 @@ namespace WhetStone
             {
                 get
                 {
-                    return _source.SubEnumerable(index, _trailLength).ToArray();
+                    return _source.Slice(index, _trailLength).ToArray();
                 }
             }
         }

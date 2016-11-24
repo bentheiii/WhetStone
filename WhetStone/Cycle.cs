@@ -62,7 +62,7 @@ namespace WhetStone.Looping
         {
             return new CycleList<T>(@this);
         }
-        public static IEnumerable<T> Cycle<T>(this IEnumerable<T> @this)
+        public static IList<T> Cycle<T>(this IEnumerable<T> @this)
         {
             return new CycleEnumerable<T>(@this);
         }

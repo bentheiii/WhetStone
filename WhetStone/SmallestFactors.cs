@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using WhetStone.SystemExtensions;
 
 namespace NumberStone
@@ -170,7 +171,7 @@ namespace NumberStone
             {
                 return value;
             }
-            foreach (int prime in primes.Primes(value.sqrt().floor() + 1))
+            foreach (int prime in primes.Primes(value.sqrt().floor() + 1).Skip(1))
             {
                 while (value % prime == 0)
                 {
@@ -185,7 +186,7 @@ namespace NumberStone
                 throw new ArithmeticException("cannot find prime factorization of a non-positive number");
             if (value < int.MaxValue)
                 return SmallestFactor((int)value);
-            foreach (int prime in primes.Primes(Math.Sqrt(value).floor() + 1))
+            foreach (int prime in primes.Primes(Math.Sqrt(value).floor() + 1).Skip(1))
             {
                 while (value % prime == 0)
                 {

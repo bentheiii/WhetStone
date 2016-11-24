@@ -1,12 +1,12 @@
-﻿using WhetStone.LockedStructures;
+﻿using System.Collections.Generic;
 
 namespace WhetStone.Looping
 {
     public static class columns
     {
-        public static LockedList<LockedList<T>> Columns<T>(this T[,] @this)
+        public static IList<IList<T>> Columns<T>(this T[,] @this)
         {
-            return range.Range(@this.GetLength(1)).Select(a => range.Range(@this.GetLength(0)).Select(x => @this[x, a]));
+            return range.Range(@this.GetLength(1)).Select(a => (IList<T>)range.Range(@this.GetLength(0)).Select(x => @this[x, a]));
         }
     }
 }

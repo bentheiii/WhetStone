@@ -70,7 +70,7 @@ namespace WhetStone.Looping
                 _end = end;
                 _step = step;
                 var gap = end - _start;
-                Count = (gap / _step) + (gap % _step == 0 ? 0 : 1) + (inclusive ? 1 : 0);
+                Count = gap / _step + (gap % _step == 0 ? 0 : 1) + (inclusive ? 1 : 0);
             }
             public override IEnumerator<int> GetEnumerator()
             {

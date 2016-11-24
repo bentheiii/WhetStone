@@ -10,7 +10,7 @@ namespace WhetStone.Looping
             var tors = new LinkedList<IEnumerator<T>>(@this.Select(a=>a.GetEnumerator()));
             while (tors.Any())
             {
-                var todel = new List<LinkedListNode<IEnumerator<T>>>();
+                var todel = tors.GetBatchRemover();
                 var node = tors.First;
                 while (node != null)
                 {
@@ -24,7 +24,7 @@ namespace WhetStone.Looping
                     }
                     node = node.Next;
                 }
-                todel.ForEach(tors.Remove);
+                todel.Commit();
             }
         }
     }
