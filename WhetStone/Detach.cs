@@ -97,5 +97,17 @@ namespace WhetStone.Looping
         {
             return @this.Select(a => Tuple.Create(Tuple.Create(a.Item1, a.Item2), a.Item3)).Detach(informer1);
         }
+        public static IList<T1> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T2> informer1, IGuard<T3> informer2, IGuard<T4> informer3)
+        {
+            return @this.Detach(informer2, informer3).Detach(informer1);
+        }
+        public static IList<Tuple<T1, T2>> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T3> informer2, IGuard<T4> informer3)
+        {
+            return @this.Detach(informer3).Detach(informer2);
+        }
+        public static IList<Tuple<T1, T2, T3>> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T4> informer3 = null)
+        {
+            return @this.Select(a => Tuple.Create(Tuple.Create(a.Item1, a.Item2, a.Item3), a.Item4)).Detach(informer3);
+        }
     }
 }
