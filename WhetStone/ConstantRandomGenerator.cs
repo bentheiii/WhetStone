@@ -1,4 +1,5 @@
 ﻿using System;
+using WhetStone.Fielding;
 using WhetStone.Looping;
 
 namespace WhetStone.Random
@@ -12,7 +13,11 @@ namespace WhetStone.Random
         }
         public override byte[] Bytes(int length)
         {
-            return fill.Fill(length, () => val);
+            return fill.Fill(length, val);
+        }
+        public override byte Byte()
+        {
+            return val;
         }
         public override double Double(double min, double max)
         {
@@ -33,6 +38,20 @@ namespace WhetStone.Random
         {
             var @base = val;
             return (Math.Abs(@base % (max - min)) + min);
+        }
+        public override T FromField<T>()
+        {
+            return Fields.getField<T>().fromInt(val);
+        }
+        public override T FromField<T>(T min, T max)
+        {
+            var ret = Fields.getField<T>().fromInt(val);
+            return ((ret % (max.ToFieldWrapper() - min)).abs() + min);
+        }
+        public override T FromField<T>(T min, T max, object special)
+        {
+            var ret = Fields.getField<T>().fromInt(val);
+            return ((ret % (max.ToFieldWrapper() - min)).abs() + min);
         }
     }
 }

@@ -11,11 +11,15 @@ namespace WhetStone.Random
     {
         public virtual byte[] Bytes(int length)
         {
-            return fill.Fill(length, () => (byte)Int(0, byte.MaxValue));
+            return fill.Fill(length, Byte);
         }
         public virtual IEnumerable<byte> Bytes()
         {
             return generate.Generate(() => Bytes(sizeof(int))).Concat();
+        }
+        public virtual byte Byte()
+        {
+            return (byte)Int(0, byte.MaxValue, true);
         }
         public int Int(int max)
         {
@@ -99,21 +103,21 @@ namespace WhetStone.Random
         {
             return range.Range(length).Select(a => allowedChars[Int(allowedChars.Length)]).ConvertToString();
         }
-        public T FromField<T>()
+        public virtual T FromField<T>()
         {
             var f = Fields.getField<T>();
             if (f.GenType == GenerationType.None || f.GenType == GenerationType.Special)
                 throw new NotSupportedException("Field does not support this generation");
             return f.Generate(Bytes());
         }
-        public T FromField<T>(T min, T max)
+        public virtual T FromField<T>(T min, T max)
         {
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.FromRange)
                 throw new NotSupportedException("Field does not support this generation");
             return f.Generate(Bytes(), Tuple.Create(min, max));
         }
-        public T FromField<T>(T min, T max, object special)
+        public virtual T FromField<T>(T min, T max, object special)
         {
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.Special)

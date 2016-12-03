@@ -16,29 +16,33 @@ namespace WhetStone.Random
         }
         public override byte[] Bytes(int length)
         {
-            EnsureGeneratorExists(Thread.CurrentThread);
-            return _dic[Thread.CurrentThread].Bytes(length);
+            return ThreadLocal().Bytes(length);
+        }
+        public override byte Byte()
+        {
+            return ThreadLocal().Byte();
         }
         public override double Double()
         {
-            EnsureGeneratorExists(Thread.CurrentThread);
-            return _dic[Thread.CurrentThread].Double();
+            return ThreadLocal().Double();
         }
         public override double Double(double min, double max)
         {
-            EnsureGeneratorExists(Thread.CurrentThread);
-            return _dic[Thread.CurrentThread].Double(min, max);
+            return ThreadLocal().Double(min, max);
         }
         public override int Int(int min, int max)
         {
-            EnsureGeneratorExists(Thread.CurrentThread);
-            return _dic[Thread.CurrentThread].Int(min, max);
+            return ThreadLocal().Int(min, max);
         }
         public static void reset(Thread thread = null, int? seed = null)
         {
             _dic[thread ?? Thread.CurrentThread] =
-                new LocalRandomGenerator(seed ??
-                                         (DateTime.Now.GetHashCode() ^ Process.GetCurrentProcess().GetHashCode() ^ Thread.CurrentThread.GetHashCode()));
+                new LocalRandomGenerator(seed);
+        }
+        public static RandomGenerator ThreadLocal()
+        {
+            EnsureGeneratorExists(Thread.CurrentThread);
+            return _dic[Thread.CurrentThread];
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Tests
         [TestMethod]
         public void List()
         {
-            var val = primes.PrimeList(13);
+            var val = primes.Primes(13);
             Assert.IsTrue(val.SequenceEqual(new [] {2,3,5,7,11}));
         }
     }

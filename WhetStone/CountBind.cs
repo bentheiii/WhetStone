@@ -44,19 +44,19 @@ namespace WhetStone.Looping
             }
             public override int Count => _source.Count;
         }
-        public static LockedCollection<Tuple<T, int>> CountBind<T>(this ICollection<T> a, int start = 0)
+        public static ICollection<Tuple<T, int>> CountBind<T>(this ICollection<T> a, int start = 0)
         {
             return new CountBindCollection<T>(a,start);
         }
-        public static LockedCollection<Tuple<T, C>> CountBind<T, C>(this ICollection<T> a, C start)
+        public static ICollection<Tuple<T, C>> CountBind<T, C>(this ICollection<T> a, C start)
         {
             return new CountBindCollection<T,C>(a, start);
         }
-        public static LockedList<Tuple<T, int>> CountBind<T>(this IList<T> a, int start = 0)
+        public static IList<Tuple<T, int>> CountBind<T>(this IList<T> a, int start = 0)
         {
             return a.Zip(countUp.CountUp(start));
         }
-        public static LockedList<Tuple<T, C>> CountBind<T, C>(this IList<T> a, C start)
+        public static IList<Tuple<T, C>> CountBind<T, C>(this IList<T> a, C start)
         {
             return a.Zip(countUp.CountUp(start));
         }

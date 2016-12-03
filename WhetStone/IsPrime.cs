@@ -170,20 +170,20 @@ namespace NumberStone
                 return null;
             return PrimeList.BinarySearch(x) >= 0;
         }
-        public static bool IsPrime(this int x)
+        public static bool IsPrime(this int x, int huristicTrials = 3)
         {
             var l = x.IsPrimeByList();
             if (l.HasValue)
                 return l.Value;
-            return isProbablyPrime(x, 3) && (x.Primefactors().First() != x);
+            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() != x);
         }
-        public static bool IsPrime(this long x)
+        public static bool IsPrime(this long x, int huristicTrials = 5)
         {
             if (x < int.MaxValue)
             {
-                return IsPrime((int)x);
+                return IsPrime((int)x, huristicTrials);
             }
-            return isProbablyPrime(x, 3) && (x.Primefactors().First() != x);
+            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() != x);
         }
         public static bool isProbablyPrime(this int x, int iterations)
         {

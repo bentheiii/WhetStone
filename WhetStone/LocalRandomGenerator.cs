@@ -1,4 +1,8 @@
-﻿namespace WhetStone.Random
+﻿using System;
+using System.Diagnostics;
+using System.Threading;
+
+namespace WhetStone.Random
 {
     public class LocalRandomGenerator : RandomGenerator
     {
@@ -7,15 +11,20 @@
         {
             _int = new System.Random();
         }
-        public LocalRandomGenerator(int seed)
+        public LocalRandomGenerator(int? seed = null)
         {
-            _int = new System.Random(seed);
+            _int = new System.Random(seed ??
+                                  DateTime.Now.GetHashCode() ^ Process.GetCurrentProcess().GetHashCode() ^ Thread.CurrentThread.GetHashCode());
         }
         public override byte[] Bytes(int length)
         {
             byte[] ret = new byte[length];
             _int.NextBytes(ret);
             return ret;
+        }
+        public override byte Byte()
+        {
+            return Bytes(1)[0];
         }
         public override double Double()
         {

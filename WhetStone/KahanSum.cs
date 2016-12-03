@@ -1,4 +1,5 @@
-﻿using WhetStone.Fielding;
+﻿using System.Collections.Generic;
+using WhetStone.Fielding;
 
 namespace WhetStone
 {
@@ -12,6 +13,13 @@ namespace WhetStone
             var t = Sum + y;
             _compensation = (t - Sum) - y;
             Sum = t;
+        }
+        public void Add(IEnumerable<double> items)
+        {
+            foreach (var item in items)
+            {
+                Add(item);
+            }
         }
     }
     public class KahanSum<T>
@@ -30,6 +38,13 @@ namespace WhetStone
             var t = Sum + y;
             _compensation = (t - Sum) - y;
             Sum = t;
+        }
+        public void Add(IEnumerable<T> items)
+        {
+            foreach (var item in items)
+            {
+                Add(item);
+            }
         }
     }
 }

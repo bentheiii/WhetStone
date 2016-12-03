@@ -47,5 +47,14 @@ namespace WhetStone.Looping
         {
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, a.Item3, a.Item4, selector(a.Item1, a.Item2, a.Item3, a.Item4)));
         }
+
+        public static IEnumerable<Tuple<T1, T2>> Attach<T1, T2>(this IEnumerable<T1> @this, Func<IEnumerable<T1>, IEnumerable<T2>> selector)
+        {
+            return @this.Zip(selector(@this));
+        }
+        public static IList<Tuple<T1, T2>> Attach<T1, T2>(this IList<T1> @this, Func<IList<T1>, IList<T2>> selector)
+        {
+            return @this.Zip(selector(@this));
+        }
     }
 }

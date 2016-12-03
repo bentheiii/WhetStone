@@ -9,5 +9,9 @@ namespace WhetStone.Random
         {
             return Bytes().Take(length).ToArray(length);
         }
+        public override byte Byte()
+        {
+            return Bytes().First();
+        }
     }
 }

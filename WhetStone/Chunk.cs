@@ -44,7 +44,6 @@ namespace WhetStone.Looping
                     if (ret.Count >= chunkSize)
                     {
                         yield return ret.ToArray();
-                        //ret = new ResizingArray<T>(chunkSize);
                         ret.Clear();
                     }
                     if (!en.MoveNext())

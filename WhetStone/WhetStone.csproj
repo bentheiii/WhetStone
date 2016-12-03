@@ -135,6 +135,7 @@
     <Compile Include="OrderBy.cs" />
     <Compile Include="PartialProducts.cs" />
     <Compile Include="PartialSums.cs" />
+    <Compile Include="Pick.cs" />
     <Compile Include="PositionBind.cs" />
     <Compile Include="PrimeFactors.cs" />
     <Compile Include="Primes.cs" />
@@ -209,13 +210,11 @@
     <Compile Include="RecommendSize.cs" />
     <Compile Include="RecursiveQuerier.cs" />
     <Compile Include="ResizingArray.cs" />
-    <Compile Include="RotatorArray.cs" />
     <Compile Include="Rows.cs" />
     <Compile Include="Shuffle.cs" />
     <Compile Include="Slice.cs" />
     <Compile Include="Sort.cs" />
     <Compile Include="SparseArray.cs" />
-    <Compile Include="SpecialNumerics.cs" />
     <Compile Include="SplitAt.cs" />
     <Compile Include="StartsWith.cs" />
     <Compile Include="Str2DConcat.cs" />

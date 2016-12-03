@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WhetStone.LockedStructures;
 using WhetStone.Looping;
 using WhetStone.SystemExtensions;
 
@@ -28,12 +30,42 @@ namespace NumberStone
                 }
             }
         }
+        private class CeiledPrimeList : LockedList<int>
+        {
+            private readonly int _ceiling;
+            public CeiledPrimeList(int ceiling)
+            {
+                _ceiling = ceiling;
+            }
+            public override int Count => isPrime.PrimeList.BinarySearch(a => a < _ceiling)+1;
+            public override IEnumerator<int> GetEnumerator()
+            {
+                return isPrime.PrimeList.TakeWhile(a => a < _ceiling).GetEnumerator();
+            }
+            public override int this[int index]
+            {
+                get
+                {
+                    var ret = isPrime.PrimeList[index];
+                    if (ret >= _ceiling)
+                        throw new IndexOutOfRangeException();
+                    return ret;
+                }
+            }
+            public override int IndexOf(int item)
+            {
+                return this.BinarySearch(item);
+            }
+            public override bool Contains(int item)
+            {
+                return IndexOf(item) != -1;
+            }
+        }
         public static IEnumerable<int> Primes(int max, bool enforceeuclid = false)
         {
             if (!enforceeuclid && max <= isPrime.PrimeList.Last())
             {
-                int maxind = isPrime.PrimeList.BinarySearch(a => a < max);
-                return isPrime.PrimeList.Slice(0, maxind + 1);
+                return new CeiledPrimeList(max);
             }
             return EuclidPrimes(max);
         }
@@ -49,15 +81,6 @@ namespace NumberStone
                     nums.Remove(i);
                 }
             }
-        }
-        public static IList<int> PrimeList(int max)
-        {
-            if (max <= isPrime.PrimeList.Last())
-            {
-                int maxind = isPrime.PrimeList.BinarySearch(a => a < max);
-                return isPrime.PrimeList.Slice(0, maxind + 1);
-            }
-            return new List<int>(EuclidPrimes(max));
         }
     }
 }
