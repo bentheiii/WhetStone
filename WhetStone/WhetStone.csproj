@@ -75,6 +75,7 @@
     <Compile Include="CountBind.cs" />
     <Compile Include="CountSetBits.cs" />
     <Compile Include="CountUp.cs" />
+    <Compile Include="Cover.cs" />
     <Compile Include="Cycle.cs" />
     <Compile Include="Detach.cs" />
     <Compile Include="Distinct.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Select.cs" />
     <Compile Include="SelectMany.cs" />
     <Compile Include="SequenceEqual.cs" />
+    <Compile Include="SequenceIndexEquator.cs" />
     <Compile Include="ShaGenerator.cs" />
     <Compile Include="SmallestFactors.cs" />
     <Compile Include="SmartSplit.cs" />

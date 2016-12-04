@@ -32,13 +32,13 @@ namespace Tests
         public void Multi()
         {
             var val = new IList<int>[] {range.Range(5), range.Range(2), range.Range(3)}.Join();
-            Assert.IsTrue(val[0].SequenceEqual(0, 0, 0));
-            Assert.IsTrue(val[6].SequenceEqual(1, 1, 0));
-            Assert.IsTrue(val[14].SequenceEqual(4, 0, 1));
+            Assert.IsTrue(val[0].SequenceEqualIndices(0, 0, 0));
+            Assert.IsTrue(val[6].SequenceEqualIndices(1, 1, 0));
+            Assert.IsTrue(val[14].SequenceEqualIndices(4, 0, 1));
 
             Assert.AreEqual(val.Count,30);
 
-            Assert.IsTrue(val.SequenceEqual( new []
+            Assert.IsTrue(val.SequenceEqualIndices( new []
             {
                 new [] {0,0,0},new [] {1,0,0},new [] {2,0,0},new [] {3,0,0},new [] {4,0,0},
                 new [] {0,1,0},new [] {1,1,0},new [] {2,1,0},new [] {3,1,0},new [] {4,1,0},
@@ -52,13 +52,13 @@ namespace Tests
         public void MetaAllPairs()
         {
             var val = range.Range(5).Join(3);
-            Assert.IsTrue(val[0].SequenceEqual(0, 0, 0));
-            Assert.IsTrue(val[10].SequenceEqual(0, 2, 0));
-            Assert.IsTrue(val[32].SequenceEqual(2, 1, 1));
+            Assert.IsTrue(val[0].SequenceEqualIndices(0, 0, 0));
+            Assert.IsTrue(val[10].SequenceEqualIndices(0, 2, 0));
+            Assert.IsTrue(val[32].SequenceEqualIndices(2, 1, 1));
 
             Assert.AreEqual(val.Count,125);
 
-            Assert.IsTrue(val.Select(a=>a[0]+a[1]*5+a[2]*25).SequenceEqual(range.Range(125)));
+            Assert.IsTrue(val.Select(a=>a[0]+a[1]*5+a[2]*25).SequenceEqualIndices(range.Range(125)));
             Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.Item1, val[a.Item2])).All(a => a.Item1.SequenceEqual(a.Item2)));
 
         }
@@ -66,13 +66,13 @@ namespace Tests
         public void MetaMonoDescending()
         {
             var val = range.Range(5).Join(3, join.CartesianType.NoSymmatry);
-            Assert.IsTrue(val[0].SequenceEqual(0, 0, 0));
-            Assert.IsTrue(val[10].SequenceEqual(3, 2, 0));
-            Assert.IsTrue(val[32].SequenceEqual(4, 3, 3));
+            Assert.IsTrue(val[0].SequenceEqualIndices(0, 0, 0));
+            Assert.IsTrue(val[10].SequenceEqualIndices(3, 2, 0));
+            Assert.IsTrue(val[32].SequenceEqualIndices(4, 3, 3));
 
             Assert.AreEqual(val.Count, 35);
 
-            Assert.IsTrue(val.Select(a => a[0] + a[1] * 10 + a[2] * 100).SequenceEqual(0, 1, 2, 3, 4, 11, 12, 13, 14, 22, 23, 24, 33, 34, 44, 111, 112, 113, 114, 122, 123, 124, 133, 134, 144, 222, 223, 224, 233, 234, 244, 333, 334, 344, 444));
+            Assert.IsTrue(val.Select(a => a[0] + a[1] * 10 + a[2] * 100).SequenceEqualIndices(0, 1, 2, 3, 4, 11, 12, 13, 14, 22, 23, 24, 33, 34, 44, 111, 112, 113, 114, 122, 123, 124, 133, 134, 144, 222, 223, 224, 233, 234, 244, 333, 334, 344, 444));
             Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.Item1, val[a.Item2])).All(a => a.Item1.SequenceEqual(a.Item2)));
 
         }
@@ -80,13 +80,13 @@ namespace Tests
         public void MetaDescending()
         {
             var val = range.Range(5).Join(3, join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry);
-            Assert.IsTrue(val[0].SequenceEqual(2, 1, 0));
-            Assert.IsTrue(val[6].SequenceEqual(3, 2, 1));
-            Assert.IsTrue(val[8].SequenceEqual(4, 3, 1));
+            Assert.IsTrue(val[0].SequenceEqualIndices(2, 1, 0));
+            Assert.IsTrue(val[6].SequenceEqualIndices(3, 2, 1));
+            Assert.IsTrue(val[8].SequenceEqualIndices(4, 3, 1));
 
             Assert.AreEqual(val.Count, 10);
 
-            Assert.IsTrue(val.Select(a => a[0] + a[1] * 10 + a[2] * 100).SequenceEqual(12, 13, 14, 23, 24, 34, 123, 124, 134, 234));
+            Assert.IsTrue(val.Select(a => a[0] + a[1] * 10 + a[2] * 100).SequenceEqualIndices(12, 13, 14, 23, 24, 34, 123, 124, 134, 234));
             Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.Item1, val[a.Item2])).All(a => a.Item1.SequenceEqual(a.Item2)));
 
         }
@@ -94,13 +94,13 @@ namespace Tests
         public void MetaNoReflexive()
         {
             var val = range.Range(5).Join(3, join.CartesianType.NoReflexive);
-            Assert.IsTrue(val[0].SequenceEqual(2, 1, 0));
-            Assert.IsTrue(val[10].SequenceEqual(2, 4, 0));
-            Assert.IsTrue(val[48].SequenceEqual(1, 0, 4));
+            Assert.IsTrue(val[0].SequenceEqualIndices(2, 1, 0));
+            Assert.IsTrue(val[10].SequenceEqualIndices(2, 4, 0));
+            Assert.IsTrue(val[48].SequenceEqualIndices(1, 0, 4));
 
             Assert.AreEqual(val.Count, 60);
 
-            Assert.IsTrue(val.Select(a => a[0] + a[1]*10 + a[2]*100).SequenceEqual(12, 13, 14, 21, 23, 24, 31, 32, 34, 41, 42, 43, 102, 103, 104, 120, 123, 124, 130, 132, 134, 140, 142, 143, 201, 203, 204, 210, 213, 214, 230, 231, 234, 240, 241, 243, 301, 302, 304, 310, 312, 314, 320, 321, 324, 340, 341, 342, 401, 402, 403, 410, 412, 413, 420, 421, 423, 430, 431, 432));
+            Assert.IsTrue(val.Select(a => a[0] + a[1]*10 + a[2]*100).SequenceEqualIndices(12, 13, 14, 21, 23, 24, 31, 32, 34, 41, 42, 43, 102, 103, 104, 120, 123, 124, 130, 132, 134, 140, 142, 143, 201, 203, 204, 210, 213, 214, 230, 231, 234, 240, 241, 243, 301, 302, 304, 310, 312, 314, 320, 321, 324, 340, 341, 342, 401, 402, 403, 410, 412, 413, 420, 421, 423, 430, 431, 432));
 
             Assert.IsTrue(val.CountBind().Select(a=>Tuple.Create(a.Item1,val[a.Item2])).All(a=>a.Item1.SequenceEqual(a.Item2)));
         }

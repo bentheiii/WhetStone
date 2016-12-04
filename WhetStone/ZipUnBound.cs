@@ -49,7 +49,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<IEnumerable> GetEnumerator()
             {
-                return range.Range(Count).Select(i => _sources.Select(a => a.Count <= i ? a[i] : _defaultmembers[i])).GetEnumerator();
+                return ZipUnbound(_sources.Select(a => (IEnumerable)a), _defaultmembers.ToObjArray()).GetEnumerator();
             }
             public override int Count
             {
