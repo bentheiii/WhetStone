@@ -64,11 +64,13 @@ namespace WhetStone.Looping
             private readonly int _start;
             private readonly int _end;
             private readonly int _step;
+            private readonly bool _inclusive;
             public RangeList(int start, int end, int step, bool inclusive = false)
             {
                 _start = start;
                 _end = end;
                 _step = step;
+                _inclusive = inclusive;
                 var gap = end - _start;
                 Count = gap / _step + (gap % _step == 0 ? 0 : 1) + (inclusive ? 1 : 0);
             }
@@ -83,6 +85,8 @@ namespace WhetStone.Looping
             }
             public override bool Contains(int item)
             {
+                if (_inclusive)
+                    return item.iswithin(_start, _end) && ((item - _start) % _step) == 0;
                 return item.iswithinPartialExclusive(_start, _end) && ((item - _start) % _step) == 0;
             }
             public override int Count { get; }

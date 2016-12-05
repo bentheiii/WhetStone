@@ -82,25 +82,49 @@ namespace WhetStone.Looping
                 return BinarySearchMaxUnknown(searcher, min.Value, failvalue);
             return BinarySearchAllKnown(searcher, min.Value, max.Value, failvalue);
         }
-        public static int BinarySearch(Func<int, bool> searcher, int? min = null, int? max = null, int failvalue = -1)
+        public enum BooleanBinSearchStyle
         {
-            Func<int, int> s = i =>
-            {
-                if (searcher(i))
+            GetLastTrue, GetFirstTrue
+        }
+        public static int BinarySearch(Func<int, bool> searcher, int? min = null, int? max = null, int failvalue = -1, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
+        {
+            Func<int, int> s;
+            if (style == BooleanBinSearchStyle.GetLastTrue)
+                s = i =>
                 {
-                    bool ks;
-                    try
+                    if (searcher(i))
                     {
-                        ks = searcher(i + 1);
+                        bool ks;
+                        try
+                        {
+                            ks = searcher(i + 1);
+                        }
+                        catch (Exception)
+                        {
+                            ks = false;
+                        }
+                        return !ks ? 0 : 1;
                     }
-                    catch (Exception)
+                    return -1;
+                };
+            else
+                s = i =>
+                {
+                    if (searcher(i))
                     {
-                        ks = false;
+                        bool ks;
+                        try
+                        {
+                            ks = searcher(i - 1);
+                        }
+                        catch (Exception)
+                        {
+                            ks = false;
+                        }
+                        return !ks ? 0 : -1;
                     }
-                    return !ks ? 0 : 1;
-                }
-                return -1;
-            };
+                    return 1;
+                };
             return BinarySearch(s, min, max, failvalue);
         }
         public static int BinarySearch<T>(this IList<T> sortedarr, Func<T, bool> searcher)

@@ -10,16 +10,29 @@ namespace Tests
     public class Cover
     {
         [TestMethod]
-        public void SampleEnumerable()
+        public void IndicesEnumerable()
         {
-            var val = range.Range(10).AsEnumerable().Cover((-1).Enumerate(3),2,1);
+            var val = range.Range(10).AsEnumerable().Cover((-1).Enumerate(3), range.IRange(2, 6, 2));
             Assert.IsTrue(val.SequenceEqual(0, 1, -1, 3, -1, 5, -1, 7, 8, 9));
         }
         [TestMethod]
-        public void SampleList()
+        public void SimpleEnumerable()
         {
-            var val = range.Range(10).Cover((-1).Enumerate(3), 2, 1);
+            var val = range.Range(10).AsEnumerable().Cover((-1).Enumerate(3), 2);
+            Assert.IsTrue(val.SequenceEqual(0, 1, -1, -1, -1, 5, 6, 7, 8, 9));
+        }
+        [TestMethod]
+        public void IndicesList()
+        {
+            var val = range.Range(10).Cover((-1).Enumerate(3), range.IRange(2,6,2));
             var exp = new[] {0, 1, -1, 3, -1, 5, -1, 7, 8, 9};
+            Assert.IsTrue(val.SequenceEqualIndices(exp));
+        }
+        [TestMethod]
+        public void SimpleList()
+        {
+            var val = range.Range(10).Cover((-1).Enumerate(3), 2);
+            var exp = new[] { 0, 1, -1, -1, -1, 5, 6, 7, 8, 9 };
             Assert.IsTrue(val.SequenceEqualIndices(exp));
         }
     }
