@@ -23,7 +23,8 @@ namespace WhetStone.Comparison
                 {
                     if (a.Item1 == null || a.Item2 == null || a.Item3 == null)
                         return false;
-                    return new[] { a.Item1.Item1, a.Item2.Item1, @this[a.Item3.Item1], other[a.Item3.Item1] }.AllEqual(_int);
+                    var arr = new[] {a.Item1.Item1, a.Item2.Item1, @this[a.Item3.Item1], other[a.Item3.Item1]};
+                    return arr.AllEqual(_int);
                 }); 
         }
         public int GetHashCode(IList<T> obj)

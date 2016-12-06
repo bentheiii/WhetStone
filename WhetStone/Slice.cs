@@ -32,6 +32,14 @@ namespace WhetStone.Looping
                 throw new ArgumentOutOfRangeException();
             return ret;
         }
+        public static IList<T> Skip<T>(this IList<T> @this, int skipCount)
+        {
+            return @this.Slice(skipCount);
+        }
+        public static IList<T> Take<T>(this IList<T> @this, int length)
+        {
+            return @this.Slice(0,length:length);
+        }
         private class ListSlice<T> : IList<T>
         {
             private readonly IList<T> _inner;

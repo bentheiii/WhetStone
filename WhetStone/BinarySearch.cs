@@ -11,7 +11,7 @@ namespace WhetStone.Looping
             var s = searcher(0);
             if (s == 0)
                 return 0;
-            if (s < 0)
+            if (s > 0)
                 return BinarySearchMaxUnknown(searcher, 0, failval);
             return BinarySearchMinUnknown(searcher, 0, failval);
         }
@@ -27,7 +27,7 @@ namespace WhetStone.Looping
                 var s = searcher(max);
                 if (s == 0)
                     return max;
-                if (s > 0)
+                if (s < 0)
                     return BinarySearch(searcher, practmin, max, failval);
                 practmin = max;
                 range *= 2;
@@ -53,8 +53,6 @@ namespace WhetStone.Looping
         }
         private static int BinarySearchAllKnown(Func<int, int> searcher, int min, int max, int failvalue = -1)
         {
-            if (failvalue.iswithin(min, max))
-                throw new ArgumentException("failval cannot be within searched values");
             while (min < max)
             {
                 int i = (min + max)/2;

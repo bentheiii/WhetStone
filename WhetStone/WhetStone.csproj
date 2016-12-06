@@ -154,6 +154,7 @@
     <Compile Include="SequenceEqual.cs" />
     <Compile Include="SequenceIndexEquator.cs" />
     <Compile Include="ShaGenerator.cs" />
+    <Compile Include="SkipSlice.cs" />
     <Compile Include="SmallestFactors.cs" />
     <Compile Include="SmartSplit.cs" />
     <Compile Include="Split.cs" />
