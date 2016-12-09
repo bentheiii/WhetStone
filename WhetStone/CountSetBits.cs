@@ -1,4 +1,6 @@
-﻿namespace WhetStone.NumbersMagic
+﻿using System.Numerics;
+
+namespace WhetStone.NumbersMagic
 {
     public static class countSetBits
     {
@@ -33,6 +35,16 @@
             return count;
         }
         public static int CountSetBits(this ulong value)
+        {
+            int count = 0;
+            while (value != 0)
+            {
+                count++;
+                value &= value - 1;
+            }
+            return count;
+        }
+        public static int CountSetBits(this BigInteger value)
         {
             int count = 0;
             while (value != 0)
