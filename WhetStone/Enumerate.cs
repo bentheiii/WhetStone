@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
@@ -22,7 +21,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                return Enumerable.Select(range.Range(_count), i => _member).GetEnumerator();
+                return range.Range(_count).Select(i => _member).GetEnumerator();
             }
             public override int Count => _count;
             public override T this[int index]

@@ -19,10 +19,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<R> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    yield return _mapper(v);
-                }
+                return _source.AsEnumerable().Select(v => _mapper(v)).GetEnumerator();
             }
             public override int Count
             {
@@ -52,10 +49,7 @@ namespace WhetStone.Looping
             }
             public  IEnumerator<R> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    yield return _mapper(v);
-                }
+                return _source.AsEnumerable().Select(v => _mapper(v)).GetEnumerator();
             }
             public void Add(R item)
             {
@@ -127,10 +121,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<R> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    yield return _mapper(v);
-                }
+                return _source.AsEnumerable().Select(v => _mapper(v)).GetEnumerator();
             }
             public override int Count
             {
@@ -153,10 +144,7 @@ namespace WhetStone.Looping
             }
             public IEnumerator<R> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    yield return _mapper(v);
-                }
+                return _source.AsEnumerable().Select(v => _mapper(v)).GetEnumerator();
             }
             public void Add(R item)
             {

@@ -158,6 +158,7 @@
     <Compile Include="SmallestFactors.cs" />
     <Compile Include="SmartSplit.cs" />
     <Compile Include="Splice.cs" />
+    <Compile Include="Unzip.cs" />
     <Compile Include="Split.cs" />
     <Compile Include="SplitWriter.cs" />
     <Compile Include="Step.cs" />

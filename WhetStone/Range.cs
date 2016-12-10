@@ -106,7 +106,7 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public static LockedList<T> Range<T>(T start, T max, T step)
+        public static IList<T> Range<T>(T start, T max, T step)
         {
             var field = Fields.getField<T>();
             //try rewrite
@@ -114,9 +114,9 @@ namespace WhetStone.Looping
             {
                 return new RangeList<T>(start, max, step);
             }
-            return Range(field.Negate(start), field.Negate(max), field.Negate(step)).Select(a => field.Negate(a));
+            return Range(field.Negate(start), field.Negate(max), field.Negate(step)).Select(field.Negate, field.Negate);
         }
-        public static LockedList<T> Range<T>(T start, T max)
+        public static IList<T> Range<T>(T start, T max)
         {
             var f = Fields.getField<T>();
             if (f.Compare(start, max) < 0)
@@ -125,21 +125,21 @@ namespace WhetStone.Looping
                 return Range(start, max, f.negativeone);
             return new RangeList<T>(start, max, f.one, pos: false);
         }
-        public static LockedList<T> Range<T>(T max)
+        public static IList<T> Range<T>(T max)
         {
             return Range(Fields.getField<T>().zero, max);
         }
-        public static LockedList<int> Range(int start, int max, int step)
+        public static IList<int> Range(int start, int max, int step)
         {
             if (step >= 0)
                 return new RangeList(start, max, step);
-            return Range(-start, -max, -step).Select(a => -a);
+            return Range(-start, -max, -step).Select(a => -a, a => -a);
         }
-        public static LockedList<int> Range(int start, int max)
+        public static IList<int> Range(int start, int max)
         {
             return Range(start, max, start < max ? 1 : -1);
         }
-        public static LockedList<int> Range(int max)
+        public static IList<int> Range(int max)
         {
             return Range(0, max);
         }
@@ -168,7 +168,6 @@ namespace WhetStone.Looping
         }
         public static LockedList<int> IRange(int start, int max, int step)
         {
-            //try rewrite
             if (step >= 0)
             {
                 return new RangeList(start, max, step, true);
