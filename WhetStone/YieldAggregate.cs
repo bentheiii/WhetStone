@@ -9,9 +9,10 @@ namespace WhetStone.Looping
         {
             foreach (T t in @this)
             {
-                seed = aggregator(t, seed);
                 yield return seed;
+                seed = aggregator(t, seed);
             }
+            yield return seed;
         }
         public static IEnumerable<T> YieldAggregate<T>(Func<T, T> aggregator, T seed = default(T))
         {

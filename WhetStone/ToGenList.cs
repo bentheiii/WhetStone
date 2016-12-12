@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using WhetStone.Looping;
 
 namespace WhetStone.SystemExtensions
 {
@@ -24,9 +23,9 @@ namespace WhetStone.SystemExtensions
             }
             public void CopyTo(Array array, int index)
             {
-                foreach (var t in _inner.CountBind(index))
+                foreach (var t in _inner)
                 {
-                    array.SetValue(t.Item1,t.Item2);
+                    array.SetValue(t,index++);
                 }
             }
             public int Count => _inner.Count;

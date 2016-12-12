@@ -101,20 +101,31 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                foreach (int i in _cache.Indices())
+                using (var tor = _source.GetEnumerator())
                 {
-                    if (!_initialized[i])
-                        initialize(i);
-                    yield return _cache[i];
+                    int torind = -1;
+                    foreach (var toYieldInd in range.Range(this.Count))
+                    {
+                        if (_initialized[toYieldInd])
+                        {
+                            yield return _cache[toYieldInd];
+                        }
+                        else
+                        {
+                            foreach(var _ in range.Range(torind,toYieldInd))
+                            {
+                                if (!tor.MoveNext())
+                                    yield break;
+                            }
+                            _cache[toYieldInd] = tor.Current;
+                            _initialized[toYieldInd] = true;
+                            yield return tor.Current;
+                            torind = toYieldInd;
+                        }
+                    }
                 }
             }
-            public override int Count
-            {
-                get
-                {
-                    return _source.Count;
-                }
-            }
+            public override int Count => _source.Count;
         }
     }
 }

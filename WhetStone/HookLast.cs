@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Guard;
+using WhetStone.Looping;
 
 namespace WhetStone
 {
@@ -8,39 +9,19 @@ namespace WhetStone
     {
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink)
         {
-            sink.value = null;
-            foreach (var t in @this)
-            {
-                sink.value = Tuple.Create(t);
-                yield return t;
-            }
+            return @this.HookAggregate(sink, (a, b) => Tuple.Create(a));
         }
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink, Func<T, bool> critiria)
         {
-            sink.value = null;
-            foreach (var t in @this)
-            {
-                if (critiria(t))
-                    sink.value = Tuple.Create(t);
-                yield return t;
-            }
+            return @this.HookAggregate(sink, (a, b) => critiria(a) ? Tuple.Create(a) : b);
         }
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink)
         {
-            foreach (var t in @this)
-            {
-                sink.value = t;
-                yield return t;
-            }
+            return @this.HookAggregate(sink, (a, b) => b);
         }
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink, Func<T, bool> critiria)
         {
-            foreach (var t in @this)
-            {
-                if (critiria(t))
-                    sink.value = t;
-                yield return t;
-            }
+            return @this.HookAggregate(sink, (a, b) => critiria(a) ? a : b);
         }
     }
 }

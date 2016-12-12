@@ -59,6 +59,7 @@
     <Compile Include="AnyAndAll.cs" />
     <Compile Include="Append.cs" />
     <Compile Include="Attach.cs" />
+    <Compile Include="AttachAggregate.cs" />
     <Compile Include="BigProduct.cs" />
     <Compile Include="BinomialCoefficient.cs" />
     <Compile Include="ByteEnumeratorGenerator.cs" />

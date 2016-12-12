@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WhetStone.Guard;
 
 namespace WhetStone.Looping
 {
@@ -8,7 +10,8 @@ namespace WhetStone.Looping
         public static bool StartsWith<T>(this IEnumerable<T> @this, IEnumerable<T> prefix, IEqualityComparer<T> comp = null)
         {
             comp = comp ?? EqualityComparer<T>.Default;
-            return @this.CompareCount(prefix) >= 0 && @this.Zip(prefix, comp.Equals).All();
+            return @this.Select(a => Tuple.Create(a)).Zip(prefix.Select(a => Tuple.Create(a))).TakeWhile(x => x.Item2 != null).All(
+                    x => x.Item1 != null && comp.Equals(x.Item1.Item1, x.Item2.Item1));
         }
     }
 }
