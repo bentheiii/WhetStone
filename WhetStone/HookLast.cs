@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using WhetStone.Guard;
 using WhetStone.Looping;
 
-namespace WhetStone
+namespace WhetStone.Looping
 {
     public static class hookLast
     {

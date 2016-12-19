@@ -58,6 +58,7 @@
     <Compile Include="Angles.cs" />
     <Compile Include="AnyAndAll.cs" />
     <Compile Include="Append.cs" />
+    <Compile Include="AsyncDo.cs" />
     <Compile Include="Attach.cs" />
     <Compile Include="AttachAggregate.cs" />
     <Compile Include="BigProduct.cs" />
