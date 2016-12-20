@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using NumberStone;
 using Numerics;
 using WhetStone.Funnels;
-using WhetStone.NumbersMagic;
 using WhetStone.Units.RotationalSpeeds;
 using WhetStone.WordPlay;
 using WhetStone.WordPlay.Parsing;

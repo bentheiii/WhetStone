@@ -4,10 +4,10 @@ using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using WhetStone.Looping;
-using WhetStone.NumbersMagic;
 using WhetStone.SystemExtensions;
 using WhetStone.WordPlay;
 using Microsoft.CSharp.RuntimeBinder;
+using NumberStone;
 using Numerics;
 namespace WhetStone.Fielding {
     public class FieldWrapper<T> : IComparable<T>, IComparable<FieldWrapper<T>>, IEquatable<T>, IEquatable<FieldWrapper<T>>

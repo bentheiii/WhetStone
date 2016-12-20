@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using NumberStone;
 using WhetStone.LockedStructures;
-using WhetStone.NumbersMagic;
 using WhetStone.Tuples;
 
 namespace WhetStone.Looping

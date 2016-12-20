@@ -194,7 +194,7 @@ namespace NumberStone
             }
             return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() != x);
         }
-        public static bool isProbablyPrime(this int x, int iterations)
+        public static bool isProbablyPrime(this int x, int iterations = 32)
         {
             return isProbablyPrime(x, iterations, new GlobalRandomGenerator());
         }
@@ -202,7 +202,7 @@ namespace NumberStone
         {
             return isProbablyPrime((long)x, iterations, generator);
         }
-        public static bool isProbablyPrime(this long x, int iterations)
+        public static bool isProbablyPrime(this long x, int iterations = 64)
         {
             return isProbablyPrime(x, iterations, new GlobalRandomGenerator());
         }

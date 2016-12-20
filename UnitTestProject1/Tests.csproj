@@ -70,6 +70,7 @@
     <Compile Include="Joins.cs" />
     <Compile Include="ListCache.cs" />
     <Compile Include="ListDoubleSided.cs" />
+    <Compile Include="LogarithmicProgressor.cs" />
     <Compile Include="SequenceEqualIndices.cs" />
     <Compile Include="SkipSlice.cs" />
     <Compile Include="Slice.cs" />

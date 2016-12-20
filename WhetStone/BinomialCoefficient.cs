@@ -2,7 +2,7 @@
 using Numerics;
 using WhetStone.Looping;
 
-namespace WhetStone.NumbersMagic
+namespace NumberStone
 {
     public class BinomialCoefficient
     {

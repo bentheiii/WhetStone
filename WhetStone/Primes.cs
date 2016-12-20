@@ -17,10 +17,12 @@ namespace NumberStone
             }
             List<int> ret = new List<int>(isPrime.PrimeList);
             int i = ret.Last();
+            var log = new LogarithmicProgresser(i);
             while (true)
             {
                 i += 2;
-                if (!i.isProbablyPrime(3))
+                log.Increment(2);
+                if (!i.isProbablyPrime(log.log))
                     continue;
                 int sqrt = i.sqrt().ceil() + 1;
                 if (ret.TakeWhile(a => a < sqrt + 1).All(a => i % a != 0))

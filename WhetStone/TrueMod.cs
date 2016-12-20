@@ -1,6 +1,6 @@
 ﻿using Numerics;
 
-namespace WhetStone.NumbersMagic
+namespace NumberStone
 {
     public static class trueMod
     {

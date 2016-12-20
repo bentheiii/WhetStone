@@ -21,6 +21,10 @@ namespace WhetStone.Random
         {
             return (byte)Int(0, byte.MaxValue, true);
         }
+        public int Int()
+        {
+            return Int(0,int.MaxValue,true);
+        }
         public int Int(int max)
         {
             return Int(0, max);

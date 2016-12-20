@@ -1,7 +1,7 @@
 ﻿using WhetStone.Comparison;
 using WhetStone.Fielding;
 
-namespace WhetStone.NumbersMagic
+namespace NumberStone
 {
     public static class isWithin
     {

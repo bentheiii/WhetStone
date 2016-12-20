@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using NumberStone;
 using WhetStone.Fielding;
-using WhetStone.NumbersMagic;
 using WhetStone.LockedStructures;
 using WhetStone.SystemExtensions;
 

@@ -127,6 +127,7 @@
     <Compile Include="LockedList.cs" />
     <Compile Include="LockedListReadOnlyAdaptor.cs" />
     <Compile Include="LockedListStringAdaptor.cs" />
+    <Compile Include="LogarithmicProgresser.cs" />
     <Compile Include="LongestCommonPrefix.cs" />
     <Compile Include="Loop.cs" />
     <Compile Include="MacAddress.cs" />
