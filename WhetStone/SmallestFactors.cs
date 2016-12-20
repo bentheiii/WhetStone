@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WhetStone.Looping;
 using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
     public static class smallestFactor
     {
-        public static int SmallestFactor(this int value)
+        public static int SmallestFactor(this int value, int? start = null)
         {
             if (value <= 1)
                 throw new ArithmeticException("cannot find prime factorization of a non-positive number");
@@ -171,7 +173,13 @@ namespace NumberStone
             {
                 return value;
             }
-            foreach (int prime in primes.Primes(value.sqrt().floor() + 1).Skip(1))
+            IEnumerable<int> primesToCheck = primes.Primes(value.sqrt().floor() + 1).Skip(1);
+            if (start.HasValue)
+            {
+                var aslist = primesToCheck.AsList();
+                primesToCheck = aslist.Skip(aslist.BinarySearch(a=>a>=start, binarySearch.BooleanBinSearchStyle.GetFirstTrue));
+            }
+            foreach (int prime in primesToCheck)
             {
                 while (value % prime == 0)
                 {
@@ -180,13 +188,21 @@ namespace NumberStone
             }
             return value;
         }
-        public static long SmallestFactor(this long value)
+        public static long SmallestFactor(this long value, long? start = null)
         {
             if (value <= 1)
                 throw new ArithmeticException("cannot find prime factorization of a non-positive number");
+            if (value % 2 == 0)
+                return 2;
             if (value < int.MaxValue)
                 return SmallestFactor((int)value);
-            foreach (int prime in primes.Primes(Math.Sqrt(value).floor() + 1).Skip(1))
+            IEnumerable<int> primesToCheck = primes.Primes(Math.Sqrt(value).floor() + 1).Skip(1);
+            if (start.HasValue)
+            {
+                var aslist = primesToCheck.AsList();
+                primesToCheck = aslist.Skip(aslist.BinarySearch(a => a >= start, binarySearch.BooleanBinSearchStyle.GetFirstTrue));
+            }
+            foreach (int prime in primesToCheck)
             {
                 while (value % prime == 0)
                 {

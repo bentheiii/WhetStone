@@ -11,6 +11,7 @@ namespace NumberStone
     public static class isPrime
     {
         public static readonly LockedList<int> PrimeList;
+        private static readonly int LinearSearchThreshHold;
         static isPrime()
         {
             PrimeList = new[]
@@ -159,6 +160,7 @@ namespace NumberStone
             }
             #endregion
             .ToLockedList();
+            LinearSearchThreshHold = PrimeList[PrimeList.Count.log(2).ceil()];
         }
         public static bool? IsPrimeByList(this int x)
         {
@@ -168,16 +170,23 @@ namespace NumberStone
                 return false;
             if (x > PrimeList.Last())
                 return null;
+            var lsthcmp = x.CompareTo(LinearSearchThreshHold);
+            if (lsthcmp <= 0)
+            {
+                if (lsthcmp == 0)
+                    return true;
+                return PrimeList.Select(x.CompareTo).Where(comp => comp >= 0).Select(comp => comp == 0).FirstOrDefault();
+            }
             return PrimeList.BinarySearch(x) >= 0;
         }
-        public static bool IsPrime(this int x, int huristicTrials = 3)
+        public static bool IsPrime(this int x, int huristicTrials = 32)
         {
             var l = x.IsPrimeByList();
             if (l.HasValue)
                 return l.Value;
             return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() != x);
         }
-        public static bool IsPrime(this long x, int huristicTrials = 5)
+        public static bool IsPrime(this long x, int huristicTrials = 64)
         {
             if (x < int.MaxValue)
             {
@@ -197,33 +206,31 @@ namespace NumberStone
         {
             return isProbablyPrime(x, iterations, new GlobalRandomGenerator());
         }
+        public static bool isProbablyPrime(this long x, RandomGenerator generator)
+        {
+            int a = generator.Int(1, (int)Math.Min(int.MaxValue, x));
+            return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && ((long)a).powmod(x - 1, x) == 1;
+        }
         public static bool isProbablyPrime(this long x, int iterations, RandomGenerator generator)
         {
             if (x <= 0)
                 throw new Exception("can't check a negative number");
-            foreach (int i in range.Range(iterations))
-            {
-                int a = generator.Int(1, (int)Math.Min(int.MaxValue, x));
-                if (greatestCommonDivisor.GreatestCommonDivisor(a, x) != 1 || ((long)a).powmod(x - 1, x) != 1)
-                    return false;
-            }
-            return true;
+            return range.Range(iterations).All(i => !x.isProbablyPrime(generator));
         }
         public static bool isProbablyPrime(this BigInteger x, int iterations)
         {
             return isProbablyPrime(x, iterations, new GlobalRandomGenerator());
         }
+        public static bool isProbablyPrime(this BigInteger x, RandomGenerator generator)
+        {
+            int a = generator.Int(1, (int)BigInteger.Min(int.MaxValue, x));
+            return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && BigInteger.ModPow(a, x - 1, x) == 1;
+        }
         public static bool isProbablyPrime(this BigInteger x, int iterations, RandomGenerator generator)
         {
             if (x <= 0)
                 throw new Exception("can't check a negative number");
-            foreach (int i in range.Range(iterations))
-            {
-                int a = generator.Int(1, (int)BigInteger.Min(new BigInteger(int.MaxValue), x));
-                if (greatestCommonDivisor.GreatestCommonDivisor(a, x) != 1 || BigInteger.ModPow(a, x - 1, x) != 1)
-                    return false;
-            }
-            return true;
+            return range.Range(iterations).All(i => !x.isProbablyPrime(generator));
         }
     }
 }

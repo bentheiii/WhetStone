@@ -125,9 +125,9 @@ namespace WhetStone.Looping
                 };
             return BinarySearch(s, min, max, failvalue);
         }
-        public static int BinarySearch<T>(this IList<T> sortedarr, Func<T, bool> searcher)
+        public static int BinarySearch<T>(this IList<T> sortedarr, Func<T, bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
         {
-            return BinarySearch(i => searcher(sortedarr[i]), 0, sortedarr.Count);
+            return BinarySearch(i => searcher(sortedarr[i]), 0, sortedarr.Count, style:style);
         }
         public static int BinarySearch<T>(this IList<T> sortedarr, Func<T, int> searcher)
         {
