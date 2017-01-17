@@ -85,6 +85,7 @@
     <Compile Include="Do.cs" />
     <Compile Include="Duplicates.cs" />
     <Compile Include="DynamicComparer.cs" />
+    <Compile Include="EditDistance.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="EnumerableComparer.cs" />
     <Compile Include="EnumerableEqualityComparer.cs" />

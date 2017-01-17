@@ -11,6 +11,7 @@ namespace WhetStone.Looping
         private readonly Lazy<int> _lcount;
         public EnumerationStream(IEnumerable<byte> tor)
         {
+            tor = tor.CacheCount();
             _tor = tor.GetEnumerator();
             _lcount = new Lazy<int>(tor.Count);
         }

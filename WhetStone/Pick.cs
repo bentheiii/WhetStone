@@ -10,7 +10,7 @@ namespace WhetStone
     {
         public static T Pick<T>(this IEnumerable<T> @this, RandomGenerator gen = null)
         {
-            return @this.Pick(1, gen).First();
+            return @this.Pick(1, gen).Single();
         }
         public static IEnumerable<T> Pick<T>(this IEnumerable<T> @this, int count, RandomGenerator gen = null)
         {

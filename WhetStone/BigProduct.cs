@@ -37,7 +37,7 @@ namespace NumberStone
         }
         public void MultiplyFactorial(int n, int pow = 1)
         {
-            if (_sign == 0)
+            if (_sign == 0 || n <= 1)
                 return;
             //Legendre's formula
             foreach (int prime in primes.Primes(n + 1))
