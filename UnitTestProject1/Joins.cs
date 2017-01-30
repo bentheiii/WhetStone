@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WhetStone.Comparison;
@@ -31,7 +30,7 @@ namespace Tests
         [TestMethod]
         public void Multi()
         {
-            var val = new IList<int>[] {range.Range(5), range.Range(2), range.Range(3)}.Join();
+            var val = new[] {range.Range(5), range.Range(2), range.Range(3)}.Join();
             Assert.IsTrue(val[0].SequenceEqualIndices(0, 0, 0));
             Assert.IsTrue(val[6].SequenceEqualIndices(1, 1, 0));
             Assert.IsTrue(val[14].SequenceEqualIndices(4, 0, 1));

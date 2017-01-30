@@ -47,6 +47,7 @@ namespace WhetStone.Looping
                 }
                 ret.Add(t);
             }
+            yield return ret.arr;
         }
     }
 }

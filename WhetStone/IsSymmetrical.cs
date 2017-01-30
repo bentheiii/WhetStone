@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NumberStone;
 
 namespace WhetStone.Looping
 {
@@ -12,7 +11,7 @@ namespace WhetStone.Looping
         }
         public static bool IsSymmetrical<T>(this IList<T> @this, IEqualityComparer<T> c)
         {
-            return range.Range(@this.Count / 2).All(i => c.Equals(@this[i], @this[(-i - 1).TrueMod(@this.Count)]));
+            return range.Range(@this.Count / 2).All(i => c.Equals(@this[i], @this[@this.Count -i - 1]));
         }
     }
 }

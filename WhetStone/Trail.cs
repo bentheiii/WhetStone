@@ -29,7 +29,7 @@ namespace WhetStone
                 }
             }
         }
-        public static IEnumerable<IList<T>> Trail<T>(this IList<T> @this, int trailLength, bool wrap = false)
+        public static IList<IList<T>> Trail<T>(this IList<T> @this, int trailLength, bool wrap = false)
         {
             if (wrap)
             {

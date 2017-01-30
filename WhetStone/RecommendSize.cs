@@ -6,7 +6,7 @@ namespace WhetStone.Looping
     {
         public static int? RecommendCount<T>(this IEnumerable<T> @this)
         {
-            return (@this as IReadOnlyCollection<T>)?.Count ?? (@this as ICollection<T>)?.Count;
+            return @this.AsCollection(false)?.Count;
         }
     }
 }

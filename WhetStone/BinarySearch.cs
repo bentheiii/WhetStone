@@ -137,5 +137,18 @@ namespace WhetStone.Looping
             comp = comp ?? Comparer<T>.Default;
             return BinarySearch(sortedarr, a => comp.Compare(tofind, a));
         }
+        public static int BinarySearchStartBias<T>(this IList<T> sortedarr, Func<T, bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
+        {
+            return BinarySearch(i => i >= sortedarr.Count ? style == BooleanBinSearchStyle.GetFirstTrue : searcher(sortedarr[i]), 0, style: style);
+        }
+        public static int BinarySearchStartBias<T>(this IList<T> sortedarr, Func<T, int> searcher)
+        {
+            return BinarySearch(i => i >= sortedarr.Count ? -1 : searcher(sortedarr[i]), 0, null);
+        }
+        public static int BinarySearchStartBias<T>(this IList<T> sortedarr, T tofind, IComparer<T> comp = null)
+        {
+            comp = comp ?? Comparer<T>.Default;
+            return BinarySearchStartBias(sortedarr, a => comp.Compare(tofind, a));
+        }
     }
 }

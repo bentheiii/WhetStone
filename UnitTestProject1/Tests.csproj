@@ -47,6 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -64,9 +65,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Balanced.cs" />
+    <Compile Include="BitList.cs" />
     <Compile Include="BooleanBinarySearch.cs" />
     <Compile Include="Chunk.cs" />
     <Compile Include="Cover.cs" />
+    <Compile Include="Divisibility.cs" />
     <Compile Include="EditDistance.cs" />
     <Compile Include="Joins.cs" />
     <Compile Include="ListCache.cs" />
@@ -78,6 +81,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Primes.cs" />
     <Compile Include="Splice.cs" />
+    <Compile Include="AbsolutePathToRelative.cs" />
+    <Compile Include="SplitAt.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WhetStone\WhetStone.csproj">

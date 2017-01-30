@@ -6,38 +6,37 @@ namespace WhetStone.Looping
 {
     public static class splitAt
     {
-        public static T[][] SplitAt<T>(this IEnumerable<T> @this, params int[] lengths)
+        public static IEnumerable<IEnumerable<T>> SplitAt<T>(this IEnumerable<T> @this, params int[] lengths)
         {
-            ResizingArray<T[]> ret = new ResizingArray<T[]>(lengths.Length+1);
-            IGuard<positionBind.Position> pos = new Guard<positionBind.Position>();
-            ResizingArray<T> final;
             using (var tor = @this.GetEnumerator())
             {
-                foreach (int i in lengths.PositionBind().Detach(pos))
+                foreach (int length in lengths)
                 {
-                    var toAdd = new ResizingArray<T>(i);
-                    foreach (int _ in range.Range(i))
+                    ResizingArray<T> ret = new ResizingArray<T>(length);
+                    foreach (int _ in range.Range(length))
                     {
                         if (!tor.MoveNext())
                         {
-                            ret.Add(toAdd.arr);
-                            return ret;
+                            yield return ret.arr;
+                            yield break;
                         }
-                        toAdd.Add(tor.Current);
+                        ret.Add(tor.Current);
                     }
+                    yield return ret;
                 }
-                var recsize = 0;
-                int? recl = @this.RecommendCount();
-                if (recl.HasValue)
-                    recsize = recl.Value - lengths.Sum();
-                final = new ResizingArray<T>(recsize);
-                while (tor.MoveNext())
-                {
-                    final.Add(tor.Current);
-                }
+
+                yield return infinite.Infinite().TakeWhile(a=>tor.MoveNext()).Select(a => tor.Current);
             }
-            ret.Add(final.arr);
-            return ret.arr;
+        }
+        public static IList<IList<T>> SplitAt<T>(this IList<T> @this, params int[] lengths)
+        {
+            return SplitAt(@this, lengths.AsList());
+        }
+        public static IList<IList<T>> SplitAt<T>(this IList<T> @this, IList<int> lengths)
+        {
+            lengths = lengths.PartialSums().ToList().Concat(@this.Count.Enumerate());
+            var t = lengths.Trail(2);
+            return t.Select(a => @this.Slice(a[0], a[1]));
         }
     }
 }

@@ -30,7 +30,7 @@ namespace WhetStone.Random
         }
         public void Dispose()
         {
-            ((IDisposable)_sha).Dispose();
+            _sha.Dispose();
         }
     }
 }

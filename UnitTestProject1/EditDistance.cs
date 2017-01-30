@@ -22,13 +22,16 @@ namespace Tests
                 var val = s.EditSteps(d).ToList();
 
                 var p = new List<char>(s);
+                var e = s.AsEnumerable();
 
                 foreach (var editStep in val)
                 {
                     editStep.apply(p);
+                    e = editStep.apply(e);
                 }
 
-                Assert.AreEqual(p.ConvertToString(),d.ConvertToString());
+                Assert.AreEqual(p.ConvertToString(), d.ConvertToString());
+                Assert.AreEqual(e.ConvertToString(), d.ConvertToString());
             }
         }
         [TestMethod] public void SimpleDist()
@@ -59,13 +62,16 @@ namespace Tests
                 var val = s.EditSteps(d, allowSub: false).ToList();
 
                 var p = new List<char>(s);
+                var e = s.AsEnumerable();
 
                 foreach (var editStep in val)
                 {
                     editStep.apply(p);
+                    e = editStep.apply(e);
                 }
 
                 Assert.AreEqual(p.ConvertToString(), d.ConvertToString());
+                Assert.AreEqual(e.ConvertToString(), d.ConvertToString());
             }
         }
         [TestMethod]

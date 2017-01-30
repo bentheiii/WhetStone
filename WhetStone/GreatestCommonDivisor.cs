@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using WhetStone.Comparison;
 using WhetStone.Looping;
@@ -9,9 +10,13 @@ namespace NumberStone
     {
         public static BigInteger GreatestCommonDivisor(params BigInteger[] val)
         {
+            return GreatestCommonDivisor(val.AsList());
+        }
+        public static BigInteger GreatestCommonDivisor(IList<BigInteger> val)
+        {
             while (true)
             {
-                switch (val.Length)
+                switch (val.Count)
                 {
                     case 0:
                         return 1;
@@ -37,14 +42,18 @@ namespace NumberStone
                         }
                         return a;
                 }
-                val = val.SplitAt(val.Length / 2).Select(GreatestCommonDivisor).ToArray();
+                val = val.SplitAt(val.Count / 2).Select(a=>GreatestCommonDivisor(a.AsList()));
             }
         }
-        public static long GreatestCommonDivisor(params long[] val)
+        public static BigInteger GreatestCommonDivisor(params long[] val)
+        {
+            return GreatestCommonDivisor(val.AsList());
+        }
+        public static long GreatestCommonDivisor(IList<long> val)
         {
             while (true)
             {
-                switch (val.Length)
+                switch (val.Count)
                 {
                     case 0:
                         return 1;
@@ -66,7 +75,7 @@ namespace NumberStone
                         }
                         return a;
                 }
-                val = val.SplitAt(val.Length / 2).Select(GreatestCommonDivisor).ToArray();
+                val = val.SplitAt(val.Count / 2).Select(a=> GreatestCommonDivisor(a.AsList()));
             }
         }
         public static int GreatestCommonDivisor(params int[] val)

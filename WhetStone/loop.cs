@@ -8,7 +8,7 @@ namespace WhetStone.Streams
 {
     public static class loop
     {
-        public static IEnumerable<string> Loop(this TextReader @this, int? length = null, bool cache = true)
+        public static IEnumerable<string> Loop(this TextReader @this, int? length = null, int cache = 0)
         {
             IEnumerable<string> ret;
             if (length == null)
@@ -23,8 +23,10 @@ namespace WhetStone.Streams
                 });
             }
             ret = ret.TakeWhile(a => a != null);
-            if (cache)
-                ret = ret.Cache();
+            if (cache >= 0)
+            {
+                ret = cache==0 ? ret.Cache() : ret.Cache(cache);
+            }
             return ret;
         }
         public static IEnumerable<byte> Loop(this Stream @this, bool cache = true)

@@ -40,7 +40,7 @@ namespace WhetStone.Looping
             {
                 switch (item)
                 {
-                    case (positionBind.Position.First | positionBind.Position.Middle):
+                    case positionBind.Position.First | positionBind.Position.Middle:
                         return 0;
                     case positionBind.Position.Middle:
                         return 1;

@@ -114,7 +114,7 @@ namespace WhetStone.SystemExtensions
                 return 1;
             powbase %= modulo;
             int halfpow = powmod(powbase, power / 2, modulo);
-            halfpow %= modulo;
+            //halfpow %= modulo;
             int ret = (halfpow * halfpow) % modulo;
             if (power % 2 == 1)
             {
