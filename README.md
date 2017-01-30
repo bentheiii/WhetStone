@@ -141,7 +141,8 @@ lucky1.CompareCount(lucky2); //but now we don't have to wait for it!
 
 new int[]{2,3,5,7}.Trail(2);//{{2,3},{3,5},{5,7}}
 
-"this is a very long string".LongestCommonPrefix("This is an even longer string"); "This is a "
+var invariantcomp = new EqualityFunctionComparer<char,char>(char.ToUpper);
+"this is a very long string".LongestCommonPrefix("This is an even longer string", invariantcomp).UnZip(); ("this is a","This is a")
 ```
 
 And much, much more.
