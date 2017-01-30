@@ -346,11 +346,11 @@ namespace WhetStone.Fielding {
     public static class Fields
     {
         #region stock
-        private class DynamicField<T> : QueryEnabledField<T>
+        private class DynamicField<T> : Field<T>
         {
-            public DynamicField() : base((T)(dynamic)0, (T)(dynamic)1, (T)(dynamic)2)
-            {
-            }
+            public override T zero => (T)(dynamic)0;
+            public override T one => (T)(dynamic)1;
+            public override T naturalbase => (T)(dynamic)Math.E;
             public override T multiply(T a, T b)
             {
                 return a * (dynamic)b;

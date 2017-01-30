@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhetStone", "WhetStone\WhetStone.csproj", "{F88501CE-F508-4165-8F15-97DB41EDEF88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "UnitTestProject1\Tests.csproj", "{B7403CD2-3B2B-4555-A179-D825F2BE859F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhetstoneTests", "WhetstoneTests\WhetstoneTests.csproj", "{B7403CD2-3B2B-4555-A179-D825F2BE859F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
