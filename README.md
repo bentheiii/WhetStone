@@ -34,7 +34,12 @@ It was decided that the specialized LINQ methods (the ones introduced in this mo
 * The function's arguments must be recognized as ILists or ICollections **at compile time**. If they are not (for example in case the argument is `(IEnumerable<int>)new int[]{0,1,2,3}`), LINQ's regular function will be executed instead of the Whetstone specialized function. This is to avoid ambiguity as to which method is called (Whetstone's or Linq's), as well as to allow for explicit specialized IEnumerable return:
 * When you use Whetstone's functions, you can be certain you are getting back an ICollection or IList, it's the return value's type. This avoid a lot of cumbersome casting and unnecessary converting. It also allows function chaining like this:
 ```csharp
-var list = new int[]{2,3,5,7}.Select(x=>x*x).SelectMany(x=>new int[]{x,x*2}).Zip(new int[]{0,1,2,3,4,5,6,7}).Skip(2).Select(a=>a.Item1-a.Item2); //Still a List!
+var list = new int[]{2,3,5,7}.Select(x=>x*x) //{4,9,25,49}
+            .SelectMany(x=>new int[]{x,x*2}) //{4,8,9,18,25,50,49,98}
+            .Zip(new int[]{0,1,2,3,4,5,6,7}) //{(4,0),(8,1),(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
+            .Skip(2)                         //{(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
+            .Select(a=>a.Item1-a.Item2);     //{7,15,21,45,43,91}
+            //Still a List!
 ```
 ### \#3-Clarifications and Repercussions
 Everything returned by Whetstone's LINQ-like functions is still lazily evaluated. It uses no extra memory and is sometimes more efficient than pure LINQ's IEnumerable.
@@ -114,3 +119,32 @@ If you're willing to accept the runtime overhead, fields can have many usages yo
 var aTOz = range.IRange('a','z');//Contant-memory list of all lowercase letters
 var concatedNumbers = range.Range(10).Select(a=>a.ToString()).GetSum();//"0123456789"
 ```
+## IV: Many, Many Extension Methods
+This library features a lot of extention methods that you never knew you needed. Designed to make the code more readable, usable, and efficient. Here are some examples:
+```csharp
+var lists = new []{range.Range(10),range.Range(12,22),range.Range(0,100,10)};
+lists.Select(a=>a.Count).AllEqual(); //checks that all members of an enumerable are equal
+
+var bigRange = range.Range(50);
+bigRange.Chunk(10); //{0..10,10..20,20..30,30..40,40..50}
+
+public static IEnumerable<bool> Lucky(Random r, double odds)
+{
+    while (r.NextDouble() < odds)
+    {
+        yield return true;
+    }
+}
+var lucky1 = Lucky(new Random(),0.5);
+var lucky2 = Lucky(new Random(),0.99);//this guy could take a while...
+lucky1.CompareCount(lucky2); //but now we don't have to wait for it!
+
+new int[]{2,3,5,7}.Trail(2);//{{2,3},{3,5},{5,7}}
+
+var invariantcomp = new EqualityFunctionComparer<char,char>(char.ToUpper);
+"this is a very long string".LongestCommonPrefix("This is an even longer string", invariantcomp).UnZip(); ("this is a","This is a")
+```
+
+And much, much more.
+
+I hope you'll give Whetstone a try. It's sure to be one of your go-to C# libraries.
