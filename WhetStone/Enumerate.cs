@@ -4,9 +4,19 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class enumerate
     {
-        public static LockedList<T> Enumerate<T>(this T b, int count = 1)
+        /// <summary>
+        /// Creates a new <see cref="IList{T}"/>, including only <paramref name="b"/> as an element.
+        /// </summary>
+        /// <typeparam name="T">The type of the list to return</typeparam>
+        /// <param name="b">The element to make the <see cref="IList{T}"/> out of.</param>
+        /// <param name="count">How many elements the <see cref="IList{T}"/> should contain.</param>
+        /// <returns>An <see cref="IList{T}"/> that includes only <paramref name="b"/>, <paramref name="count"/> times.</returns>
+        public static IList<T> Enumerate<T>(this T b, int count = 1)
         {
             return new EnumerateLockedList<T>(b, count);
         }

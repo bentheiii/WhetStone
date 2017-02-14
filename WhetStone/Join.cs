@@ -7,10 +7,45 @@ using WhetStone.Tuples;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class join
     {
-        [Flags]
-        public enum CartesianType { AllPairs = 0, NoSymmatry = 1, NoReflexive = 2 }
+        /// <summary>
+        /// A type for Cartesian self-multiplication.
+        /// </summary>
+        [Flags] public enum CartesianType
+        {
+            /// <summary>
+            /// All combinations will be included.
+            /// </summary>
+            /// <remarks>
+            /// As an example:{0,1,2}x{0,1,2} = (0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2)
+            /// </remarks>
+            AllPairs = 0,
+            /// <summary>
+            /// All combinations will be in descending order, in relation to the source index.
+            /// </summary>
+            /// <remarks>
+            /// As an example:{0,1,2}x{0,1,2} = (0,0),(1,0),(1,1),(2,0),(2,1),(2,2)
+            /// </remarks>
+            NoSymmatry = 1,
+            /// <summary>
+            /// All combinations that have the same element more than once will be omitted.
+            /// </summary>
+            /// <remarks>
+            /// As an example:{0,1,2}x{0,1,2} = (0,1),(0,2),(1,0),(1,2),(2,0),(2,1)
+            /// </remarks>
+            NoReflexive = 2
+        }
+        /// <summary>
+        /// Get the Cartesian multiple of an <see cref="IEnumerable{T}"/> by itself.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="a">The <see cref="IEnumerable{T}"/> to multiply.</param>
+        /// <param name="t">The <see cref="CartesianType"/> of the multiplication.</param>
+        /// <returns>A new <see cref="IEnumerable{T}"/> with the Cartesian multiple of <paramref name="a"/> by itself.</returns>
         public static IEnumerable<Tuple<T, T>> Join<T>(this IEnumerable<T> a, CartesianType t = CartesianType.AllPairs)
         {
             foreach (var v0 in a.CountBind())
@@ -26,6 +61,14 @@ namespace WhetStone.Looping
                 }
             }
         }
+        /// <summary>
+        /// Get the Cartesian multiple of two <see cref="IEnumerable{T}"/>s.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="a">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="b">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <returns>The Cartesian multiple of <paramref name="a"/> and <paramref name="b"/>.</returns>
         public static IEnumerable<Tuple<T1, T2>> Join<T1, T2>(this IEnumerable<T1> a, IEnumerable<T2> b)
         {
             foreach (T1 v0 in a)
@@ -36,6 +79,16 @@ namespace WhetStone.Looping
                 }
             }
         }
+        /// <summary>
+        /// Get the Cartesian multiple of two <see cref="IEnumerable{T}"/>s.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T3">The type of the third <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="a">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="b">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="c">The third <see cref="IEnumerable{T}"/></param>
+        /// <returns>The Cartesian multiple of <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/>.</returns>
         public static IEnumerable<Tuple<T1, T2, T3>> Join<T1, T2, T3>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c)
         {
             foreach (T1 v0 in a)
@@ -230,6 +283,14 @@ namespace WhetStone.Looping
                 yield return tors.Select(a => a.Current.Item1).ToArray();
             }
         }
+        /// <summary>
+        /// Get an <see cref="IEnumerable{T}"/> multiplied by itself multiple times.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to exponentiate.</param>
+        /// <param name="cartesLength">The exponential power.</param>
+        /// <param name="t">The <see cref="CartesianType"/>.</param>
+        /// <returns>The Cartesian exponential of <paramref name="this"/> by <paramref name="cartesLength"/>.</returns>
         public static IEnumerable<T[]> Join<T>(this IEnumerable<T> @this, int cartesLength, CartesianType t = CartesianType.AllPairs)
         {
             if (cartesLength == 0)
@@ -248,6 +309,13 @@ namespace WhetStone.Looping
                     throw new NotSupportedException();
             }
         }
+        //todo @this could be an ienumerable?
+        /// <summary>
+        /// Get the Cartesian product of multiple <see cref="IEnumerable{T}"/>s.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> of <see cref="IEnumerable{T}"/></param>
+        /// <returns>The Cartesian product of <paramref name="this"/>.</returns>
         public static IEnumerable<T[]> Join<T>(this IList<IEnumerable<T>> @this)
         {
             var tors = @this.Select(a => a.GetEnumerator()).ToArray();
@@ -347,7 +415,7 @@ namespace WhetStone.Looping
             }
         }
 
-        public class JointMetaListAllPairs : LockedList<int[]>
+        private class JointMetaListAllPairs : LockedList<int[]>
         {
             private readonly int _maxind;
             private readonly int _length;
@@ -407,7 +475,7 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public class JointMetaListDescendingPairs : LockedList<int[]>
+        private class JointMetaListDescendingPairs : LockedList<int[]>
         {
             private readonly int _maxind;
             private readonly int _length;
@@ -496,7 +564,7 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public class JointMetaListMonoDescendingPairs : LockedList<int[]>
+        private class JointMetaListMonoDescendingPairs : LockedList<int[]>
         {
             private readonly int _maxind;
             private readonly int _length;
@@ -581,7 +649,7 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public class JointMetaListNoReflexivePairs : LockedList<int[]>
+        private class JointMetaListNoReflexivePairs : LockedList<int[]>
         {
             private readonly int _maxind;
             private readonly int _length;
@@ -622,7 +690,7 @@ namespace WhetStone.Looping
                     BigProduct p = new BigProduct();
                     p.MultiplyFactorial(_maxind);
                     p.DivideFactorial(_maxind - _length);
-                    return (int)p.toNum();
+                    return p.toNum();
                 }
             }
             private static IList<int> indices(ICollection<int> source, int length, int index)
@@ -632,7 +700,7 @@ namespace WhetStone.Looping
                 BigProduct gap = new BigProduct();
                 gap.MultiplyFactorial(source.Count - 1);
                 gap.DivideFactorial(source.Count - length);
-                int g = (int)gap.toNum();
+                int g = gap.toNum();
                 var first = source.ElementAt(index / g);
                 source.Remove(first);
                 return indices(source, length - 1,index % g).Concat(first.Enumerate()).ToArray();
@@ -646,20 +714,47 @@ namespace WhetStone.Looping
             }
         }
 
-
-        public static LockedList<Tuple<T1, T2>> Join<T1, T2>(this IList<T1> @this, IList<T2> other)
+        /// <summary>
+        /// Get the Cartesian multiple of two <see cref="IList{T}"/>s.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/>.</param>
+        /// <param name="other">The second <see cref="IList{T}"/>.</param>
+        /// <returns>The Cartesian multiple of <paramref name="this"/> and <paramref name="other"/>.</returns>
+        public static IList<Tuple<T1, T2>> Join<T1, T2>(this IList<T1> @this, IList<T2> other)
         {
             return new JointList<T1, T2>(@this,other);
         }
-        public static LockedList<T[]> Join<T>(this IList<IList<T>> @this)
+        /// <summary>
+        /// Get the Cartesian product of multiple <see cref="IList{T}"/>s.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> of <see cref="IList{T}"/></param>
+        /// <returns>The Cartesian product of <paramref name="this"/>.</returns>
+        public static IList<T[]> Join<T>(this IList<IList<T>> @this)
         {
             return new JointList<T>(@this);
         }
-        public static LockedList<T[]> Join<T>(this IList<T>[] @this)
+        /// <summary>
+        /// Get the Cartesian product of multiple <see cref="IList{T}"/>s.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> of <see cref="IList{T}"/></param>
+        /// <returns>The Cartesian product of <paramref name="this"/>.</returns>
+        public static IList<T[]> Join<T>(this IList<T>[] @this)
         {
             return new JointList<T>(@this);
         }
-        public static LockedList<IList<T>> Join<T>(this IList<T> @this, int length, CartesianType t = CartesianType.AllPairs)
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> multiplied by itself multiple times.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to exponentiate.</param>
+        /// <param name="length">The exponential power.</param>
+        /// <param name="t">The <see cref="CartesianType"/>.</param>
+        /// <returns>The Cartesian exponential of <paramref name="this"/> by <paramref name="length"/>.</returns>
+        public static IList<IList<T>> Join<T>(this IList<T> @this, int length, CartesianType t = CartesianType.AllPairs)
         {
             IList<int[]> inter;
             switch (t)
@@ -681,7 +776,14 @@ namespace WhetStone.Looping
             }
             return inter.Select(a => (IList<T>)a.Select(x => @this[x]));
         }
-        public static LockedList<Tuple<T,T>> Join<T>(this IList<T> @this, CartesianType t = CartesianType.AllPairs)
+        /// <summary>
+        /// Get the Cartesian multiple of an <see cref="IList{T}"/> by itself.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to multiply.</param>
+        /// <param name="t">The <see cref="CartesianType"/> of the multiplication.</param>
+        /// <returns>A new <see cref="IList{T}"/> with the Cartesian multiple of <paramref name="this"/> by itself.</returns>
+        public static IList<Tuple<T,T>> Join<T>(this IList<T> @this, CartesianType t = CartesianType.AllPairs)
         {
             return @this.Join(2, t).Select(a => a.ToTuple2());
         }

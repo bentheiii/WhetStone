@@ -4,6 +4,9 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class countUp
     {
         private class CountList<T> : LockedList<T>
@@ -80,19 +83,44 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public static LockedList<int> CountUp(int start = 0, int step = 1)
+        /// <overloads>Get an infinite enumerable counting up from a value</overloads>
+        /// <summary>
+        /// Get an infinite <see cref="IList{T}"/> of <see cref="int"/>s counting up from <paramref name="start"/> in steps of <paramref name="step"/>. 
+        /// </summary>
+        /// <param name="start">The first element of the <see cref="IList{T}"/></param>
+        /// <param name="step">The difference between any two consecutive elements.</param>
+        /// <returns>A read-only, infinite <see cref="IList{T}"/> of <see cref="int"/>s.</returns>
+        public static IList<int> CountUp(int start = 0, int step = 1)
         {
             return new CountList(start, step);
         }
-        public static LockedList<T> CountUp<T>(T start, T step)
+        /// <summary>
+        /// Get an infinite <see cref="IList{T}"/> of generic type. counting up from <paramref name="start"/> in steps of <paramref name="step"/>. 
+        /// </summary>
+        /// <param name="start">The first element of the <see cref="IList{T}"/></param>
+        /// <param name="step">The difference between any two consecutive elements.</param>
+        /// <returns>A read-only, infinite <see cref="IList{T}"/>.</returns>
+        /// <remarks>This function uses fielding to generate the addition function.</remarks>
+        public static IList<T> CountUp<T>(T start, T step)
         {
             return new CountList<T>(start, step);
         }
-        public static LockedList<T> CountUp<T>(T start)
+        /// <summary>
+        /// Get an infinite <see cref="IList{T}"/> of generic type. counting up from <paramref name="start"/> in steps of 1 (uses fielding to get generic 1). 
+        /// </summary>
+        /// <param name="start">The first element of the <see cref="IList{T}"/></param>
+        /// <returns>A read-only, infinite <see cref="IList{T}"/>.</returns>
+        /// <remarks>This function uses fielding to generate the addition function and the step member.</remarks>
+        public static IList<T> CountUp<T>(T start)
         {
             return CountUp(start, Fields.getField<T>().one);
         }
-        public static LockedList<T> CountUp<T>()
+        /// <summary>
+        /// Get an infinite <see cref="IList{T}"/> of generic type. counting up from 0 in steps of 1 (uses fielding to get generic 0 and 1). 
+        /// </summary>
+        /// <returns>A read-only, infinite <see cref="IList{T}"/>.</returns>
+        /// <remarks>This function uses fielding to generate the addition function, the step member, and initial member.</remarks>
+        public static IList<T> CountUp<T>()
         {
             return CountUp(Fields.getField<T>().zero);
         }

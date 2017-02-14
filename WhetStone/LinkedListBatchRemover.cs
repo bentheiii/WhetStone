@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace WhetStone
+namespace WhetStone.Looping
 {
     public class LinkedListBatchRemover<T>
     {

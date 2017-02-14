@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace WhetStone.Comparison
 {
+    //todo revamp
     public class FunctionComparer<T> : IComparer<T>
     {
         private readonly Func<T, T, int> _c;

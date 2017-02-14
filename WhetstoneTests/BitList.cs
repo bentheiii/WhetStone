@@ -54,8 +54,8 @@ namespace Tests
 
             while (val.Count < 640)
             {
-                val.Insert(63, comp.Count%2==0);
-                comp.Insert(63, comp.Count % 2 == 0);
+                val.Insert(18, comp.Count%2==0);
+                comp.Insert(18, comp.Count % 2 == 0);
                 Assert.IsTrue(val.SequenceEqualIndices(comp), val.Count.ToString());
             }
         }

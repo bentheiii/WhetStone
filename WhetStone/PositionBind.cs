@@ -23,7 +23,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    Position ret = Position.Middle;
+                    Position ret = Position.None;
                     if (index == 0)
                         ret |= Position.First;
                     if (index == Count-1)
@@ -33,7 +33,7 @@ namespace WhetStone.Looping
             }
         }
         [Flags]
-        public enum Position { First = 1, Middle = 2, Last = 4, None = 0, Only = First | Middle | Last }
+        public enum Position { First = 1, Last = 2, None = 0, Only = First | Last }
         public static IEnumerable<Tuple<T, Position>> PositionBind<T>(this IEnumerable<T> @this)
         {
             bool first = true;
@@ -44,7 +44,7 @@ namespace WhetStone.Looping
                 {
                     var v = num.Current;
                     last = !num.MoveNext();
-                    Position ret = Position.Middle;
+                    Position ret = Position.None;
                     if (first)
                     {
                         ret |= Position.First;

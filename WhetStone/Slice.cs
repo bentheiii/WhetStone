@@ -34,10 +34,14 @@ namespace WhetStone.Looping
         }
         public static IList<T> Skip<T>(this IList<T> @this, int skipCount)
         {
+            if (skipCount == 0)
+                return @this;
             return @this.Slice(Math.Min(skipCount, @this.Count));
         }
         public static IList<T> Take<T>(this IList<T> @this, int length)
         {
+            if (length >= @this.Count)
+                return @this;
             return @this.Slice(0,length:Math.Min(length, @this.Count));
         }
         private class ListSlice<T> : IList<T>

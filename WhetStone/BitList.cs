@@ -18,15 +18,24 @@ System.UIint32
 
 namespace WhetStone.SystemExtensions
 {
+    /// <summary>
+    /// Manages a large amount of booleans with an underlying list of unsigned integer word types. Supports all list operations.
+    /// </summary>
+    /// <remarks>If the DLL is compiled with the WIN32 flag, <see cref="uint"/> is used as the underlying type. If compiled with the WIN64 flag, <see cref="ulong"/> is the underlying type. If compiled with the BYTEWORD flag, <see cref="byte"/> is the underlying type (used for debugging).</remarks>
     public class BitList : IList<bool>
     {
         private readonly List<word> _int;
         private const int BITS_IN_CELL = 8*sizeof(word);
+        /// <summary>
+        /// constructor. All elements are initialized to false.
+        /// </summary>
+        /// <param name="size">Initial size of the list</param>
         public BitList(int size=0)
         {
             _int = new List<word>(range.Range((size/(double)BITS_IN_CELL).ceil()).Select(a=>(word)0));
             Count = size;
         }
+        /// <inheritdoc />
         public IEnumerator<bool> GetEnumerator()
         {
             int countdown = Count;
@@ -47,6 +56,7 @@ namespace WhetStone.SystemExtensions
         {
             return GetEnumerator();
         }
+        /// <inheritdoc />
         public void Add(bool item)
         {
             var lmod = Count%BITS_IN_CELL;
@@ -60,15 +70,18 @@ namespace WhetStone.SystemExtensions
             }
             Count++;
         }
+        /// <inheritdoc />
         public void Clear()
         {
             Count = 0;
             _int.Clear();
         }
+        /// <inheritdoc />
         public bool Contains(bool item)
         {
             return this.Any(a=>a.Equals(item));
         }
+        /// <inheritdoc />
         public void CopyTo(bool[] array, int arrayIndex)
         {
             foreach (var v in this)
@@ -76,6 +89,7 @@ namespace WhetStone.SystemExtensions
                 array[arrayIndex++] = v;
             }
         }
+        /// <inheritdoc />
         public bool Remove(bool item)
         {
             var ind = this.IndexOf(item);
@@ -84,8 +98,11 @@ namespace WhetStone.SystemExtensions
             RemoveAt(ind);
             return true;
         }
+        /// <inheritdoc />
         public int Count { get; private set; }
+        /// <inheritdoc />
         public bool IsReadOnly => false;
+        /// <inheritdoc />
         public int IndexOf(bool item)
         {
             int ret = 0;
@@ -97,6 +114,7 @@ namespace WhetStone.SystemExtensions
             }
             return -1;
         }
+        /// <inheritdoc />
         public void Insert(int index, bool item)
         {
             if (index == Count)
@@ -146,6 +164,7 @@ namespace WhetStone.SystemExtensions
                 _int.Add(1);
             Count++;
         }
+        /// <inheritdoc />
         public void RemoveAt(int index)
         {
             if (index == Count-1)
@@ -196,6 +215,7 @@ namespace WhetStone.SystemExtensions
             if ((Count/(double)BITS_IN_CELL).ceil() < _int.Count)
                 _int.RemoveAt(_int.Count-1);
         }
+        /// <inheritdoc />
         public bool this[int index]
         {
             get
@@ -211,6 +231,12 @@ namespace WhetStone.SystemExtensions
                     _int[index/BITS_IN_CELL] &= ~mask;
             }
         }
+        /// <summary>
+        /// Sets an entire range of the list to a particular value.
+        /// </summary>
+        /// <param name="start">The first index in the list set.</param>
+        /// <param name="length">How many elements in the list to set.</param>
+        /// <param name="value">The value to set the range to.</param>
         public void SetRange(int start, int length, bool value)
         {
             var fill = value ? ~(word)0 : (word)0;
@@ -234,7 +260,7 @@ namespace WhetStone.SystemExtensions
             if (emod != 0)
             {
                 int ind = fillEnd;
-                word mask = (~(word)0) >> (BITS_IN_CELL-emod);
+                word mask = ~(word)0 >> (BITS_IN_CELL-emod);
                 if (value)
                     _int[ind] |= mask;
                 else

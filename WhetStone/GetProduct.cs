@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Fielding;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class getProduct
     {
-        public static T GetProduct<T>(this IEnumerable<T> toAdd, Func<T, T, T> multiplier = null)
+        /// <summary>
+        /// Get the product of all elements in an <see cref="IEnumerable{T}"/> using fielding.
+        /// </summary>
+        /// <typeparam name="T">The element to multiply</typeparam>
+        /// <param name="toAdd">The <see cref="IEnumerable{T}"/> to get the product of.</param>
+        /// <returns>The product of all elements in <paramref name="toAdd"/></returns>
+        /// <remarks>Uses fielding, use <see cref="Enumerable.Aggregate{TSource}"/> for non-generic equivalent.</remarks>
+        public static T GetProduct<T>(this IEnumerable<T> toAdd)
         {
             var f = Fields.getField<T>();
-            return GetProduct(toAdd, f.one, multiplier);
-        }
-        public static T GetProduct<T>(this IEnumerable<T> toAdd, T initial, Func<T, T, T> multiplier = null)
-        {
-            multiplier = multiplier ?? Fields.getField<T>().multiply;
-            return toAdd.Aggregate(initial, multiplier);
+            return toAdd.Aggregate(f.one, f.multiply);
         }
     }
 }

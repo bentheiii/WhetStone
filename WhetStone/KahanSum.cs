@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using WhetStone.Fielding;
 
-namespace WhetStone
+namespace NumberStone
 {
+    //todo does this work?
+
     public class KahanSum
     {
         public double Sum { get; private set; } = 0;

@@ -7,14 +7,14 @@ namespace WhetStone.Looping
     public class LazyArray<T> : LockedList<T>
     {
         private readonly Func<int, LazyArray<T>, T> _generator;
-        private readonly ExpandingArray<T> _data;
-        private readonly ExpandingArray<bool> _initialized;
+        private readonly InfiniteList<T> _data;
+        private readonly InfiniteList<bool> _initialized;
         public LazyArray(Func<int, T> generator) : this((i, array) => generator(i)) { }
         public LazyArray(Func<int, LazyArray<T>, T> generator)
         {
             _generator = generator;
-            _data = new ExpandingArray<T>();
-            _initialized = new ExpandingArray<bool>();
+            _data = new InfiniteList<T>();
+            _initialized = new InfiniteList<bool>();
         }
         public bool Initialized(int index)
         {

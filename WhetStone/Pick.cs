@@ -4,7 +4,7 @@ using System.Linq;
 using WhetStone.Looping;
 using WhetStone.Random;
 
-namespace WhetStone
+namespace WhetStone.Random
 {
     public static class pick
     {

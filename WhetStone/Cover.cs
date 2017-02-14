@@ -5,8 +5,21 @@ using System.Linq;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class cover
     {
+        /// <overloads>Gets an enumerable that has some members replaced by members of another enumerable</overloads>
+        /// <summary>
+        /// Get an <see cref="IEnumerable{T}"/> that has members starting at <paramref name="start"/> replaced with <paramref name="cover"/>'s members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IEnumerable{T}"/> to cover with.</param>
+        /// <param name="start">The start of the covering. Inclusive.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> starting at index <paramref name="start"/>.</returns>
+        /// <remarks>The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.</remarks>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, IEnumerable<T> cover, int start = 0)
         {
             using (var tor = @this.GetEnumerator())
@@ -29,6 +42,20 @@ namespace WhetStone.Looping
                 }
             }
         }
+        /// <summary>
+        /// Get an <see cref="IEnumerable{T}"/> that has members at <paramref name="coverindices"/> replaced with <paramref name="cover"/>'s members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IEnumerable{T}"/> to cover with.</param>
+        /// <param name="coverindices">The indices that will be covered.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> at indices <paramref name="coverindices"/>.</returns>
+        /// <remarks>
+        /// <para>The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.</para>
+        /// <para>If <paramref name="coverindices"/> is longer than <paramref name="cover"/>, <paramref name="cover"/> will cycle over itself to provide adequate overlay.</para>
+        /// <para>If <paramref name="coverindices"/> is shorter than <paramref name="cover"/>, the remaining elements of <paramref name="cover"/> will be ignored. The cover is only as long as <paramref name="coverindices"/>.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentException">If <paramref name="cover"/> is empty.</exception>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, IEnumerable<T> cover, IEnumerable<int> coverindices)
         {
             using (var ctor = cover.Cycle().GetEnumerator())
@@ -72,15 +99,33 @@ namespace WhetStone.Looping
                 }
             }
         }
+        /// <summary>
+        /// Get an <see cref="IEnumerable{T}"/> that has its first members replaced with <paramref name="cover"/>'s members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IEnumerable{T}"/> to cover with.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> at index 0.</returns>
+        /// <remarks>
+        /// The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.
+        /// </remarks>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, params T[] cover)
         {
             return Cover(@this, cover, 0);
         }
+        /// <summary>
+        /// Get an <see cref="IEnumerable{T}"/> that has member at <paramref name="start"/> replaced with <paramref name="cover"/> members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IEnumerable{T}"/> to cover with.</param>
+        /// <param name="start">The index of the cover.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> at index <paramref name="start"/>.</returns>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, T cover, int start = 0)
         {
             return @this.Cover(cover.Enumerate(),start);
         }
-        
+        //todo test mutability
         private class CoverList<T> : IList<T>
         {
             private readonly IList<T> _source;
@@ -185,6 +230,7 @@ namespace WhetStone.Looping
                 return GetEnumerator();
             }
         }
+        //todo test mutability
         private class CoverListIndices<T> : IList<T>
         {
             private readonly IList<T> _source;
@@ -292,18 +338,69 @@ namespace WhetStone.Looping
                 return GetEnumerator();
             }
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> that has members at <paramref name="coverindices"/> replaced with <paramref name="cover"/>'s members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IList{T}"/> to cover with.</param>
+        /// <param name="coverindices">The indices that will be covered.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> at indices <paramref name="coverindices"/>.</returns>
+        /// <remarks>
+        /// <para>The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.</para>
+        /// <para>If <paramref name="coverindices"/> is longer than <paramref name="cover"/>, <paramref name="cover"/> will cycle over itself to provide adequate overlay.</para>
+        /// <para>If <paramref name="coverindices"/> is shorter than <paramref name="cover"/>, the remaining elements of <paramref name="cover"/> will be ignored. The cover is only as long as <paramref name="coverindices"/>.</para>
+        /// <para>The returned <see cref="IList{T}"/> is mutability passing (assuming all <paramref name="this"/>, <paramref name="cover"/>, <paramref name="coverindices"/> are mutable), however, its mutating methods are undefined and untested, and should be considered experimental.</para>
+        /// </remarks>
+        /// <exception cref="ArgumentException">If <paramref name="cover"/> is empty.</exception>
         public static IList<T> Cover<T>(this IList<T> @this, IList<T> cover, IList<int> coverindices)
         {
+            if (!cover.Any() && coverindices.Any())
+                throw new ArgumentException("Empty cover.");
             return new CoverListIndices<T>(@this, cover, coverindices);
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> that has members starting at <paramref name="start"/> replaced with <paramref name="cover"/>'s members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IList{T}"/> to cover with.</param>
+        /// <param name="start">The start of the covering. Inclusive.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> starting at index <paramref name="start"/>.</returns>
+        /// <remarks>
+        /// <para>The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.</para>
+        /// <para>The returned <see cref="IList{T}"/> is mutability passing (assuming both <paramref name="this"/>, <paramref name="cover"/> are mutable), however, its mutating methods are undefined and untested, and should be considered experimental.</para>
+        /// </remarks>
         public static IList<T> Cover<T>(this IList<T> @this, IList<T> cover, int start = 0)
         {
             return new CoverList<T>(@this,cover,start);
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> that has its first members replaced with <paramref name="cover"/>'s members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IList{T}"/> to cover with.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> at index 0.</returns>
+        /// <remarks>
+        /// <para>The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.</para>
+        /// <para>The returned <see cref="IList{T}"/> is mutability passing (assuming both <paramref name="this"/>, <paramref name="cover"/> are mutable), however, its mutating methods are undefined and untested, and should be considered experimental.</para>
+        /// </remarks>
         public static IList<T> Cover<T>(this IList<T> @this, params T[] cover)
         {
             return @this.Cover(cover.AsList());
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> that has member at <paramref name="start"/> replaced with <paramref name="cover"/> members.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to cover.</param>
+        /// <param name="cover">The <see cref="IList{T}"/> to cover with.</param>
+        /// <param name="start">The index of the cover.</param>
+        /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> at index <paramref name="start"/>.</returns>
+        /// /// <remarks>
+        /// <para>The returned <see cref="IList{T}"/> is mutability passing (assuming both <paramref name="this"/>, <paramref name="cover"/> are mutable), however, its mutating methods are undefined and untested, and should be considered experimental.</para>
+        /// </remarks>
         public static IList<T> Cover<T>(this IList<T> @this, T cover, int start)
         {
             return @this.Cover(cover.Enumerate(),start);

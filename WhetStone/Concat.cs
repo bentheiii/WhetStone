@@ -6,6 +6,9 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class concat
     {
         private class ConcatEnumerable<T> : LockedCollection<T>
@@ -54,7 +57,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    return _source.Sum(a => a.Count());
+                    return _source.Sum(a => a.RecommendCount() ?? a.Count());
                 }
             }
             public override T this[int index]
@@ -65,7 +68,10 @@ namespace WhetStone.Looping
                     {
                         var c = l.Count();
                         if (index < c)
-                            return l.ElementAt(index);
+                        {
+                            var li = l.AsList();
+                            return li != null ? li[index] : l.ElementAt(index);
+                        }
                         index -= c;
                     }
                     throw new IndexOutOfRangeException();
@@ -211,10 +217,26 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public static LockedList<T> Concat<T>(this IList<IEnumerable<T>> a)
+        /// <overloads>Concatenates multiple enumerables.</overloads>
+        /// <summary>
+        /// Concatenates an <see cref="IList{T}"/> of <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="a">An <see cref="IList{T}"/> of <see cref="IEnumerable{T}"/>s to concatenate.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/>, with all the elements in the elements of <paramref name="a"/>, concatenated.</returns>
+        /// <remarks>The underlying type of the return value is <see cref="IList{T}"/>. However, many of the <see cref="IList{T}"/> operations are not constant time (and are only at worst better then LINQ implementation) and as such, should not be called explicitly by the user. Use <see cref="Enumerable.ElementAt{TSource}"/> and <see cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/> for list operations.</remarks>
+        public static IEnumerable<T> Concat<T>(this IList<IEnumerable<T>> a)
         {
             return new ConcatList<T>(a);
         }
+        /// <summary>
+        /// Concatenates an <see cref="IList{T}"/> of <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="a">An <see cref="IList{T}"/> of <see cref="IList{T}"/>s to concatenate.</param>
+        /// <param name="sameCount">Whether to optimize operations by assuming all sublists have he same lengths. a <see langword="null"/> value means that equal-length values should be checked for.</param>
+        /// <returns>An <see cref="IList{T}"/>, with all the elements in the elements of <paramref name="a"/>, concatenated.</returns>
+        /// <remarks>In cases where you are certain the lists will either have different or same length, set the <paramref name="sameCount"/> accordingly.</remarks>
         public static IList<T> Concat<T>(this IList<IList<T>> a, bool? sameCount = null)
         {
             if (!a.Any())
@@ -224,11 +246,26 @@ namespace WhetStone.Looping
                 return new ConcatListListSameCount<T>(a);
             return new ConcatListList<T>(a);
         }
+        /// <summary>
+        /// Concatenates two <see cref="IList{T}"/>s.
+        /// </summary>
+        /// <typeparam name="T">Type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/> to concatenate.</param>
+        /// <param name="other">The second <see cref="IList{T}"/> to concatenate.</param>
+        /// <returns>A concatenated list of <paramref name="this"/> and <paramref name="other"/></returns>
+        /// <remarks>This simply wraps <see cref="Concat{T}(IList{IList{T}}, bool?)"/>.</remarks>
         public static IList<T> Concat<T>(this IList<T> @this, IList<T> other)
         {
             return new ConcatListList<T>(new[] { @this, other });
         }
-        public static LockedCollection<T> Concat<T>(this IEnumerable<IEnumerable<T>> a)
+        /// <summary>
+        /// Concatenates an <see cref="IEnumerable{T}"/> of <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">Type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="a">An <see cref="IList{T}"/> of <see cref="IEnumerable{T}"/>s to concatenate.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/>, with all the elements in the elements of <paramref name="a"/>, concatenated.</returns>
+        /// <remarks>The underlying type of the return value is <see cref="ICollection{T}"/>. However, many of the <see cref="ICollection{T}"/> operations are not constant time (and are only at worst better then LINQ implementation) and as such, should not be called explicitly by the user. Use <see cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/> for list operations.</remarks>
+        public static IEnumerable<T> Concat<T>(this IEnumerable<IEnumerable<T>> a)
         {
             return new ConcatEnumerable<T>(a);
         }

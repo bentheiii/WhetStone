@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace WhetStone.Comparison
 {
+    //todo mix this with enumerablecomparer
     public class EnumerableEqualityCompararer<T> : IEqualityComparer<IEnumerable<T>>
     {
         private readonly IEqualityComparer<T> _int;

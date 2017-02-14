@@ -13,16 +13,13 @@ namespace WhetStone.Fielding
         public ulong MaxFromIntQuery = DefaultMaxFromIntQuery;
         public ulong MaxPowBaseQuery = DefaultMaxPowBaseQuery;
         public ulong MaxPowExpQuery = DefaultMaxPowExpQuery;
-        public ulong MaxFactorialQuery = DefaultMaxFactorialQuery;
-
         private readonly HalvingQuerier<T> _fromIntQuerier;
         private readonly IDictionary<T, HalvingQuerier<T>> _powDictionary;
         private readonly LazyArray<T> _factorialQuerier;
-        protected QueryEnabledField(T zero, T one, T naturalbase)
+        protected QueryEnabledField(T zero, T one)
         {
             this.zero = zero;
             this.one = one;
-            this.naturalbase = naturalbase;
             // ReSharper disable DoNotCallOverridableMethodsInConstructor
             _fromIntQuerier = new HalvingQuerier<T>(this.one,this.add,this.zero);
             _powDictionary = new Dictionary<T, HalvingQuerier<T>>();
@@ -31,7 +28,6 @@ namespace WhetStone.Fielding
         }
         public override T zero { get; }
         public override T one { get; }
-        public override T naturalbase { get; }
         public override T fromInt(ulong x)
         {
             return x < MaxFromIntQuery ? _fromIntQuerier[(int)x] : base.fromInt(x);
@@ -58,16 +54,11 @@ namespace WhetStone.Fielding
             //exponential isn't valid
             return base.Pow(@base, x);
         }
-        public override T Factorial(int x)
-        {
-            return (x>0 && (ulong)x < MaxFactorialQuery) ? _factorialQuerier[x] : base.Factorial(x);
-        }
         public void ResetQueriers()
         {
             MaxFromIntQuery = DefaultMaxFromIntQuery;
             MaxPowBaseQuery = DefaultMaxPowBaseQuery;
             MaxPowExpQuery = DefaultMaxPowExpQuery;
-            MaxFactorialQuery = DefaultMaxFactorialQuery;
             _fromIntQuerier.Clear();
             _powDictionary.Clear();
             _factorialQuerier.Clear();

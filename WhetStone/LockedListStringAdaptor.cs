@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace WhetStone.LockedStructures
 {
-    public class LockedListStringAdaptor : LockedList<char>
+    internal class LockedListStringAdaptor : LockedList<char>
     {
         private readonly string _inner;
         public LockedListStringAdaptor(string inner)

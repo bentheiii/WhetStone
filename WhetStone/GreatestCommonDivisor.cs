@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using WhetStone.Comparison;
@@ -6,12 +7,26 @@ using WhetStone.Looping;
 
 namespace NumberStone
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class greatestCommonDivisor
     {
+        /// <summary>
+        /// Get the greatest common divisor of an array on <see cref="BigInteger"/>s.
+        /// </summary>
+        /// <param name="val">An <see cref="Array"/> of numbers.</param>
+        /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static BigInteger GreatestCommonDivisor(params BigInteger[] val)
         {
             return GreatestCommonDivisor(val.AsList());
         }
+        //todo stein's algorithm
+        /// <summary>
+        /// Get the greatest common divisor of an array on <see cref="BigInteger"/>s.
+        /// </summary>
+        /// <param name="val">An <see cref="IList{T}"/> of numbers.</param>
+        /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static BigInteger GreatestCommonDivisor(IList<BigInteger> val)
         {
             while (true)
@@ -19,7 +34,7 @@ namespace NumberStone
                 switch (val.Count)
                 {
                     case 0:
-                        return 1;
+                        throw new ArgumentException("val is empty!");
                     case 1:
                         return val[0];
                     case 2:
@@ -45,10 +60,20 @@ namespace NumberStone
                 val = val.SplitAt(val.Count / 2).Select(a=>GreatestCommonDivisor(a.AsList()));
             }
         }
+        /// <summary>
+        /// Get the greatest common divisor of an array on <see cref="long"/>s.
+        /// </summary>
+        /// <param name="val">An <see cref="Array"/> of numbers.</param>
+        /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static BigInteger GreatestCommonDivisor(params long[] val)
         {
             return GreatestCommonDivisor(val.AsList());
         }
+        /// <summary>
+        /// Get the greatest common divisor of an array on <see cref="long"/>s.
+        /// </summary>
+        /// <param name="val">An <see cref="IList{T}"/> of numbers.</param>
+        /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static long GreatestCommonDivisor(IList<long> val)
         {
             while (true)
@@ -78,6 +103,11 @@ namespace NumberStone
                 val = val.SplitAt(val.Count / 2).Select(a=> GreatestCommonDivisor(a.AsList()));
             }
         }
+        /// <summary>
+        /// Get the greatest common divisor of an array on <see cref="int"/>s.
+        /// </summary>
+        /// <param name="val">An <see cref="Array"/> of numbers.</param>
+        /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static int GreatestCommonDivisor(params int[] val)
         {
             return (int)GreatestCommonDivisor(val.Select(a => (long)a).ToArray());

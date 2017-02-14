@@ -110,7 +110,7 @@ namespace WhetStone.Random
         public virtual T FromField<T>()
         {
             var f = Fields.getField<T>();
-            if (f.GenType == GenerationType.None || f.GenType == GenerationType.Special)
+            if (f.GenType == GenerationType.Never || f.GenType == GenerationType.Special)
                 throw new NotSupportedException("Field does not support this generation");
             return f.Generate(Bytes());
         }

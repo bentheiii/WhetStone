@@ -6,13 +6,9 @@ namespace WhetStone.Looping
 {
     public static class selectMany
     {
-        public static IList<R> SelectMany<T, R>(this IList<T> @this, Func<T, IList<R>> selector)
+        public static IList<R> SelectMany<T, R>(this IList<T> @this, Func<T, IList<R>> selector, bool? samecount = false)
         {
-            return @this.Select(selector).Concat();
-        }
-        public static LockedList<R> SelectMany<T,R>(this ICollection<T> @this, Func<T, IEnumerable<R>> selector)
-        {
-            return ((IList<IEnumerable<R>>)@this.Select(selector)).Concat();
+            return @this.Select(selector).Concat(samecount);
         }
     }
 }

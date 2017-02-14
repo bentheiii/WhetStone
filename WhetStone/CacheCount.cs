@@ -4,6 +4,9 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class cacheCount
     {
         private class CountCache<T> : LockedCollection<T>
@@ -45,7 +48,13 @@ namespace WhetStone.Looping
                 }
             }
         }
-        public static LockedCollection<T> CacheCount<T>(this IEnumerable<T> @this)
+        /// <summary>
+        /// Caches only the count of an <see cref="IEnumerable{T}"/>, making only enumerate once at most in case of multiple <see cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/> calls.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/></typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> whose count will be cached.</param>
+        /// <returns>A new, read only <see cref="ICollection{T}"/> that remembers the count of <paramref name="this"/> hen it is calculated.</returns>
+        public static ICollection<T> CacheCount<T>(this IEnumerable<T> @this)
         {
             return new CountCache<T>(@this);
         }

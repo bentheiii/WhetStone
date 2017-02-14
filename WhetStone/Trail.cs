@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WhetStone.Looping;
 using WhetStone.LockedStructures;
 
-namespace WhetStone
+namespace WhetStone.Looping
 {
     public static class trail
     {

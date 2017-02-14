@@ -110,7 +110,7 @@ namespace WhetStone.Looping
         {
             var field = Fields.getField<T>();
             //try rewrite
-            if (!field.Negatable || field.isPositive(step, true))
+            if (!field.Negatable || field.isPositive(step))
             {
                 return new RangeList<T>(start, max, step);
             }
@@ -147,7 +147,7 @@ namespace WhetStone.Looping
         {
             var field = Fields.getField<T>();
             //try rewrite
-            if (!field.Negatable || field.isPositive(step, true))
+            if (!field.Negatable || field.isPositive(step))
             {
                 return new RangeList<T>(start, max, step, true);
             }

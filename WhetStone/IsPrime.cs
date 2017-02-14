@@ -1,6 +1,7 @@
 ﻿//#define ENABLEPRIMELINEARSEARCH
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using WhetStone.Looping;
@@ -10,9 +11,15 @@ using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
+    /// <summary>
+    /// A static class that helps check numbers for primality.
+    /// </summary>
     public static class isPrime
     {
-        public static readonly LockedList<int> PrimeList;
+        /// <summary>
+        /// A pre-calculated, read-only <see cref="IList{T}"/> of primes.
+        /// </summary>
+        public static readonly IList<int> PrimeList;
         static isPrime()
         {
             PrimeList = new[]
@@ -162,6 +169,11 @@ namespace NumberStone
 #endregion
                 .ToLockedList();
         }
+        /// <summary>
+        /// Get whether a number is prime by checking <see cref="PrimeList"/>.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <returns>Whether <paramref name="x"/> is prime or <see langword="null"/> id uncertain.</returns>
         public static bool? IsPrimeByList(this int x)
         {
             if (x == 2)
@@ -172,65 +184,112 @@ namespace NumberStone
                 return null;
             return PrimeList.BinarySearchStartBias(x) >= 0;
         }
+        /// <summary>
+        /// Performs a full check as whether a number is prime.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="huristicTrials">How many statistical trials to perform.</param>
+        /// <returns>Whether <paramref name="x"/> is prime or not.</returns>
         public static bool IsPrime(this int x, int huristicTrials = 32)
         {
             var l = x.IsPrimeByList();
             if (l.HasValue)
                 return l.Value;
-            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() != x);
+            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() == x);
         }
+        /// <summary>
+        /// Performs a full check as whether a number is prime.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="huristicTrials">How many statistical trials to perform.</param>
+        /// <returns>Whether <paramref name="x"/> is prime or not.</returns>
         public static bool IsPrime(this long x, int huristicTrials = 64)
         {
             if (x < int.MaxValue)
             {
                 return IsPrime((int)x, huristicTrials);
             }
-            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() != x);
+            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() == x);
         }
-        public static bool isProbablyPrime(this int x, int iterations = 32)
+        /// <overloads>Performs a statistical trial to check for primality.</overloads>
+        /// <summary>
+        /// Performs statistic trials to check whether the number is prime.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="iterations">The number of statistic trials to run.</param>
+        /// <param name="generator">The <see cref="RandomGenerator"/> to get the trial seeds from. <see langwod="null"/> will use the <see cref="GlobalRandomGenerator"/>.</param>
+        /// <returns>Whether the number is probably prime.</returns>
+        /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to (1-0.5^<paramref name="iterations"/>) certainty.</para></remarks>
+        public static bool isProbablyPrime(this int x, int iterations=32, RandomGenerator generator = null)
         {
-            return isProbablyPrime(x, iterations, new GlobalRandomGenerator());
-        }
-        public static bool isProbablyPrime(this int x, int iterations, RandomGenerator generator)
-        {
+            generator = generator ?? new GlobalRandomGenerator();
             if (x <= 0)
                 throw new Exception("can't check a negative number");
-            return range.Range(iterations).All(i => !x.isProbablyPrime(generator));
+            return range.Range(iterations).All(i => x.isProbablyPrime(generator));
         }
-        public static bool isProbablyPrime(this long x, int iterations = 64)
-        {
-            return isProbablyPrime(x, iterations, new GlobalRandomGenerator());
-        }
+        /// <summary>
+        /// Performs a statistical trial to check for primality.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="generator">The <see cref="RandomGenerator"/> to get the trial seeds from.</param>
+        /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to 0.5 certainty.</para></remarks>
         public static bool isProbablyPrime(this int x, RandomGenerator generator)
         {
             int a = generator.Int(1, x);
             return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && a.powmod(x - 1, x) == 1;
         }
+        /// <summary>
+        /// Performs a statistical trial to check for primality.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="generator">The <see cref="RandomGenerator"/> to get the trial seeds from.</param>
+        /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to 0.5 certainty.</para></remarks>
         public static bool isProbablyPrime(this long x, RandomGenerator generator)
         {
             int a = generator.Int(1, (int)Math.Min(int.MaxValue, x));
             return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && ((long)a).powmod(x - 1, x) == 1;
         }
-        public static bool isProbablyPrime(this long x, int iterations, RandomGenerator generator)
+        /// <summary>
+        /// Performs statistic trials to check whether the number is prime.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="iterations">The number of statistic trials to run.</param>
+        /// <param name="generator">The <see cref="RandomGenerator"/> to get the trial seeds from. <see langwod="null"/> will use the <see cref="GlobalRandomGenerator"/>.</param>
+        /// <returns>Whether the number is probably prime.</returns>
+        /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to (1-0.5^<paramref name="iterations"/>) certainty.</para></remarks>
+        public static bool isProbablyPrime(this long x, int iterations=64, RandomGenerator generator = null)
         {
+            generator = generator ?? new GlobalRandomGenerator();
             if (x <= 0)
                 throw new Exception("can't check a negative number");
-            return range.Range(iterations).All(i => !x.isProbablyPrime(generator));
+            return range.Range(iterations).All(i => x.isProbablyPrime(generator));
         }
-        public static bool isProbablyPrime(this BigInteger x, int iterations)
-        {
-            return isProbablyPrime(x, iterations, new GlobalRandomGenerator());
-        }
+        /// <summary>
+        /// Performs a statistical trial to check for primality.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="generator">The <see cref="RandomGenerator"/> to get the trial seeds from.</param>
+        /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to 0.5 certainty.</para></remarks>
         public static bool isProbablyPrime(this BigInteger x, RandomGenerator generator)
         {
+            
             int a = generator.Int(1, (int)BigInteger.Min(int.MaxValue, x));
             return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && BigInteger.ModPow(a, x - 1, x) == 1;
         }
-        public static bool isProbablyPrime(this BigInteger x, int iterations, RandomGenerator generator)
+        /// <summary>
+        /// Performs statistic trials to check whether the number is prime.
+        /// </summary>
+        /// <param name="x">The number to check.</param>
+        /// <param name="iterations">The number of statistic trials to run.</param>
+        /// <param name="generator">The <see cref="RandomGenerator"/> to get the trial seeds from. <see langwod="null"/> will use the <see cref="GlobalRandomGenerator"/>.</param>
+        /// <returns>Whether the number is probably prime.</returns>
+        /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to (1-0.5^<paramref name="iterations"/>) certainty.</para></remarks>
+        public static bool isProbablyPrime(this BigInteger x, int iterations=128, RandomGenerator generator = null)
         {
+            generator = generator ?? new GlobalRandomGenerator();
             if (x <= 0)
                 throw new Exception("can't check a negative number");
-            return range.Range(iterations).All(i => !x.isProbablyPrime(generator));
+            return range.Range(iterations).All(i => x.isProbablyPrime(generator));
         }
     }
 }

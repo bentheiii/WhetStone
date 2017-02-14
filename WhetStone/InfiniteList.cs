@@ -3,16 +3,29 @@ using System.Collections.Generic;
 
 namespace WhetStone.Looping
 {
-    public class ExpandingArray<T> : IList<T>
+    /// <summary>
+    /// An infinite <see cref="IList{T}"/>, with a default value occupying all non-assigned cells
+    /// </summary>
+    /// <typeparam name="T">The type of the elements in the list.</typeparam>
+    /// <remarks>The list is implemented by a <see cref="List{T}"/> wrapped representing the first-most elements of the list. The class's memory usage will as large as the index of the last non-default element.</remarks>
+    public class InfiniteList<T> : IList<T>
     {
         private readonly List<T> _data;
+        /// <summary>
+        /// The default value that populates the list's horizon.
+        /// </summary>
         public T defaultValue { get; }
-        public ExpandingArray(T defaultValue = default(T), int capacity = 4)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="defaultValue">The default value of the List's members.</param>
+        /// <param name="capacity">The initial capacity for non-default members.</param>
+        public InfiniteList(T defaultValue = default(T), int capacity = 4)
         {
             this.defaultValue = defaultValue;
             _data = new List<T>(capacity);
         }
-        public void ExpandTo(int newsize)
+        private void ExpandTo(int newsize)
         {
             if (_data.Count < newsize)
             {
@@ -20,18 +33,30 @@ namespace WhetStone.Looping
                 _data.AddRange(defaultValue.Enumerate().Repeat(newsize - _data.Count));
             }
         }
+        /// <inheritdoc />
         public int IndexOf(T item)
         {
-            return _data.IndexOf(item);
+            var ret = _data.IndexOf(item);
+            if (ret == -1 && item.Equals(defaultValue))
+                ret = this.Count;
+            return ret;
         }
+        /// <inheritdoc />
         public void Insert(int index, T item)
         {
-            _data.Insert(index, item);
+            if (index >= _data.Count)
+                this[index] = item;
+            else
+                _data.Insert(index, item);
         }
+        /// <inheritdoc />
         public void RemoveAt(int index)
         {
+            if (index >= _data.Count)
+                return;
             _data.RemoveAt(index);
         }
+        /// <inheritdoc />
         public T this[int ind]
         {
             get
@@ -44,6 +69,7 @@ namespace WhetStone.Looping
                 _data[ind] = value;
             }
         }
+        /// <inheritdoc />
         public IEnumerator<T> GetEnumerator()
         {
             return _data.Concat(defaultValue.Enumerate().Cycle()).GetEnumerator();
@@ -52,35 +78,36 @@ namespace WhetStone.Looping
         {
             return ((IEnumerable)_data).GetEnumerator();
         }
+        /// <inheritdoc />
         public void Add(T item)
         {
             if (item.Equals(defaultValue))
                 return;
             this[_data.Count] = item;
         }
+        /// <inheritdoc />
         public void Clear()
         {
             _data.Clear();
         }
+        /// <inheritdoc />
         public bool Contains(T item)
         {
             return item.Equals(defaultValue) || _data.Contains(item);
         }
+        /// <inheritdoc />
         public void CopyTo(T[] array, int arrayIndex)
         {
             _data.CopyTo(array, arrayIndex);
         }
+        /// <inheritdoc />
         public bool Remove(T item)
         {
             return _data.Remove(item) || item.Equals(defaultValue);
         }
+        /// <inheritdoc />
         public int Count => int.MaxValue;
-        public bool IsReadOnly
-        {
-            get
-            {
-                return false;
-            }
-        }
+        /// <inheritdoc />
+        public bool IsReadOnly => false;
     }
 }

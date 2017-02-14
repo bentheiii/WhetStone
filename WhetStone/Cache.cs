@@ -7,14 +7,34 @@ using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
+    //todo test this, it might very well not be working
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class cache
     {
+        /// <overloads><summary>Stores the values of the enumerable in an cached container.</summary></overloads>
+        /// <summary>
+        /// Caches the <see cref="IEnumerable{T}"/>, causing it to enumerate once at most.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to be cached.</param>
+        /// <param name="bound">If set to an integer, only that number of elements will be cached.</param>
+        /// <returns>A new structure, wrapping <paramref name="this"/> and storing its elements as they are enumerated.</returns>
         public static LockedList<T> Cache<T>(this IEnumerable<T> @this, int? bound = null)
         {
             if (bound == null)
                 return new EnumerableCache<T>(@this);
             return new EnumerableCacheBound<T>(@this, bound.Value);
         }
+        /// <summary>
+        /// Caches the <see cref="IList{T}"/>, causing it to enumerate once at most.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to be cached.</param>
+        /// <param name="bound">If set to an integer, only that number of elements will be cached.</param>
+        /// <returns>A new structure, wrapping <paramref name="this"/> and storing its elements as they are enumerated.</returns>
+        /// <remarks>Because of the way caching works, and that lists may be partially cached, there are two ways enumerating a cache can be done. See <see cref="IListCache{T}"/>.</remarks>
         public static IListCache<T> Cache<T>(this IList<T> @this, int? bound = null)
         {
             if (bound == null)
@@ -63,15 +83,17 @@ namespace WhetStone.Looping
                 {
                     yield return t;
                 }
-                if (_tor.Current != null && _tor.Current.Item2 <= cachesize)
+                if (_tor.Current == null || _tor.Current.Item2 <= cachesize)
                 {
-                    while (_tor.Current.Item2 < cachesize)
+                    while (_tor.Current == null || _tor.Current.Item2 < cachesize)
                     {
                         _tor.MoveNext();
                     }
-                    while (_tor.MoveNext())
+                    bool cont = true;
+                    while (cont)
                     {
                         yield return _tor.Current.Item1;
+                        cont = _tor.MoveNext();
                     }
                 }
                 else
@@ -147,27 +169,48 @@ namespace WhetStone.Looping
                 }
             }
         }
+        /// <summary>
+        /// An abstract class for Cached lists, allowing two ways to enumerate.
+        /// </summary>
+        /// <typeparam name="T">The type of the cached list.</typeparam>
         public abstract class IListCache<T> : IList<T>
         {
-            public IEnumerator<T> GetEnumeratorRandAccess()
+            /// <summary>
+            /// Returns an enumerable, that returns its elements through <see cref="IList{T}.this"/> operator. This means that only elements not cached will be accessed.
+            /// </summary>
+            /// <returns>An <see cref="IEnumerable{T}"/> with specialized caching</returns>
+            public IEnumerable<T> GetEnumeratorRandAccess()
             {
-                return this.Indices().Select(index => this[index]).GetEnumerator();
+                return this.Indices().Select(index => this[index]);
             }
+            /// <inheritdoc />
+            /// <remarks>This uses the cache until it needs to access an element it has not cached. When this happens it will run an <see cref="IEnumerator{T}"/> up to that element and continue.</remarks>
             public abstract IEnumerator<T> GetEnumerator();
             IEnumerator IEnumerable.GetEnumerator()
             {
                 return GetEnumerator();
             }
+            /// <inheritdoc />
             public abstract void Add(T item);
+            /// <inheritdoc />
             public abstract void Clear();
+            /// <inheritdoc />
             public abstract bool Contains(T item);
+            /// <inheritdoc />
             public abstract void CopyTo(T[] array, int arrayIndex);
+            /// <inheritdoc />
             public abstract bool Remove(T item);
+            /// <inheritdoc />
             public abstract int Count { get; }
+            /// <inheritdoc />
             public abstract bool IsReadOnly { get; }
+            /// <inheritdoc />
             public abstract int IndexOf(T item);
+            /// <inheritdoc />
             public abstract void Insert(int index, T item);
+            /// <inheritdoc />
             public abstract void RemoveAt(int index);
+            /// <inheritdoc />
             public abstract T this[int index] { get; set; }
         }
         private class ListCache<T> : IListCache<T>

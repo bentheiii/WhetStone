@@ -1,22 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using NumberStone;
 using WhetStone.Fielding;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class getSum
     {
-        public static T GetSum<T>(this IEnumerable<T> toAdd, Func<T, T, T> adder = null)
+        /// <summary>
+        /// Get the sum of all elements in an <see cref="IEnumerable{T}"/> using fielding.
+        /// </summary>
+        /// <typeparam name="T">The element to add</typeparam>
+        /// <param name="toAdd">The <see cref="IEnumerable{T}"/> to get the sum of.</param>
+        /// <returns>The sum of all elements in <paramref name="toAdd"/></returns>
+        /// <remarks>Uses fielding, use <see cref="Enumerable.Aggregate{TSource}"/> for non-generic equivalent.</remarks>
+        public static T GetSum<T>(this IEnumerable<T> toAdd)
         {
             var f = Fields.getField<T>();
-            return GetSum(toAdd, f.zero, adder);
+            return toAdd.Aggregate(f.zero, f.add);
         }
-        public static T GetSum<T>(this IEnumerable<T> toAdd, T initial, Func<T, T, T> adder = null)
-        {
-            adder = adder ?? Fields.getField<T>().add;
-            return toAdd.Aggregate(initial, adder);
-        }
+        //todo does this actually work??
+        /// <summary>
+        /// Get the sum of all elements in an <see cref="IEnumerable{T}"/> with floating point compensation.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="toAdd">The <see cref="IEnumerable{T}"/> to add.</param>
+        /// <returns>A compensating sum of the <see cref="IEnumerable{T}"/></returns>
+        /// <remarks>Uses fielding</remarks>
         public static T GetCompensatingSum<T>(this IEnumerable<T> toAdd)
         {
             KahanSum<T> ret = new KahanSum<T>();
@@ -26,6 +39,11 @@ namespace WhetStone.Looping
             }
             return ret.Sum;
         }
+        /// <summary>
+        /// Get the sum of all elements in an <see cref="IEnumerable{T}"/> with floating point compensation.
+        /// </summary>
+        /// <param name="toAdd">The <see cref="IEnumerable{T}"/> to add.</param>
+        /// <returns>A compensating sum of the <see cref="IEnumerable{T}"/></returns>
         public static double GetCompensatingSum(this IEnumerable<double> toAdd)
         {
             var ret = new KahanSum();

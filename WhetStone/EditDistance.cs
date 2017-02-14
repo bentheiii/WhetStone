@@ -5,82 +5,175 @@ using WhetStone.Guard;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class editDistance
     {
+        /// <summary>
+        /// An interface for an edit step.
+        /// </summary>
+        /// <typeparam name="T">The type of the element the step affects.</typeparam>
         public interface IEditStep<T>
         {
+            /// <summary>
+            /// Get a new <see cref="IEnumerable{T}"/> with the step applied to the original
+            /// </summary>
+            /// <param name="en">The enumerable to apply to.</param>
+            /// <returns>A new enumerable with <paramref name="en"/>'s member except the step is applied to it.</returns>
             IEnumerable<T> apply(IEnumerable<T> en);
+            /// <summary>
+            /// Mutates an <see cref="IList{T}"/> to reflect the edit step.
+            /// </summary>
+            /// <param name="li">The <see cref="IList{T}"/> to mutate.</param>
+            /// <remarks>This will mutate <paramref name="li"/>.</remarks>
             void apply(IList<T> li);
         }
-
+        /// <summary>
+        /// Represents an element being added to an enumerable.
+        /// </summary>
+        /// <typeparam name="T">The type of the element to add.</typeparam>
         public class Insert<T> : IEditStep<T>
         {
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            /// <param name="newVal">The element to add.</param>
+            /// <param name="newInd">The index to add the element in.</param>
             public Insert(T newVal, int newInd)
             {
                 this.newVal = newVal;
                 this.newInd = newInd;
             }
+            /// <summary>
+            /// The element that is added during the step.
+            /// </summary>
             public T newVal { get; }
+            /// <summary>
+            /// The destination index of the added element.
+            /// </summary>
             public int newInd { get; }
+            /// <inheritdoc />
             public IEnumerable<T> apply(IEnumerable<T> en)
             {
                 return en.Splice(newVal, newInd);
             }
+            /// <inheritdoc />
             public void apply(IList<T> li)
             {
                 li.Insert(newInd, newVal);
             }
+            /// <inheritdoc />
             public override string ToString()
             {
                 return $"Add {newVal} at index {newInd}";
             }
         }
+        /// <summary>
+        /// Represents an element being removed from an enumerable.
+        /// </summary>
+        /// <typeparam name="T">The type of the element to remove.</typeparam>
         public class Delete<T> : IEditStep<T>
         {
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            /// <param name="deletedInd">The index of the element to remove.</param>
             public Delete(int deletedInd)
             {
                 this.deletedInd = deletedInd;
             }
+            /// <summary>
+            /// The index of the element to remove.
+            /// </summary>
             public int deletedInd { get; }
+            /// <inheritdoc />
             public IEnumerable<T> apply(IEnumerable<T> en)
             {
                 return en.SkipSlice(deletedInd);
             }
+            /// <inheritdoc />
             public void apply(IList<T> li)
             {
                 li.RemoveAt(deletedInd);
             }
+            /// <inheritdoc />
             public override string ToString()
             {
                 return $"Delete index {deletedInd}";
             }
         }
+        /// <summary>
+        /// Represents an element being replaced in an enumerable.
+        /// </summary>
+        /// <typeparam name="T">The type of the element to rep-lace.</typeparam>
         public class Substitute<T> : IEditStep<T>
         {
+            /// <summary>
+            /// Constructor.
+            /// </summary>
+            /// <param name="newVal">The value to replace the element with.</param>
+            /// <param name="ind">The index of the element to replace.</param>
             public Substitute(T newVal, int ind)
             {
                 this.newVal = newVal;
                 this.ind = ind;
             }
+            /// <summary>
+            /// The value to replace the element with.
+            /// </summary>
             public T newVal { get; }
+            /// <summary>
+            /// The index of the element to replace.
+            /// </summary>
             public int ind { get; }
+            /// <inheritdoc />
             public IEnumerable<T> apply(IEnumerable<T> en)
             {
                 return en.Cover(newVal, ind);
             }
+            /// <inheritdoc />
             public void apply(IList<T> li)
             {
                 li[ind] = newVal;
             }
+            /// <inheritdoc />
             public override string ToString()
             {
                 return $"Set index {ind} with {newVal}";
             }
         }
         
+        // todo step weights
+        // todo make other not necessarily a list, and remark it
+        /// <summary>
+        /// Get the edit steps in the shortest edit path from <paramref name="this"/> to <paramref name="other"/>.
+        /// </summary>
+        /// <param name="this">The starting <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The destination <see cref="IList{T}"/>.</param>
+        /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to compare elements. Setting to <see langword="null"/>.</param>
+        /// <param name="allowIns">Whether to allow insertions.</param>
+        /// <param name="allowDel">Whether to allow deletions.</param>
+        /// <param name="allowSub">Whether to allow substations.</param>
+        /// <typeparam name="T">The type of <paramref name="this"/> and <paramref name="other"/>'s elements.</typeparam>
+        /// <returns>An enumerable with all the edit steps necessary to turn <paramref name="this"/> into <paramref name="other"/>.</returns>
+        /// <exception cref="ArgumentException">If no edit paths are found.</exception>
+        /// <remarks>
+        /// <para>Using dynamic programming, space and time complexity O(n^2).</para>
+        /// <para>Because <paramref name="other"/> is enumerated so many times, it is recommended to be more efficient than <paramref name="this"/>, if possible.</para>
+        /// </remarks>
         public static IEnumerable<IEditStep<T>> EditSteps<T>(this IEnumerable<T> @this, IList<T> other, IEqualityComparer<T> comp = null, bool allowIns = true, bool allowDel = true, bool allowSub = true)
         {
             comp = comp ?? EqualityComparer<T>.Default;
+
+            if (!allowIns && !allowDel && !allowSub)
+            {
+                if (@this.SequenceEqual(other))
+                    yield break;
+                throw new ArgumentException("No edit path found.");
+            }
+            //todo more special cases
+
             const int ins = 0;
             const int del = 1;
             const int sub = 2;
@@ -166,15 +259,32 @@ namespace WhetStone.Looping
                             j--;
                             continue;
                         default:
-                            throw new Exception("No Edit Path Found!");
+                            throw new ArgumentException("No edit path found.");
                     }
                 }
             }
         }
+        //todo step weights
+        /// <summary>
+        /// Gets the minimum number of edit steps to transform <paramref name="this"/> to <paramref name="other"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="this"/> and <paramref name="other"/>'s elements.</typeparam>
+        /// <param name="this">The starting <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The destination <see cref="IList{T}"/>.</param>
+        /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to compare elements. Setting to <see langword="null"/>.</param>
+        /// <param name="allowIns">Whether to allow insertions.</param>
+        /// <param name="allowDel">Whether to allow deletions.</param>
+        /// <param name="allowSub">Whether to allow substations.</param>
+        /// <returns>The number of steps in the minimum edit path from <paramref name="this"/> to <paramref name="other"/>.</returns>
+        /// <remarks>
+        /// <para>Using forgetful dynamic programming, time complexity O(n^2), space complexity O(n).</para>
+        /// </remarks>
         public static int EditDistance<T>(this IEnumerable<T> @this, IEnumerable<T> other, IEqualityComparer<T> comp = null, bool allowIns = true, bool allowDel = true, bool allowSub = true)
         {
             comp = comp ?? EqualityComparer<T>.Default;
             IList<int> v = allowIns ? range.IRange(other.Count()) : (-2).Enumerate(other.Count()+1);
+
+            //todo special cases
 
             foreach (var t in @this)
             {

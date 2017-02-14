@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhetStone", "WhetStone\Whet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhetstoneTests", "WhetstoneTests\WhetstoneTests.csproj", "{B7403CD2-3B2B-4555-A179-D825F2BE859F}"
 EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "DocBuilder", "DocBuilder\DocBuilder.shfbproj", "{D4C72D11-ACDC-4932-9225-6B3C76249D31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{B7403CD2-3B2B-4555-A179-D825F2BE859F}.Release|x64.Build.0 = Release|x64
 		{B7403CD2-3B2B-4555-A179-D825F2BE859F}.Release|x86.ActiveCfg = Release|Any CPU
 		{B7403CD2-3B2B-4555-A179-D825F2BE859F}.Release|x86.Build.0 = Release|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Debug|x64.Build.0 = Debug|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Debug|x86.Build.0 = Debug|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Release|x64.ActiveCfg = Release|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Release|x64.Build.0 = Release|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Release|x86.ActiveCfg = Release|Any CPU
+		{D4C72D11-ACDC-4932-9225-6B3C76249D31}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

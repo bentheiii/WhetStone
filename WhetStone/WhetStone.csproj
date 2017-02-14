@@ -21,6 +21,7 @@
     <DefineConstants>TRACE;DEBUG;WIN64</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\WhetStone.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,10 +71,6 @@
     <Reference Include="BigRationalLibrary">
       <HintPath>..\..\BigRationalLibrary\bin\Debug\BigRationalLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="LiteDB, Version=2.0.2.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
-      <HintPath>..\packages\LiteDB.2.0.2\lib\net35\LiteDB.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -89,10 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbsolutePathToRelative.cs" />
-    <Compile Include="AggregateValue.cs" />
     <Compile Include="All.cs" />
     <Compile Include="AllEqual.cs" />
-    <Compile Include="Angles.cs" />
     <Compile Include="AnyAndAll.cs" />
     <Compile Include="Append.cs" />
     <Compile Include="AsyncDo.cs" />
@@ -106,14 +101,10 @@
     <Compile Include="CacheCount.cs" />
     <Compile Include="Choose.cs" />
     <Compile Include="CommonRegex.cs" />
-    <Compile Include="ComparerToEquator.cs" />
     <Compile Include="Concat.cs" />
-    <Compile Include="ConditionFunnel.cs" />
-    <Compile Include="ConstantRandomGenerator.cs" />
     <Compile Include="ConvertToString.cs" />
     <Compile Include="CoordinateBind.cs" />
     <Compile Include="CountBind.cs" />
-    <Compile Include="CountSetBits.cs" />
     <Compile Include="CountUp.cs" />
     <Compile Include="Cover.cs" />
     <Compile Include="Cycle.cs" />
@@ -122,7 +113,6 @@
     <Compile Include="Divisibility.cs" />
     <Compile Include="Do.cs" />
     <Compile Include="Duplicates.cs" />
-    <Compile Include="DynamicComparer.cs" />
     <Compile Include="EditDistance.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="EnumerableComparer.cs" />
@@ -130,10 +120,8 @@
     <Compile Include="Enumerate.cs" />
     <Compile Include="EnumerationHook.cs" />
     <Compile Include="EqualityFunctionComparer.cs" />
-    <Compile Include="Except.cs" />
-    <Compile Include="Factorial.cs" />
     <Compile Include="Factors.cs" />
-    <Compile Include="Frequencies.cs" />
+    <Compile Include="FieldWrapper.cs" />
     <Compile Include="FunctionComparer.cs" />
     <Compile Include="Generate.cs" />
     <Compile Include="Chunk.cs" />
@@ -144,12 +132,8 @@
     <Compile Include="HookCount.cs" />
     <Compile Include="HookFirst.cs" />
     <Compile Include="HookLast.cs" />
-    <Compile Include="IFunnel.cs" />
-    <Compile Include="ImpotentField.cs" />
     <Compile Include="Indices.cs" />
     <Compile Include="Infinite.cs" />
-    <Compile Include="InsertSuffixes.cs" />
-    <Compile Include="IProccesor.cs" />
     <Compile Include="IsPrime.cs" />
     <Compile Include="IsSorted.cs" />
     <Compile Include="IsWithin.cs" />
@@ -157,6 +141,8 @@
     <Compile Include="KahanSum.cs" />
     <Compile Include="LeastCommonMultiple.cs" />
     <Compile Include="LinkedListBatchRemover.cs" />
+    <Compile Include="ListBitArrayAdaptor.cs" />
+    <Compile Include="ListBitVectorAdapter.cs" />
     <Compile Include="ListDoubleSided.cs" />
     <Compile Include="LocalRandomGenerator.cs" />
     <Compile Include="LockedCollection.cs" />
@@ -183,14 +169,12 @@
     <Compile Include="PrimeFactors.cs" />
     <Compile Include="Primes.cs" />
     <Compile Include="PriorityComparer.cs" />
-    <Compile Include="QualifierFunnel.cs" />
     <Compile Include="QueryEnabledField.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Range.cs" />
     <Compile Include="Repeat.cs" />
     <Compile Include="Reverse.cs" />
     <Compile Include="ReverseComparer.cs" />
-    <Compile Include="RotationalSpeeds.cs" />
     <Compile Include="Select.cs" />
     <Compile Include="SelectMany.cs" />
     <Compile Include="SequenceEqual.cs" />
@@ -222,20 +206,15 @@
     <Compile Include="Balanced.cs" />
     <Compile Include="Columns.cs" />
     <Compile Include="CompareCount.cs" />
-    <Compile Include="Concat2D.cs" />
     <Compile Include="Count.cs" />
     <Compile Include="CountAtleast.cs" />
     <Compile Include="EnsureValue.cs" />
-    <Compile Include="EnumerationStream.cs" />
-    <Compile Include="ExpandingArray.cs" />
-    <Compile Include="Fill2D.cs" />
+    <Compile Include="InfiniteList.cs" />
     <Compile Include="Fill.cs" />
     <Compile Include="First.cs" />
     <Compile Include="GetAverage.cs" />
     <Compile Include="GetMax.cs" />
-    <Compile Include="GetMedian.cs" />
     <Compile Include="GetMin.cs" />
-    <Compile Include="GetMode.cs" />
     <Compile Include="GetProduct.cs" />
     <Compile Include="GetSize.cs" />
     <Compile Include="GetSum.cs" />
@@ -245,15 +224,11 @@
     <Compile Include="LazyArray.cs" />
     <Compile Include="Occurances.cs" />
     <Compile Include="BinarySearch.cs" />
-    <Compile Include="ICreator.cs" />
     <Compile Include="Fields.cs" />
-    <Compile Include="Functional.cs" />
-    <Compile Include="Funnel.cs" />
     <Compile Include="Guard.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="Timeout.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EntropyRandomGenerator.cs" />
     <Compile Include="RecommendSize.cs" />
     <Compile Include="RecursiveQuerier.cs" />
     <Compile Include="ResizingArray.cs" />
@@ -278,19 +253,14 @@
     <Compile Include="Trail.cs" />
     <Compile Include="TrueMod.cs" />
     <Compile Include="TupleEqualityComparer.cs" />
-    <Compile Include="TypeFunnel.cs" />
     <Compile Include="Uniques.cs" />
     <Compile Include="Units.cs" />
     <Compile Include="UnsignedDiff.cs" />
     <Compile Include="ValueOrDefault.cs" />
     <Compile Include="Where.cs" />
-    <Compile Include="Parser.cs" />
     <Compile Include="YieldAggregate.cs" />
     <Compile Include="Zip.cs" />
     <Compile Include="ZipUnBound.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
