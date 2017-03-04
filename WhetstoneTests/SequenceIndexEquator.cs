@@ -16,14 +16,15 @@ namespace WhetStone.Comparison
         {
             if (@this.Count != other.Count)
                 return false;
-            return @this.Select(Tuple.Create).ZipUnbound(other.Select(Tuple.Create), @this.Indices().Select(Tuple.Create))
-                .All(a =>
-                {
-                    if (a.Item1 == null || a.Item2 == null || a.Item3 == null)
-                        return false;
-                    var arr = new[] {a.Item1.Item1, a.Item2.Item1, @this[a.Item3.Item1], other[a.Item3.Item1]};
-                    return arr.AllEqual(_int);
-                }); 
+            foreach (Tuple<Tuple<T>,Tuple<T>,Tuple<int>> t in @this.ZipUnBoundTuple(other,@this.Indices()))
+            {
+                if (t.Item1 == null || t.Item2 == null || t.Item3 == null)
+                    return false;
+                int ind = t.Item3.Item1;
+                if (!new [] { @this[ind], other[ind], t.Item1.Item1, t.Item2.Item1 }.AllEqual(_int))
+                    return false;
+            }
+            return true;
         }
         public int GetHashCode(IList<T> obj)
         {

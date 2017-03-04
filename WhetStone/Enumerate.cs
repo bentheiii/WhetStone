@@ -9,17 +9,18 @@ namespace WhetStone.Looping
     /// </summary>
     public static class enumerate
     {
-        //todo -1 for infinite
         /// <summary>
         /// Creates a new <see cref="IList{T}"/>, including only <paramref name="b"/> as an element.
         /// </summary>
         /// <typeparam name="T">The type of the list to return</typeparam>
         /// <param name="b">The element to make the <see cref="IList{T}"/> out of.</param>
-        /// <param name="count">How many elements the <see cref="IList{T}"/> should contain.</param>
+        /// <param name="count">How many elements the <see cref="IList{T}"/> should contain. <see langword="null"/> for an infinite list.</param>
         /// <returns>An <see cref="IList{T}"/> that includes only <paramref name="b"/>, <paramref name="count"/> times.</returns>
-        public static IList<T> Enumerate<T>(this T b, int count = 1)
+        public static IList<T> Enumerate<T>(this T b, int? count = 1)
         {
-            return new EnumerateLockedList<T>(b, count);
+            if (count == null)
+                return new EnumerateLockedListInfinite<T>(b);
+            return new EnumerateLockedList<T>(b, count.Value);
         }
         private class EnumerateLockedList<T> : LockedList<T>
         {
@@ -41,6 +42,29 @@ namespace WhetStone.Looping
                 {
                     if (index <0 || index >= _count)
                         throw new ArgumentOutOfRangeException();
+                    return _member;
+                }
+            }
+        }
+        private class EnumerateLockedListInfinite<T> : LockedList<T>
+        {
+            private readonly T _member;
+            public EnumerateLockedListInfinite(T member)
+            {
+                this._member = member;
+            }
+            public override IEnumerator<T> GetEnumerator()
+            {
+                while (true)
+                {
+                    yield return _member;
+                }
+            }
+            public override int Count => int.MaxValue;
+            public override T this[int index]
+            {
+                get
+                {
                     return _member;
                 }
             }

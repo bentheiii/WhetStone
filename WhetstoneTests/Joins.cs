@@ -45,7 +45,7 @@ namespace Tests
                 new [] {0,1,1},new [] {1,1,1},new [] {2,1,1},new [] {3,1,1},new [] {4,1,1},
                 new [] {0,0,2},new [] {1,0,2},new [] {2,0,2},new [] {3,0,2},new [] {4,0,2},
                 new [] {0,1,2},new [] {1,1,2},new [] {2,1,2},new [] {3,1,2},new [] {4,1,2},
-            }, new EnumerableEqualityCompararer<int>()));
+            }, new EnumerableCompararer<int>()));
         }
         [TestMethod]
         public void MetaAllPairs()
@@ -114,7 +114,7 @@ namespace Tests
                 var valEnumerable = range.Range(n).AsEnumerable().Join(length, cartesianType);
                 Assert.IsTrue(valList.Count == valEnumerable.Count());
                 Assert.IsTrue(valList.Count > 0);
-                Assert.IsTrue(valList.SequenceEqual(valEnumerable,new EnumerableEqualityCompararer<int>()));
+                Assert.IsTrue(valList.SequenceEqual(valEnumerable,new EnumerableCompararer<int>()));
             }
             Assert.AreEqual(4,trials);
         }

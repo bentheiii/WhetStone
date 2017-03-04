@@ -1,43 +1,49 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace WhetStone.Comparison
 {
-    //todo revamp
-    public class FunctionComparer<T> : IComparer<T>
+    /// <summary>
+    /// A comparer that maps a value from one type to another, for either equality comparison or order comparison.
+    /// </summary>
+    /// <typeparam name="T">The original type to be compared.</typeparam>
+    /// <typeparam name="G">The mapped type to compare.</typeparam>
+    public class FunctionComparer<T, G> : IComparer<T>, IEqualityComparer<T>
     {
-        private readonly Func<T, T, int> _c;
+        private readonly Func<T, G> _f;
+        private readonly IEqualityComparer<G> _e;
+        private readonly IComparer<G> _c;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="f">The mapper function to map from <typeparamref name="T"/> to <typeparamref name="G"/>.</param>
+        /// <param name="c">The internal <see cref="IComparer{T}"/> to compare mapped elements with. <see langword="null"/> for default.</param>
+        /// <param name="e">the internal <see cref="IEqualityComparer{T}"/> to hash and compare equality of mapped elements with. <see langword="null"/> for <paramref name="c"/> to compare equality and default hasher.</param>
+        public FunctionComparer(Func<T, G> f, IComparer<G> c = null, IEqualityComparer<G> e = null)
+        {
+            _f = f;
+            _c = c ?? Comparer<G>.Default;
+            _e = e;
+        }
+        /// <inheritdoc />
         public int Compare(T x, T y)
         {
-            return _c(x, y);
+            return _c.Compare(_f(x), _f(y));
         }
-        public FunctionComparer(Func<T, T, int> c)
+        /// <inheritdoc />
+        public bool Equals(T x, T y)
         {
-            this._c = c;
+            if (_e == null)
+            {
+                return Compare(x, y) == 0;
+            }
+            return _e.Equals(_f(x), _f(y));
         }
-        public FunctionComparer(Func<T, IComparable> c)
+        /// <inheritdoc />
+        public int GetHashCode(T obj)
         {
-            if (c == null)
-                throw new ArgumentNullException();
-            this._c = (a, b) => c(a).CompareTo(c(b));
-        }
-        public FunctionComparer(Func<T, object> f, IComparer c)
-        {
-            this._c = (a, b) => c.Compare(f(a), f(b));
-        }
-    }
-    public class FunctionComparer<T, G> : IComparer<T>
-    {
-        private readonly Func<T, T, int> _c;
-        public int Compare(T x, T y)
-        {
-            return _c(x, y);
-        }
-        public FunctionComparer(Func<T, G> f) : this(f, Comparer<G>.Default) { }
-        public FunctionComparer(Func<T, G> f, IComparer<G> c)
-        {
-            this._c = (a, b) => c.Compare(f(a), f(b));
+            var tohash = _f(obj);
+            return (_e ?? EqualityComparer<G>.Default).GetHashCode(tohash);
         }
     }
 }

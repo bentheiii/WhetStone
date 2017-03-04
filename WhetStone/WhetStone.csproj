@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\WhetStone.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -117,10 +118,8 @@
     <Compile Include="EditDistance.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="EnumerableComparer.cs" />
-    <Compile Include="EnumerableEqualityComparer.cs" />
     <Compile Include="Enumerate.cs" />
     <Compile Include="EnumerationHook.cs" />
-    <Compile Include="EqualityFunctionComparer.cs" />
     <Compile Include="Factors.cs" />
     <Compile Include="FieldWrapper.cs" />
     <Compile Include="FunctionComparer.cs" />
@@ -234,6 +233,7 @@
     <Compile Include="UnsignedDiff.cs" />
     <Compile Include="YieldAggregate.cs" />
     <Compile Include="Zip.cs" />
+    <Compile Include="ZipUnBound.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

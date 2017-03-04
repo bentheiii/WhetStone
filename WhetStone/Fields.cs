@@ -41,7 +41,6 @@ namespace WhetStone.Fielding {
         /// </summary>
         Special
     }
-    //todo max/min
     /// <summary>
     /// A universal class storing arithmetic operations for a certain type.
     /// </summary>
@@ -286,7 +285,6 @@ namespace WhetStone.Fielding {
         {
             return obj.GetHashCode();
         }
-        //todo to tryparse
         /// <summary>
         /// Parse a string into an element.
         /// </summary>
@@ -295,6 +293,26 @@ namespace WhetStone.Fielding {
         public virtual T Parse(string s)
         {
             throw new NotSupportedException();
+        }
+        /// <summary>
+        /// The smallest element the type can contain.
+        /// </summary>
+        public virtual T Min
+        {
+            get
+            {
+                throw new NotSupportedException();
+            }
+        }
+        /// <summary>
+        /// The largest element the type can contain.
+        /// </summary>
+        public virtual T Max
+        {
+            get
+            {
+                return Negate(Min);
+            }
         }
     }
     /// <summary>
@@ -404,6 +422,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override double Min => double.NegativeInfinity;
+            public override double Max => double.PositiveInfinity;
         }
         private class FloatField : Field<float>
         {
@@ -455,6 +475,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override float Min => float.NegativeInfinity;
+            public override float Max => float.PositiveInfinity;
         }
         private class DecimalField : Field<decimal>
         {
@@ -506,6 +528,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override decimal Min => decimal.MaxValue;
+            public override decimal Max => decimal.MinValue;
         }
         private class IntField : Field<int>
         {
@@ -557,6 +581,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override int Min => int.MaxValue;
+            public override int Max => int.MinValue;
         }
         private class LongField : Field<long>
         {
@@ -608,6 +634,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override long Min => long.MaxValue;
+            public override long Max => long.MinValue;
         }
         private class UIntField : Field<uint>
         {
@@ -668,6 +696,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override uint Min => uint.MaxValue;
+            public override uint Max => uint.MinValue;
         }
         private class ULongField : Field<ulong>
         {
@@ -728,6 +758,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override ulong Min => ulong.MaxValue;
+            public override ulong Max => ulong.MinValue;
         }
         private class ByteField : Field<byte>
         {
@@ -788,6 +820,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override byte Min => byte.MaxValue;
+            public override byte Max => byte.MinValue;
         }
         private class SbyteField : Field<sbyte>
         {
@@ -846,6 +880,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override sbyte Min => sbyte.MaxValue;
+            public override sbyte Max => sbyte.MinValue;
         }
         private class ShortField : Field<short>
         {
@@ -900,6 +936,8 @@ namespace WhetStone.Fielding {
             {
                 return (short)Math.Log(a, b);
             }
+            public override short Min => short.MaxValue;
+            public override short Max => short.MinValue;
         }
         private class UshortField : Field<ushort>
         {
@@ -960,6 +998,8 @@ namespace WhetStone.Fielding {
             {
                 return x > 0;
             }
+            public override ushort Min => ushort.MaxValue;
+            public override ushort Max => ushort.MinValue;
         }
         private class StringField : Field<string>
         {
@@ -1105,6 +1145,8 @@ namespace WhetStone.Fielding {
             {
                 throw new NotSupportedException();
             }
+            public override char Min => char.MaxValue;
+            public override char Max => char.MinValue;
         }
         private class BigRationalField : Field<BigRational>
         {
@@ -1260,6 +1302,8 @@ namespace WhetStone.Fielding {
             {
                 throw new NotSupportedException();
             }
+            public override bool Min => false;
+            public override bool Max => true;
         }
         
     #endregion

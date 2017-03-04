@@ -22,7 +22,6 @@ namespace WhetStone.Looping
             var f = Fields.getField<T>();
             return toAdd.Aggregate(f.zero, f.add);
         }
-        //todo does this actually work??
         /// <summary>
         /// Get the sum of all elements in an <see cref="IEnumerable{T}"/> with floating point compensation.
         /// </summary>

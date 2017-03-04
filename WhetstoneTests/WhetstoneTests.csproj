@@ -75,6 +75,7 @@
     <Compile Include="Duplicates.cs" />
     <Compile Include="EditDistance.cs" />
     <Compile Include="Joins.cs" />
+    <Compile Include="Kahan.cs" />
     <Compile Include="ListCache.cs" />
     <Compile Include="LogarithmicProgresser.cs" />
     <Compile Include="MutableListCheck.cs" />
