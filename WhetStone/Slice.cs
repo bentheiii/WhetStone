@@ -6,18 +6,23 @@ using WhetStone.Guard;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class slice
     {
+        //todo error check args
+        /// <overloads>Get a part of an enumerable.</overloads>
         /// <summary>
-        /// max is exclusive
+        /// Get a part from an <see cref="IList{T}"/>.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="this"></param>
-        /// <param name="start"></param>
-        /// <param name="max"></param>
-        /// <param name="steps"></param>
-        /// <param name="length"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to slice.</param>
+        /// <param name="start">The first index of the section to return.</param>
+        /// <param name="max">The last index of the section to return. Exclusive. If this is set, <paramref name="length"/> must not be set.</param>
+        /// <param name="steps">The step, in indices between the indices of the section.</param>
+        /// <param name="length">The number of items in the section. If this is set, <paramref name="max"/> must not be set.</param>
+        /// <returns>A mutability-passing slice of <paramref name="this"/>.</returns>
         public static IList<T> Slice<T>(this IList<T> @this, int start, int? max = null, int steps=1, int? length = null)
         {
             if (max.HasValue && length.HasValue)
@@ -32,12 +37,27 @@ namespace WhetStone.Looping
                 throw new ArgumentOutOfRangeException();
             return ret;
         }
+        //todo seperate file
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> that is the same as the original <see cref="IList{T}"/> with the first elements skipped.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to use.</param>
+        /// <param name="skipCount">The number of elements to skip.</param>
+        /// <returns>A mutability-passing <see cref="IList{T}"/> that skips the first <paramref name="skipCount"/> elements in <paramref name="this"/>.</returns>
         public static IList<T> Skip<T>(this IList<T> @this, int skipCount)
         {
             if (skipCount == 0)
                 return @this;
             return @this.Slice(Math.Min(skipCount, @this.Count));
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> that is the same as the original <see cref="IList{T}"/> with the last elements skipped.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to use.</param>
+        /// <param name="length">The number of elements take.</param>
+        /// <returns>A mutability-passing <see cref="IList{T}"/> that takes the first <paramref name="length"/> elements in <paramref name="this"/>.</returns>
         public static IList<T> Take<T>(this IList<T> @this, int length)
         {
             if (length >= @this.Count)
@@ -127,12 +147,18 @@ namespace WhetStone.Looping
                 return GetEnumerator();
             }
         }
-
+        /// <summary>
+        /// Get a part from an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to slice.</param>
+        /// <param name="start">The first index of the section to return.</param>
+        /// <param name="max">The last index of the section to return. Exclusive. If this is set, <paramref name="length"/> must not be set.</param>
+        /// <param name="steps">The step, in indices between the indices of the section.</param>
+        /// <param name="length">The number of items in the section. If this is set, <paramref name="max"/> must not be set.</param>
+        /// <returns>A mutability-passing slice of <paramref name="this"/>.</returns>
         public static IEnumerable<T> Slice<T>(this IEnumerable<T> @this, int start = 0, int? max = null, int steps = 1, int? length = null)
         {
-            var ts = @this.AsList(false);
-            if (ts != null)
-                return ts.Slice(start,max,steps,length);
             if (max.HasValue && length.HasValue)
                 throw new ArgumentException("either max or length must be null");
             if (length.HasValue)

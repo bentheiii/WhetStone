@@ -6,6 +6,9 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class select
     {
         private class SelectList<T, R> : LockedList<R>
@@ -217,6 +220,8 @@ namespace WhetStone.Looping
             }
             private KeyValuePair<K0, V0> Inv(KeyValuePair<K1, V1> a)
             {
+                if (_valinv == null)
+                    throw new InvalidOperationException("The dictionary cannot be assigned new values");
                 return new KeyValuePair<K0, V0>(_keyinv(a.Key), _valinv(a.Value));
             }
             public SelectDictionary(IDictionary<K0, V0> inner, Func<K0, K1> keysel, Func<K1, K0> keyinv, Func<V0, V1> valsel, Func<V1, V0> valinv)
@@ -264,6 +269,8 @@ namespace WhetStone.Looping
             }
             public void Add(K1 key, V1 value)
             {
+                if (_valinv == null)
+                    throw new InvalidOperationException("The dictionary cannot be assigned new values");
                 _inner[_keyinv(key)] = _valinv(value);
             }
             public bool Remove(K1 key)
@@ -285,32 +292,110 @@ namespace WhetStone.Looping
                 }
                 set
                 {
+                    if (_valinv == null)
+                        throw new InvalidOperationException("The dictionary cannot be assigned new values");
                     _inner[_keyinv(key)] = _valinv(value);
                 }
             }
             public ICollection<K1> Keys => _inner.Keys.Select(_keysel);
             public ICollection<V1> Values => _inner.Values.Select(_valsel);
         }
-        public static LockedList<R> Select<T, R>(this IList<T> @this, Func<T, R> selector)
+        /// <overloads>Get a 1-1 mapping of enumerables.</overloads>
+        /// <summary>
+        /// Get a 1-1 mapping of an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the original <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="R">The type of the returned <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to map.</param>
+        /// <param name="selector">The mapping function.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s elements.</returns>
+        public static IList<R> Select<T, R>(this IList<T> @this, Func<T, R> selector)
         {
             return new SelectList<T, R>(@this, selector);
         }
+        /// <summary>
+        /// Get a 1-1 invertible mapping of an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the original <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="R">The type of the returned <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to map.</param>
+        /// <param name="selector">The mapping function.</param>
+        /// <param name="inverse">The inverse of <paramref name="selector"/>.</param>
+        /// <returns>A mutability passing <see cref="IList{T}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s elements.</returns>
+        /// <remarks>Alongside allowing mutating <paramref name="this"/>, the return value can optimize some methods:
+        /// <example>
+        /// <code>
+        /// var arr = range.IRange(-850,5000,9) //immutable, but searching is an O(1) operation.
+        /// var range+1 = arr.Select(a=>a+1,b=>b-1)
+        /// negPrimes.Contains(-53) //will perform O(1) operation, searching for -54 in an IRange.
+        /// </code>
+        /// </example>
+        /// </remarks>
         public static IList<R> Select<T, R>(this IList<T> @this, Func<T, R> selector, Func<R, T> inverse)
         {
             return new SelectInverseList<T, R>(@this, selector, inverse);
         }
-        public static LockedCollection<R> Select<T, R>(this ICollection<T> @this, Func<T, R> selector)
+        /// <overloads>Get a 1-1 mapping of enumerables.</overloads>
+        /// <summary>
+        /// Get a 1-1 mapping of an <see cref="ICollection{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the original <see cref="ICollection{T}"/>.</typeparam>
+        /// <typeparam name="R">The type of the returned <see cref="ICollection{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="ICollection{T}"/> to map.</param>
+        /// <param name="selector">The mapping function.</param>
+        /// <returns>A read-only <see cref="ICollection{T}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s elements.</returns>
+        public static ICollection<R> Select<T, R>(this ICollection<T> @this, Func<T, R> selector)
         {
             return new SelectCollection<T, R>(@this, selector);
         }
+        /// <summary>
+        /// Get a 1-1 invertible mapping of an <see cref="ICollection{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the original <see cref="ICollection{T}"/>.</typeparam>
+        /// <typeparam name="R">The type of the returned <see cref="ICollection{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="ICollection{T}"/> to map.</param>
+        /// <param name="selector">The mapping function.</param>
+        /// <param name="inverse">The inverse of <paramref name="selector"/>.</param>
+        /// <returns>A mutability passing <see cref="ICollection{T}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s elements.</returns>
+        /// <remarks>Alongside allowing mutating <paramref name="this"/>, the return value can optimize some methods:
+        /// <example>
+        /// <code>
+        /// var arr = range.IRange(-850,5000,9) //immutable, but searching is an O(1) operation.
+        /// var range+1 = arr.Select(a=>a+1,b=>b-1)
+        /// negPrimes.Contains(-53) //will perform O(1) operation, searching for -54 in an IRange.
+        /// </code>
+        /// </example>
+        /// </remarks>
         public static ICollection<R> Select<T, R>(this ICollection<T> @this, Func<T, R> selector, Func<R, T> inverse)
         {
             return new SelectInverseCollection<T, R>(@this, selector, inverse);
         }
-        public static LockedDictionary<T,R1> Select<T, R0, R1>(this IDictionary<T,R0> @this, Func<R0, R1> selector)
+        /// <summary>
+        /// Get a 1-1 mapping of an <see cref="IDictionary{T,V}"/>, mapping only the values of the <see cref="KeyValuePair{T,V}"/>.'s
+        /// </summary>
+        /// <typeparam name="T">The key type.</typeparam>
+        /// <typeparam name="R0">The original value type.</typeparam>
+        /// <typeparam name="R1">The new value type.</typeparam>
+        /// <param name="this">The <see cref="IDictionary{T,V}"/> to map.</param>
+        /// <param name="selector">The value selector.</param>
+        /// <returns>A read-only <see cref="IDictionary{T,V}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s values.</returns>
+        public static IDictionary<T,R1> Select<T, R0, R1>(this IDictionary<T,R0> @this, Func<R0, R1> selector)
         {
             return new SelectValueDictionary<T,R0,R1>(@this,selector);
         }
+        /// <summary>
+        /// Get a 1-1 invertible mapping of an <see cref="IDictionary{T,V}"/>, mapping the keys and values of the <see cref="KeyValuePair{T,V}"/>.'s
+        /// </summary>
+        /// <typeparam name="K0">The original key type.</typeparam>
+        /// <typeparam name="K1">The new key type.</typeparam>
+        /// <typeparam name="R0">The original value type.</typeparam>
+        /// <typeparam name="R1">The new value type.</typeparam>
+        /// <param name="this">The <see cref="IDictionary{T,V}"/> to map.</param>
+        /// <param name="keyMapper">The original->new key mapper.</param>
+        /// <param name="keyInverse">The new->original key mapper.</param>
+        /// <param name="valueMapper">The original->new value mapper.</param>
+        /// <param name="valueInverse">The new->original value mapper. If <see langword="null"/>, the resultant <see cref="IDictionary{T,V}"/> cannot be assigned new values.</param>
+        /// <returns>A mutability-passing <see cref="IDictionary{T,V}"/> with <paramref name="keyMapper"/> and <paramref name="valueMapper"/> applied to <paramref name="this"/>'s elements.</returns>
         public static IDictionary<K1, R1> Select<K0, K1, R0, R1>(this IDictionary<K0, R0> @this, Func<K0, K1> keyMapper, Func<K1, K0> keyInverse, Func<R0, R1> valueMapper, Func<R1,R0> valueInverse=null)
         {
             return new SelectDictionary<K0, K1, R0, R1>(@this, keyMapper, keyInverse, valueMapper, valueInverse);

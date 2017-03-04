@@ -6,8 +6,18 @@ using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class smallestFactor
     {
+        /// <overloads>Get the smallest prime factor of a number.</overloads>
+        /// <summary>
+        /// Get the smallest prime factor of an <see cref="int"/>.
+        /// </summary>
+        /// <param name="value">The number to factorize.</param>
+        /// <param name="start">The smallest prime to check or <see langword="null"/> to check all of them.</param>
+        /// <returns>The smallest prime number after <paramref name="start"/> that divides <paramref name="value"/>, or <paramref name="value"/> if none found.</returns>
         public static int SmallestFactor(this int value, int? start = null)
         {
             if (value <= 1)
@@ -173,11 +183,11 @@ namespace NumberStone
             {
                 return value;
             }
-            IEnumerable<int> primesToCheck = primes.Primes(value.sqrt().floor() + 1).Skip(1);
+            IEnumerable<int> primesToCheck = primes.Primes(Math.Sqrt(value).floor() + 1).Skip(1);
             if (start.HasValue)
             {
                 var aslist = primesToCheck.AsList();
-                primesToCheck = aslist.Skip(aslist.BinarySearch(a=>a>=start, binarySearch.BooleanBinSearchStyle.GetFirstTrue));
+                primesToCheck = aslist.Skip(aslist.BinarySearchStartBias(a=>a>=start, binarySearch.BooleanBinSearchStyle.GetFirstTrue));
             }
             foreach (int prime in primesToCheck)
             {
@@ -188,6 +198,12 @@ namespace NumberStone
             }
             return value;
         }
+        /// <summary>
+        /// Get the smallest prime factor of an <see cref="long"/>.
+        /// </summary>
+        /// <param name="value">The number to factorize.</param>
+        /// <param name="start">The smallest prime to check or <see langword="null"/> to check all of them.</param>
+        /// <returns>The smallest prime number after <paramref name="start"/> that divides <paramref name="value"/>, or <paramref name="value"/> if none found.</returns>
         public static long SmallestFactor(this long value, long? start = null)
         {
             if (value <= 1)
@@ -195,7 +211,7 @@ namespace NumberStone
             if (value % 2 == 0)
                 return 2;
             if (value < int.MaxValue)
-                return SmallestFactor((int)value);
+                return SmallestFactor((int)value, (int?)start);
             IEnumerable<int> primesToCheck = primes.Primes(Math.Sqrt(value).floor() + 1).Skip(1);
             if (start.HasValue)
             {

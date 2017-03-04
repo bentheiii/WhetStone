@@ -58,7 +58,7 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="cover"/> is empty.</exception>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, IEnumerable<T> cover, IEnumerable<int> coverindices)
         {
-            using (var ctor = cover.Cycle().GetEnumerator())
+            using (var ctor = cover.GetEnumerator())
             {
                 using (var itor = coverindices.GetEnumerator())
                 {
@@ -86,7 +86,11 @@ namespace WhetStone.Looping
                             }
                             else
                             {
-                                ctor.MoveNext();
+                                if (!ctor.MoveNext())
+                                {
+                                    ctor.Reset();
+                                    ctor.MoveNext();
+                                }
                                 nextCoverInd = itor.Current;
                                 nextCover = ctor.Current;
                             }
@@ -125,7 +129,6 @@ namespace WhetStone.Looping
         {
             return @this.Cover(cover.Enumerate(),start);
         }
-        //todo test mutability
         private class CoverList<T> : IList<T>
         {
             private readonly IList<T> _source;
@@ -194,6 +197,8 @@ namespace WhetStone.Looping
                 {
                     _cover.Insert(index-_start,item);
                 }
+                else if (index < _start)
+                    _start++;
                 _source.Insert(index, item);
             }
             public void RemoveAt(int index)
@@ -230,7 +235,6 @@ namespace WhetStone.Looping
                 return GetEnumerator();
             }
         }
-        //todo test mutability
         private class CoverListIndices<T> : IList<T>
         {
             private readonly IList<T> _source;
@@ -294,11 +298,12 @@ namespace WhetStone.Looping
             }
             public void Insert(int index, T item)
             {
-                var minindex = _coverindices.BinarySearch(a => a >= index);
-                foreach (var i in _coverindices.Indices().Slice(minindex))
-                {
-                    _coverindices[i]++;
-                }
+                var minindex = _coverindices.BinarySearch(a => a >= index,binarySearch.BooleanBinSearchStyle.GetFirstTrue);
+                if (minindex > -1)
+                    foreach (var i in _coverindices.Indices().Slice(minindex))
+                    {
+                        _coverindices[i]++;
+                    }
                 _source.Insert(index, item);
             }
             public void RemoveAt(int index)
@@ -310,11 +315,12 @@ namespace WhetStone.Looping
                     _cover.RemoveAt(i);
                     _coverindices.RemoveAt(i);
                 }
-                var minindex = _coverindices.BinarySearch(a => a >= index);
-                foreach (var c in _coverindices.Indices().Slice(minindex))
-                {
-                    _coverindices[c]--;
-                }
+                var minindex = _coverindices.BinarySearch(a => a >= index, binarySearch.BooleanBinSearchStyle.GetFirstTrue);
+                if (minindex > -1)
+                    foreach (var c in _coverindices.Indices().Slice(minindex))
+                    {
+                        _coverindices[c]--;
+                    }
             }
             public T this[int index]
             {

@@ -144,13 +144,11 @@ namespace WhetStone.Looping
             }
         }
         
-        // todo step weights
-        // todo make other not necessarily a list, and remark it
         /// <summary>
         /// Get the edit steps in the shortest edit path from <paramref name="this"/> to <paramref name="other"/>.
         /// </summary>
         /// <param name="this">The starting <see cref="IEnumerable{T}"/>.</param>
-        /// <param name="other">The destination <see cref="IList{T}"/>.</param>
+        /// <param name="other">The destination <see cref="IEnumerable{T}"/>.</param>
         /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to compare elements. Setting to <see langword="null"/>.</param>
         /// <param name="allowIns">Whether to allow insertions.</param>
         /// <param name="allowDel">Whether to allow deletions.</param>
@@ -158,11 +156,14 @@ namespace WhetStone.Looping
         /// <typeparam name="T">The type of <paramref name="this"/> and <paramref name="other"/>'s elements.</typeparam>
         /// <returns>An enumerable with all the edit steps necessary to turn <paramref name="this"/> into <paramref name="other"/>.</returns>
         /// <exception cref="ArgumentException">If no edit paths are found.</exception>
+        /// <exception cref="ArgumentException">If any of the weights are non-positive.</exception>
         /// <remarks>
         /// <para>Using dynamic programming, space and time complexity O(n^2).</para>
         /// <para>Because <paramref name="other"/> is enumerated so many times, it is recommended to be more efficient than <paramref name="this"/>, if possible.</para>
         /// </remarks>
-        public static IEnumerable<IEditStep<T>> EditSteps<T>(this IEnumerable<T> @this, IList<T> other, IEqualityComparer<T> comp = null, bool allowIns = true, bool allowDel = true, bool allowSub = true)
+        public static IEnumerable<IEditStep<T>> EditSteps<T>(this IEnumerable<T> @this, IEnumerable<T> other, IEqualityComparer<T> comp = null,
+            bool allowIns = true, bool allowDel = true, bool allowSub = true, 
+            double insertWeight = 1.0, double removeWeight = 1.0, double subWeight = 1.0)
         {
             comp = comp ?? EqualityComparer<T>.Default;
 
@@ -172,41 +173,56 @@ namespace WhetStone.Looping
                     yield break;
                 throw new ArgumentException("No edit path found.");
             }
-            //todo more special cases
+            if (!allowIns && !allowDel)
+            {
+                if (@this.CompareCount(other) != 0)
+                    throw new ArgumentException("No edit path found.");
+                foreach (var t in @this.Zip(other).CountBind())
+                {
+                    if (comp.Equals(t.Item1.Item1,t.Item1.Item2))
+                        continue;
+                    yield return new Substitute<T>(t.Item1.Item2,t.Item2);
+                }
+                yield break;
+            }
+            if (insertWeight <= 0 || removeWeight <= 0 || subWeight <= 0)
+            {
+                throw new ArgumentException("Cannot handle non-positive weights.");
+            }
 
             const int ins = 0;
             const int del = 1;
             const int sub = 2;
             const int non = 3;
             const int err = 4;
-            IList<Tuple<int, int>>[] v = new IList<Tuple<int, int>>[@this.Count()+1];
+            IList<Tuple<int, double>>[] v = new IList<Tuple<int, double>>[@this.Count()+1];
 
             v[0] =
-                Tuple.Create(non, 0).Enumerate().Concat(allowIns
-                    ? range.IRange(1, other.Count, 1).Select(a => Tuple.Create(ins, a))
-                    : Tuple.Create(err, -2).Enumerate(other.Count));
+                Tuple.Create(non, 0.0).Enumerate().Concat(allowIns
+                    ? range.IRange(1.0, other.Count(), 1).Select(a => Tuple.Create(ins, a))
+                    : Tuple.Create(err, -2.0).Enumerate(other.Count()));
 
             foreach (var t in @this.CountBind(1))
             {
                 int i = t.Item2;
                 var tv = t.Item1;
-                var newarr = new Tuple<int,int>[other.Count+1];
-                newarr[0] = allowDel ? Tuple.Create(del, i) : Tuple.Create(err, -2);
+                var newarr = new Tuple<int, double>[other.Count()+1];
+                newarr[0] = allowDel ? Tuple.Create(del, (double)i) : Tuple.Create(err, -2.0);
                 foreach (var z in other.CountBind(1))
                 {
                     int j = z.Item2;
                     var ov = z.Item1;
-                    int cost = 1;
+                    double cost = subWeight;
                     if (comp.Equals(tv, ov))
                         cost = 0;
 
-                    int inscost = -1;
-                    int delcost = -1;
-                    int subcost = -1;
+                    double inscost = -1;
+                    double delcost = -1;
+                    double subcost = -1;
                     if (allowIns)
-                        inscost = newarr[j - 1].Item2 + 1;
+                        inscost = newarr[j - 1].Item2 + insertWeight;
                     if (allowDel)
-                        delcost = v[i - 1][j].Item2 + 1;
+                        delcost = v[i - 1][j].Item2 + removeWeight;
                     if (allowSub || cost == 0)
                         subcost = v[i - 1][j - 1].Item2 + cost;
                     var costs = new[] {inscost, delcost, subcost}.Where(a => a >= 0);
@@ -228,7 +244,7 @@ namespace WhetStone.Looping
                     }
                     else
                     {
-                        newarr[j] = Tuple.Create(err, -2);
+                        newarr[j] = Tuple.Create(err, -2.0);
                     }
                 }
                 v[i] = newarr;
@@ -242,7 +258,7 @@ namespace WhetStone.Looping
                     switch (v[i][j].Item1)
                     {
                         case ins:
-                            yield return new Insert<T>(other[j-1], i);
+                            yield return new Insert<T>(other.ElementAt(j-1), i);
                             j--;
                             continue;
                         case del:
@@ -250,7 +266,7 @@ namespace WhetStone.Looping
                             i--;
                             continue;
                         case sub:
-                            yield return new Substitute<T>(other[j-1], i - 1);
+                            yield return new Substitute<T>(other.ElementAt(j - 1), i - 1);
                             i--;
                             j--;
                             continue;
@@ -264,7 +280,6 @@ namespace WhetStone.Looping
                 }
             }
         }
-        //todo step weights
         /// <summary>
         /// Gets the minimum number of edit steps to transform <paramref name="this"/> to <paramref name="other"/>.
         /// </summary>
@@ -284,7 +299,18 @@ namespace WhetStone.Looping
             comp = comp ?? EqualityComparer<T>.Default;
             IList<int> v = allowIns ? range.IRange(other.Count()) : (-2).Enumerate(other.Count()+1);
 
-            //todo special cases
+            if (!allowIns && !allowDel && !allowSub)
+            {
+                if (@this.SequenceEqual(other))
+                    return 0;
+                throw new ArgumentException("No edit path found.");
+            }
+            if (!allowIns && !allowDel)
+            {
+                if (@this.CompareCount(other) != 0)
+                    throw new ArgumentException("No edit path found.");
+                return @this.Zip(other).Count(a => !comp.Equals(a.Item1, a.Item2));
+            }
 
             foreach (var t in @this)
             {

@@ -39,14 +39,14 @@ var list = new int[]{2,3,5,7}.Select(x=>x*x) //{4,9,25,49}
             .Zip(new int[]{0,1,2,3,4,5,6,7}) //{(4,0),(8,1),(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
             .Skip(2)                         //{(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
             .Select(a=>a.Item1-a.Item2);     //{7,15,21,45,43,91}
-            //Still a List!
+            //Still a List! O(1) memory!
 ```
 ### \#3-Clarifications and Repercussions
 Everything returned by Whetstone's LINQ-like functions is still lazily evaluated. It uses no extra memory and is sometimes more efficient than pure LINQ's IEnumerable.
 
 The abundance of read-only Collections and Lists brings new opportunities to the C# toolbox, like:
 ```csharp
-var dotNetRange = Enumerable.Range(0,10); //Why is this not a range?
+var dotNetRange = Enumerable.Range(0,10); //Why is this not a list?
 var whetstoneRange = range.Range(10); //Oh, yeah! Constant-time, Constant-memory random access!
 ```
 Wherever possible, and without sacrificing complexity or memory, Whetstone strives to return ILists and ICollections instead of IEnumerables for improved usability.
@@ -116,7 +116,7 @@ For this reason, many common functions like `Range` have specialized, non-generi
 ### \#4- Repercussions
 If you're willing to accept the runtime overhead, fields can have many usages you never thought of before:
 ```csharp
-var aTOz = range.IRange('a','z');//Contant-memory list of all lowercase letters
+var aTOz = range.IRange('a','z');//Constant-memory list of all lowercase letters
 var concatedNumbers = range.Range(10).Select(a=>a.ToString()).GetSum();//"0123456789"
 ```
 ## IV: Many, Many Extension Methods

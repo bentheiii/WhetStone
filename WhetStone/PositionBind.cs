@@ -5,6 +5,9 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class positionBind
     {
         private class PositionBoundList<T> : LockedList<Tuple<T,Position>>
@@ -32,8 +35,35 @@ namespace WhetStone.Looping
                 }
             }
         }
-        [Flags]
-        public enum Position { First = 1, Last = 2, None = 0, Only = First | Last }
+        /// <summary>
+        /// A position in an <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        [Flags] public enum Position
+        {
+            /// <summary>
+            /// All positions have this flag
+            /// </summary>
+            None = 0,
+            /// <summary>
+            /// The first position.
+            /// </summary>
+            First = 1,
+            /// <summary>
+            /// The first position.
+            /// </summary>
+            Last = 2,
+            /// <summary>
+            /// Position in an <see cref="IEnumerable{T}"/> of size 1.
+            /// </summary>
+            Only = First | Last
+        }
+        /// <overloads>Attaches positions to elements of enumerables.</overloads>
+        /// <summary>
+        /// Attaches positions to elements of an <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/></typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to attach to.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the positions.</returns>
         public static IEnumerable<Tuple<T, Position>> PositionBind<T>(this IEnumerable<T> @this)
         {
             bool first = true;
@@ -58,6 +88,13 @@ namespace WhetStone.Looping
                 }
             }
         }
+        /// <overloads>Attaches positions to elements of enumerables.</overloads>
+        /// <summary>
+        /// Attaches positions to elements of an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/></typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to attach to.</param>
+        /// <returns>An <see cref="IList{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the positions.</returns>
         public static IList<Tuple<T, Position>> PositionBind<T>(this IList<T> @this)
         {
             return new PositionBoundList<T>(@this);

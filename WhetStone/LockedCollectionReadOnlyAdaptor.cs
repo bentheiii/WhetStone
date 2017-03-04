@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace WhetStone.LockedStructures
 {
-    public class LockedCollectionReadOnlyAdaptor<T> : LockedCollection<T>
+    internal class LockedCollectionReadOnlyAdaptor<T> : LockedCollection<T>
     {
         private readonly IReadOnlyCollection<T> _inner;
         public LockedCollectionReadOnlyAdaptor(IReadOnlyCollection<T> inner)

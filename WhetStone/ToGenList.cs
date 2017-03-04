@@ -4,8 +4,18 @@ using System.Collections.Generic;
 
 namespace WhetStone.SystemExtensions
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class toGenList
     {
+        /// <summary>
+        /// Wraps an <see cref="IList{T}"/> in a non-generic <see cref="IList"/> wrapper.
+        /// </summary>
+        /// <typeparam name="T">The type of the original <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">the <see cref="IList{T}"/> to wrap.</param>
+        /// <returns><paramref name="this"/> wrapped in a non-generic <see cref="IList"/> wrapper.</returns>
+        /// <remarks>The wrapper still wraps a generic <see cref="IList{T}"/>. Use with caution.</remarks>
         public static IList ToGeneral<T>(this IList<T> @this)
         {
             return new GenListWrapper<T>(@this);

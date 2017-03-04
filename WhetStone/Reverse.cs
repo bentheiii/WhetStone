@@ -6,8 +6,17 @@ using WhetStone.Guard;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class reverse
     {
+        /// <summary>
+        /// Get a reversed version of an <see cref="IList{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to reverse.</param>
+        /// <returns>A mutability-passing <see cref="IList{T}"/> that includes <paramref name="this"/>'s elements in reverse order.</returns>
         public static IList<T> Reverse<T>(this IList<T> @this)
         {
             return new ReverseList<T>(@this);

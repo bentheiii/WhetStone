@@ -3,8 +3,18 @@ using System.IO;
 
 namespace WhetStone.Streams
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class readAll
     {
+        /// <summary>
+        /// Get all bytes left in a <see cref="Stream"/>.
+        /// </summary>
+        /// <param name="this">The <see cref="Stream"/> to read.</param>
+        /// <param name="initialchunksize">The initial buffer size, it will grow exponentially as the stream continues.</param>
+        /// <returns>An <see cref="Array"/> of all the bytes in <paramref name="this"/>.</returns>
+        /// <exception cref="ArgumentException">The stream is unreadable.</exception>
         public static byte[] ReadAll(this Stream @this, int initialchunksize = 256)
         {
             if (!@this.CanRead)
@@ -15,7 +25,7 @@ namespace WhetStone.Streams
             while (r > 0)
             {
                 r = @this.Read(buffer, written, buffer.Length - written);
-                if (r > 0)
+                if (r > 0 && r == buffer.Length - written)
                     Array.Resize(ref buffer, buffer.Length*2);
                 written += r;
             }

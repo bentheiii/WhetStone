@@ -39,6 +39,7 @@ namespace WhetStone.Looping
             /// </remarks>
             NoReflexive = 2
         }
+        /// <overloads>Performs a Cartesian multiplication on enumerables.</overloads>
         /// <summary>
         /// Get the Cartesian multiple of an <see cref="IEnumerable{T}"/> by itself.
         /// </summary>
@@ -785,7 +786,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with the Cartesian multiple of <paramref name="this"/> by itself.</returns>
         public static IList<Tuple<T,T>> Join<T>(this IList<T> @this, CartesianType t = CartesianType.AllPairs)
         {
-            return @this.Join(2, t).Select(a => a.ToTuple2());
+            return @this.Join(2, t).Select(a => Tuple.Create(a[0],a[1]));
         }
 
     }

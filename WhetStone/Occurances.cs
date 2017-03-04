@@ -3,8 +3,22 @@ using System.Collections.Generic;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class occurances
     {
+        /// <summary>
+        /// Transforms a sorted <see cref="IEnumerable{T}"/> into an <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2}"/> of members and their multiplicity.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to transform.</param>
+        /// <param name="c">The <see cref="IEqualityComparer{T}"/> to check for equality. <see langword="null"/> means default <see cref="IEqualityComparer{T}"/>.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2}"/> of members and their multiplicity.</returns>
+        /// <remarks>
+        /// <para><paramref name="this"/> doesn't have to be sorted, it just has to have all elements equal to each other adjacent.</para>
+        /// <para>Alternately, all non-adjacent equal elements will be treated as non-equal.</para>
+        /// </remarks>
         public static IEnumerable<Tuple<T,int>> ToOccurancesSorted<T>(this IEnumerable<T> @this, IEqualityComparer<T> c = null)
         {
             c = c ?? EqualityComparer<T>.Default;
@@ -35,6 +49,13 @@ namespace WhetStone.Looping
                     yield return Tuple.Create(mem, ret);
             }
         }
+        /// <summary>
+        /// Transforms an <see cref="IEnumerable{T}"/> into an <see cref="IDictionary{T,G}"/> of <see cref="Tuple{T1,T2}"/> of members and their multiplicity.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="arr">The <see cref="IEnumerable{T}"/> to transform.</param>
+        /// <param name="c">The <see cref="IEqualityComparer{T}"/> to check for equality. <see langword="null"/> means default <see cref="IEqualityComparer{T}"/>.</param>
+        /// <returns>An <see cref="IDictionary{T,G}"/> of <see cref="Tuple{T1,T2}"/> of members and their multiplicity.</returns>
         public static IDictionary<T, int> ToOccurances<T>(this IEnumerable<T> arr, IEqualityComparer<T> c = null)
         {
             c = c ?? EqualityComparer<T>.Default;
@@ -47,15 +68,6 @@ namespace WhetStone.Looping
                     oc[v] = 1;
             }
             return oc;
-        }
-        public static ICollection<T> FromOccurances<T>(this IEnumerable<KeyValuePair<T, int>> d)
-        {
-            var ret = new MultiCollection<T>();
-            foreach (var pair in d)
-            {
-                ret.Add(pair.Key,pair.Value);
-            }
-            return ret;
         }
     }
 }

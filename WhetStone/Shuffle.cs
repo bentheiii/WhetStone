@@ -1,21 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WhetStone.Random;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class shuffle
     {
-        public static T[] Shuffle<T>(this IList<T> arr, RandomGenerator gen = null, int? shufflecount = null)
+        /// <summary>
+        /// Shuffles an <see cref="IList{T}"/>'s elements using algorithm P.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="arr">The <see cref="IList{T}"/> to shuffle.</param>
+        /// <param name="gen">The <see cref="RandomGenerator"/> to use. <see langword="null"/> for <see cref="GlobalRandomGenerator"/>.</param>
+        /// <exception cref="ArgumentException"><paramref name="arr"/> is read-only</exception>
+        public static void Shuffle<T>(this IList<T> arr, RandomGenerator gen = null)
         {
-            int length = shufflecount ?? arr.Count;
+            if (arr.IsReadOnly)
+                throw new ArgumentException("array is read-only");
             gen = gen ?? new GlobalRandomGenerator();
-            T[] x = arr.ToArray(arr.Count);
-            foreach (int i in range.Range(length))
+            foreach (int i in range.Range(arr.Count))
             {
-                int j = gen.Int(i, x.Length);
-                x.Swap(i, j);
+                int j = gen.Int(i, arr.Count);
+                if (i == j)
+                    continue;
+                T temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
-            return x;
         }
     }
 }

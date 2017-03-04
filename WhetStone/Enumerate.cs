@@ -9,6 +9,7 @@ namespace WhetStone.Looping
     /// </summary>
     public static class enumerate
     {
+        //todo -1 for infinite
         /// <summary>
         /// Creates a new <see cref="IList{T}"/>, including only <paramref name="b"/> as an element.
         /// </summary>

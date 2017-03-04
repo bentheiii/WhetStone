@@ -7,6 +7,9 @@ using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class range
     {
         private class RangeList<T> : LockedList<T>
@@ -106,6 +109,16 @@ namespace WhetStone.Looping
                 }
             }
         }
+        //todo stop fucking step guessing, i've had enough
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
+        /// <remarks>uses fielding.</remarks>
         public static IList<T> Range<T>(T start, T max, T step)
         {
             var field = Fields.getField<T>();
@@ -116,6 +129,14 @@ namespace WhetStone.Looping
             }
             return Range(field.Negate(start), field.Negate(max), field.Negate(step)).Select(field.Negate, field.Negate);
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of one.</returns>
+        /// <remarks>uses fielding.</remarks>
         public static IList<T> Range<T>(T start, T max)
         {
             var f = Fields.getField<T>();
@@ -125,25 +146,59 @@ namespace WhetStone.Looping
                 return Range(start, max, f.negativeone);
             return new RangeList<T>(start, max, f.one, pos: false);
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from zero to <paramref name="max"/> in steps of one.</returns>
+        /// <remarks>uses fielding.</remarks>
         public static IList<T> Range<T>(T max)
         {
             return Range(Fields.getField<T>().zero, max);
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
         public static IList<int> Range(int start, int max, int step)
         {
             if (step >= 0)
                 return new RangeList(start, max, step);
             return Range(-start, -max, -step).Select(a => -a, a => -a);
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
         public static IList<int> Range(int start, int max)
         {
             return Range(start, max, start < max ? 1 : -1);
         }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from 0 to <paramref name="max"/> in steps of 1.</returns>
         public static IList<int> Range(int max)
         {
             return Range(0, max);
         }
-        public static LockedList<T> IRange<T>(T start, T max, T step)
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
+        /// <remarks>uses fielding.</remarks>
+        public static IList<T> IRange<T>(T start, T max, T step)
         {
             var field = Fields.getField<T>();
             //try rewrite
@@ -153,7 +208,15 @@ namespace WhetStone.Looping
             }
             return IRange(field.Negate(start), field.Negate(max), field.Negate(step)).Select(a => field.Negate(a));
         }
-        public static LockedList<T> IRange<T>(T start, T max)
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of one.</returns>
+        /// <remarks>uses fielding.</remarks>
+        public static IList<T> IRange<T>(T start, T max)
         {
             var f = Fields.getField<T>();
             if (f.Compare(start, max) < 0)
@@ -162,11 +225,25 @@ namespace WhetStone.Looping
                 return IRange(start, max, f.negativeone);
             return new RangeList<T>(start, max, f.one, true, pos: false);
         }
-        public static LockedList<T> IRange<T>(T max)
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from zero to <paramref name="max"/> in steps of one.</returns>
+        /// <remarks>uses fielding.</remarks>
+        public static IList<T> IRange<T>(T max)
         {
             return IRange(Fields.getField<T>().zero, max);
         }
-        public static LockedList<int> IRange(int start, int max, int step)
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
+        public static IList<int> IRange(int start, int max, int step)
         {
             if (step >= 0)
             {
@@ -174,11 +251,22 @@ namespace WhetStone.Looping
             }
             return IRange(-start, -max, -step).Select(a => -a);
         }
-        public static LockedList<int> IRange(int start, int max)
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
+        public static IList<int> IRange(int start, int max)
         {
             return IRange(start, max, start < max ? 1 : -1);
         }
-        public static LockedList<int> IRange(int max)
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from 0 to <paramref name="max"/> in steps of 1.</returns>
+        public static IList<int> IRange(int max)
         {
             return IRange(0, max);
         }

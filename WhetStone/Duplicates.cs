@@ -3,7 +3,6 @@ using System.Linq;
 
 namespace WhetStone.Looping
 {
-    //todo test
     /// <summary>
     /// A static container for identity method
     /// </summary>

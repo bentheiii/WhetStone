@@ -4,6 +4,7 @@ using System.Linq;
 namespace WhetStone.Comparison
 {
     //todo mix this with enumerablecomparer
+    //todo infinite hash length
     public class EnumerableEqualityCompararer<T> : IEqualityComparer<IEnumerable<T>>
     {
         private readonly IEqualityComparer<T> _int;

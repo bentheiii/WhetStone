@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WhetStone.LockedStructures
 {
-    public abstract class LockedList<T> : LockedCollection<T>, IList<T>, IReadOnlyList<T>
+    internal abstract class LockedList<T> : LockedCollection<T>, IList<T>, IReadOnlyList<T>
     {
         public override bool Contains(T item)
         {

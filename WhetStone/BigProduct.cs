@@ -91,7 +91,7 @@ namespace NumberStone
         /// <param name="pow">The power of the multiplicand.</param>
         /// <remarks>
         /// <para>This uses Legendre's formula for divisibility of factorials.</para>
-        /// <para>For sufficiently small <paramref name="n"/> (under approximately 20,000, see <see cref="primes.Primes(int, bool)"/>), running time is O(log(<paramref name="n"/>)^2)</para>
+        /// <para>For sufficiently small <paramref name="n"/> (under approximately 20,000, see <see cref="primes.Primes(int)"/>), running time is O(log(<paramref name="n"/>)^2)</para>
         /// </remarks>
         public void MultiplyFactorial(int n, int pow = 1)
         {

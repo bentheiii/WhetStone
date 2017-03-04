@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WhetStone.Looping;
 using WhetStone.Random;
 using WhetStone.SystemExtensions;
@@ -26,7 +27,7 @@ namespace Tests
                     var addant = gen.Int(3000);
                     val.Increment(addant);
                     total += addant;
-                    Assert.AreEqual(total.log(@base).floor(), val.log, $"seed = {seed}");
+                    Assert.AreEqual(Math.Log(total,@base).floor(), val.log, $"seed = {seed}");
                     Assert.AreEqual(total, val.value, $"seed = {seed}");
                 }
             }

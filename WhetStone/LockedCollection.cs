@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WhetStone.LockedStructures
 {
-    public abstract class LockedCollection<T> : ICollection<T>, IReadOnlyCollection<T>
+    internal abstract class LockedCollection<T> : ICollection<T>, IReadOnlyCollection<T>
     {
         public abstract IEnumerator<T> GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator()

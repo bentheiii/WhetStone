@@ -9,7 +9,7 @@ namespace WhetStone.Looping
     public static class columns
     {
         /// <summary>
-        /// Returns the <see cref="Array"/> arranged as an <see cref="IList{T}"/> of <see cref="IList{T}"/>, with the second dimension first.
+        /// Returns the 2D <see cref="Array"/> arranged as an <see cref="IList{T}"/> of <see cref="IList{T}"/>, with the second dimension first.
         /// </summary>
         /// <typeparam name="T">The type of the <see cref="Array"/>.</typeparam>
         /// <param name="this">The <see cref="Array"/> to transform.</param>

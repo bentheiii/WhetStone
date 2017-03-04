@@ -8,8 +8,16 @@ using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class primes
     {
+        /// <summary>
+        /// Get an <see cref="IEnumerable{T}"/> of all prime numbers. 
+        /// </summary>
+        /// <returns>An infinite <see cref="IEnumerable{T}"/> of primes.</returns>
+        /// <remarks>The first primes are pre-compiled and will be returned i constant time. After that, the <see cref="IEnumerable{T}"/> will require O(n/log(n)) space.</remarks>
         public static IEnumerable<int> Primes()
         {
             foreach (int p in isPrime.PrimeList)
@@ -18,7 +26,7 @@ namespace NumberStone
             }
             List<int> ret = new List<int>(isPrime.PrimeList);
             int i = ret.Last();
-            var log = new LogarithmicProgresser(i);
+            var log = new LogarithmicProgresser(2,i);
             var gen = new LocalRandomGenerator();
             using (var steps = new[] {2, 6, 4, 2, 4, 2, 4, 6}.Cycle().GetEnumerator())
             {
@@ -29,7 +37,7 @@ namespace NumberStone
                     log.Increment(steps.Current);
                     if (!i.isProbablyPrime(log.log,gen))
                         continue;
-                    int sqrt = i.sqrt().ceil() + 1;
+                    int sqrt = Math.Sqrt(i).ceil() + 1;
                     if (ret.TakeWhile(a => a < sqrt + 1).All(a => i%a != 0))
                     {
                         ret.Add(i);
@@ -41,11 +49,13 @@ namespace NumberStone
         private class CeiledPrimeList : LockedList<int>
         {
             private readonly int _ceiling;
+            private readonly Lazy<int> _count;
             public CeiledPrimeList(int ceiling)
             {
                 _ceiling = ceiling;
+                _count = new Lazy<int>(()=>isPrime.PrimeList.BinarySearchStartBias(a => a < _ceiling) + 1);
             }
-            public override int Count => isPrime.PrimeList.BinarySearch(a => a < _ceiling)+1;
+            public override int Count => _count.Value;
             public override IEnumerator<int> GetEnumerator()
             {
                 return isPrime.PrimeList.TakeWhile(a => a < _ceiling).GetEnumerator();
@@ -62,16 +72,22 @@ namespace NumberStone
             }
             public override int IndexOf(int item)
             {
-                return this.BinarySearch(item);
+                return this.BinarySearchStartBias(item);
             }
             public override bool Contains(int item)
             {
                 return IndexOf(item) != -1;
             }
         }
-        public static IEnumerable<int> Primes(int max, bool enforceeuclid = false)
+        /// <summary>
+        /// Get all prime numbers under a maximum bound.
+        /// </summary>
+        /// <param name="max">The maximum bound of the returned primes (exclusive).</param>
+        /// <returns>All primes under <paramref name="max"/>.</returns>
+        /// <remarks>If <paramref name="max"/> is small enough (under <see cref="isPrime.PrimeList"/>'s last value), the returned value will be an <see cref="IList{T}"/>.</remarks>
+        public static IEnumerable<int> Primes(int max)
         {
-            if (!enforceeuclid && max <= isPrime.PrimeList.Last())
+            if (max <= isPrime.PrimeList.Last())
             {
                 return new CeiledPrimeList(max);
             }

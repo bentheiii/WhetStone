@@ -5,12 +5,23 @@ using System.Linq;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// Represents a list array whose internal <see cref="Array"/> can be taken by reference, without need to copy it to a new <see cref="Array"/>.
+    /// </summary>
+    /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
     public class ResizingArray<T> : IList<T>, IReadOnlyList<T>
     {
-        public ResizingArray(int capacity = 0)
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="capacity">The initial capacity of the internal list array.</param>
+        public ResizingArray(int capacity = 4)
         {
             _arr = new T[capacity];
         }
+        /// <summary>
+        /// Get the internal array reference.
+        /// </summary>
         public T[] arr
         {
             get
@@ -19,6 +30,7 @@ namespace WhetStone.Looping
                 return _arr;
             }
         }
+        /// <inheritdoc />
         public bool Remove(T item)
         {
             var ind = IndexOf(item);
@@ -27,7 +39,9 @@ namespace WhetStone.Looping
             RemoveAt(ind);
             return true;
         }
+        /// <inheritdoc />
         public int Count { get; private set; } = 0;
+        /// <inheritdoc />
         public bool IsReadOnly
         {
             get
@@ -36,21 +50,34 @@ namespace WhetStone.Looping
             }
         }
         private T[] _arr;
+        /// <summary>
+        /// Shrink the list array to minimal size (while) preserving all elements.
+        /// </summary>
         public void minimize()
         {
             Array.Resize(ref _arr, Count);
         }
+        /// <summary>
+        /// Resizes the internal list array so that it could include a certain index.
+        /// </summary>
+        /// <param name="lastindex">The index to make valid.</param>
+        /// <remarks>The array might become larger than necessary to accommodate the index.</remarks>
         public void ResizeTo(int lastindex)
         {
             while (!_arr.IsWithinBounds(lastindex))
                 Array.Resize(ref _arr, Math.Max(arr.Length * 2, lastindex + 1));
         }
+        /// <inheritdoc />
         public void Add(T x)
         {
             ResizeTo(Count);
             _arr[Count] = x;
             Count++;
         }
+        /// <summary>
+        /// Adds multiple elements at once.
+        /// </summary>
+        /// <param name="x">The elements to add.</param>
         public void AddRange(IEnumerable<T> x)
         {
             int c = x.Count();
@@ -61,18 +88,23 @@ namespace WhetStone.Looping
             }
             Count += c;
         }
+        //todo insertrange
+        /// <inheritdoc />
         public void Clear()
         {
             Count = 0;
         }
+        /// <inheritdoc />
         public bool Contains(T item)
         {
             return _arr.Contains(item);
         }
+        /// <inheritdoc />
         public void CopyTo(T[] array, int arrayIndex)
         {
-            _arr.CopyTo(array, arrayIndex);
+            _arr.Take(Count).CopyTo(array, arrayIndex);
         }
+        /// <inheritdoc />
         public IEnumerator<T> GetEnumerator()
         {
             return _arr.Take(Count).GetEnumerator();
@@ -81,10 +113,12 @@ namespace WhetStone.Looping
         {
             return this.GetEnumerator();
         }
+        /// <inheritdoc />
         public int IndexOf(T item)
         {
             return arr.CountBind().FirstOrDefault(a => a.Item1.Equals(item),Tuple.Create(default(T),-1)).Item2;
         }
+        /// <inheritdoc />
         public void Insert(int index, T item)
         {
             if (index == Count)
@@ -99,6 +133,8 @@ namespace WhetStone.Looping
             }
             _arr[index] = item;
         }
+        //todo shrink
+        /// <inheritdoc />
         public void RemoveAt(int index)
         {
             foreach (int i in range.Range(index,Count-1))
@@ -107,6 +143,7 @@ namespace WhetStone.Looping
             }
             Count--;
         }
+        /// <inheritdoc />
         public T this[int index]
         {
             get
@@ -121,10 +158,6 @@ namespace WhetStone.Looping
                     throw new ArgumentOutOfRangeException();
                 _arr[index] = value;
             }
-        }
-        public static implicit operator T[] (ResizingArray<T> @this)
-        {
-            return @this.arr;
         }
     }
 }

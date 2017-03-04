@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Comparison;
+using WhetStone.Looping;
 
-namespace WhetStone.Looping
+namespace Tests
 {
     public static class sequenceEqual
     {

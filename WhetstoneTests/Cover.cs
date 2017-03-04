@@ -24,16 +24,19 @@ namespace Tests
         [TestMethod]
         public void IndicesList()
         {
-            var val = range.Range(10).Cover((-1).Enumerate(3), range.IRange(2,6,2));
-            var exp = new[] {0, 1, -1, 3, -1, 5, -1, 7, 8, 9};
+            var val = range.Range(10).ToList().Cover((-1).Enumerate(3).ToList(), range.IRange(2,6,2).ToList());
+            var exp = new[] {0, 1, -1, 3, -1, 5, -1, 7, 8, 9}.ToList();
             Assert.IsTrue(val.SequenceEqualIndices(exp));
+            MutableListCheck.check(val);
+
         }
         [TestMethod]
         public void SimpleList()
         {
-            var val = range.Range(10).Cover((-1).Enumerate(3), 2);
-            var exp = new[] { 0, 1, -1, -1, -1, 5, 6, 7, 8, 9 };
+            var val = range.Range(10).ToList().Cover((-1).Enumerate(3).ToList(), 2);
+            var exp = new[] { 0, 1, -1, -1, -1, 5, 6, 7, 8, 9 }.ToList();
             Assert.IsTrue(val.SequenceEqualIndices(exp));
+            MutableListCheck.check(val);
         }
     }
 }

@@ -4,19 +4,37 @@ using System.Linq;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class skipSlice
     {
+        /// <overloads>Get an enumerable with elements in the middle removed.</overloads>
+        /// <summary>
+        /// Get an <see cref="IEnumerable{T}"/> with elements in the middle removed.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/></typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to use.</param>
+        /// <param name="start">The start of the removed section.</param>
+        /// <param name="length">The length of the removed section.</param>
+        /// <returns>A new <see cref="IEnumerable{T}"/>, with <paramref name="this"/>'s elements except the section starting at <paramref name="start"/> and <paramref name="length"/> long removed.</returns>
+        /// <remarks>If the section is outside the bounds of <paramref name="this"/>, the subsections that don't overlap <paramref name="this"/> are ignored.</remarks>
         public static IEnumerable<T> SkipSlice<T>(this IEnumerable<T> @this, int start, int length = 1)
         {
+            if (start < 0)
+            {
+                start = 0;
+                length += start;
+            }
             using (var tor = @this.GetEnumerator())
             {
-                foreach (var _ in range.Range(start))
+                foreach (var _ in range.Range(0,start,1))
                 {
                     if (!tor.MoveNext())
                         yield break;
                     yield return tor.Current;
                 }
-                foreach (var _ in range.Range(length))
+                foreach (var _ in range.Range(0,length,1))
                 {
                     if (!tor.MoveNext())
                         yield break;
@@ -142,6 +160,22 @@ namespace WhetStone.Looping
             }
         }
 
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> with elements in the middle removed.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/></typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to use.</param>
+        /// <param name="start">The start of the removed section.</param>
+        /// <param name="length">The length of the removed section.</param>
+        /// <returns>A new <see cref="IList{T}"/>, with <paramref name="this"/>'s elements except the section starting at <paramref name="start"/> and <paramref name="length"/> long removed.</returns>
+        /// <remarks>
+        /// <para>
+        /// If the section is outside the bounds of <paramref name="this"/>, the subsections that don't overlap <paramref name="this"/> are ignored.
+        /// </para>
+        /// <para>
+        /// The returned value is mutability-passing.
+        /// </para>
+        /// </remarks>
         public static IList<T> SkipSlice<T>(this IList<T> @this, int start, int length = 1)
         {
             if (start == 0)

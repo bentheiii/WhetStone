@@ -7,7 +7,6 @@ using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
-    //todo test this, it might very well not be working
     /// <summary>
     /// A static container for identity method
     /// </summary>
@@ -21,7 +20,7 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IEnumerable{T}"/> to be cached.</param>
         /// <param name="bound">If set to an integer, only that number of elements will be cached.</param>
         /// <returns>A new structure, wrapping <paramref name="this"/> and storing its elements as they are enumerated.</returns>
-        public static LockedList<T> Cache<T>(this IEnumerable<T> @this, int? bound = null)
+        public static IList<T> Cache<T>(this IEnumerable<T> @this, int? bound = null)
         {
             if (bound == null)
                 return new EnumerableCache<T>(@this);
@@ -41,6 +40,8 @@ namespace WhetStone.Looping
                 return new ListCache<T>(@this);
             return new ListCacheBound<T>(@this,bound.Value);
         }
+
+
         private class EnumerableCacheBound<T> : LockedList<T>
         {
             private readonly IEnumerator<Tuple<T,int>> _tor;
@@ -73,7 +74,7 @@ namespace WhetStone.Looping
                 {
                     if (ind < 0)
                         throw new ArgumentOutOfRangeException("ind cannot be negative");
-                    return ind < _initcount ? _cache[ind] : _source.ElementAt(ind);
+                    return ind < Math.Min(_initcount, _cache.Length) ? _cache[ind] : _source.ElementAt(ind);
                 }
             }
             public override IEnumerator<T> GetEnumerator()
@@ -354,7 +355,12 @@ namespace WhetStone.Looping
                 if (index < _cache.Length)
                 {
                     if (index > 0)
-                        _initialized.And(new BitArray(index - 1, true));
+                    {
+                        foreach (int i in range.Range(index, _cache.Length))
+                        {
+                            _initialized.Set(i, false);
+                        }
+                    }
                     else
                         _initialized.SetAll(false);
                 }
@@ -375,8 +381,12 @@ namespace WhetStone.Looping
                 }
                 set
                 {
-                    _initialized[ind] = true;
-                    _cache[ind] = _source[ind] = value;
+                    _source[ind] = value;
+                    if (ind < _cache.Length)
+                    {
+                        _initialized[ind] = true;
+                        _cache[ind] = value;
+                    }
                 }
             }
             public override IEnumerator<T> GetEnumerator()
@@ -386,7 +396,8 @@ namespace WhetStone.Looping
                     int torind = -1;
                     foreach (var toYieldInd in range.Range(this.Count))
                     {
-                        if (_initialized[toYieldInd])
+                        bool cachable = toYieldInd < _cache.Length;
+                        if (cachable && _initialized[toYieldInd])
                         {
                             yield return _cache[toYieldInd];
                         }
@@ -397,8 +408,11 @@ namespace WhetStone.Looping
                                 if (!tor.MoveNext())
                                     yield break;
                             }
-                            _cache[toYieldInd] = tor.Current;
-                            _initialized[toYieldInd] = true;
+                            if (cachable)
+                            {
+                                _cache[toYieldInd] = tor.Current;
+                                _initialized[toYieldInd] = true;
+                            }
                             yield return tor.Current;
                             torind = toYieldInd;
                         }
@@ -445,7 +459,12 @@ namespace WhetStone.Looping
                 if (index < _cache.Length)
                 {
                     if (index > 0)
-                        _initialized.And(new BitArray(index - 1, true));
+                    {
+                        foreach (int i in range.Range(index,_cache.Length))
+                        {
+                            _initialized.Set(i,false);
+                        }
+                    }
                     else
                         _initialized.SetAll(false);
                 }

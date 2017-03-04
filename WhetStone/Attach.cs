@@ -74,7 +74,7 @@ namespace WhetStone.Looping
         /// <param name="selector">The function from which to get the output as the second member of the tuple.</param>
         /// <returns>An <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
         /// <remarks><c>enumerable.Attach(selector)</c> is functionally identical to <c>enumerable.Zip(enumerable.Select(selector))</c>. Although here, the enumerable is enumerated only once per output enumeration, the <see cref="IList{T}.this"/> is invoked once per access.</remarks>
-        public static LockedList<Tuple<T1, T2>> Attach<T1, T2>(this IList<T1> @this, Func<T1, T2> selector)
+        public static IList<Tuple<T1, T2>> Attach<T1, T2>(this IList<T1> @this, Func<T1, T2> selector)
         {
             return @this.Select(a => Tuple.Create(a, selector(a)));
         }
@@ -87,7 +87,7 @@ namespace WhetStone.Looping
         /// <param name="this">The original <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2}"/></param>
         /// <param name="selector">The function from which to get the output as the third member of the tuple.</param>
         /// <returns>An <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
-        public static LockedList<Tuple<T1, T2, T3>> Attach<T1, T2, T3>(this IList<Tuple<T1, T2>> @this, Func<T1, T2, T3> selector)
+        public static IList<Tuple<T1, T2, T3>> Attach<T1, T2, T3>(this IList<Tuple<T1, T2>> @this, Func<T1, T2, T3> selector)
         {
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, selector(a.Item1, a.Item2)));
         }
@@ -101,7 +101,7 @@ namespace WhetStone.Looping
         /// <param name="this">The original <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3}"/></param>
         /// <param name="selector">The function from which to get the output as the fourth member of the tuple.</param>
         /// <returns>An <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3,T4}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
-        public static LockedList<Tuple<T1, T2, T3, T4>> Attach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3>> @this, Func<T1, T2, T3, T4> selector)
+        public static IList<Tuple<T1, T2, T3, T4>> Attach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3>> @this, Func<T1, T2, T3, T4> selector)
         {
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, a.Item3, selector(a.Item1, a.Item2, a.Item3)));
         }
@@ -116,7 +116,7 @@ namespace WhetStone.Looping
         /// <param name="this">The original <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3,T4}"/></param>
         /// <param name="selector">The function from which to get the output as the fifth member of the tuple.</param>
         /// <returns>An <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3,T4,T5}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
-        public static LockedList<Tuple<T1, T2, T3, T4, T5>> Attach<T1, T2, T3, T4, T5>(this IList<Tuple<T1, T2, T3, T4>> @this, Func<T1, T2, T3, T4, T5> selector)
+        public static IList<Tuple<T1, T2, T3, T4, T5>> Attach<T1, T2, T3, T4, T5>(this IList<Tuple<T1, T2, T3, T4>> @this, Func<T1, T2, T3, T4, T5> selector)
         {
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, a.Item3, a.Item4, selector(a.Item1, a.Item2, a.Item3, a.Item4)));
         }

@@ -19,6 +19,8 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IEnumerable{T}"/> to hook to.</param>
         /// <param name="preYield">An <see cref="Action{T}"/> to call before the element is returned to the enumeration caller.</param>
         /// <param name="postYield">An <see cref="Action{T}"/> to call before the element is returned to the enumeration caller (if the next item is requested).</param>
+        /// <param name="begin">An <see cref="Action"/> to call before any element is enumerated.</param>
+        /// <param name="end">An <see cref="Action"/> to call after all elements are enumerated.</param>
         /// <returns>An enumerable with the same elements, but whenever enumerated, will trigger a hooked method.</returns>
         /// <example>
         /// Say you want to find the sum and count of an <see cref="IEnumerable{T}"/> <c>val</c> while only enumerating it once.
@@ -27,14 +29,16 @@ namespace WhetStone.Looping
         /// int sum = val.EnumerationHook(a=>count++).Sum();
         /// </code>
         /// </example>
-        public static IEnumerable<T> EnumerationHook<T>(this IEnumerable<T> @this, Action<T> preYield = null, Action<T> postYield = null)
+        public static IEnumerable<T> EnumerationHook<T>(this IEnumerable<T> @this, Action<T> preYield = null, Action<T> postYield = null, Action begin = null, Action end = null)
         {
+            begin?.Invoke();
             foreach (var t in @this)
             {
                 preYield?.Invoke(t);
                 yield return t;
                 postYield?.Invoke(t);
             }
+            end?.Invoke();
         }
         //if a function returns false, that function will not be called again
         /// <summary>

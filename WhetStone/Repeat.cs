@@ -70,11 +70,11 @@ namespace WhetStone.Looping
                 return _source.Contains(item);
             }
         }
-        public static LockedList<T> Repeat<T>(this IList<T> @this, int count)
+        public static IList<T> Repeat<T>(this IList<T> @this, int count)
         {
             return new RepeatList<T>(@this, count);
         }
-        public static LockedCollection<T> Repeat<T>(this ICollection<T> @this, int count)
+        public static ICollection<T> Repeat<T>(this ICollection<T> @this, int count)
         {
             return new RepeatCollection<T>(@this, count);
         }

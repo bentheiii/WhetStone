@@ -5,20 +5,20 @@ using WhetStone.Looping;
 
 namespace WhetStone.Enviroment
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class macAddress
     {
-        public static IEnumerable<byte> MacAddress()
+        /// <summary>
+        /// Get the first viable MAC address for the current machine.
+        /// </summary>
+        /// <returns>The MAC address of the machine, or <see langword="null"/> of none found.</returns>
+        public static IList<byte> MacAddress()
         {
             NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
             string sMacAddress = string.Empty;
-            foreach (NetworkInterface adapter in nics)
-            {
-                if (sMacAddress == string.Empty)// only return MAC Address from first card  
-                {
-                    sMacAddress = adapter.GetPhysicalAddress().ToString();
-                }
-            }
-            return range.Range(0, sMacAddress.Length,2).Select(x => Convert.ToByte(sMacAddress.Substring(x, 2), 16));
+            return nics.Select(a => a.GetPhysicalAddress().GetAddressBytes()).FirstOrDefault(a => a.Length > 0, null);
         }
     }
 }

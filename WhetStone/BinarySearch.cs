@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.Fielding;
 
 namespace WhetStone.Looping
 {
-    //todo indiscrete binary search
     /// <summary>
     /// A static container for identity method
     /// </summary>
@@ -66,6 +66,37 @@ namespace WhetStone.Looping
                     break;
                 if (res < 0)
                     min = i;
+                else
+                    max = i;
+            }
+            return failvalue;
+        }
+        /// <overloads>Performs a binary search using Fielding.</overloads>
+        /// <summary>
+        /// Performs a binary search on a range from <paramref name="min"/> to <paramref name="max"/> (exclusive). Returns the number for which <paramref name="searcher"/> is below <paramref name="tolerance"/> (in absolute value).
+        /// </summary>
+        /// <typeparam name="T">The type of the range to search.</typeparam>
+        /// <typeparam name="V">The type of the value to search for.</typeparam>
+        /// <param name="searcher">The searcher function, a positive number means the input is too high, a negative number means the input is too low, below <paramref name="tolerance"/> means the input has been found.</param>
+        /// <param name="min">The minimum of the range to search in.</param>
+        /// <param name="max">The maximum of the range to search in.</param>
+        /// <param name="tolerance">The maximum value that will be accepted as the correct value.</param>
+        /// <param name="failvalue">The value to return if no correct index is found.</param>
+        /// <returns>The index on which <paramref name="searcher"/> returned below <paramref name="tolerance"/>, or <paramref name="failvalue"/> if such is not found.</returns>
+        /// <remarks>This function uses Fielding for both type <typeparamref name="T"/> and <typeparamref name="V"/>.</remarks>
+        public static T BinarySearch<T,V>(Func<T, V> searcher, T min, T max, V tolerance, T failvalue)
+        {
+            var fmin = min.ToFieldWrapper();
+            while (fmin < max)
+            {
+                var i = (fmin + max) / 2;
+                var res = searcher(i).ToFieldWrapper();
+                if (res.abs() < tolerance)
+                    return i;
+                if (i.Equals(fmin))
+                    break;
+                if (res.IsNegative)
+                    fmin = i;
                 else
                     max = i;
             }

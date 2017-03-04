@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Numerics;
 using WhetStone.Looping;
-using WhetStone.RecursiveQuerier;
 
 namespace NumberStone
 {
-    //todo test this
     /// <summary>
     /// A static container for identity method
     /// </summary>
     public static class divisibility
     {
-        //todo overloads
+        /// <overloads>Returns the divisibility of a number by another</overloads>
         /// <summary>
         /// Get the number of times <paramref name="n"/> can be evenly divided by <paramref name="b"/>.
         /// </summary>
@@ -58,7 +56,15 @@ namespace NumberStone
             if (l > 64)
             {
                 // ReSharper disable once CollectionNeverUpdated.Local
-                var q = new HalvingQuerier<BigInteger>(b, (x, y) => x * y, 1);
+                var q = new LazyList<BigInteger>((i, laz) =>
+                {
+                    if (i == 0)
+                        return 1;
+                    if (i % 2 == 1 || laz.Initialized(i - 1))
+                        return laz[i - 1] * b;
+                    var x = laz[i / 2];
+                    return x * x;
+                });
                 return binarySearch.BinarySearch(a => (n % q[a]).IsZero, 0, (int)(l / BigInteger.Log(b, 2)) + 2)+1;
             }
             var sq = b * b;

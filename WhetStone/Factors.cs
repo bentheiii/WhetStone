@@ -16,7 +16,7 @@ namespace NumberStone
         /// </summary>
         /// <param name="x">The numbers to find factors of.</param>
         /// <returns>All the whole numbers that divide <paramref name="x"/></returns>
-        public static LockedList<int> Factors(this int x)
+        public static IList<int> Factors(this int x)
         {
             if (x <= 0)
                 throw new ArithmeticException("cannot find factorization of a non-positive number");

@@ -3,76 +3,173 @@ using System.Collections.Generic;
 using System.Drawing;
 using WhetStone.Looping;
 using WhetStone.Fielding;
+using WhetStone.SystemExtensions;
 using WhetStone.WordPlay;
 
 namespace WhetStone.Random
 {
+    /// <summary>
+    /// A class that generates random values.
+    /// </summary>
+    /// <remarks>Either <see cref="Bytes(int)"/>, <see cref="Byte"/>, or <see cref="Int(int,int)"/> must be implemented.</remarks>
     public abstract class RandomGenerator
     {
+        /// <summary>
+        /// Generate random <see cref="byte"/>s in an <see cref="Array"/>.
+        /// </summary>
+        /// <param name="length">The length of the resultant array.</param>
+        /// <returns>A new <see cref="Array"/> full of random <see cref="byte"/>s.</returns>
         public virtual byte[] Bytes(int length)
         {
             return fill.Fill(length, Byte);
         }
+        /// <summary>
+        /// Generate random <see cref="byte"/>s in an <see cref="IEnumerable{T}"/>.
+        /// </summary>
+        /// <returns>A new <see cref="IEnumerable{T}"/> full of random <see cref="byte"/>s.</returns>
+        /// <remarks>The resultant <see cref="IEnumerable{T}"/> might return different members each time it is enumerated.</remarks>
         public virtual IEnumerable<byte> Bytes()
         {
             return generate.Generate(() => Bytes(sizeof(int))).Concat();
         }
+        /// <summary>
+        /// Get a random <see cref="byte"/>.
+        /// </summary>
+        /// <returns>A randomly generated <see cref="byte"/></returns>
         public virtual byte Byte()
         {
             return (byte)Int(0, byte.MaxValue, true);
         }
+        /// <summary>
+        /// Get a random <see cref="int"/>.
+        /// </summary>
+        /// <returns>A randomly generated <see cref="int"/></returns>
         public int Int()
         {
-            return Int(0,int.MaxValue,true);
+            return Int(int.MinValue,int.MaxValue);
         }
+        /// <summary>
+        /// Get a random <see cref="int"/>.
+        /// </summary>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="int"/> between 0 and <paramref name="max"/>.</returns>
         public int Int(int max)
         {
             return Int(0, max);
         }
+        /// <summary>
+        /// Get a random <see cref="int"/>.
+        /// </summary>
+        /// <param name="min">The minimum value that can be returned. inclusive.</param>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="int"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual int Int(int min, int max)
         {
             return Fields.getField<int>().Generate(Bytes(sizeof(int)), Tuple.Create(min, max));
         }
+        /// <summary>
+        /// Get a random <see cref="int"/>.
+        /// </summary>
+        /// <param name="min">The minimum value that can be returned. inclusive.</param>
+        /// <param name="max">The maximum value that can be returned.</param>
+        /// <param name="inclusive">Whether <paramref name="max"/> is inclusive or not.</param>
+        /// <returns>A randomly generated <see cref="int"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public int Int(int min, int max, bool inclusive)
         {
-            return Int(min, max + (inclusive ? 1 : 0));
+            return Int(min, max + inclusive.Indicator());
         }
+        /// <summary>
+        /// Get a random <see cref="long"/>.
+        /// </summary>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="long"/> between 0 and <paramref name="max"/>.</returns>
         public long Long(long max)
         {
             return Long(0, max);
         }
+        /// <summary>
+        /// Get a random <see cref="long"/>.
+        /// </summary>
+        /// <param name="min">The minimum value that can be returned. inclusive.</param>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="long"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual long Long(long min, long max)
         {
             return Fields.getField<long>().Generate(Bytes(sizeof(long)), Tuple.Create(min, max));
         }
+        /// <summary>
+        /// Get a random <see cref="long"/>.
+        /// </summary>
+        /// <param name="min">The minimum value that can be returned. inclusive.</param>
+        /// <param name="max">The maximum value that can be returned.</param>
+        /// <param name="inclusive">Whether <paramref name="max"/> is inclusive or not.</param>
+        /// <returns>A randomly generated <see cref="long"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public long Long(long min, long max, bool inclusive)
         {
             return Long(min, max + (inclusive ? 1 : 0));
         }
+        /// <summary>
+        /// Get a random <see cref="ulong"/>.
+        /// </summary>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="ulong"/> between 0 and <paramref name="max"/>.</returns>
         public ulong ULong(ulong max)
         {
             return ULong(0, max);
         }
+        /// <summary>
+        /// Get a random <see cref="ulong"/>.
+        /// </summary>
+        /// <param name="min">The minimum value that can be returned. inclusive.</param>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="ulong"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual ulong ULong(ulong min, ulong max)
         {
             return Fields.getField<ulong>().Generate(Bytes(sizeof(ulong)), Tuple.Create(min, max));
         }
+        /// <summary>
+        /// Get a random <see cref="ulong"/>.
+        /// </summary>
+        /// <param name="min">The minimum value that can be returned. inclusive.</param>
+        /// <param name="max">The maximum value that can be returned.</param>
+        /// <param name="inclusive">Whether <paramref name="max"/> is inclusive or not.</param>
+        /// <returns>A randomly generated <see cref="ulong"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public ulong ULong(ulong min, ulong max, bool inclusive)
         {
             return ULong(min, max + (inclusive ? 1U : 0U));
         }
+        /// <summary>
+        /// Get a random <see cref="double"/> between 0 and 1.
+        /// </summary>
+        /// <returns>A random <see cref="double"/> between 0 and 1</returns>
         public virtual double Double()
         {
             return Double(1);
         }
+        /// <summary>
+        /// Get a random <see cref="double"/>.
+        /// </summary>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="double"/> between 0 and <paramref name="max"/>.</returns>
         public double Double(double max)
         {
             return Double(0, max);
         }
+        /// <summary>
+        /// Get a random <see cref="double"/>.
+        /// </summary>
+        /// <param name="min">The minimum value that can be returned. inclusive.</param>
+        /// <param name="max">The maximum value that can be returned. exclusive.</param>
+        /// <returns>A randomly generated <see cref="double"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual double Double(double min, double max)
         {
             return Fields.getField<double>().Generate(Bytes(sizeof(double)), Tuple.Create(min, max));
         }
+        /// <summary>
+        /// get a random <see cref="bool"/>.
+        /// </summary>
+        /// <param name="odds">The likelihood <see langword="true"/> will be returned.</param>
+        /// <returns><see langword="true"/> at likelihood <paramref name="odds"/></returns>
         public bool success(double odds)
         {
             if (odds >= 1)
@@ -81,32 +178,25 @@ namespace WhetStone.Random
                 return false;
             return Double() <= odds;
         }
-        public bool randombool(int trueodds = 1, int falseodds = 1)
+        /// <summary>
+        /// get a random <see cref="bool"/>.
+        /// </summary>
+        /// <param name="trueodds">Odds <see langword="true"/>  will be returned.</param>
+        /// <param name="falseodds">Odds <see langword="false"/> will be returned.</param>
+        /// <returns>A random <see cref="bool"/> with likelihoods of <paramref name="trueodds"/>:<paramref name="falseodds"/></returns>
+        public bool randombool(double trueodds = 1, double falseodds = 1)
         {
-            return success(trueodds / (double)(falseodds + trueodds));
+            return success(trueodds / (falseodds + trueodds));
         }
-        public char randomchar(char min = 'a', char max = 'z')
-        {
-            return (char)(Int(min, max, true));
-        }
-        public char randomchar(string allowedchars)
-        {
-            return allowedchars[Int(0, allowedchars.Length)];
-        }
-        public object randomenum<T>() where T : struct, IConvertible
-        {
-            if (!typeof(T).IsEnum)
-                throw new Exception("type is not an enum");
-            return @enum.Enum<T>().Pick(this);
-        }
-        public Color randomcolor()
-        {
-            return Color.FromArgb(Int(0, 256), Int(0, 256), Int(0, 256));
-        }
-        public string String(int length, char[] allowedChars)
-        {
-            return range.Range(length).Select(a => allowedChars[Int(allowedChars.Length)]).ConvertToString();
-        }
+        /// <summary>
+        /// Generate a random element of a generic type using fielding.
+        /// </summary>
+        /// <typeparam name="T">The type of element to generate</typeparam>
+        /// <returns>A randomly generated element of type <typeparamref name="T"/>.</returns>
+        /// <remarks>
+        /// <para>This function uses fielding.</para>
+        /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.FromBytes"/> generation.</para>
+        /// </remarks>
         public virtual T FromField<T>()
         {
             var f = Fields.getField<T>();
@@ -114,6 +204,17 @@ namespace WhetStone.Random
                 throw new NotSupportedException("Field does not support this generation");
             return f.Generate(Bytes());
         }
+        /// <summary>
+        /// Generate a random element of a generic type using fielding.
+        /// </summary>
+        /// <typeparam name="T">The type of element to generate</typeparam>
+        /// <param name="min">The minimum value to be generates. Inclusive.</param>
+        /// <param name="max">The maximum value to be generated. Exclusive.</param>
+        /// <returns>A randomly generated element of type <typeparamref name="T"/>.</returns>
+        /// <remarks>
+        /// <para>This function uses fielding.</para>
+        /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.FromRange"/> generation.</para>
+        /// </remarks>
         public virtual T FromField<T>(T min, T max)
         {
             var f = Fields.getField<T>();
@@ -121,6 +222,18 @@ namespace WhetStone.Random
                 throw new NotSupportedException("Field does not support this generation");
             return f.Generate(Bytes(), Tuple.Create(min, max));
         }
+        /// <summary>
+        /// Generate a random element of a generic type using fielding.
+        /// </summary>
+        /// <typeparam name="T">The type of element to generate</typeparam>
+        /// <param name="min">The minimum value to be generates. Inclusive.</param>
+        /// <param name="max">The maximum value to be generated. Exclusive.</param>
+        /// <param name="special">A special value to constrain the generated value.</param>
+        /// <returns>A randomly generated element of type <typeparamref name="T"/>.</returns>
+        /// <remarks>
+        /// <para>This function uses fielding.</para>
+        /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.Special"/> generation.</para>
+        /// </remarks>
         public virtual T FromField<T>(T min, T max, object special)
         {
             var f = Fields.getField<T>();

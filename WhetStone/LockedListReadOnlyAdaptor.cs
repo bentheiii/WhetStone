@@ -4,7 +4,7 @@ using WhetStone.Looping;
 
 namespace WhetStone.LockedStructures
 {
-    public class LockedListReadOnlyAdaptor<T> : LockedList<T>
+    internal class LockedListReadOnlyAdaptor<T> : LockedList<T>
     {
         private readonly IReadOnlyList<T> _inner;
         public LockedListReadOnlyAdaptor(IReadOnlyList<T> inner)

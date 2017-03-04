@@ -180,7 +180,7 @@ namespace WhetStone.Fielding {
         /// Generate an element of the type.
         /// </summary>
         /// <param name="bytes">A {potentially infinite) <see cref="IEnumerable{T}"/> of bytes to serve as the generation seed of the element.</param>
-        /// <param name="bounds">The bounds in which to constrain the created element.</param>
+        /// <param name="bounds">The bounds in which to constrain the created element. The first element is inclusive, the second is exclusive.</param>
         /// <param name="special">Special constraints for the created element.</param>
         /// <returns>An element created from the bytes and the constraints.</returns>
         public virtual T Generate(IEnumerable<byte> bytes, Tuple<T, T> bounds = null, object special = null)
@@ -354,9 +354,10 @@ namespace WhetStone.Fielding {
                 return ((dynamic)a).log(b);
             }
         }
-        private class DoubleField : QueryEnabledField<double>
+        private class DoubleField : Field<double>
         {
-            public DoubleField() : base(0, 1) { }
+            public override double one { get; } = 1;
+            public override double zero { get; } = 0;
             public override double add(double a, double b) => a+b;
             public override double pow(double a, double b) => Math.Pow(a,b);
             public override int Compare(double x, double y) => x.CompareTo(y);
@@ -404,9 +405,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class FloatField : QueryEnabledField<float>
+        private class FloatField : Field<float>
         {
-            public FloatField() : base(0, 1) { }
+            public override float one { get; } = 1;
+            public override float zero { get; } = 0;
             public override float add(float a, float b) => a + b;
             public override float pow(float a, float b) => a.pow(b);
             public override int Compare(float x, float y) => x.CompareTo(y);
@@ -454,9 +456,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class DecimalField : QueryEnabledField<decimal>
+        private class DecimalField : Field<decimal>
         {
-            public DecimalField() : base(0, 1) { }
+            public override decimal one { get; } = 1;
+            public override decimal zero { get; } = 0;
             public override decimal add(decimal a, decimal b) => a + b;
             public override decimal pow(decimal a, decimal b) => a.pow(b);
             public override int Compare(decimal x, decimal y) => x.CompareTo(y);
@@ -504,9 +507,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class IntField : QueryEnabledField<int>
+        private class IntField : Field<int>
         {
-            public IntField() : base(0, 1) { }
+            public override int one { get; } = 1;
+            public override int zero { get; } = 0;
             public override int add(int a, int b) => a + b;
             public override int pow(int a, int b) => a.pow(b);
             public override int Compare(int x, int y) => x.CompareTo(y);
@@ -554,9 +558,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class LongField : QueryEnabledField<long>
+        private class LongField : Field<long>
         {
-            public LongField() : base(0, 1) { }
+            public override long one { get; } = 1;
+            public override long zero { get; } = 0;
             public override long add(long a, long b) => a + b;
             public override long pow(long a, long b) => a.pow(b);
             public override int Compare(long x, long y) => x.CompareTo(y);
@@ -604,9 +609,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class UIntField : QueryEnabledField<uint>
+        private class UIntField : Field<uint>
         {
-            public UIntField() : base(0, 1) { }
+            public override uint one { get; } = 1;
+            public override uint zero { get; } = 0;
             public override uint add(uint a, uint b) => a + b;
             public override uint pow(uint a, uint b) => a.pow(b);
             public override int Compare(uint x, uint y) => x.CompareTo(y);
@@ -663,9 +669,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class ULongField : QueryEnabledField<ulong>
+        private class ULongField : Field<ulong>
         {
-            public ULongField() : base(0, 1) { }
+            public override ulong one { get; } = 1;
+            public override ulong zero { get; } = 0;
             public override ulong add(ulong a, ulong b) => a + b;
             public override ulong pow(ulong a, ulong b) => a.pow(b);
             public override int Compare(ulong x, ulong y) => x.CompareTo(y);
@@ -722,9 +729,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class ByteField : QueryEnabledField<byte>
+        private class ByteField : Field<byte>
         {
-            public ByteField() : base(0, 1) { }
+            public override byte one { get; } = 1;
+            public override byte zero { get; } = 0;
             public override byte add(byte a, byte b) => (byte)(a + b);
             public override byte pow(byte a, byte b) => a.pow(b);
             public override int Compare(byte x, byte y) => x.CompareTo(y);
@@ -781,9 +789,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class SbyteField : QueryEnabledField<sbyte>
+        private class SbyteField : Field<sbyte>
         {
-            public SbyteField() : base(0, 1) { }
+            public override sbyte one { get; } = 1;
+            public override sbyte zero { get; } = 0;
             public override sbyte add(sbyte a, sbyte b) => (sbyte)(a + b);
             public override sbyte pow(sbyte a, sbyte b) => a.pow(b);
             public override int Compare(sbyte x, sbyte y) => x.CompareTo(y);
@@ -838,9 +847,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class ShortField : QueryEnabledField<short>
+        private class ShortField : Field<short>
         {
-            public ShortField() : base(0, 1) { }
+            public override short one { get; } = 1;
+            public override short zero { get; } = 0;
             public override short add(short a, short b) => (short)(a + b);
             public override short pow(short a, short b) => a.pow(b);
             public override int Compare(short x, short y) => x.CompareTo(y);
@@ -891,9 +901,10 @@ namespace WhetStone.Fielding {
                 return (short)Math.Log(a, b);
             }
         }
-        private class UshortField : QueryEnabledField<ushort>
+        private class UshortField : Field<ushort>
         {
-            public UshortField() : base(0, 1) { }
+            public override ushort one { get; } = 1;
+            public override ushort zero { get; } = 0;
             public override ushort add(ushort a, ushort b) => (ushort)(a + b);
             public override ushort pow(ushort a, ushort b) => a.pow(b);
             public override int Compare(ushort x, ushort y) => x.CompareTo(y);
@@ -950,9 +961,10 @@ namespace WhetStone.Fielding {
                 return x > 0;
             }
         }
-        private class StringField : QueryEnabledField<string>
+        private class StringField : Field<string>
         {
-            public StringField() : base("", "") { }
+            public override string one { get; } = "";
+            public override string zero { get; } = "";
             public override string add(string a, string b) => a + b;
             public override string pow(string a, string b)
             {
@@ -1030,9 +1042,10 @@ namespace WhetStone.Fielding {
                 throw new NotSupportedException();
             }
         }
-        private class CharField : QueryEnabledField<char>
+        private class CharField : Field<char>
         {
-            public CharField() : base('\u0000', '\u0001') { }
+            public override char one { get; } = '\u0000';
+            public override char zero { get; } = '\u0001';
             public override char add(char a, char b) => (char)(a + b);
             public override char pow(char a, char b)
             {
@@ -1093,15 +1106,16 @@ namespace WhetStone.Fielding {
                 throw new NotSupportedException();
             }
         }
-        private class BigRationalField : QueryEnabledField<BigRational>
+        private class BigRationalField : Field<BigRational>
         {
-            public BigRationalField() : base(0, 1) { }
+            public override BigRational one { get; } = 1;
+            public override BigRational zero { get; } = 0;
             public override BigRational add(BigRational a, BigRational b) => a + b;
             public override BigRational pow(BigRational a, BigRational b) => a.pow(b,new BigRational(1,a.Denominator));
             public override int Compare(BigRational x, BigRational y) => x.CompareTo(y);
             public override BigRational fromInt(int x) => x;
             public override BigRational fromInt(ulong x) => x;
-            public override BigRational abs(BigRational x) =>  x.abs();
+            public override BigRational abs(BigRational x) => BigRational.Abs(x);
             public override BigRational divide(BigRational a, BigRational b) => a / b;
             public override BigRational mod(BigRational a, BigRational b) => a % b;
             public override BigRational fromFraction(int numerator, int denumerator) => numerator / (BigRational)denumerator;
@@ -1138,9 +1152,10 @@ namespace WhetStone.Fielding {
                 return Math.Log((double)a, (double)b);
             }
         }
-        private class BigIntegerField : QueryEnabledField<BigInteger>
+        private class BigIntegerField : Field<BigInteger>
         {
-            public BigIntegerField() : base(0, 1) { }
+            public override BigInteger one { get; } = 1;
+            public override BigInteger zero { get; } = 0;
             public override BigInteger add(BigInteger a, BigInteger b) => a + b;
             public override BigInteger pow(BigInteger a, BigInteger b) => a.pow(b);
             public override int Compare(BigInteger x, BigInteger y) => x.CompareTo(y);
@@ -1183,9 +1198,10 @@ namespace WhetStone.Fielding {
                 return (BigInteger)Math.Log((double)a, (double)b);
             }
         }
-        private class BoolField : QueryEnabledField<bool>
+        private class BoolField : Field<bool>
         {
-            public BoolField() : base(false, true) { }
+            public override bool one { get; } = true;
+            public override bool zero { get; } = false;
             public override bool pow(bool a, bool b)
             {
                 if (!a && !b)

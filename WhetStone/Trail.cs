@@ -4,6 +4,9 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class trail
     {
         private class TrailList<T> : LockedList<IList<T>>
@@ -28,6 +31,14 @@ namespace WhetStone.Looping
                 }
             }
         }
+        /// <summary>
+        /// Get all the sub-lists of an <see cref="IList{T}"/> of a specific length.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/>to use.</param>
+        /// <param name="trailLength">The length of the sub-lists.</param>
+        /// <param name="wrap">Whether to wrap the list for the sake of the last elements.</param>
+        /// <returns>a read-only <see cref="IList{T}"/> of all the sub-lists of <paramref name="this"/> of length <paramref name="trailLength"/>.</returns>
         public static IList<IList<T>> Trail<T>(this IList<T> @this, int trailLength, bool wrap = false)
         {
             if (wrap)
@@ -36,6 +47,14 @@ namespace WhetStone.Looping
             }
             return new TrailList<T>(@this,trailLength);
         }
+        /// <summary>
+        /// Get all the sub-lists of an <see cref="IEnumerable{T}"/> of a specific length.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/>to use.</param>
+        /// <param name="trailLength">The length of the sub-lists.</param>
+        /// <param name="wrap">Whether to wrap the list for the sake of the last elements.</param>
+        /// <returns>All the sub-lists of <paramref name="this"/> of length <paramref name="trailLength"/>.</returns>
         public static IEnumerable<T[]> Trail<T>(this IEnumerable<T> @this, int trailLength, bool wrap = false)
         {
             var buffer = new LinkedList<T>();

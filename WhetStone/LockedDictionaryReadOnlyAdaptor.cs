@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace WhetStone.LockedStructures
 {
-    public class LockedDictionaryReadOnlyAdaptor<T,G> : LockedDictionary<T,G>
+    internal class LockedDictionaryReadOnlyAdaptor<T,G> : LockedDictionary<T,G>
     {
         private readonly IReadOnlyDictionary<T,G> _inner;
         public LockedDictionaryReadOnlyAdaptor(IReadOnlyDictionary<T, G> inner)

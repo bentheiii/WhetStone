@@ -4,12 +4,32 @@ using System.Linq;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class splice
     {
+        /// <overloads>Insert an enumerable into another.</overloads>
+        /// <summary>
+        /// Create an <see cref="IEnumerable{T}"/> with an element inserted into it.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to insert to.</param>
+        /// <param name="slice">The element to insert.</param>
+        /// <param name="spliceStart">The index of the inserted element.</param>
+        /// <returns>A new <see cref="IEnumerable{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IEnumerable<T> Splice<T>(this IEnumerable<T> @this, T slice, int spliceStart)
         {
             return @this.Splice(slice.Enumerate(), spliceStart);
         }
+        /// <summary>
+        /// Create an <see cref="IEnumerable{T}"/> with another <see cref="IEnumerable{T}"/> inserted into it.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to insert to.</param>
+        /// <param name="slice">The <see cref="IEnumerable{T}"/> to insert.</param>
+        /// <param name="spliceStart">The first index of the inserted <see cref="IEnumerable{T}"/>.</param>
+        /// <returns>A new <see cref="IEnumerable{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IEnumerable<T> Splice<T>(this IEnumerable<T> @this, IEnumerable<T> slice, int spliceStart)
         {
             using (var tor = @this.GetEnumerator())
@@ -145,10 +165,26 @@ namespace WhetStone.Looping
                 return GetEnumerator();
             }
         }
+        /// <summary>
+        /// Create an <see cref="IList{T}"/> with another <see cref="IList{T}"/> inserted into it.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to insert to.</param>
+        /// <param name="slice">The <see cref="IList{T}"/> to insert.</param>
+        /// <param name="spliceStart">The first index of the inserted <see cref="IList{T}"/>.</param>
+        /// <returns>A mutability-passing <see cref="IList{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IList<T> Splice<T>(this IList<T> @this, IList<T> slice, int spliceStart)
         {
             return new SpliceList<T>(@this,slice,spliceStart);
         }
+        /// <summary>
+        /// Create an <see cref="IList{T}"/> with an element inserted into it.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>s.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/> to insert to.</param>
+        /// <param name="slice">The element to insert.</param>
+        /// <param name="spliceStart">The index of the inserted element.</param>
+        /// <returns>A mutability-passing <see cref="IList{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IList<T> Splice<T>(this IList<T> @this, T slice, int spliceStart)
         {
             return @this.Splice(slice.Enumerate(),spliceStart);

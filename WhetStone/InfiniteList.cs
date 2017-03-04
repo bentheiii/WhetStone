@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace WhetStone.Looping
@@ -30,7 +31,7 @@ namespace WhetStone.Looping
             if (_data.Count < newsize)
             {
                 _data.Capacity = newsize;
-                _data.AddRange(defaultValue.Enumerate().Repeat(newsize - _data.Count));
+                _data.AddRange(defaultValue.Enumerate(newsize - _data.Count));
             }
         }
         /// <inheritdoc />
@@ -81,14 +82,12 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void Add(T item)
         {
-            if (item.Equals(defaultValue))
-                return;
-            this[_data.Count] = item;
+            throw new NotSupportedException();
         }
         /// <inheritdoc />
         public void Clear()
         {
-            _data.Clear();
+            throw new NotSupportedException();
         }
         /// <inheritdoc />
         public bool Contains(T item)
@@ -98,7 +97,7 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void CopyTo(T[] array, int arrayIndex)
         {
-            _data.CopyTo(array, arrayIndex);
+            throw new NotSupportedException();
         }
         /// <inheritdoc />
         public bool Remove(T item)

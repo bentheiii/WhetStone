@@ -6,20 +6,29 @@ using WhetStone.Looping;
 
 namespace WhetStone.Random
 {
+    /// <summary>
+    /// A <see cref="RandomGenerator"/> using SHA512 hashing to generate <see cref="byte"/>s.
+    /// </summary>
     public class ShaGenerator : ByteEnumeratorGenerator, IDisposable
     {
-        private readonly SHA256 _sha;
+        private readonly SHA512 _sha;
         private readonly IList<byte> _seed;
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="seed">The initial seed for the SHA generator.</param>
         public ShaGenerator(IEnumerable<byte> seed)
         {
-            _sha = SHA256.Create();
+            _sha = SHA512.Create();
             _seed = new List<byte>(seed);
         }
+        /// <inheritdoc />
         public override IEnumerable<byte> Bytes()
         {
             while (true)
             {
-                _sha.ComputeHash(_seed.ToArray().Shuffle());
+                _seed.Shuffle();
+                _sha.ComputeHash(_seed.ToArray());
                 _seed.Clear();
                 foreach (byte b in _sha.Hash)
                 {
@@ -28,6 +37,7 @@ namespace WhetStone.Random
                 }
             }
         }
+        /// <inheritdoc />
         public void Dispose()
         {
             _sha.Dispose();

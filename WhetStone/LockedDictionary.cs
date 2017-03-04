@@ -4,7 +4,7 @@ using WhetStone.Looping;
 
 namespace WhetStone.LockedStructures
 {
-    public abstract class LockedDictionary<T, G> : LockedCollection<KeyValuePair<T, G>>, IDictionary<T, G>, IReadOnlyDictionary<T,G>
+    internal abstract class LockedDictionary<T, G> : LockedCollection<KeyValuePair<T, G>>, IDictionary<T, G>, IReadOnlyDictionary<T,G>
     {
         public virtual bool ContainsKey(T key)
         {
@@ -52,14 +52,14 @@ namespace WhetStone.LockedStructures
         {
             get
             {
-                return this.Select(a=>a.Key).ToLockedCollection();
+                return this.Select(a=>a.Key);
             }
         }
         public virtual ICollection<G> Values
         {
             get
             {
-                return this.Select(a => a.Value).ToLockedCollection();
+                return this.Select(a => a.Value);
             }
         }
     }

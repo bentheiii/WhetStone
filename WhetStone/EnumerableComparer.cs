@@ -4,6 +4,7 @@ using WhetStone.Looping;
 namespace WhetStone.Comparison
 {
     //todo delete?
+    //todo handle unequal lengths
     //todo tack on iequalitycomparer
     /// <summary>
     /// A comparer that compares <see cref="IEnumerable{T}"/>s, element-wise, then length-wise.
