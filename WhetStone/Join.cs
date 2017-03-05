@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using NumberStone;
 using WhetStone.LockedStructures;
-using WhetStone.Tuples;
 
 namespace WhetStone.Looping
 {
@@ -310,14 +309,13 @@ namespace WhetStone.Looping
                     throw new NotSupportedException();
             }
         }
-        //todo @this could be an ienumerable?
         /// <summary>
         /// Get the Cartesian product of multiple <see cref="IEnumerable{T}"/>s.
         /// </summary>
         /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
         /// <param name="this">The <see cref="IList{T}"/> of <see cref="IEnumerable{T}"/></param>
         /// <returns>The Cartesian product of <paramref name="this"/>.</returns>
-        public static IEnumerable<T[]> Join<T>(this IList<IEnumerable<T>> @this)
+        public static IEnumerable<T[]> Join<T>(this IEnumerable<IEnumerable<T>> @this)
         {
             var tors = @this.Select(a => a.GetEnumerator()).ToArray();
             //initialization
@@ -334,7 +332,7 @@ namespace WhetStone.Looping
                         yield break;
                     if (!tors[nexttorind].MoveNext())
                     {
-                        tors[nexttorind] = @this[nexttorind].GetEnumerator();
+                        tors[nexttorind] = @this.ElementAt(nexttorind).GetEnumerator();
                         tors[nexttorind].MoveNext();
                         nexttorind++;
                     }
@@ -775,7 +773,7 @@ namespace WhetStone.Looping
                 default:
                     throw new NotSupportedException();
             }
-            return inter.Select(a => (IList<T>)a.Select(x => @this[x]));
+            return inter.Select(a => a.Select(x => @this[x]));
         }
         /// <summary>
         /// Get the Cartesian multiple of an <see cref="IList{T}"/> by itself.

@@ -74,6 +74,7 @@
     <Compile Include="Divisibility.cs" />
     <Compile Include="Duplicates.cs" />
     <Compile Include="EditDistance.cs" />
+    <Compile Include="GreatestCommonDevisor.cs" />
     <Compile Include="Joins.cs" />
     <Compile Include="Kahan.cs" />
     <Compile Include="ListCache.cs" />
@@ -89,6 +90,9 @@
     <Compile Include="Splice.cs" />
     <Compile Include="AbsolutePathToRelative.cs" />
     <Compile Include="SplitAt.cs" />
+    <Compile Include="SplitCapture.cs" />
+    <Compile Include="StrConcat.cs" />
+    <Compile Include="ToArray.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WhetStone\WhetStone.csproj">

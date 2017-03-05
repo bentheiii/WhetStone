@@ -40,6 +40,8 @@ namespace NumberStone
         /// <returns>The amount by which the logarithm changed.</returns>
         public int Increment(int increment = 1)
         {
+            if (increment < 0)
+                throw new ArgumentException("can't increment by a negative value");
             value += increment;
             var ret = 0;
             while (value >= _nextNewLog)
@@ -50,6 +52,24 @@ namespace NumberStone
             log += ret;
             return ret;
         }
-        //todo decrement?
+        /// <summary>
+        /// decreases the antilogarithm.
+        /// </summary>
+        /// <param name="decrement">The amount to decrease by.</param>
+        /// <returns>The amount by which the logarithm changed.</returns>
+        public int Decrement(int decrement = 1)
+        {
+            if (decrement < 0)
+                throw new ArgumentException("can't decrement by a negative value");
+            value -= decrement;
+            var ret = 0;
+            while (value < _nextNewLog/@base)
+            {
+                _nextNewLog /= @base;
+                ret += 1;
+            }
+            log -= ret;
+            return ret;
+        }
     }
 }

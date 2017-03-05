@@ -11,7 +11,6 @@ namespace WhetStone.Looping
     /// </summary>
     public static class slice
     {
-        //todo error check args
         /// <overloads>Get a part of an enumerable.</overloads>
         /// <summary>
         /// Get a part from an <see cref="IList{T}"/>.
@@ -27,6 +26,10 @@ namespace WhetStone.Looping
         {
             if (max.HasValue && length.HasValue)
                 throw new ArgumentException("either max or length must be null");
+            if (steps <= 0)
+                throw new NotSupportedException("negative steps are not supported");
+            if (start < 0)
+                throw new ArgumentException("start cannot be negative");
             if (length.HasValue)
                 max = length*steps + start;
             if (max == null)
@@ -36,33 +39,6 @@ namespace WhetStone.Looping
             if (ret.Count < 0)
                 throw new ArgumentOutOfRangeException();
             return ret;
-        }
-        //todo seperate file
-        /// <summary>
-        /// Get an <see cref="IList{T}"/> that is the same as the original <see cref="IList{T}"/> with the first elements skipped.
-        /// </summary>
-        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
-        /// <param name="this">The <see cref="IList{T}"/> to use.</param>
-        /// <param name="skipCount">The number of elements to skip.</param>
-        /// <returns>A mutability-passing <see cref="IList{T}"/> that skips the first <paramref name="skipCount"/> elements in <paramref name="this"/>.</returns>
-        public static IList<T> Skip<T>(this IList<T> @this, int skipCount)
-        {
-            if (skipCount == 0)
-                return @this;
-            return @this.Slice(Math.Min(skipCount, @this.Count));
-        }
-        /// <summary>
-        /// Get an <see cref="IList{T}"/> that is the same as the original <see cref="IList{T}"/> with the last elements skipped.
-        /// </summary>
-        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
-        /// <param name="this">The <see cref="IList{T}"/> to use.</param>
-        /// <param name="length">The number of elements take.</param>
-        /// <returns>A mutability-passing <see cref="IList{T}"/> that takes the first <paramref name="length"/> elements in <paramref name="this"/>.</returns>
-        public static IList<T> Take<T>(this IList<T> @this, int length)
-        {
-            if (length >= @this.Count)
-                return @this;
-            return @this.Slice(0,length:Math.Min(length, @this.Count));
         }
         private class ListSlice<T> : IList<T>
         {

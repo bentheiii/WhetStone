@@ -41,7 +41,6 @@ namespace WhetStone.Streams
             }
             return ret;
         }
-        //todo decode to string overload
         /// <summary>
         /// Get a <see cref="Stream"/>'s contents as an <see cref="IEnumerable{T}"/>.
         /// </summary>

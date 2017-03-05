@@ -88,7 +88,6 @@ namespace WhetStone.Looping
             }
             Count += c;
         }
-        //todo insertrange
         /// <inheritdoc />
         public void Clear()
         {
@@ -133,7 +132,6 @@ namespace WhetStone.Looping
             }
             _arr[index] = item;
         }
-        //todo shrink
         /// <inheritdoc />
         public void RemoveAt(int index)
         {
@@ -142,6 +140,10 @@ namespace WhetStone.Looping
                 _arr[i] = _arr[i + 1];
             }
             Count--;
+            if (_arr.Length > Count*2)
+            {
+                Array.Resize(ref _arr, _arr.Length/2);
+            }
         }
         /// <inheritdoc />
         public T this[int index]

@@ -21,7 +21,6 @@ namespace NumberStone
         {
             return GreatestCommonDivisor(val.AsList());
         }
-        //todo stein's algorithm
         /// <summary>
         /// Get the greatest common divisor of an array on <see cref="BigInteger"/>s.
         /// </summary>
@@ -57,7 +56,7 @@ namespace NumberStone
                         }
                         return a;
                 }
-                val = val.SplitAt(val.Count / 2).Select(a=>GreatestCommonDivisor(a.AsList()));
+                val = val.SplitAt(val.Count / 2).Select(a => GreatestCommonDivisor(a.AsList()));
             }
         }
         /// <summary>
@@ -100,7 +99,7 @@ namespace NumberStone
                         }
                         return a;
                 }
-                val = val.SplitAt(val.Count / 2).Select(a=> GreatestCommonDivisor(a.AsList()));
+                val = val.SplitAt(val.Count / 2).Select(a => GreatestCommonDivisor(a.AsList()));
             }
         }
         /// <summary>

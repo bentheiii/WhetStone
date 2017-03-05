@@ -10,7 +10,6 @@ namespace WhetStone.Looping
 {
     public static class zip
     {
-        //todo zipstyle
         private class ListZip<T> : LockedList<IList<T>>
         {
             private readonly IList<IList<T>> _sources;

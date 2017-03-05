@@ -18,6 +18,7 @@ namespace Tests
             foreach (int _ in range.Range(totaltrials))
             {
                 var seed = congen.Int(int.MaxValue);
+                //int seed = 1021244771;
                 var gen = new LocalRandomGenerator(seed);
                 var total = gen.Int(1, 1000);
                 var @base = gen.Int(2, 20, true);
@@ -28,6 +29,17 @@ namespace Tests
                     val.Increment(addant);
                     total += addant;
                     Assert.AreEqual(Math.Log(total,@base).floor(), val.log, $"seed = {seed}");
+                    Assert.AreEqual(total, val.value, $"seed = {seed}");
+                }
+
+                foreach (var __ in range.Range(incspertrial))
+                {
+                    var addant = gen.Int(3000);
+                    total -= addant;
+                    if (total <= 0)
+                        break;
+                    val.Decrement(addant);
+                    Assert.AreEqual(Math.Log(total, @base).floor(), val.log, $"seed = {seed}");
                     Assert.AreEqual(total, val.value, $"seed = {seed}");
                 }
             }

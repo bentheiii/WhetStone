@@ -11,7 +11,6 @@ namespace WhetStone.Looping
     /// </summary>
     public static class strConcat
     {
-        //todo test this (refractored)
         /// <summary>
         /// Concatenates an <see cref="IEnumerable{T}"/>'s elements in a readable manner.
         /// </summary>
@@ -48,7 +47,6 @@ namespace WhetStone.Looping
         {
             return a.Select(x => x.ToString(format, prov ?? CultureInfo.CurrentCulture)).StrConcat(seperator);
         }
-        //todo test (refractored)
         /// <summary>
         /// Concatenates an <see cref="IEnumerable{T}"/> of <see cref="KeyValuePair{TKey,TValue}"/>'s elements in a readable manner.
         /// </summary>

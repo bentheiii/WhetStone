@@ -19,10 +19,18 @@ namespace WhetStone.Looping
         /// <returns>Whether <paramref name="this"/> start with <paramref name="prefix"/>.</returns>
         public static bool StartsWith<T>(this IEnumerable<T> @this, IEnumerable<T> prefix, IEqualityComparer<T> comp = null)
         {
-            //todo this looks like shit
             comp = comp ?? EqualityComparer<T>.Default;
-            return @this.Select(a => Tuple.Create(a)).Zip(prefix.Select(a => Tuple.Create(a))).TakeWhile(x => x.Item2 != null).All(
-                    x => x.Item1 != null && comp.Equals(x.Item1.Item1, x.Item2.Item1));
+
+            foreach (var p in @this.ZipUnBoundTuple(prefix))
+            {
+                if (p.Item2 == null)
+                    return true;
+                if (p.Item1 == null)
+                    return false;
+                if (!comp.Equals(p.Item1.Item1, p.Item2.Item1))
+                    return false;
+            }
+            return true;
         }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace NumberStone
 {
-    //todo does this work?
     /// <summary>
     /// A mutable <see cref="double"/> sum that compensates for floating-point errors.
     /// </summary>

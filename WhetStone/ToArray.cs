@@ -8,7 +8,6 @@ namespace WhetStone.Looping
     /// </summary>
     public static class toArray
     {
-        //todo test limittocapacity
         /// <summary>
         /// Creates an <see cref="Array"/> and fills it with an <see cref="IEnumerable{T}"/>'s elements.
         /// </summary>

@@ -8,7 +8,36 @@ namespace WhetStone.Looping
     /// </summary>
     public static class split
     {
-        // todo enumerable adapt
+        /// <overloads>Split an enumerable into sub-enumerables.</overloads>
+        /// <summary>
+        /// Split an <see cref="IEnumerable{T}"/> into sublists by capturing.
+        /// </summary>
+        /// <typeparam name="T">The type of the  <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to split.</param>
+        /// <param name="capture">The capture function, that accepts an existing sub-list and an element, and returns whether the element is the next part of the sub-list.</param>
+        /// <returns>A new <see cref="IList{T}"/>, splitting <paramref name="this"/> by the <paramref name="capture"/> function.</returns>
+        public static IEnumerable<IList<T>> Split<T>(this IEnumerable<T> @this, Func<IList<T>, T, bool> capture)
+        {
+            ResizingArray<T> ret = new ResizingArray<T>();
+
+            using (var tor = @this.GetEnumerator())
+            {
+                while (tor.MoveNext())
+                {
+                    if (capture(ret.arr, tor.Current))
+                    {
+                        ret.Add(tor.Current);
+                    }
+                    else
+                    {
+                        yield return ret.arr;
+                        ret = new ResizingArray<T>{tor.Current};
+                    }
+                }
+                if (ret.Count != 0)
+                    yield return ret.arr;
+            }
+        }
         /// <overloads>Split an enumerable into sub-enumerables.</overloads>
         /// <summary>
         /// Split an <see cref="IList{T}"/> into sublists by capturing.
