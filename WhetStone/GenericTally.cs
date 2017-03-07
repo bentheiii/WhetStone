@@ -202,6 +202,36 @@ namespace WhetStone.Looping
         {
             return @this.Add(new TallierActionBreakable<T>(action), false);
         }
+        /// <summary>
+        /// Add a first to a <see cref="GenericTally{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="GenericTally{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="GenericTally{T}"/> to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <param name="break">Whether to break when an element has been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static GenericTally<T> TallyFirst<T>(this GenericTally<T> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        {
+            ITallier<T> toadd;
+            if (@break)
+                toadd = new TallierFirstBreak<T>(cond,initial);
+            else
+                toadd = new TallierFirst<T>(cond,initial);
+            return @this.Add(toadd);
+        }
+        /// <summary>
+        /// Add a last to a <see cref="GenericTally{T}"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="GenericTally{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="GenericTally{T}"/> to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static GenericTally<T> TallyLast<T>(this GenericTally<T> @this, Func<T, bool> cond, T initial = default(T))
+        {
+            return @this.Add(new TallierLast<T>(cond, initial));
+        }
     }
     internal class TallierAggregateBreakable<T, R> : ITallier<T>
     {
@@ -398,6 +428,115 @@ namespace WhetStone.Looping
         public ITalliator<T> GetTalliaror()
         {
             return new TalierAcBrTor(this);
+        }
+    }
+    internal class TallierFirst<T> : ITallier<T>
+    {
+        private class TalierFirst : ITalliator<T>
+        {
+            private readonly TallierFirst<T> _upper;
+            private T _ret;
+            private bool _any = false;
+            public TalierFirst(TallierFirst<T> upper)
+            {
+                _upper = upper;
+                _ret = _upper._init;
+            }
+            public bool next(T val)
+            {
+                if (!_any && _upper._func(val))
+                {
+                    _ret = val;
+                    _any = true;
+                }
+                return true;
+            }
+            public object end()
+            {
+                return _ret;
+            }
+        }
+        private readonly Func<T, bool> _func;
+        private readonly T _init;
+        public TallierFirst(Func<T, bool> func, T init)
+        {
+            _func = func;
+            _init = init;
+        }
+        public ITalliator<T> GetTalliaror()
+        {
+            return new TalierFirst(this);
+        }
+    }
+    internal class TallierFirstBreak<T> : ITallier<T>
+    {
+        private class TalierFirstBreakable : ITalliator<T>
+        {
+            private readonly TallierFirstBreak<T> _upper;
+            private T _ret;
+            public TalierFirstBreakable(TallierFirstBreak<T> upper)
+            {
+                _upper = upper;
+                _ret = _upper._init;
+            }
+            public bool next(T val)
+            {
+                if (_upper._func(val))
+                {
+                    _ret = val;
+                    return false;
+                }
+                return true;
+            }
+            public object end()
+            {
+                return _ret;
+            }
+        }
+        private readonly Func<T, bool> _func;
+        private readonly T _init;
+        public TallierFirstBreak(Func<T, bool> func, T init)
+        {
+            _func = func;
+            _init = init;
+        }
+        public ITalliator<T> GetTalliaror()
+        {
+            return new TalierFirstBreakable(this);
+        }
+    }
+    internal class TallierLast<T> : ITallier<T>
+    {
+        private class TalierLast : ITalliator<T>
+        {
+            private readonly TallierLast<T> _upper;
+            private T _ret;
+            public TalierLast(TallierLast<T> upper)
+            {
+                _upper = upper;
+                _ret = _upper._init;
+            }
+            public bool next(T val)
+            {
+                if (_upper._func(val))
+                    _ret = val;
+                return true;
+            }
+            public object end()
+            {
+                return _ret;
+            }
+        }
+        private readonly Func<T, bool> _func;
+        private readonly T _init;
+        public TallierLast(Func<T, bool> func, T init)
+        {
+            _func = func;
+            _init = init;
+        }
+        public ITalliator<T> GetTalliaror()
+        {
+            return new TalierLast(this);
         }
     }
 }

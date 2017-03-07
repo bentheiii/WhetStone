@@ -271,7 +271,6 @@ namespace WhetStone.Looping
     #endregion
     public static partial class TallierExtensions
     {
-        //todo first & last
         #region Aggregate
         /// <summary>
         /// Add an aggregate to a tally.
@@ -1262,6 +1261,220 @@ namespace WhetStone.Looping
         public static TypeTally<T, T0, T1, T2, T3, T4> TallyAction<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> action)
         {
             return @this.AddHidden(new TallierActionBreakable<T>(action));
+        }
+        #endregion
+        #region First
+        /// <summary>
+        /// Add a first to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <param name="break">Whether to break when an element has been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T> TallyFirst<T>(this TypeTally<T> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        {
+            ITallier<T> toadd;
+            if (@break)
+                toadd = new TallierFirstBreak<T>(cond, initial);
+            else
+                toadd = new TallierFirst<T>(cond, initial);
+            return @this.Add<T>(toadd);
+        }
+        /// <summary>
+        /// Add a first to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <param name="break">Whether to break when an element has been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T> TallyFirst<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        {
+            ITallier<T> toadd;
+            if (@break)
+                toadd = new TallierFirstBreak<T>(cond, initial);
+            else
+                toadd = new TallierFirst<T>(cond, initial);
+            return @this.Add<T>(toadd);
+        }
+        /// <summary>
+        /// Add a first to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <param name="break">Whether to break when an element has been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T1, T> TallyFirst<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        {
+            ITallier<T> toadd;
+            if (@break)
+                toadd = new TallierFirstBreak<T>(cond, initial);
+            else
+                toadd = new TallierFirst<T>(cond, initial);
+            return @this.Add<T>(toadd);
+        }
+        /// <summary>
+        /// Add a first to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <typeparam name="T2">The third return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <param name="break">Whether to break when an element has been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T1, T2, T> TallyFirst<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        {
+            ITallier<T> toadd;
+            if (@break)
+                toadd = new TallierFirstBreak<T>(cond, initial);
+            else
+                toadd = new TallierFirst<T>(cond, initial);
+            return @this.Add<T>(toadd);
+        }
+        /// <summary>
+        /// Add a first to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <typeparam name="T2">The third return type of the tally.</typeparam>
+        /// <typeparam name="T3">The fourth return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <param name="break">Whether to break when an element has been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T1, T2, T3, T> TallyFirst<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        {
+            ITallier<T> toadd;
+            if (@break)
+                toadd = new TallierFirstBreak<T>(cond, initial);
+            else
+                toadd = new TallierFirst<T>(cond, initial);
+            return @this.Add<T>(toadd);
+        }
+        /// <summary>
+        /// Add a first to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <typeparam name="T2">The third return type of the tally.</typeparam>
+        /// <typeparam name="T3">The fourth return type of the tally.</typeparam>
+        /// <typeparam name="T4">The fifth return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <param name="break">Whether to break when an element has been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static GenericTally<T> TallyFirst<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        {
+            ITallier<T> toadd;
+            if (@break)
+                toadd = new TallierFirstBreak<T>(cond, initial);
+            else
+                toadd = new TallierFirst<T>(cond, initial);
+            return @this.Add(toadd);
+        }
+        #endregion
+        #region Last
+        /// <summary>
+        /// Add a last to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T> TallyLast<T>(this TypeTally<T> @this, Func<T, bool> cond, T initial = default(T))
+        {
+            return @this.Add<T>(new TallierLast<T>(cond, initial));
+        }
+        /// <summary>
+        /// Add a last to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T> TallyLast<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> cond, T initial = default(T))
+        {
+            return @this.Add<T>(new TallierLast<T>(cond, initial));
+        }
+        /// <summary>
+        /// Add a last to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T1, T> TallyLast<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> cond, T initial = default(T))
+        {
+            return @this.Add<T>(new TallierLast<T>(cond, initial));
+        }
+        /// <summary>
+        /// Add a last to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <typeparam name="T2">The third return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T1, T2, T> TallyLast<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> cond, T initial = default(T))
+        {
+            return @this.Add<T>(new TallierLast<T>(cond, initial));
+        }
+        /// <summary>
+        /// Add a last to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <typeparam name="T2">The third return type of the tally.</typeparam>
+        /// <typeparam name="T3">The fourth return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static TypeTally<T, T0, T1, T2, T3, T> TallyLast<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> cond, T initial = default(T))
+        {
+            return @this.Add<T>(new TallierLast<T>(cond, initial));
+        }
+        /// <summary>
+        /// Add a last to a tally.
+        /// </summary>
+        /// <typeparam name="T">The type of the tally.</typeparam>
+        /// <typeparam name="T0">The first return type of the tally.</typeparam>
+        /// <typeparam name="T1">The second return type of the tally.</typeparam>
+        /// <typeparam name="T2">The third return type of the tally.</typeparam>
+        /// <typeparam name="T3">The fourth return type of the tally.</typeparam>
+        /// <typeparam name="T4">The fifth return type of the tally.</typeparam>
+        /// <param name="this">The tally to add to.</param>
+        /// <param name="cond">The condition for which to count an element.</param>
+        /// <param name="initial">The initial result for when an element has not been found.</param>
+        /// <returns><paramref name="this"/>, to allow piping.</returns>
+        public static GenericTally<T> TallyLast<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> cond, T initial = default(T))
+        {
+            return @this.Add(new TallierLast<T>(cond, initial));
         }
         #endregion
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WhetStone.Looping;
-using WhetStone.Tuples;
 
 namespace Tests
 {
@@ -11,7 +10,7 @@ namespace Tests
         [TestMethod]
         public void Simple()
         {
-            var val = new TypeTally<double>().TallyAggregate((a, b) => a + b,0.0, a => a > 1)
+            var val = new TypeTally<double>().TallyAggregate((a, b) => a + b, 0.0, a => a > 1)
                 .TallyAny().TallyAny(a => a < 0, true).TallyCount();
             var tests = new[]
             {
