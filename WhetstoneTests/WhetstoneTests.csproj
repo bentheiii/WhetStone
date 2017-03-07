@@ -80,6 +80,7 @@
     <Compile Include="ListCache.cs" />
     <Compile Include="LogarithmicProgresser.cs" />
     <Compile Include="MutableListCheck.cs" />
+    <Compile Include="Ranges.cs" />
     <Compile Include="SequenceEqual.cs" />
     <Compile Include="SequenceEqualIndices.cs" />
     <Compile Include="SequenceIndexEquator.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="SplitAt.cs" />
     <Compile Include="SplitCapture.cs" />
     <Compile Include="StrConcat.cs" />
+    <Compile Include="TallyTest.cs" />
     <Compile Include="ToArray.cs" />
   </ItemGroup>
   <ItemGroup>

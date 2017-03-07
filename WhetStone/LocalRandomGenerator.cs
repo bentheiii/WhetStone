@@ -20,6 +20,10 @@ namespace WhetStone.Random
             _int = new System.Random(seed ??
                                   DateTime.Now.GetHashCode() ^ Process.GetCurrentProcess().GetHashCode() ^ Thread.CurrentThread.GetHashCode());
         }
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="seed">The generated seed for the inner <see cref="Random"/>.</param>
         public LocalRandomGenerator(out int seed)
         {
             seed = DateTime.Now.GetHashCode() ^ Process.GetCurrentProcess().GetHashCode() ^ Thread.CurrentThread.GetHashCode();

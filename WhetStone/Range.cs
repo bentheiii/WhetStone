@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using NumberStone;
 using WhetStone.Fielding;
 using WhetStone.LockedStructures;
@@ -12,43 +13,42 @@ namespace WhetStone.Looping
     /// </summary>
     public static class range
     {
-        private class RangeList<T> : LockedList<T>
+        #region exclusive positive
+        private class RangeListExPos<T> : LockedList<T>
         {
-            private readonly T _start;
+            private readonly FieldWrapper<T> _start;
             private readonly T _end;
-            private readonly T _step;
-            private readonly bool _pos;
-            public RangeList(T start, T end, T step, bool inclusive = false, bool pos = true)
+            private readonly FieldWrapper<T> _step;
+            public RangeListExPos(T start, T end, T step)
             {
-                _start = start;
+                _start = start.ToFieldWrapper();
                 _end = end;
-                _step = step;
-                this._pos = pos;
-                var gap = end - _start.ToFieldWrapper();
-                Count = pos.Indicator(1, -1) * (int)(gap / _step) + ((gap % _step).isZero ? 0 : 1) + (inclusive ? 1 : 0);
+                _step = step.ToFieldWrapper();
+                var gap = end - _start;
+                var ratio = (double?)(gap/_step);
+                if (ratio == null)
+                    throw new Exception("gap is nonlinear!");
+                Count = ratio.Value <= 0 ? 0 : ratio.Value.ceil();
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                var ret = _start.ToFieldWrapper();
-                for (int i = 0; i < Count; i++)
+                var ret = _start;
+                while (ret < _end)
                 {
                     yield return ret;
-                    if (_pos)
-                        ret += _step;
-                    else
-                        ret -= _step;
+                    ret += _step;
                 }
             }
             public override bool Contains(T item)
             {
-                return item.iswithinPartialExclusive(_start, _end) && ((item.ToFieldWrapper() - _start) % _step).isZero;
+                return item.iswithinPartialExclusive(_start.val, _end) && ((item - _start) % _step).isZero;
             }
             public override int Count { get; }
             public override int IndexOf(T item)
             {
                 if (!Contains(item))
                     return -1;
-                return _pos.Indicator(1, -1) * (int)((item.ToFieldWrapper() - _start) / _step);
+                return (int)((item - _start) / _step);
             }
             public override T this[int index]
             {
@@ -56,31 +56,28 @@ namespace WhetStone.Looping
                 {
                     if (index < 0 || index >= Count)
                         throw new IndexOutOfRangeException();
-                    if (_pos)
-                        return this._start + this._step.ToFieldWrapper() * index;
-                    return this._start - this._step.ToFieldWrapper() * index;
+                    return this._start + this._step*index;
                 }
             }
         }
-        private class RangeList : LockedList<int>
+        private class RangeListExPos : LockedList<int>
         {
             private readonly int _start;
             private readonly int _end;
             private readonly int _step;
-            private readonly bool _inclusive;
-            public RangeList(int start, int end, int step, bool inclusive = false)
+            public RangeListExPos(int start, int end, int step)
             {
                 _start = start;
                 _end = end;
                 _step = step;
-                _inclusive = inclusive;
                 var gap = end - _start;
-                Count = gap / _step + (gap % _step == 0 ? 0 : 1) + (inclusive ? 1 : 0);
+                var ratio = (gap / (double)_step);
+                Count = ratio <= 0 ? 0 : ratio.ceil();
             }
             public override IEnumerator<int> GetEnumerator()
             {
                 var ret = _start;
-                for (int i = 0; i < Count; i++)
+                while (ret < _end)
                 {
                     yield return ret;
                     ret += _step;
@@ -88,8 +85,6 @@ namespace WhetStone.Looping
             }
             public override bool Contains(int item)
             {
-                if (_inclusive)
-                    return item.iswithin(_start, _end) && ((item - _start) % _step) == 0;
                 return item.iswithinPartialExclusive(_start, _end) && ((item - _start) % _step) == 0;
             }
             public override int Count { get; }
@@ -109,7 +104,284 @@ namespace WhetStone.Looping
                 }
             }
         }
-        //todo stop fucking step guessing, i've had enough
+        #endregion
+        #region exclusive negative
+        private class RangeListExNeg<T> : LockedList<T>
+        {
+            private readonly FieldWrapper<T> _start;
+            private readonly T _end;
+            private readonly FieldWrapper<T> _step;
+            public RangeListExNeg(T start, T end, T step)
+            {
+                _start = start.ToFieldWrapper();
+                _end = end;
+                _step = step.ToFieldWrapper();
+                var gap = end - _start;
+                var ratio = (double?)(gap / -_step);
+                if (ratio == null)
+                    throw new Exception("gap is nonlinear!");
+                Count = ratio.Value.ceil();
+            }
+            public override IEnumerator<T> GetEnumerator()
+            {
+                var ret = _start;
+                while (ret > _end)
+                {
+                    yield return ret;
+                    ret -= _step;
+                }
+            }
+            public override bool Contains(T item)
+            {
+                return item.iswithinPartialExclusive(_start.val, _end) && ((item - _start) % _step).isZero;
+            }
+            public override int Count { get; }
+            public override int IndexOf(T item)
+            {
+                if (!Contains(item))
+                    return -1;
+                return (int)((item - _start) / -_step);
+            }
+            public override T this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= Count)
+                        throw new IndexOutOfRangeException();
+                    return this._start - this._step * index;
+                }
+            }
+        }
+        private class RangeListExNeg : LockedList<int>
+        {
+            private readonly int _start;
+            private readonly int _end;
+            private readonly int _step;
+            public RangeListExNeg(int start, int end, int step)
+            {
+                _start = start;
+                _end = end;
+                _step = step;
+                var gap = end - _start;
+                var ratio = (gap / (double)-_step);
+                Count = ratio <= 0 ? 0 : ratio.ceil();
+            }
+            public override IEnumerator<int> GetEnumerator()
+            {
+                var ret = _start;
+                while (ret > _end)
+                {
+                    yield return ret;
+                    ret -= _step;
+                }
+            }
+            public override bool Contains(int item)
+            {
+                return item.iswithinPartialExclusive(_start, _end) && ((item - _start) % _step) == 0;
+            }
+            public override int Count { get; }
+            public override int IndexOf(int item)
+            {
+                if (!Contains(item))
+                    return -1;
+                return (item - _start) / -_step;
+            }
+            public override int this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= Count)
+                        throw new IndexOutOfRangeException();
+                    return this._start - this._step * index;
+                }
+            }
+        }
+        #endregion
+        #region inclusive positive
+        private class RangeListInPos<T> : LockedList<T>
+        {
+            private readonly FieldWrapper<T> _start;
+            private readonly T _end;
+            private readonly FieldWrapper<T> _step;
+            public RangeListInPos(T start, T end, T step)
+            {
+                _start = start.ToFieldWrapper();
+                _end = end;
+                _step = step.ToFieldWrapper();
+                var gap = end - _start;
+                var ratio = (double?)(gap / _step);
+                if (ratio == null)
+                    throw new Exception("gap is nonlinear!");
+                Count = ratio.Value < 0 ? 0 : ratio.Value.floor()+1;
+            }
+            public override IEnumerator<T> GetEnumerator()
+            {
+                var ret = _start;
+                while (ret <= _end)
+                {
+                    yield return ret;
+                    ret += _step;
+                }
+            }
+            public override bool Contains(T item)
+            {
+                return item.iswithin(_start.val, _end) && ((item - _start) % _step).isZero;
+            }
+            public override int Count { get; }
+            public override int IndexOf(T item)
+            {
+                if (!Contains(item))
+                    return -1;
+                return (int)((item - _start) / _step);
+            }
+            public override T this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= Count)
+                        throw new IndexOutOfRangeException();
+                    return this._start + this._step * index;
+                }
+            }
+        }
+        private class RangeListInPos : LockedList<int>
+        {
+            private readonly int _start;
+            private readonly int _end;
+            private readonly int _step;
+            public RangeListInPos(int start, int end, int step)
+            {
+                _start = start;
+                _end = end;
+                _step = step;
+                var gap = end - _start;
+                var ratio = (gap / (double)_step);
+                Count = ratio < 0 ? 0 : ratio.floor()+1;
+            }
+            public override IEnumerator<int> GetEnumerator()
+            {
+                var ret = _start;
+                while (ret <= _end)
+                {
+                    yield return ret;
+                    ret += _step;
+                }
+            }
+            public override bool Contains(int item)
+            {
+                return item.iswithin(_start, _end) && ((item - _start) % _step) == 0;
+            }
+            public override int Count { get; }
+            public override int IndexOf(int item)
+            {
+                if (!Contains(item))
+                    return -1;
+                return (item - _start) / _step;
+            }
+            public override int this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= Count)
+                        throw new IndexOutOfRangeException();
+                    return this._start - this._step * index;
+                }
+            }
+        }
+        #endregion
+        #region inclusive negative
+        private class RangeListInNeg<T> : LockedList<T>
+        {
+            private readonly FieldWrapper<T> _start;
+            private readonly T _end;
+            private readonly FieldWrapper<T> _step;
+            public RangeListInNeg(T start, T end, T step)
+            {
+                _start = start.ToFieldWrapper();
+                _end = end;
+                _step = step.ToFieldWrapper();
+                var gap = end - _start;
+                var ratio = (double?)(gap / -_step);
+                if (ratio == null)
+                    throw new Exception("gap is nonlinear!");
+                Count = ratio.Value < 0 ? 0 : ratio.Value.floor() + 1;
+            }
+            public override IEnumerator<T> GetEnumerator()
+            {
+                var ret = _start;
+                while (ret >= _end)
+                {
+                    yield return ret;
+                    ret -= _step;
+                }
+            }
+            public override bool Contains(T item)
+            {
+                return item.iswithin(_start.val, _end) && ((item - _start) % _step).isZero;
+            }
+            public override int Count { get; }
+            public override int IndexOf(T item)
+            {
+                if (!Contains(item))
+                    return -1;
+                return (int)((item - _start) / -_step);
+            }
+            public override T this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= Count)
+                        throw new IndexOutOfRangeException();
+                    return this._start - this._step * index;
+                }
+            }
+        }
+        private class RangeListInNeg : LockedList<int>
+        {
+            private readonly int _start;
+            private readonly int _end;
+            private readonly int _step;
+            public RangeListInNeg(int start, int end, int step)
+            {
+                _start = start;
+                _end = end;
+                _step = step;
+                var gap = end - _start;
+                var ratio = (gap / (double)-_step);
+                Count = ratio < 0 ? 0 : ratio.floor() + 1;
+            }
+            public override IEnumerator<int> GetEnumerator()
+            {
+                var ret = _start;
+                while (ret >= _end)
+                {
+                    yield return ret;
+                    ret -= _step;
+                }
+            }
+            public override bool Contains(int item)
+            {
+                return item.iswithin(_start, _end) && ((item - _start) % _step) == 0;
+            }
+            public override int Count { get; }
+            public override int IndexOf(int item)
+            {
+                if (!Contains(item))
+                    return -1;
+                return (item - _start) / -_step;
+            }
+            public override int this[int index]
+            {
+                get
+                {
+                    if (index < 0 || index >= Count)
+                        throw new IndexOutOfRangeException();
+                    return this._start - this._step * index;
+                }
+            }
+        }
+        #endregion
+        #region Range
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series. 
         /// </summary>
@@ -121,13 +393,9 @@ namespace WhetStone.Looping
         /// <remarks>uses fielding.</remarks>
         public static IList<T> Range<T>(T start, T max, T step)
         {
-            var field = Fields.getField<T>();
-            //try rewrite
-            if (!field.Negatable || field.isPositive(step))
-            {
-                return new RangeList<T>(start, max, step);
-            }
-            return Range(field.Negate(start), field.Negate(max), field.Negate(step)).Select(field.Negate, field.Negate);
+            if (step.ToFieldWrapper().IsNegative)
+                return RRange(start,max,(-step.ToFieldWrapper()).val);
+            return new RangeListExPos<T>(start, max, step);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series. 
@@ -140,11 +408,7 @@ namespace WhetStone.Looping
         public static IList<T> Range<T>(T start, T max)
         {
             var f = Fields.getField<T>();
-            if (f.Compare(start, max) < 0)
-                return Range(start, max, f.one);
-            if (f.Negatable)
-                return Range(start, max, f.negativeone);
-            return new RangeList<T>(start, max, f.one, pos: false);
+            return Range(start, max, f.one);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series. 
@@ -155,7 +419,8 @@ namespace WhetStone.Looping
         /// <remarks>uses fielding.</remarks>
         public static IList<T> Range<T>(T max)
         {
-            return Range(Fields.getField<T>().zero, max);
+            var f = Fields.getField<T>();
+            return Range(f.zero, max, f.one);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
@@ -164,21 +429,11 @@ namespace WhetStone.Looping
         /// <param name="max">The maximum value of the elements. Exclusive.</param>
         /// <param name="step">The difference between consecutive elements.</param>
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
-        public static IList<int> Range(int start, int max, int step)
+        public static IList<int> Range(int start, int max, int step = 1)
         {
-            if (step >= 0)
-                return new RangeList(start, max, step);
-            return Range(-start, -max, -step).Select(a => -a, a => -a);
-        }
-        /// <summary>
-        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
-        /// </summary>
-        /// <param name="start">The first element of the returned value.</param>
-        /// <param name="max">The maximum value of the elements. Exclusive.</param>
-        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
-        public static IList<int> Range(int start, int max)
-        {
-            return Range(start, max, start < max ? 1 : -1);
+            if (step < 0)
+                return RRange(start, max, -step);
+            return new RangeListExPos(start, max, step);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
@@ -189,6 +444,8 @@ namespace WhetStone.Looping
         {
             return Range(0, max);
         }
+        #endregion
+        #region IRange
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series. 
         /// </summary>
@@ -200,13 +457,9 @@ namespace WhetStone.Looping
         /// <remarks>uses fielding.</remarks>
         public static IList<T> IRange<T>(T start, T max, T step)
         {
-            var field = Fields.getField<T>();
-            //try rewrite
-            if (!field.Negatable || field.isPositive(step))
-            {
-                return new RangeList<T>(start, max, step, true);
-            }
-            return IRange(field.Negate(start), field.Negate(max), field.Negate(step)).Select(a => field.Negate(a));
+            if (step.ToFieldWrapper().IsNegative)
+                return RIRange(start, max, (-step.ToFieldWrapper()).val);
+            return new RangeListInPos<T>(start, max, step);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series. 
@@ -219,11 +472,7 @@ namespace WhetStone.Looping
         public static IList<T> IRange<T>(T start, T max)
         {
             var f = Fields.getField<T>();
-            if (f.Compare(start, max) < 0)
-                return IRange(start, max, f.one);
-            if (f.Negatable)
-                return IRange(start, max, f.negativeone);
-            return new RangeList<T>(start, max, f.one, true, pos: false);
+            return IRange(start, max, f.one);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series. 
@@ -234,7 +483,8 @@ namespace WhetStone.Looping
         /// <remarks>uses fielding.</remarks>
         public static IList<T> IRange<T>(T max)
         {
-            return IRange(Fields.getField<T>().zero, max);
+            var f = Fields.getField<T>();
+            return IRange(f.zero, max, f.one);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
@@ -243,23 +493,11 @@ namespace WhetStone.Looping
         /// <param name="max">The maximum value of the elements. Inclusive.</param>
         /// <param name="step">The difference between consecutive elements.</param>
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
-        public static IList<int> IRange(int start, int max, int step)
+        public static IList<int> IRange(int start, int max, int step=1)
         {
-            if (step >= 0)
-            {
-                return new RangeList(start, max, step, true);
-            }
-            return IRange(-start, -max, -step).Select(a => -a);
-        }
-        /// <summary>
-        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
-        /// </summary>
-        /// <param name="start">The first element of the returned value.</param>
-        /// <param name="max">The maximum value of the elements. Inclusive.</param>
-        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
-        public static IList<int> IRange(int start, int max)
-        {
-            return IRange(start, max, start < max ? 1 : -1);
+            if (step < 0)
+                return RIRange(start, max, -step);
+            return new RangeListInPos(start, max, step);
         }
         /// <summary>
         /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
@@ -270,5 +508,94 @@ namespace WhetStone.Looping
         {
             return IRange(0, max);
         }
+        #endregion
+        #region RRange
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
+        /// <remarks>uses fielding.</remarks>
+        public static IList<T> RRange<T>(T start, T max, T step)
+        {
+            if (step.ToFieldWrapper().IsNegative)
+                return Range(start, max, (-step.ToFieldWrapper()).val);
+            return new RangeListExNeg<T>(start, max, step);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of one.</returns>
+        /// <remarks>uses fielding.</remarks>
+        public static IList<T> RRange<T>(T start, T max)
+        {
+            var f = Fields.getField<T>();
+            return RRange(start, max, f.one);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
+        public static IList<int> RRange(int start, int max, int step = 1)
+        {
+            if (step < 0)
+                return Range(start, max, -step);
+            return new RangeListExNeg(start, max, step);
+        }
+        #endregion
+        #region RIRange
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
+        /// <remarks>uses fielding.</remarks>
+        // ReSharper disable InconsistentNaming
+        public static IList<T> RIRange<T>(T start, T max, T step)
+        {
+            if (step.ToFieldWrapper().IsNegative)
+                return IRange(start, max, (-step.ToFieldWrapper()).val);
+            return new RangeListInNeg<T>(start, max, step);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements.</typeparam>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of one.</returns>
+        /// <remarks>uses fielding.</remarks>
+        public static IList<T> RIRange<T>(T start, T max)
+        {
+            var f = Fields.getField<T>();
+            return RIRange(start, max, f.one);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <param name="step">The difference between consecutive elements.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
+        public static IList<int> RIRange(int start, int max, int step = 1)
+        {
+            if (step < 0)
+                return IRange(start, max, -step);
+            return new RangeListInNeg(start, max, step);
+        }
+        // ReSharper restore InconsistentNaming
+        #endregion
     }
 }

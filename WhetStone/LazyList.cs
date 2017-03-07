@@ -118,6 +118,7 @@ namespace WhetStone.Looping
         {
             return IndexOf(item) >= 0;
         }
+        /// <inheritdoc />
         public void CopyTo(T[] array, int arrayIndex)
         {
             throw new NotSupportedException();

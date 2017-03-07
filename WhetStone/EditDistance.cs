@@ -143,7 +143,6 @@ namespace WhetStone.Looping
                 return $"Set index {ind} with {newVal}";
             }
         }
-        
         /// <summary>
         /// Get the edit steps in the shortest edit path from <paramref name="this"/> to <paramref name="other"/>.
         /// </summary>
@@ -153,6 +152,9 @@ namespace WhetStone.Looping
         /// <param name="allowIns">Whether to allow insertions.</param>
         /// <param name="allowDel">Whether to allow deletions.</param>
         /// <param name="allowSub">Whether to allow substations.</param>
+        /// <param name="insertWeight">weight of an insert step.</param>
+        /// <param name="removeWeight">weight of a remove step.</param>
+        /// <param name="subWeight">weight of a substitution step.</param>
         /// <typeparam name="T">The type of <paramref name="this"/> and <paramref name="other"/>'s elements.</typeparam>
         /// <returns>An enumerable with all the edit steps necessary to turn <paramref name="this"/> into <paramref name="other"/>.</returns>
         /// <exception cref="ArgumentException">If no edit paths are found.</exception>

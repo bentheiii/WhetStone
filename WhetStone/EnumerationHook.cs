@@ -8,7 +8,6 @@ namespace WhetStone.Looping
     /// </summary>
     public static class enumerationHook
     {
-        // todo tally instead
         /// <overloads>Binds an action to an enumerable, to be executed upon enumeration.</overloads>
         /// <summary>
         /// Binds actions to an <see cref="IEnumerable{T}"/>, causing the action to call whenever the <see cref="IEnumerable{T}"/> is enumerated.

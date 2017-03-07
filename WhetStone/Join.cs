@@ -131,7 +131,7 @@ namespace WhetStone.Looping
         }
         private static IEnumerable<T[]> JoinMonoDescendingPairs<T>(this IEnumerable<T> @this, int cartesLength)
         {
-            var tors = @this.Enumerate().Repeat(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
+            var tors = @this.Enumerate().Cycle(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
             //initialization
                 if (tors.Any(a => !a.MoveNext()))
                     yield break;
@@ -183,7 +183,7 @@ namespace WhetStone.Looping
         }
         private static IEnumerable<T[]> JoinDescendingPairs<T>(this IEnumerable<T> @this, int cartesLength)
         {
-            var tors = @this.Enumerate().Repeat(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
+            var tors = @this.Enumerate().Cycle(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
             //initialization
             foreach (var enumerator in tors.CountBind())
             {
@@ -245,7 +245,7 @@ namespace WhetStone.Looping
         }
         private static IEnumerable<T[]> JoinNoReflexive<T>(this IEnumerable<T> @this, int cartesLength)
         {
-            var tors = @this.Enumerate().Repeat(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
+            var tors = @this.Enumerate().Cycle(cartesLength).Select(a => a.CountBind().GetEnumerator()).ToArray();
             //initialization
                 foreach (var enumerator in tors.CountBind())
                 {

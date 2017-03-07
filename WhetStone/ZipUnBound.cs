@@ -9,8 +9,19 @@ using WhetStone.LockedStructures;
 
 namespace WhetStone.Looping
 {
+    /// <summary>
+    /// A static container for identity method
+    /// </summary>
     public static class zipUnBound
     {
+        /// <overloads>Get all the elements in enumerables spliced together, continuing until they all end</overloads>
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/>s to zip.</param>
+        /// <param name="nilValue">The default value to assign when an <see cref="IEnumerable{T}"/> has ended.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <paramref name="nilValue"/>.</returns>
         public static IEnumerable<IList<T>> ZipUnBound<T>(this IEnumerable<IEnumerable<T>> @this, T nilValue)
         {
             IEnumerator<T>[] tors = @this.Select(a => a.GetEnumerator()).ToArray();
@@ -52,18 +63,45 @@ namespace WhetStone.Looping
             }
 
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/>s to zip.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<IList<T?>> ZipUnBoundNullable<T>(this IEnumerable<IEnumerable<T>> @this) where T:struct
         {
             return @this.Select(a => a.Select(x => (T?)x)).ZipUnBound(null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/>s to zip.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<IList<Tuple<T>>> ZipUnBoundTuple<T>(this IEnumerable<IEnumerable<T>> @this)
         {
             return @this.Select(a => a.Select(x => Tuple.Create(x))).ZipUnBound(null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <param name="this">The <see cref="IEnumerable{T}"/>s to zip.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<IList<Tuple<object>>> ZipUnBound(this IEnumerable<IEnumerable<object>> @this)
         {
             return @this.Select(a => a.Select(x => Tuple.Create(x))).ZipUnBound(null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="nilValue1">The default value to assign when <paramref name="this"/> has ended.</param>
+        /// <param name="nilValue2">The default value to assign when <paramref name="other"/> has ended.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <paramref name="nilValue1"/> or <paramref name="nilValue2"/>.</returns>
         public static IEnumerable<Tuple<T1, T2>> ZipUnBound<T1, T2>(this IEnumerable<T1> @this, IEnumerable<T2> other, T1 nilValue1, T2 nilValue2)
         {
             return new[] {@this.Select(a => (object)a), other.Select(a => (object)a) }.ZipUnBound().Select(a =>
@@ -79,14 +117,43 @@ namespace WhetStone.Looping
                 return Tuple.Create(t1, t2);
             });
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<Tuple<T1?, T2?>> ZipUnBoundNullable<T1, T2>(this IEnumerable<T1> @this, IEnumerable<T2> other) where T1 :struct where T2 : struct
         {
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), null, null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<Tuple<Tuple<T1>, Tuple<T2>>> ZipUnBoundTuple<T1, T2>(this IEnumerable<T1> @this, IEnumerable<T2> other)
         {
             return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), null, null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T3">The type of the third <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other2">The third <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="nilValue1">The default value to assign when <paramref name="this"/> has ended.</param>
+        /// <param name="nilValue2">The default value to assign when <paramref name="other"/> has ended.</param>
+        /// <param name="nilValue3">The default value to assign when <paramref name="other2"/> has ended.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <paramref name="nilValue1"/>, <paramref name="nilValue2"/> or <paramref name="nilValue3"/>.</returns>
         public static IEnumerable<Tuple<T1, T2, T3>> ZipUnBound<T1, T2, T3>(this IEnumerable<T1> @this, IEnumerable<T2> other, IEnumerable<T3> other2, T1 nilValue1, T2 nilValue2, T3 nilValue3)
         {
             return new[] { @this.Select(a => (object)a), other.Select(a => (object)a), other2.Select(a => (object)a) }.ZipUnBound().Select(a =>
@@ -106,10 +173,30 @@ namespace WhetStone.Looping
                 return Tuple.Create(t1, t2, t3);
             });
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T3">The type of the third <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other2">The third <see cref="IEnumerable{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with null.</returns>
         public static IEnumerable<Tuple<T1?, T2?, T3?>> ZipUnBoundNullable<T1, T2, T3>(this IEnumerable<T1> @this, IEnumerable<T2> other, IEnumerable<T3> other2) where T1 : struct where T2 : struct where T3:struct
         {
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), other2.Select(a=>(T3?)a), null, null, null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IEnumerable{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <typeparam name="T3">The type of the third <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other">The second <see cref="IEnumerable{T}"/>.</param>
+        /// <param name="other2">The third <see cref="IEnumerable{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with null.</returns>
         public static IEnumerable<Tuple<Tuple<T1>, Tuple<T2>, Tuple<T3>>> ZipUnBoundTuple<T1, T2, T3>(this IEnumerable<T1> @this, IEnumerable<T2> other, IEnumerable<T3> other2)
         {
             return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), other2.Select(a=>Tuple.Create(a)),null, null, null);
@@ -132,34 +219,84 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    return _src.Min(a => a.Count);
+                    return _src.Max(a => a.Count);
                 }
             }
             public override IList<T> this[int index]
             {
                 get
                 {
-                    return _src.Select(l => l.IsWithinBounds(index) ? l[index] : _nilValue).ToList();
+                    if (index < 0)
+                        throw new IndexOutOfRangeException();
+                    var ret = new List<T>();
+                    bool any = false;
+                    foreach (var l in _src)
+                    {
+                        if (index < l.Count)
+                        {
+                            any = true;
+                            ret.Add(l[index]);
+                        }
+                        else
+                            ret.Add(_nilValue);
+                    }
+                    if (!any)
+                        throw new IndexOutOfRangeException();
+                    return ret;
                 }
             }
         }
-
+        /// <overloads>Get all the elements in enumerables spliced together, continuing until they all end</overloads>
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/>s to zip.</param>
+        /// <param name="nilValue">The default value to assign when an <see cref="IList{T}"/> has ended.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <paramref name="nilValue"/>.</returns>
         public static IList<IList<T>> ZipUnBound<T>(this IEnumerable<IList<T>> @this, T nilValue)
         {
             return new ZipUnBoundNilled<T>(@this, nilValue);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/>s to zip.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<IList<T?>> ZipUnBoundNullable<T>(this IEnumerable<IList<T>> @this) where T : struct
         {
             return @this.Select(a => a.Select(x => (T?)x)).ZipUnBound(null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IList{T}"/>s to zip.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<IList<Tuple<T>>> ZipUnBoundTuple<T>(this IEnumerable<IList<T>> @this)
         {
             return @this.Select(a => a.Select(x => Tuple.Create(x))).ZipUnBound(null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <param name="this">The <see cref="IList{T}"/>s to zip.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<IList<Tuple<object>>> ZipUnBound(this IEnumerable<IList<object>> @this)
         {
             return @this.Select(a => a.Select(Tuple.Create)).ZipUnBound(null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/>.</param>
+        /// <param name="other">The second <see cref="IList{T}"/>.</param>
+        /// <param name="nilValue1">The default value to assign when <paramref name="this"/> has ended.</param>
+        /// <param name="nilValue2">The default value to assign when <paramref name="other"/> has ended.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <paramref name="nilValue1"/> or <paramref name="nilValue2"/>.</returns>
         public static IList<Tuple<T1, T2>> ZipUnBound<T1, T2>(this IList<T1> @this, IList<T2> other, T1 nilValue1, T2 nilValue2)
         {
             return new[] { @this.Select(a => (object)a), other.Select(a => (object)a) }.ZipUnBound().Select(a =>
@@ -175,14 +312,43 @@ namespace WhetStone.Looping
                 return Tuple.Create(t1, t2);
             });
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/>.</param>
+        /// <param name="other">The second <see cref="IList{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<Tuple<T1?, T2?>> ZipUnBoundNullable<T1, T2>(this IList<T1> @this, IList<T2> other) where T1 : struct where T2 : struct
         {
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), null, null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/>.</param>
+        /// <param name="other">The second <see cref="IList{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<Tuple<Tuple<T1>, Tuple<T2>>> ZipUnBoundTuple<T1, T2>(this IList<T1> @this, IList<T2> other)
         {
             return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), null, null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T3">The type of the third <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/>.</param>
+        /// <param name="other">The second <see cref="IList{T}"/>.</param>
+        /// <param name="other2">The third <see cref="IList{T}"/>.</param>
+        /// <param name="nilValue1">The default value to assign when <paramref name="this"/> has ended.</param>
+        /// <param name="nilValue2">The default value to assign when <paramref name="other"/> has ended.</param>
+        /// <param name="nilValue3">The default value to assign when <paramref name="other2"/> has ended.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <paramref name="nilValue1"/>, <paramref name="nilValue2"/> or <paramref name="nilValue3"/>.</returns>
         public static IList<Tuple<T1, T2, T3>> ZipUnBound<T1, T2, T3>(this IList<T1> @this, IList<T2> other, IList<T3> other2, T1 nilValue1, T2 nilValue2, T3 nilValue3)
         {
             return new[] { @this.Select(a=>(object)a), other.Select(a => (object)a), other2.Select(a => (object)a) }.ZipUnBound().Select(a =>
@@ -202,10 +368,30 @@ namespace WhetStone.Looping
                 return Tuple.Create(t1, t2, t3);
             });
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T3">The type of the third <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/>.</param>
+        /// <param name="other">The second <see cref="IList{T}"/>.</param>
+        /// <param name="other2">The third <see cref="IList{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with null.</returns>
         public static IList<Tuple<T1?, T2?, T3?>> ZipUnBoundNullable<T1, T2, T3>(this IList<T1> @this, IList<T2> other, IList<T3> other2) where T1 : struct where T2 : struct where T3 : struct
         {
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), other2.Select(a => (T3?)a), null, null, null);
         }
+        /// <summary>
+        /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
+        /// </summary>
+        /// <typeparam name="T1">The type of the first <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T2">The type of the second <see cref="IList{T}"/>.</typeparam>
+        /// <typeparam name="T3">The type of the third <see cref="IList{T}"/>.</typeparam>
+        /// <param name="this">The first <see cref="IList{T}"/>.</param>
+        /// <param name="other">The second <see cref="IList{T}"/>.</param>
+        /// <param name="other2">The third <see cref="IList{T}"/>.</param>
+        /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with null.</returns>
         public static IList<Tuple<Tuple<T1>, Tuple<T2>, Tuple<T3>>> ZipUnBoundTuple<T1, T2, T3>(this IList<T1> @this, IList<T2> other, IList<T3> other2)
         {
             return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), other2.Select(a => Tuple.Create(a)), null, null, null);

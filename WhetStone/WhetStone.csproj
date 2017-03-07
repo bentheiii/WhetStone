@@ -132,7 +132,6 @@
     <Compile Include="HookCount.cs" />
     <Compile Include="HookFirst.cs" />
     <Compile Include="HookLast.cs" />
-    <Compile Include="IdDistributer.cs" />
     <Compile Include="Indices.cs" />
     <Compile Include="Infinite.cs" />
     <Compile Include="IsPrime.cs" />
@@ -167,7 +166,6 @@
     <Compile Include="PriorityComparer.cs" />
     <Compile Include="RandomGenerator.cs" />
     <Compile Include="Range.cs" />
-    <Compile Include="Repeat.cs" />
     <Compile Include="Reverse.cs" />
     <Compile Include="ReverseComparer.cs" />
     <Compile Include="Select.cs" />
@@ -178,6 +176,7 @@
     <Compile Include="SmallestFactors.cs" />
     <Compile Include="Splice.cs" />
     <Compile Include="Take.cs" />
+    <Compile Include="Tally.cs" />
     <Compile Include="Unzip.cs" />
     <Compile Include="Split.cs" />
     <Compile Include="Step.cs" />

@@ -192,20 +192,6 @@ namespace WhetStone.Fielding {
             return Comparer<T>.Default.Compare(x, y);
         }
         /// <inheritdoc />
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Field<T>))
-            {
-                return false;
-            }
-            return IdDistributer.getId(this) == IdDistributer.getId(obj);
-        }
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            return IdDistributer.getId(this).GetHashCode();
-        }
-        /// <inheritdoc />
         public Type SubjectType=> typeof (T);
         /// <summary>
         /// Returns the absolute value of an element.
