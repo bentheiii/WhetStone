@@ -128,6 +128,7 @@ It's a common, yet rare adressed problem that Hooking and Tallting seek to solve
 4. You will also need the number of elements in `Input`, for use in the function.
 
 Without Whetstone, there are two main ways to do this:
+
 **Method 1: LINQ it**
 ```csharp
 public void Foo(IEnumerable<double> input){
@@ -142,6 +143,7 @@ public void Foo(IEnumerable<double> input){
 }
 ```
 The problem with this method is that `input` is enumerated **three** times when one would have sufficed. Also, it is entirely possible that the first element of `input` is negative, but it would not be caught until `Sum()` has completed, enumerating `input` completely.
+
 **Method 2: Loop**
 ```csharp
 public void Foo(IEnumerable<double> input){
@@ -162,6 +164,7 @@ public void Foo(IEnumerable<double> input){
 ```
 This implementation is optimal, but it's bulky, difficult to read and debug, and clutters the function.
 Now, with Wetstone, we have 2 new solutions that seek the readability of LINQ with a Loop's efficiency.
+
 **Method 3: Hooking**
 Hooking is the process of attaching an action to an `IEnumerable<T>`, to invoke the action whenever an element is enumerated. A common action to hook is the mutation of an outside variable:
 ```csharp
@@ -181,6 +184,7 @@ public void Foo(IEnumerable<double> input){
 }
 ```
 But IGuards are cumbersome and inefficient. Also, hooking does not allow to break in the middle of enumeration, which is inefficient. This is why hooking is recommended for when early breaking is not needed (like if you needed to count not only how many elements exist, but how many are non-zero).
+
 **Method 4: Tallying**
 Tallying is like LINQ in reverse, first building the query, then running it through an `IEnumerable<T>`.
 ```csharp
