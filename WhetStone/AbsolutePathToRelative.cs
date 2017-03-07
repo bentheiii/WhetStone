@@ -5,7 +5,6 @@ using WhetStone.Looping;
 
 namespace WhetStone.Path
 {
-    //todo singleordefault
     /// <summary>
     /// A static container for identity method
     /// </summary>

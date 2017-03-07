@@ -171,6 +171,7 @@
     <Compile Include="Select.cs" />
     <Compile Include="SelectMany.cs" />
     <Compile Include="ShaGenerator.cs" />
+    <Compile Include="Single.cs" />
     <Compile Include="Skip.cs" />
     <Compile Include="SkipSlice.cs" />
     <Compile Include="SmallestFactors.cs" />
