@@ -215,13 +215,9 @@ namespace WhetStone.Looping
                             bool retry = false;
                             foreach (var i in range.Range(0, nexttorind))
                             {
-                                foreach (int i1 in range.Range(tors[nexttorind].Current.Item2 + i + 1))
+                                if (range.Range(tors[nexttorind].Current.Item2 + i + 1).Any(i1 => !tors[nexttorind - i - 1].MoveNext()))
                                 {
-                                    if (!tors[nexttorind - i - 1].MoveNext())
-                                    {
-                                        retry = true;
-                                        break;
-                                    }
+                                    retry = true;
                                 }
                                 if (retry)
                                     break;

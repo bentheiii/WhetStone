@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using NumberStone;
 using WhetStone.Fielding;
 using WhetStone.LockedStructures;

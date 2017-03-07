@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace WhetStone.Comparison
@@ -11,10 +10,6 @@ namespace WhetStone.Comparison
     public class PriorityComparer<T> : IComparer<T>
     {
         private readonly IEnumerable<IComparer<T>> _comps;
-        private PriorityComparer(IEnumerable<IComparer<T>> c)
-        {
-            this._comps = c;
-        }
         /// <summary>
         /// Constructor.
         /// </summary>

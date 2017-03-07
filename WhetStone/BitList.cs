@@ -152,7 +152,7 @@ namespace WhetStone.SystemExtensions
             else
                 newval &= ~((word)1 << newmemberind);
             _int[shiftMemberInd] = newval;
-            foreach (var ind in range.Range(shiftMemberInd+1,_int.Count,1))
+            foreach (var ind in range.Range(shiftMemberInd+1,_int.Count))
             {
                 var newcarry = (_int[ind] & carrymask) != 0;
                 _int[ind] <<= 1;
@@ -239,7 +239,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="value">The value to set the range to.</param>
         public void SetRange(int start, int length, bool value)
         {
-            var fill = value ? ~(word)0 : (word)0;
+            var fill = value ? ~(word)0 : 0;
             int fillStart = (start/(double)BITS_IN_CELL).ceil();
             int fillEnd = ((start+length) / (double)BITS_IN_CELL).floor();
 

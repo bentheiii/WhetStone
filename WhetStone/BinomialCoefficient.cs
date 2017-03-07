@@ -1,5 +1,4 @@
 ﻿using System;
-using Numerics;
 using WhetStone.Looping;
 
 namespace NumberStone

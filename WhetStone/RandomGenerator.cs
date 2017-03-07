@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using WhetStone.Looping;
 using WhetStone.Fielding;
 using WhetStone.SystemExtensions;
-using WhetStone.WordPlay;
 
 namespace WhetStone.Random
 {
@@ -46,6 +44,7 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="int"/></returns>
         public int Int()
         {
+            // ReSharper disable once IntroduceOptionalParameters.Global
             return Int(int.MinValue,int.MaxValue);
         }
         /// <summary>
@@ -197,7 +196,7 @@ namespace WhetStone.Random
         /// <para>This function uses fielding.</para>
         /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.FromBytes"/> generation.</para>
         /// </remarks>
-        public virtual T FromField<T>()
+        public T FromField<T>()
         {
             var f = Fields.getField<T>();
             if (f.GenType == GenerationType.Never || f.GenType == GenerationType.Special)
@@ -215,7 +214,7 @@ namespace WhetStone.Random
         /// <para>This function uses fielding.</para>
         /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.FromRange"/> generation.</para>
         /// </remarks>
-        public virtual T FromField<T>(T min, T max)
+        public T FromField<T>(T min, T max)
         {
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.FromRange)
@@ -234,7 +233,7 @@ namespace WhetStone.Random
         /// <para>This function uses fielding.</para>
         /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.Special"/> generation.</para>
         /// </remarks>
-        public virtual T FromField<T>(T min, T max, object special)
+        public T FromField<T>(T min, T max, object special)
         {
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.Special)

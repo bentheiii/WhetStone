@@ -28,13 +28,13 @@ namespace WhetStone.Looping
             }
             using (var tor = @this.GetEnumerator())
             {
-                foreach (var _ in range.Range(0,start,1))
+                foreach (var _ in range.Range(0,start))
                 {
                     if (!tor.MoveNext())
                         yield break;
                     yield return tor.Current;
                 }
-                foreach (var _ in range.Range(0,length,1))
+                foreach (var _ in range.Range(0,length))
                 {
                     if (!tor.MoveNext())
                         yield break;

@@ -177,7 +177,8 @@
     <Compile Include="SmallestFactors.cs" />
     <Compile Include="Splice.cs" />
     <Compile Include="Take.cs" />
-    <Compile Include="Tally.cs" />
+    <Compile Include="GenericTally.cs" />
+    <Compile Include="TypeTally.cs" />
     <Compile Include="Unzip.cs" />
     <Compile Include="Split.cs" />
     <Compile Include="Step.cs" />

@@ -11,7 +11,7 @@ namespace Tests
         [TestMethod]
         public void Simple()
         {
-            var val = new Tally<double>().TallyAggregate((a, b) => a + b, 0.0, a => a > 1)
+            var val = new TypeTally<double>().TallyAggregate((a, b) => a + b, 0.0, a => a > 1)
                 .TallyAny().TallyAny(a => a < 0, true).TallyCount();
             var tests = new[]
             {
@@ -24,7 +24,7 @@ namespace Tests
 
             foreach (var test in tests)
             {
-                var result = val.Do<double, double, bool, bool, int>(test.Item1);
+                var result = val.Do(test.Item1);
                 Assert.AreEqual(result.Item1, test.Item2.Item1,1e-3);
                 Assert.AreEqual(result.Item2, test.Item2.Item2);
                 Assert.AreEqual(result.Item3, test.Item2.Item3);

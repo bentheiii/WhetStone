@@ -68,7 +68,7 @@ namespace NumberStone
             }
             foreach (var factor in n.Primefactors().ToOccurancesSorted())
             {
-                _factors.EnsureValue(factor.Item1, 0);
+                _factors.EnsureValue(factor.Item1);
                 _factors[factor.Item1] += (pow*factor.Item2);
                 if (_factors[factor.Item1] == 0)
                     _factors.Remove(factor.Item1);
@@ -106,7 +106,7 @@ namespace NumberStone
                     toadd += (n / factor);
                     factor *= prime;
                 }
-                _factors.EnsureValue(prime, 0);
+                _factors.EnsureValue(prime);
                 _factors[prime] += toadd * pow;
                 if (_factors[prime] == 0)
                     _factors.Remove(prime);

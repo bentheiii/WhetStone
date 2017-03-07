@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Numerics;
-using System.Text;
 using Numerics;
 
 namespace WhetStone.SystemExtensions
@@ -63,7 +62,7 @@ namespace WhetStone.SystemExtensions
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
         public static int pow(this int powbase, int powpower)
         {
-            return (int)((double)powbase).pow((double)powpower);
+            return (int)((double)powbase).pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="byte"/> to the power of another.
@@ -73,7 +72,7 @@ namespace WhetStone.SystemExtensions
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
         public static byte pow(this byte powbase, byte powpower)
         {
-            return (byte)((double)powbase).pow((double)powpower);
+            return (byte)((double)powbase).pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="sbyte"/> to the power of another.
@@ -83,7 +82,7 @@ namespace WhetStone.SystemExtensions
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
         public static sbyte pow(this sbyte powbase, sbyte powpower)
         {
-            return (sbyte)((double)powbase).pow((double)powpower);
+            return (sbyte)((double)powbase).pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="short"/> to the power of another.
@@ -93,7 +92,7 @@ namespace WhetStone.SystemExtensions
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
         public static short pow(this short powbase, short powpower)
         {
-            return (short)((double)powbase).pow((double)powpower);
+            return (short)((double)powbase).pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="ushort"/> to the power of another.
@@ -103,7 +102,7 @@ namespace WhetStone.SystemExtensions
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
         public static ushort pow(this ushort powbase, ushort powpower)
         {
-            return (ushort)((double)powbase).pow((double)powpower);
+            return (ushort)((double)powbase).pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="uint"/> to the power of another.
