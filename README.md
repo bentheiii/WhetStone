@@ -39,14 +39,14 @@ var list = new int[]{2,3,5,7}.Select(x=>x*x) //{4,9,25,49}
             .Zip(new int[]{0,1,2,3,4,5,6,7}) //{(4,0),(8,1),(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
             .Skip(2)                         //{(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
             .Select(a=>a.Item1-a.Item2);     //{7,15,21,45,43,91}
-            //Still a List! O(1) memory!
+            //Still a List!
 ```
 ### \#3-Clarifications and Repercussions
 Everything returned by Whetstone's LINQ-like functions is still lazily evaluated. It uses no extra memory and is sometimes more efficient than pure LINQ's IEnumerable.
 
 The abundance of read-only Collections and Lists brings new opportunities to the C# toolbox, like:
 ```csharp
-var dotNetRange = Enumerable.Range(0,10); //Why is this not a list?
+var dotNetRange = Enumerable.Range(0,10); //Why is this not a range?
 var whetstoneRange = range.Range(10); //Oh, yeah! Constant-time, Constant-memory random access!
 ```
 Wherever possible, and without sacrificing complexity or memory, Whetstone strives to return ILists and ICollections instead of IEnumerables for improved usability.
@@ -57,8 +57,8 @@ var originalList = new List<int>(new int[]{2,3,7,11});
 var slice = originalList.Skip(2); //Still a list!
 slice.Insert(0,5);//wait...
 ```
-Should `originalList` now be {2,3,5,7,11} and `slice` be {5,7,11}? Should `originalList` stay how it is, ans `slice` copy itself into a new List with the added item? Should an exception be thrown, making this theoretical usage impossible? The decisions are:
-* Whetstone's specialized LINQ functions are made to be contant-memory, and they will always stay that way.
+Should `originalList` now be {2,3,5,7,11} and `slice` be {5,7,11}? Should `originalList` stay how it is, and `slice` copy itself into a new List with the added item? Should an exception be thrown, making this theoretical usage impossible? The decisions are:
+* Whetstone's specialized LINQ functions are made to be constant-memory, and they will always stay that way.
 * IList and ICollection mutations will be allowed, and **they will mutate the original IEnumerable**.
 * The returned value will be read-only if the input is read-only.
 
@@ -90,7 +90,7 @@ Or:
 ```csharp
 public static T Abs<T>(T value)
 {
-    var wrapped = value.ToFieldWrapper();//no extra memory
+    var wrapped = value.ToFieldWrapper();
     if (wrapped < 0)
         return -wrapped;//elegent, efficient, generic
     return value;
@@ -112,21 +112,105 @@ list.GetProduct(1);
 //yes, this is even better:
 list.GetProduct(1,(a,b)=>a*b);
 ```
-For this reason, many common functions like `Range` have specialized, non-generic cases for common types.
+For this reason, many common functions like `range.Range` have specialized, non-generic cases for common types.
 ### \#4- Repercussions
 If you're willing to accept the runtime overhead, fields can have many usages you never thought of before:
 ```csharp
-var aTOz = range.IRange('a','z');//Constant-memory list of all lowercase letters
+var aTOz = range.IRange('a','z');//Contant-memory list of all lowercase letters in a single line!
 var concatedNumbers = range.Range(10).Select(a=>a.ToString()).GetSum();//"0123456789"
 ```
-## IV: Many, Many Extension Methods
+
+## IV: Hooking & Tallying
+It's a common, yet rare adressed problem that Hooking and Tallting seek to solve. Say you want to write a function that takes probabilities of events, as an `IEnumerable<double>`. You need your input to uphold three conditions:
+1. `Input` cannot be empty.
+2. `Input`'s sum cannot exceed 1.
+3. None of the `Input`'s elements can be negative.
+4. You will also need the number of elements in `Input`, for use in the function.
+
+Without Whetstone, there are two main ways to do this:
+**Method 1: LINQ it**
+```csharp
+public void Foo(IEnumerable<double> input){
+    if (!input.Any())
+        throw new ArgumentException("empty input");
+    if (input.Sum() > 1) //Use input.PartialSums().FirstOrDefault(a=>a>1) > 1 for better performance
+        throw new ArgumentException("input sum exceeds 1");
+    if (input.Any(a=>a<0))
+        throw new ArgumentException("input contains negative elements");
+    int count = input.Count();
+    /*actual function implementation*/
+}
+```
+The problem with this method is that `input` is enumerated **three** times when one would have sufficed. Also, it is entirely possible that the first element of `input` is negative, but it would not be caught until `Sum()` has completed, enumerating `input` completely.
+**Method 2: Loop**
+```csharp
+public void Foo(IEnumerable<double> input){
+    double sum = 0.0;
+    int count = 0;
+    foreach (int i in input){
+        if (i < 0)
+            throw new ArgumentException("input contains negative elements");
+        sum += i;
+        if (sum > 1)
+            throw new ArgumentException("input sum exceeds 1");
+        count++;
+    }
+    if (count == 0)
+        throw new ArgumentException("empty input");
+    /*actual function implementation*/
+}
+```
+This implementation is optimal, but it's bulky, difficult to read and debug, and clutters the function.
+Now, with Wetstone, we have 2 new solutions that seek the readability of LINQ with a Loop's efficiency.
+**Method 3: Hooking**
+Hooking is the process of attaching an action to an `IEnumerable<T>`, to invoke the action whenever an element is enumerated. A common action to hook is the mutation of an outside variable:
+```csharp
+public void Foo(IEnumerable<double> input){
+    IGuard<double> firstNegative = new Guard<double>(0); //IGuard<T> serves as a mutable wrapper to immutable objects
+    IGuard<int> count = new Guard<int>();
+    IGuard<double> sum = new Guard<double>();
+    var check = input.HookAggregate(sum,(a,b)=>a+b).HookCount(count).HookFirst(firstNegative,a=>a<0);
+    check.Do(); //enumerate the hooked input.
+    if (count.value == 0)
+        throw new ArgumentException("empty input");
+    if (sum.value > 1)
+        throw new ArgumentException("input sum exceeds 1");
+    if (anyNegatives.value > 0)
+        throw new ArgumentException("input contains negative elements");
+    /*actual function implementation*/
+}
+```
+But IGuards are cumbersome and inefficient. Also, hooking does not allow to break in the middle of enumeration, which is inefficient. This is why hooking is recommended for when early breaking is not needed (like if you needed to count not only how many elements exist, but how many are non-zero).
+**Method 4: Tallying**
+Tallying is like LINQ in reverse, first building the query, then running it through an `IEnumerable<T>`.
+```csharp
+public void Foo(IEnumerable<double> input){
+    var tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0).TallyAny(a=>a<0).TallyCount();
+    //you can also set the tally to break if any of the sub-tallies (called talliers)
+    tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0,a=>a>1) //break is sum exceeds one
+            .TallyAny(a=>a<0, true) //break if an element is negative
+            .TallyCount();
+    Tuple<double,bool,int> result = tally.Do(input) //The tuple is (sum,anyNegatives,count)
+    //These lines can also be done in a LINQ-style query in 1 line:
+    result = input.Tally().TallyAggregate((a,b)=>a+b,0.0,a=>a>1).TallyAny(a=>a<0, true).TallyCount().Do;
+    if (result.Item1 > 1)
+        throw new ArgumentException("input sum exceeds 1");
+    if (result.Item2)
+        throw new ArgumentException("input contains negative elements");
+    if (result.Item3 == 0)
+        throw new ArgumentException("empty input");
+    /*actual function implementation*/
+}
+```
+Tally combines the simplicity and fluidity of LINQ with the efficiency of a single-enumeration loop.
+## V: Many, Many Extension Methods
 This library features a lot of extention methods that you never knew you needed. Designed to make the code more readable, usable, and efficient. Here are some examples:
 ```csharp
 var lists = new []{range.Range(10),range.Range(12,22),range.Range(0,100,10)};
 lists.Select(a=>a.Count).AllEqual(); //checks that all members of an enumerable are equal
 
 var bigRange = range.Range(50);
-bigRange.Chunk(10); //{0..10,10..20,20..30,30..40,40..50}
+bigRange.Chunk(10); //{0..9,10..19,20..29,30..39,40..49}
 
 public static IEnumerable<bool> Lucky(Random r, double odds)
 {
@@ -141,8 +225,7 @@ lucky1.CompareCount(lucky2); //but now we don't have to wait for it!
 
 new int[]{2,3,5,7}.Trail(2);//{{2,3},{3,5},{5,7}}
 
-var invariantcomp = new EqualityFunctionComparer<char,char>(char.ToUpper);
-"this is a very long string".LongestCommonPrefix("This is an even longer string", invariantcomp).UnZip(); ("this is a","This is a")
+"This is a very long string".LongestCommonPrefix("This is an even longer string", invariantcomp).UnZip(); //"This is a"
 ```
 
 And much, much more.

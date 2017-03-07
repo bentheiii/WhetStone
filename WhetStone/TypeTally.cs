@@ -271,6 +271,7 @@ namespace WhetStone.Looping
     #endregion
     public static partial class TallierExtensions
     {
+        //todo first & last
         #region Aggregate
         /// <summary>
         /// Add an aggregate to a tally.
