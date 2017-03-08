@@ -16,9 +16,9 @@ list.Count(); //O(1) operation
 list.Select(x=>x*x).Count(); //O(n) operation, even though the solution is trivial
 ```
 
-LINQ's `Count()` method, as well as other methods (like `Contains()`and `ElementAt()`), have special checks in case the IEnumerable is an IList or IContainer. If the method LINQ is trying to execute can be executed by the Interface method, then it is executed instead. This is why `list.Count()` is O(1) operation, LINQ's `Count()` sees that list is an IList, and instead returns the IList's `Count` property.
+LINQ's `Count()` method, as well as other methods (like `Contains()`and `ElementAt()`), have special checks in case the IEnumerable is an IList or ICollection. If the method LINQ is trying to execute can be executed by the Interface method, then it is executed instead. This is why `list.Count()` is O(1) operation, LINQ's `Count()` sees that list is an IList, and instead returns the IList's `Count` property.
 
-The Issue is that even though `list.Select(x=>x*x).Count()` **can** be an O(1) operation, it isn't, because `Select()` always returns a pure IEnumerable. The solution is simple, if the `Select()` method sees an ICollection, it will return an ICollection, disguised as an IEnumerable. This solution has two chief problems, both to be addressed:
+The Issue is that even though `list.Select(x=>x*x).Count()` **can** be an O(1) operation, it isn't, because `Select()` always returns a pure IEnumerable, that does not implement `ICollection`'s `Count`. The solution is simple, if the `Select()` method sees an ICollection, it will return an ICollection, disguised as an IEnumerable. This solution has two chief problems, both to be addressed:
 
 ### \#1- The Immutable Structures
 The concept of an IList or ICollections that cannot be edited is scary in the c# world. Convention is that ILists can be mutated. It was decided that creating a read-only IList was justified on three grounds:
@@ -32,7 +32,7 @@ This means that **whenever a list or collection is to be edited, the user must f
 ### \#2- Compile-Time Specilization
 It was decided that the specialized LINQ methods (the ones introduced in this module). Will both return and recieve specilized IEnumerables **explicitly**. This means Two things:
 * The function's arguments must be recognized as ILists or ICollections **at compile time**. If they are not (for example in case the argument is `(IEnumerable<int>)new int[]{0,1,2,3}`), LINQ's regular function will be executed instead of the Whetstone specialized function. This is to avoid ambiguity as to which method is called (Whetstone's or Linq's), as well as to allow for explicit specialized IEnumerable return:
-* When you use Whetstone's functions, you can be certain you are getting back an ICollection or IList, it's the return value's type. This avoid a lot of cumbersome casting and unnecessary converting. It also allows function chaining like this:
+* When you use Whetstone's functions, you can be certain you are getting back an ICollection or IList, it's the return value's type. This avoid a lot of cumbersome casting and unnecessary converting. It also allows LINQ-style list-function piping like this:
 ```csharp
 var list = new int[]{2,3,5,7}.Select(x=>x*x) //{4,9,25,49}
             .SelectMany(x=>new int[]{x,x*2}) //{4,8,9,18,25,50,49,98}
@@ -166,13 +166,16 @@ This implementation is optimal, but it's bulky, difficult to read and debug, and
 Now, with Wetstone, we have 2 new solutions that seek the readability of LINQ with a Loop's efficiency.
 
 **Method 3: Hooking**
+
 Hooking is the process of attaching an action to an `IEnumerable<T>`, to invoke the action whenever an element is enumerated. A common action to hook is the mutation of an outside variable:
 ```csharp
 public void Foo(IEnumerable<double> input){
     IGuard<double> firstNegative = new Guard<double>(0); //IGuard<T> serves as a mutable wrapper to immutable objects
     IGuard<int> count = new Guard<int>();
     IGuard<double> sum = new Guard<double>();
-    var check = input.HookAggregate(sum,(a,b)=>a+b).HookCount(count).HookFirst(firstNegative,a=>a<0);
+    var check = input.HookAggregate(sum,(a,b)=>a+b,0.0) // Now whenever check is enumerated, input's values will be returned, but sum will also update with the partial sum of all elements enumerated.
+        .HookCount(count) //also, count will update to count the items enumerated.
+        .HookFirst(firstNegative,a=>a<0); //also, the first negative value will fill firstNegative, if one is found. 
     check.Do(); //enumerate the hooked input.
     if (count.value == 0)
         throw new ArgumentException("empty input");
@@ -186,6 +189,7 @@ public void Foo(IEnumerable<double> input){
 But IGuards are cumbersome and inefficient. Also, hooking does not allow to break in the middle of enumeration, which is inefficient. This is why hooking is recommended for when early breaking is not needed (like if you needed to count not only how many elements exist, but how many are non-zero).
 
 **Method 4: Tallying**
+
 Tallying is like LINQ in reverse, first building the query, then running it through an `IEnumerable<T>`.
 ```csharp
 public void Foo(IEnumerable<double> input){
