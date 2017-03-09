@@ -18,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2,T3}"/>. The first element of each tuple is the element, the next are the coordinates.</returns>
         public static IEnumerable<Tuple<T, int, int>> CoordinateBind<T>(this T[,] @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             foreach (int row in range.Range(@this.GetLength(0)))
             {
                 foreach (int col in range.Range(@this.GetLength(1)))
@@ -34,6 +35,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2,T3,T4}"/>. The first element of each tuple is the element, the next are the coordinates.</returns>
         public static IEnumerable<Tuple<T, int, int, int>> CoordinateBind<T>(this T[,,] @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             foreach (int c0 in range.Range(@this.GetLength(0)))
             {
                 foreach (int c1 in range.Range(@this.GetLength(1)))
@@ -76,6 +78,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2,T3}"/>. The first element of each tuple is the element, the next are the coordinates.</returns>
         public static IEnumerable<Tuple<T, Tuple<int, int>>> CoordinateBind<T>(this IEnumerable<IEnumerable<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             foreach (var t1 in @this.CountBind())
             {
                 foreach (var t0 in t1.Item1.CountBind())
@@ -92,6 +95,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2,T3,T4}"/>. The first element of each tuple is the element, the next are the coordinates.</returns>
         public static IEnumerable<Tuple<T, Tuple<int, int, int>>> CoordinateBind<T>(this IEnumerable<IEnumerable<IEnumerable<T>>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             foreach (var t2 in @this.CountBind())
             {
                 foreach (var t1 in t2.Item1.CountBind())

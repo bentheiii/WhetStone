@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,8 @@ namespace WhetStone.Looping
         /// <remarks><para>The first element in the output is <paramref name="seed"/>, so the output will always include one element more than the input.</para></remarks>
         public static IEnumerable<R> YieldAggregate<T, R>(this IEnumerable<T> @this, Func<T, R, R> aggregator, R seed = default(R))
         {
+            @this.ThrowIfNull(nameof(@this));
+            aggregator.ThrowIfNull(nameof(aggregator));
             yield return seed;
             foreach (T t in @this)
             {
@@ -36,6 +39,7 @@ namespace WhetStone.Looping
         /// <returns>An infinite <see cref="IEnumerable{T}"/>, starting with <paramref name="seed"/>, and every element is the product of <paramref name="aggregator"/> and the previous element.</returns>
         public static IEnumerable<T> YieldAggregate<T>(Func<T, T> aggregator, T seed = default(T))
         {
+            aggregator.ThrowIfNull(nameof(aggregator));
             while (true)
             {
                 yield return seed;

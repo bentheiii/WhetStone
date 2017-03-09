@@ -21,6 +21,7 @@ namespace WhetStone.Looping
         /// <remarks>Space complexity: O(|arr|)</remarks>
         public static IEnumerable<T> Duplicates<T>(this IEnumerable<T> arr, IEqualityComparer<T> comp = null, int minoccurances = 2)
         {
+            arr.ThrowIfNull(nameof(arr));
             minoccurances.ThrowIfAbsurd(nameof(minoccurances), false);
             comp = comp ?? EqualityComparer<T>.Default;
             var occurances = new Dictionary<T, int>(comp);

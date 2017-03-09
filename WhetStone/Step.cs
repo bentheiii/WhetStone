@@ -18,7 +18,9 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> stridden in <paramref name="step"/> steps and <paramref name="start"/> offset.</returns>
         public static IEnumerable<T> Step<T>(this IEnumerable<T> @this, int step, int start = 0)
         {
+            @this.ThrowIfNull(nameof(@this));
             step.ThrowIfAbsurd(nameof(step),false);
+            start.ThrowIfAbsurd(nameof(start));
             int c = start;
             foreach (var t in @this)
             {

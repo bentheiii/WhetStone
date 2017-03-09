@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -28,6 +29,7 @@ namespace WhetStone.Looping
         /// </example>
         public static IEnumerable<T> EnumerationHook<T>(this IEnumerable<T> @this, Action<T> preYield = null, Action<T> postYield = null, Action begin = null, Action end = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             begin?.Invoke();
             foreach (var t in @this)
             {
@@ -48,6 +50,7 @@ namespace WhetStone.Looping
         /// <returns>An enumerable with the same elements, but whenever enumerated, will trigger a hooked method.</returns>
         public static IEnumerable<T> EnumerationHook<T>(this IEnumerable<T> @this, Func<T,bool> preYield = null, Func<T,bool> postYield = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             using (var tor = @this.GetEnumerator())
             {
                 //phase 0, both active

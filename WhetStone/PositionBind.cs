@@ -67,6 +67,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the positions.</returns>
         public static IEnumerable<Tuple<T, Position>> PositionBind<T>(this IEnumerable<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             bool first = true;
             using (var num = @this.GetEnumerator())
             {

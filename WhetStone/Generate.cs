@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -16,6 +17,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> whose members are generated on-the-fly with <paramref name="gen"/>.</returns>
         public static IEnumerable<T> Generate<T>(Func<T> gen)
         {
+            gen.ThrowIfNull(nameof(gen));
             while (true)
             {
                 yield return gen();

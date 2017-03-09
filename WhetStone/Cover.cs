@@ -23,6 +23,8 @@ namespace WhetStone.Looping
         /// <remarks>The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.</remarks>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, IEnumerable<T> cover, int start = 0)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cover.ThrowIfNull(nameof(cover));
             if (start < 0)
             {
                 cover = cover.Skip(-start);
@@ -64,6 +66,9 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="cover"/> is empty.</exception>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, IEnumerable<T> cover, IEnumerable<int> coverindices)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cover.ThrowIfNull(nameof(cover));
+            coverindices.ThrowIfNull(nameof(coverindices));
             using (var ctor = cover.GetEnumerator())
             {
                 using (var itor = coverindices.GetEnumerator())

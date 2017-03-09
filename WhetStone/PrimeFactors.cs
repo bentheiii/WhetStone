@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
@@ -19,6 +20,7 @@ namespace NumberStone
         /// </remarks>
         public static IEnumerable<int> Primefactors(this int x)
         {
+            x.ThrowIfAbsurd(nameof(x),false);
             int? last = null;
             while (x != 1)
             {
@@ -39,6 +41,7 @@ namespace NumberStone
         /// </remarks>
         public static IEnumerable<long> Primefactors(this long x)
         {
+            x.ThrowIfAbsurd(nameof(x), false);
             long? last = null;
             while (x != 1)
             {

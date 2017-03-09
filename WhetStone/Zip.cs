@@ -83,6 +83,7 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IEnumerable<IEnumerable<T>> Zip<T>(this IEnumerable<IEnumerable<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             var tor = @this.Select(a => a.GetEnumerator()).ToArray();
             while (tor.All(a => a.MoveNext()))
             {
@@ -109,6 +110,7 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IEnumerable<IEnumerable> Zip(this IEnumerable<IEnumerable> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             var tor = @this.Select(a => a.GetEnumerator()).ToArray();
             while (tor.All(a => a.MoveNext()))
             {

@@ -19,6 +19,8 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/>, splitting <paramref name="this"/> by the <paramref name="capture"/> function.</returns>
         public static IEnumerable<IList<T>> Split<T>(this IEnumerable<T> @this, Func<IList<T>, T, bool> capture)
         {
+            @this.ThrowIfNull(nameof(@this));
+            capture.ThrowIfNull(nameof(capture));
             ResizingArray<T> ret = new ResizingArray<T>();
 
             using (var tor = @this.GetEnumerator())
@@ -49,6 +51,8 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/>, splitting <paramref name="this"/> by the <paramref name="capture"/> function.</returns>
         public static IEnumerable<IList<T>> Split<T>(this IList<T> @this, Func<IList<T>, T,bool> capture)
         {
+            @this.ThrowIfNull(nameof(@this));
+            capture.ThrowIfNull(nameof(capture));
             int indstart = 0;
             int len = 0;
             while (true)
@@ -94,6 +98,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> as split by divisors.</returns>
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> @this, Func<T, bool> divisorDetector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            divisorDetector.ThrowIfNull(nameof(divisorDetector));
             var ret = new ResizingArray<T>();
             foreach (var t in @this)
             {

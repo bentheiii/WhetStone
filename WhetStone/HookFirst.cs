@@ -21,6 +21,8 @@ namespace WhetStone.Looping
         /// <remarks>If <paramref name="sink"/> contains <see langword="null"/>, a first value has not yet been set.</remarks>
         public static IEnumerable<T> HookFirst<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
             sink.value = null;
             using (var tor = @this.GetEnumerator())
             {
@@ -45,6 +47,9 @@ namespace WhetStone.Looping
         /// <remarks>If <paramref name="sink"/> contains <see langword="null"/>, a first value has not yet been set.</remarks>
         public static IEnumerable<T> HookFirst<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink, Func<T, bool> critiria)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
+            critiria.ThrowIfNull(nameof(critiria));
             sink.value = null;
             using (var tor = @this.GetEnumerator())
             {
@@ -74,6 +79,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> that sets <paramref name="sink"/> to its first enumerated value.</returns>
         public static IEnumerable<T> HookFirst<T>(this IEnumerable<T> @this, IGuard<T> sink)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
             using (var tor = @this.GetEnumerator())
             {
                 if (!tor.MoveNext())
@@ -96,6 +103,9 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> that sets <paramref name="sink"/> to its first enumerated value that matches <paramref name="critiria"/>.</returns>
         public static IEnumerable<T> HookFirst<T>(this IEnumerable<T> @this, IGuard<T> sink, Func<T, bool> critiria)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
+            critiria.ThrowIfNull(nameof(critiria));
             using (var tor = @this.GetEnumerator())
             {
                 while (true)

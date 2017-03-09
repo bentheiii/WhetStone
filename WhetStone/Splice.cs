@@ -35,6 +35,9 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IEnumerable<T> Splice<T>(this IEnumerable<T> @this, IEnumerable<T> slice, int spliceStart)
         {
+            @this.ThrowIfNull(nameof(@this));
+            slice.ThrowIfNull(nameof(slice));
+            spliceStart.ThrowIfAbsurd(nameof(spliceStart));
             using (var tor = @this.GetEnumerator())
             {
                 foreach (int i in range.Range(spliceStart))

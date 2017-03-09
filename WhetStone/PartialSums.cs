@@ -38,6 +38,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<T> PartialCompensatingSums<T>(this IEnumerable<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             KahanSum<T> ret = new KahanSum<T>();
             yield return ret.Sum;
             foreach (T t in @this)
@@ -56,6 +57,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<double> PartialCompensatingSums(this IEnumerable<double> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             var ret = new KahanSum();
             yield return 0.0;
             foreach (var t in @this)

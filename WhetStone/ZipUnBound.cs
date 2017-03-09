@@ -21,6 +21,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <paramref name="nilValue"/>.</returns>
         public static IEnumerable<IList<T>> ZipUnBound<T>(this IEnumerable<IEnumerable<T>> @this, T nilValue)
         {
+            @this.ThrowIfNull(nameof(@this));
             IEnumerator<T>[] tors = @this.Select(a => a.GetEnumerator()).ToArray();
 
             try

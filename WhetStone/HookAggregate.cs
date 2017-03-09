@@ -10,7 +10,6 @@ namespace WhetStone.Looping
     /// </summary>
     public static class hookAggregate
     {
-        //todo unsafe flag and hooking pointer sink
         /// <summary>
         /// Hooks an aggregate value to an <see cref="IGuard{T}"/>, to be recalculated upon enumeration.
         /// </summary>

@@ -44,6 +44,7 @@ namespace WhetStone.Looping
         /// <remarks>If the elements don't evenly divide to <paramref name="chunkSize"/>, the last element of the return value will be shorter.</remarks>
         public static IEnumerable<IList<T>> Chunk<T>(this IEnumerable<T> @this, int chunkSize)
         {
+            @this.ThrowIfNull(nameof(@this));
             chunkSize.ThrowIfAbsurd(nameof(chunkSize),false);
             using (var en = @this.GetEnumerator())
             {

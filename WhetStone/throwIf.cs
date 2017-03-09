@@ -24,6 +24,22 @@ namespace WhetStone.SystemExtensions
                 throw new ArgumentNullException(paramName);
 #endif
         }
+#if UNSAFE
+        /// <summary>
+        /// Throw a <see cref="ArgumentNullException"/> if an pointer is <see langword="null"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of the object.</typeparam>
+        /// <param name="this">The object to check.</param>
+        /// <param name="paramName">The string of the exception to throw. <see langword="null"/> for generic parameter name.</param>
+        public static unsafe void ThrowIfPtrNull(void* @this, [InvokerParameterName] string paramName = "")
+        {
+#if !NOPARAMCHECK
+            paramName = paramName ?? "parameter";
+            if (@this == null)
+                throw new ArgumentNullException(paramName);
+#endif
+        }
+#endif
         /// <summary>
         /// Throw a <see cref="ArgumentNullException"/> if a double is NAN or infinity.
         /// </summary>

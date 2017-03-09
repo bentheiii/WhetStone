@@ -19,6 +19,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> split to <paramref name="lengths"/>-length sub-enumerables.</returns>
         public static IEnumerable<IEnumerable<T>> SplitAt<T>(this IEnumerable<T> @this, params int[] lengths)
         {
+            @this.ThrowIfNull(nameof(@this));
+            lengths.ThrowIfNull(nameof(lengths));
             using (var tor = @this.GetEnumerator())
             {
                 foreach (int length in lengths)

@@ -183,6 +183,8 @@ namespace WhetStone.Looping
             bool allowIns = true, bool allowDel = true, bool allowSub = true, 
             double insertWeight = 1.0, double removeWeight = 1.0, double subWeight = 1.0)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             comp = comp ?? EqualityComparer<T>.Default;
 
             if (!allowIns && !allowDel && !allowSub)

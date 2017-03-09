@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -25,6 +26,8 @@ namespace WhetStone.Looping
         /// </example>
         public static IEnumerable<Tuple<T, R>> AttachAggregate<T, R>(this IEnumerable<T> @this, Func<T, R, R> aggregator, R seed = default(R))
         {
+            @this.ThrowIfNull(nameof(@this));
+            aggregator.ThrowIfNull(nameof(aggregator));
             foreach (var t in @this)
             {
                 seed = aggregator(t, seed);
