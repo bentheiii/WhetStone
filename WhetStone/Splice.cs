@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,8 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IEnumerable<T> Splice<T>(this IEnumerable<T> @this, T slice, int spliceStart)
         {
+            @this.ThrowIfNull(nameof(@this));
+            spliceStart.ThrowIfAbsurd(nameof(spliceStart));
             return @this.Splice(slice.Enumerate(), spliceStart);
         }
         /// <summary>
@@ -175,6 +178,9 @@ namespace WhetStone.Looping
         /// <returns>A mutability-passing <see cref="IList{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IList<T> Splice<T>(this IList<T> @this, IList<T> slice, int spliceStart)
         {
+            @this.ThrowIfNull(nameof(@this));
+            slice.ThrowIfNull(nameof(slice));
+            spliceStart.ThrowIfAbsurd(nameof(spliceStart));
             return new SpliceList<T>(@this,slice,spliceStart);
         }
         /// <summary>
@@ -187,6 +193,8 @@ namespace WhetStone.Looping
         /// <returns>A mutability-passing <see cref="IList{T}"/>, like <paramref name="this"/> but with <paramref name="slice"/> inserted at index <paramref name="spliceStart"/>.</returns>
         public static IList<T> Splice<T>(this IList<T> @this, T slice, int spliceStart)
         {
+            @this.ThrowIfNull(nameof(@this));
+            spliceStart.ThrowIfAbsurd(nameof(spliceStart));
             return @this.Splice(slice.Enumerate(),spliceStart);
         }
     }

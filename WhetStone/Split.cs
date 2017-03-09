@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -80,6 +81,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> split by <paramref name="divisor"/>.</returns>
         public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> @this, T divisor, IEqualityComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? EqualityComparer<T>.Default;
             return Split(@this, a => comp.Equals(divisor, a));
         }

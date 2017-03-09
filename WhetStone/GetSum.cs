@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NumberStone;
 using WhetStone.Fielding;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,6 +21,7 @@ namespace WhetStone.Looping
         /// <remarks>Uses fielding, use <see cref="Enumerable.Aggregate{TSource}"/> for non-generic equivalent.</remarks>
         public static T GetSum<T>(this IEnumerable<T> toAdd)
         {
+            toAdd.ThrowIfNull(nameof(toAdd));
             var f = Fields.getField<T>();
             return toAdd.Aggregate(f.zero, f.add);
         }
@@ -31,6 +34,7 @@ namespace WhetStone.Looping
         /// <remarks>Uses fielding</remarks>
         public static T GetCompensatingSum<T>(this IEnumerable<T> toAdd)
         {
+            toAdd.ThrowIfNull(nameof(toAdd));
             KahanSum<T> ret = new KahanSum<T>();
             foreach (T t in toAdd)
             {
@@ -45,6 +49,7 @@ namespace WhetStone.Looping
         /// <returns>A compensating sum of the <see cref="IEnumerable{T}"/></returns>
         public static double GetCompensatingSum(this IEnumerable<double> toAdd)
         {
+            toAdd.ThrowIfNull(nameof(toAdd));
             var ret = new KahanSum();
             foreach (var t in toAdd)
             {

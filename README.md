@@ -173,9 +173,9 @@ public void Foo(IEnumerable<double> input){
     IGuard<double> firstNegative = new Guard<double>(0); //IGuard<T> serves as a mutable wrapper to immutable objects
     IGuard<int> count = new Guard<int>();
     IGuard<double> sum = new Guard<double>();
-    var check = input.HookAggregate(sum,(a,b)=>a+b,0.0) // Now whenever check is enumerated, input's values will be returned, but sum will also update with the partial sum of all elements enumerated.
-        .HookCount(count) //also, count will update to count the items enumerated.
-        .HookFirst(firstNegative,a=>a<0); //also, the first negative value will fill firstNegative, if one is found. 
+    var check = input.HookAggregate(sum,(a,b)=>a+b) // Now whenever check is enumerated, input's values will be returned, but sum will also update with the partial sum of all elements enumerated.
+        .HookCount(count) //Also, count will update to count the items enumerated.
+        .HookFirst(firstNegative,a=>a<0); //Also, the first negative value will fill firstNegative, if one is found. 
     check.Do(); //enumerate the hooked input.
     if (count.value == 0)
         throw new ArgumentException("empty input");

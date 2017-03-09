@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -41,6 +42,8 @@ namespace WhetStone.Looping
         /// <returns>a read-only <see cref="IList{T}"/> of all the sub-lists of <paramref name="this"/> of length <paramref name="trailLength"/>.</returns>
         public static IList<IList<T>> Trail<T>(this IList<T> @this, int trailLength, bool wrap = false)
         {
+            @this.ThrowIfNull(nameof(@this));
+            trailLength.ThrowIfAbsurd(nameof(trailLength),false);
             if (wrap)
             {
                 @this = @this.Concat(@this.Slice(0,trailLength - 1));
@@ -57,6 +60,8 @@ namespace WhetStone.Looping
         /// <returns>All the sub-lists of <paramref name="this"/> of length <paramref name="trailLength"/>.</returns>
         public static IEnumerable<T[]> Trail<T>(this IEnumerable<T> @this, int trailLength, bool wrap = false)
         {
+            @this.ThrowIfNull(nameof(@this));
+            trailLength.ThrowIfAbsurd(nameof(trailLength), false);
             var buffer = new LinkedList<T>();
             if (wrap)
             {

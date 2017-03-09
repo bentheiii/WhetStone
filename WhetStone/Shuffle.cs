@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Random;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -18,6 +19,7 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException"><paramref name="arr"/> is read-only</exception>
         public static void Shuffle<T>(this IList<T> arr, RandomGenerator gen = null)
         {
+            arr.ThrowIfNull(nameof(arr));
             if (arr.IsReadOnly)
                 throw new ArgumentException("array is read-only");
             gen = gen ?? new GlobalRandomGenerator();

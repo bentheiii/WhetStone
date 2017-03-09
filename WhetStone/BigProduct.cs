@@ -95,6 +95,7 @@ namespace NumberStone
         /// </remarks>
         public void MultiplyFactorial(int n, int pow = 1)
         {
+            n.ThrowIfAbsurd(nameof(n));
             if (sign == 0 || n <= 1 || pow == 0)
                 return;
             foreach (int prime in primes.Primes(n + 1))

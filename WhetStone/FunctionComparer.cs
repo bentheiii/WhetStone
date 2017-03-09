@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Comparison
 {
@@ -21,6 +22,7 @@ namespace WhetStone.Comparison
         /// <param name="e">the internal <see cref="IEqualityComparer{T}"/> to hash and compare equality of mapped elements with. <see langword="null"/> for <paramref name="c"/> to compare equality and default hasher.</param>
         public FunctionComparer(Func<T, G> f, IComparer<G> c = null, IEqualityComparer<G> e = null)
         {
+            f.ThrowIfNull(nameof(f));
             _f = f;
             _c = c ?? Comparer<G>.Default;
             _e = e;

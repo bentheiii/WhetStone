@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Comparison
 {
@@ -29,6 +30,8 @@ namespace WhetStone.Comparison
         /// <inheritdoc />
         public int Compare(IEnumerable<T> x, IEnumerable<T> y)
         {
+            x.ThrowIfNull(nameof(x));
+            y.ThrowIfNull(nameof(y));
             int ret = 0;
             foreach (var z in x.ZipUnBoundTuple(y))
             {
@@ -45,6 +48,8 @@ namespace WhetStone.Comparison
         /// <inheritdoc />
         public bool Equals(IEnumerable<T> x, IEnumerable<T> y)
         {
+            x.ThrowIfNull(nameof(x));
+            y.ThrowIfNull(nameof(y));
             if (_eq != null)
                 return x.ZipUnBoundTuple(y).All(a =>
                 {
@@ -57,6 +62,7 @@ namespace WhetStone.Comparison
         /// <inheritdoc />
         public int GetHashCode(IEnumerable<T> obj)
         {
+            obj.ThrowIfNull(nameof(obj));
             if (_eq == null)
                 throw new NotSupportedException();
             if (_hashtake.HasValue)

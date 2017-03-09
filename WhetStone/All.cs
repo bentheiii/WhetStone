@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -15,6 +17,7 @@ namespace WhetStone.Looping
         /// <returns>Whether all elements of <paramref name="this"/> are true.</returns>
         public static bool All(this IEnumerable<bool> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.All(t => t);
         }
     }

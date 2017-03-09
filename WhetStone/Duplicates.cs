@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,6 +21,7 @@ namespace WhetStone.Looping
         /// <remarks>Space complexity: O(|arr|)</remarks>
         public static IEnumerable<T> Duplicates<T>(this IEnumerable<T> arr, IEqualityComparer<T> comp = null, int minoccurances = 2)
         {
+            minoccurances.ThrowIfAbsurd(nameof(minoccurances), false);
             comp = comp ?? EqualityComparer<T>.Default;
             var occurances = new Dictionary<T, int>(comp);
             foreach (var t in arr)
@@ -58,6 +61,9 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<T> DuplicatesSorted<T>(this IEnumerable<T> arr, IEqualityComparer<T> comp = null, int minoccurances = 2)
         {
+            arr.ThrowIfNull(nameof(arr));
+            minoccurances.ThrowIfAbsurd(nameof(minoccurances), false);
+
             comp = comp ?? EqualityComparer<T>.Default;
             return arr.ToOccurancesSorted(comp).Where(a => a.Item2 >= minoccurances).Select(a => a.Item1);
         }

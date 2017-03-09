@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -97,6 +98,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IList{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the positions.</returns>
         public static IList<Tuple<T, Position>> PositionBind<T>(this IList<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new PositionBoundList<T>(@this);
         }
     }

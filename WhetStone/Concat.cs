@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -227,6 +228,7 @@ namespace WhetStone.Looping
         /// <remarks>The underlying type of the return value is <see cref="IList{T}"/>. However, many of the <see cref="IList{T}"/> operations are not constant time (and are only at worst better then LINQ implementation) and as such, should not be called explicitly by the user. Use <see cref="Enumerable.ElementAt{TSource}"/> and <see cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/> for list operations.</remarks>
         public static IEnumerable<T> Concat<T>(this IList<IEnumerable<T>> a)
         {
+            a.ThrowIfNull(nameof(a));
             return new ConcatList<T>(a);
         }
         /// <summary>
@@ -239,9 +241,18 @@ namespace WhetStone.Looping
         /// <remarks>In cases where you are certain the lists will either have different or same length, set the <paramref name="sameCount"/> accordingly.</remarks>
         public static IList<T> Concat<T>(this IList<IList<T>> a, bool? sameCount = null)
         {
+            a.ThrowIfNull(nameof(a));
             if (!a.Any())
                 return new List<T>(0);
-            sameCount = sameCount ?? a.Select(x => x.Count).AllEqual();
+            if (sameCount == null)
+            {
+                var tal = a.Tally().TallyAggregateSelect((x, b) => b == -1 ? x.Count : (x.Count == b ? b : null), (int?)-1, x => x.HasValue, x=> x == null)
+                    .TallyAny(x => x == null, true).Do();
+                sameCount = tal.Item1;
+                if (tal.Item2)
+                    throw new ArgumentNullException(nameof(a)+" contains null elements.");
+                
+            }
             if (sameCount.Value)
                 return new ConcatListListSameCount<T>(a);
             return new ConcatListList<T>(a);
@@ -256,6 +267,8 @@ namespace WhetStone.Looping
         /// <remarks>This simply wraps <see cref="Concat{T}(IList{IList{T}}, bool?)"/>.</remarks>
         public static IList<T> Concat<T>(this IList<T> @this, IList<T> other)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return new ConcatListList<T>(new[] { @this, other });
         }
         /// <summary>
@@ -267,6 +280,7 @@ namespace WhetStone.Looping
         /// <remarks>The underlying type of the return value is <see cref="ICollection{T}"/>. However, many of the <see cref="ICollection{T}"/> operations are not constant time (and are only at worst better then LINQ implementation) and as such, should not be called explicitly by the user. Use <see cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/> for list operations.</remarks>
         public static IEnumerable<T> Concat<T>(this IEnumerable<IEnumerable<T>> a)
         {
+            a.ThrowIfNull(nameof(a));
             return new ConcatEnumerable<T>(a);
         }
     }

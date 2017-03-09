@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -37,6 +38,7 @@ namespace WhetStone.Looping
         /// <param name="amount">How many of the item to add.</param>
         public void Add(T item, int amount)
         {
+            amount.ThrowIfAbsurd(nameof(amount));
             _occurance.EnsureValue(item);
             _occurance[item]+=amount;
             Count += amount;
@@ -78,6 +80,7 @@ namespace WhetStone.Looping
         /// <returns>Whether the item existed in the first place.</returns>
         public bool Remove(T item, int amount)
         {
+            amount.ThrowIfAbsurd(nameof(amount));
             int oldval;
             if (!_occurance.TryGetValue(item, out oldval))
                 return false;

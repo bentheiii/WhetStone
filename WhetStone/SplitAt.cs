@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -48,6 +49,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> split to <paramref name="lengths"/>-length sub-enumerables.</returns>
         public static IList<IList<T>> SplitAt<T>(this IList<T> @this, params int[] lengths)
         {
+            @this.ThrowIfNull(nameof(@this));
+            lengths.ThrowIfNull(nameof(lengths));
             return SplitAt(@this, lengths.AsList());
         }
         /// <overloads>Split an enumerable by sub-enumerable lengths.</overloads>
@@ -60,6 +63,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> split to <paramref name="lengths"/>-length sub-enumerables.</returns>
         public static IList<IList<T>> SplitAt<T>(this IList<T> @this, IList<int> lengths)
         {
+            @this.ThrowIfNull(nameof(@this));
+            lengths.ThrowIfNull(nameof(lengths));
             lengths = lengths.PartialSums().ToList().Concat(@this.Count.Enumerate());
             var t = lengths.Trail(2).TakeWhile(a => a[0] <= @this.Count && a[1] <= @this.Count).ToArray();
             return t.Select(a => @this.Slice(a[0], a[1]));

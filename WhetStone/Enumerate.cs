@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,9 @@ namespace WhetStone.Looping
         {
             if (count == null)
                 return new EnumerateLockedListInfinite<T>(b);
+            count.ThrowIfAbsurd(nameof(count));
+            if (count.Value == 0)
+                return new T[0];
             return new EnumerateLockedList<T>(b, count.Value);
         }
         private class EnumerateLockedList<T> : LockedList<T>

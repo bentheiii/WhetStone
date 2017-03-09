@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,6 +20,8 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="IList{T}"/> that concatenates the result of <paramref name="this"/> through <paramref name="selector"/>.</returns>
         public static IList<R> SelectMany<T, R>(this IList<T> @this, Func<T, IList<R>> selector, bool? samecount = false)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(selector).Concat(samecount);
         }
     }

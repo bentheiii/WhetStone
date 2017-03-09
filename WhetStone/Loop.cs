@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Streams
 {
@@ -15,11 +16,12 @@ namespace WhetStone.Streams
         /// Get a <see cref="TextReader"/>'s contents as an <see cref="IEnumerable{T}"/>.
         /// </summary>
         /// <param name="this">The <see cref="TextReader"/> to read from.</param>
-        /// <param name="length">The length of each element in the returned <see cref="IEnumerable{T}"/>. Setting to 0 will chunk the elements by lines.</param>
+        /// <param name="length">The length of each element in the returned <see cref="IEnumerable{T}"/>. Setting to 0 or less will chunk the elements by lines.</param>
         /// <param name="cache">The maximum cache size (only storing the first-most members). Setting to 0 is an infinite cache, setting to less is no cache.</param>
         /// <returns>A (possibly cached) <see cref="IEnumerable{T}"/> of parts of <paramref name="this"/>.</returns>
         public static IEnumerable<string> Loop(this TextReader @this, int length = 0, int cache = 0)
         {
+            @this.ThrowIfNull(nameof(@this));
             IEnumerable<string> ret;
             if (length <= 0)
                 ret = generate.Generate(@this.ReadLine);

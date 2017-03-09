@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Guard;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,8 @@ namespace WhetStone.Looping
         /// <remarks>If <paramref name="sink"/> contains <see langword="null"/>, a last value has not yet been set.</remarks>
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
             return @this.HookAggregate(sink, (a, b) => Tuple.Create(a));
         }
         /// <summary>
@@ -33,6 +36,9 @@ namespace WhetStone.Looping
         /// <remarks>If <paramref name="sink"/> contains <see langword="null"/>, a last value has not yet been set.</remarks>
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink, Func<T, bool> critiria)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
+            critiria.ThrowIfNull(nameof(critiria));
             return @this.HookAggregate(sink, (a, b) => critiria(a) ? Tuple.Create(a) : b);
         }
         /// <overloads>Hooks an <see cref="IGuard{T}"/> to an <see cref="IEnumerable{T}"/>'s last value.</overloads>
@@ -45,6 +51,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> that sets <paramref name="sink"/> to its last enumerated value.</returns>
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
             return @this.HookAggregate(sink, (a, b) => b);
         }
         /// <summary>
@@ -57,6 +65,9 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> that sets <paramref name="sink"/> to its last enumerated value that matches <paramref name="critiria"/>.</returns>
         public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink, Func<T, bool> critiria)
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
+            critiria.ThrowIfNull(nameof(critiria));
             return @this.HookAggregate(sink, (a, b) => critiria(a) ? a : b);
         }
     }

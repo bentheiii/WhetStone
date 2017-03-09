@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,6 +20,8 @@ namespace WhetStone.Looping
         /// <seealso cref="Append{T}(ref T[],IEnumerable{T})"/>
         public static void Append<T>(ref T[] @this, params T[] toAdd)
         {
+            @this.ThrowIfNull(nameof(@this));
+            toAdd.ThrowIfNull(nameof(toAdd));
             Append(ref @this, toAdd.AsEnumerable());
         }
         /// <summary>
@@ -31,6 +34,8 @@ namespace WhetStone.Looping
         /// <para>If all the elements to add are <typeparamref name="T"/>'s default value, assigning can be skipped.</para></remarks>
         public static void Append<T>(ref T[] @this, IEnumerable<T> toAdd)
         {
+            @this.ThrowIfNull(nameof(@this));
+            toAdd.ThrowIfNull(nameof(toAdd));
             var oldlen = @this.Length;
             Array.Resize(ref @this, @this.Length + toAdd.Count());
             if (default(T).Enumerate().Concat(toAdd).AllEqual())

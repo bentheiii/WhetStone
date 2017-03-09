@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -52,6 +53,7 @@ namespace WhetStone.Looping
         /// <remarks>This is a non-generic overload, to use strong typing, see <see cref="CoordinateBind{T}(System.Array)"/>.</remarks>
         public static IEnumerable<Tuple<object, int[]>> CoordinateBind(this Array @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Indices().Select(a => Tuple.Create(@this.GetValue(a), a));
         }
         /// <summary>
@@ -63,6 +65,7 @@ namespace WhetStone.Looping
         /// <remarks>This is a generic overload, to use weak typing, see <see cref="CoordinateBind{T}(System.Array)"/>.</remarks>
         public static IEnumerable<Tuple<T, int[]>> CoordinateBind<T>(this Array @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Indices().Select(a => Tuple.Create((T)@this.GetValue(a), a));
         }
         /// <summary>

@@ -10,6 +10,7 @@ namespace WhetStone.Path
     /// </summary>
     public static class absolutePathToRelative
     {
+        //todo resharper annontations
         ///<summary>
         ///Returns the <paramref name="destination"/> path as a relative path, relative to <paramref name="origin"/>
         ///</summary>
@@ -18,6 +19,10 @@ namespace WhetStone.Path
         ///<returns>The relative path</returns>
         public static string AbsolutePathToRelative(string origin, string destination)
         {
+            if (string.IsNullOrEmpty(origin))
+                throw new ArgumentException("Value cannot be null or empty.", nameof(origin));
+            if (string.IsNullOrEmpty(destination))
+                throw new ArgumentException("Value cannot be null or empty.", nameof(destination));
             if (origin.Substring(1, 2) != @":\")
                 throw new Exception("argument is not an absolute path!");
             if (destination.Substring(1, 2) != @":\")

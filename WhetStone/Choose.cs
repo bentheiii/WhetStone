@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using WhetStone.Guard;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
@@ -20,23 +21,25 @@ namespace NumberStone
         /// <exception cref="ArgumentException">If the sum of <paramref name="k"/> is higher than <paramref name="n"/>, or if any of <paramref name="k"/> is negative.</exception>
         public static BigInteger Choose(int n, params int[] k)
         {
+            k.ThrowIfNull(nameof(k));
+            n.ThrowIfAbsurd(nameof(n));
             if (k.Length == 0)
             {
                 return 1;
             }
-            IGuard<int> anyNeg = new Guard<int>(1);
-            int sum = k.HookFirst(anyNeg,a=>a<0).Sum();
-            if (sum > n)
+            var tal = k.Tally().TallyAggregate((a, b) => a + b, 0, a => a > n)
+                                .TallyAny(a => a < 0, true).Do();
+            if (tal.Item1 > n)
             {
                 throw new ArgumentException("cannot choose a subgroup larger than the supergroup.");
             }
-            if (anyNeg.value < 0)
+            if (tal.Item2)
             {
                 throw new ArgumentException("cannot compute multinomial of negative arguments.");
             }
-            if (sum != n)
+            if (tal.Item1 != n)
             {
-                append.Append(ref k, n - sum);
+                append.Append(ref k, n - tal.Item1);
             }
             BigProduct ret = new BigProduct();
             ret.MultiplyFactorial(n);

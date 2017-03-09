@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -18,6 +19,7 @@ namespace WhetStone.Looping
         /// <returns>The last element in <paramref name="this"/>.</returns>
         public static T LastOrDefault<T>(this IEnumerable<T> @this, T def)
         {
+            @this.ThrowIfNull(nameof(@this));
             var l = @this.AsList(false);
             if (l != null)
             {
@@ -40,6 +42,8 @@ namespace WhetStone.Looping
         /// <returns>The last element in <paramref name="this"/> to uphold <paramref name="cond"/>.</returns>
         public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def = default(T))
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             var l = @this.AsList(false);
             if (l != null)
             {
@@ -64,6 +68,8 @@ namespace WhetStone.Looping
         /// <returns>The last element in <paramref name="this"/> to uphold <paramref name="cond"/>.</returns>
         public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any, T def = default(T))
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             var l = @this.AsList(false);
             if (l != null)
             {

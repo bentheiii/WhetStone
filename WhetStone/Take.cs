@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,8 @@ namespace WhetStone.Looping
         /// <returns>A mutability-passing <see cref="IList{T}"/> that takes the first <paramref name="length"/> elements in <paramref name="this"/>.</returns>
         public static IList<T> Take<T>(this IList<T> @this, int length)
         {
+            @this.ThrowIfNull(nameof(@this));
+            length.ThrowIfAbsurd(nameof(length));
             if (length >= @this.Count)
                 return @this;
             return @this.Slice(0, length: Math.Min(length, @this.Count));

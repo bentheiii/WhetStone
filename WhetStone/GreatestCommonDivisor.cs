@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using WhetStone.Comparison;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
@@ -19,6 +20,7 @@ namespace NumberStone
         /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static BigInteger GreatestCommonDivisor(params BigInteger[] val)
         {
+            val.ThrowIfNull(nameof(val));
             return GreatestCommonDivisor(val.AsList());
         }
         /// <summary>
@@ -28,6 +30,7 @@ namespace NumberStone
         /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static BigInteger GreatestCommonDivisor(IList<BigInteger> val)
         {
+            val.ThrowIfNull(nameof(val));
             while (true)
             {
                 switch (val.Count)

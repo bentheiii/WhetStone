@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="IList{T}"/> of all valid indices of <paramref name="this"/></returns>
         public static IList<int> Indices<T>(this IList<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return range.Range(@this.Count);
         }
         /// <summary>
@@ -26,6 +28,7 @@ namespace WhetStone.Looping
         /// <returns>a read-only <see cref="IList{T}"/> of all valid coordinates of <paramref name="this"/></returns>
         public static IList<int[]> Indices(this Array @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return range.Range(@this.Rank).Select(a => range.Range(@this.GetLowerBound(a), @this.GetUpperBound(a)+1).AsList()).Join();
         }
         /// <summary>
@@ -36,6 +39,7 @@ namespace WhetStone.Looping
         /// <returns>a read-only <see cref="IList{T}"/> of all valid indices of <paramref name="this"/></returns>
         public static IList<int> Indices<T>(this T[] @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return range.Range(@this.GetLowerBound(0), @this.GetUpperBound(0)+1);
         }
     }

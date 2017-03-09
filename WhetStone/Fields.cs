@@ -1070,8 +1070,8 @@ namespace WhetStone.Fielding {
         }
         private class CharField : Field<char>
         {
-            public override char one { get; } = '\u0000';
-            public override char zero { get; } = '\u0001';
+            public override char one { get; } = '\u0001';
+            public override char zero { get; } = '\u0000';
             public override char add(char a, char b) => (char)(a + b);
             public override char pow(char a, char b)
             {

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Fielding;
 using WhetStone.Guard;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,6 +21,7 @@ namespace WhetStone.Looping
         /// <remarks>This function uses fielding, use <see cref="Enumerable.Average(System.Collections.Generic.IEnumerable{int})"/> for non-generic types.</remarks>
         public static T GetAverage<T>(this IEnumerable<T> tosearch)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
             int? reccount = tosearch.RecommendCount();
             int count;
             FieldWrapper<T> sum;
@@ -44,6 +47,7 @@ namespace WhetStone.Looping
         /// <remarks>This function uses fielding.</remarks>
         public static T GetGeometricAverage<T>(this IEnumerable<T> tosearch)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
             var f = Fields.getField<T>();
             int? reccount = tosearch.RecommendCount();
             int count;

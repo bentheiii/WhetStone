@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>The Longest common prefix shared by all of <paramref name="this"/>.</returns>
         public static IEnumerable<T> LongestCommonPrefix<T>(this IEnumerable<IEnumerable<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return LongestCommonPrefix<T>(@this, null).First();
         }
         /// <summary>
@@ -28,6 +30,7 @@ namespace WhetStone.Looping
         /// <returns>The Longest common prefixes shared by all of <paramref name="this"/> under <paramref name="comp"/>.</returns>
         public static IEnumerable<IEnumerable<T>> LongestCommonPrefix<T>(this IEnumerable<IEnumerable<T>> @this, IEqualityComparer<T> comp)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? EqualityComparer<T>.Default;
             return @this.Zip().TakeWhile(a => a.AllEqual(comp));
         }
@@ -40,6 +43,8 @@ namespace WhetStone.Looping
         /// <returns>The Longest common prefixes shared by <paramref name="this"/> and <paramref name="other"/>.</returns>
         public static IEnumerable<T> LongestCommonPrefix<T>(this IEnumerable<T> @this, IEnumerable<T> other)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return LongestCommonPrefix(@this, other, null).Select(a=>a.Item1);
         }
         /// <summary>
@@ -52,6 +57,8 @@ namespace WhetStone.Looping
         /// <returns>The Longest common prefixes shared by <paramref name="this"/> and <paramref name="other"/> under <paramref name="comp"/>.</returns>
         public static IEnumerable<Tuple<T, T>> LongestCommonPrefix<T>(this IEnumerable<T> @this, IEnumerable<T> other, IEqualityComparer<T> comp)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             comp = comp ?? EqualityComparer<T>.Default;
             return @this.Zip(other).TakeWhile(a => comp.Equals(a.Item1, a.Item2));
         }

@@ -54,6 +54,7 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="int"/> between 0 and <paramref name="max"/>.</returns>
         public int Int(int max)
         {
+            max.ThrowIfAbsurd(nameof(max),false);
             return Int(0, max);
         }
         /// <summary>
@@ -64,6 +65,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="int"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual int Int(int min, int max)
         {
+            if (min >= max)
+                throw new ArgumentException(nameof(min)+" must be less than "+nameof(max));
             return Fields.getField<int>().Generate(Bytes(sizeof(int)), Tuple.Create(min, max));
         }
         /// <summary>
@@ -75,6 +78,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="int"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public int Int(int min, int max, bool inclusive)
         {
+            if (min >= max + inclusive.Indicator())
+                throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
             return Int(min, max + inclusive.Indicator());
         }
         /// <summary>
@@ -84,6 +89,7 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="long"/> between 0 and <paramref name="max"/>.</returns>
         public long Long(long max)
         {
+            max.ThrowIfAbsurd(nameof(max), false);
             return Long(0, max);
         }
         /// <summary>
@@ -94,6 +100,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="long"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual long Long(long min, long max)
         {
+            if (min >= max)
+                throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
             return Fields.getField<long>().Generate(Bytes(sizeof(long)), Tuple.Create(min, max));
         }
         /// <summary>
@@ -105,6 +113,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="long"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public long Long(long min, long max, bool inclusive)
         {
+            if (min >= max + inclusive.Indicator())
+                throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
             return Long(min, max + (inclusive ? 1 : 0));
         }
         /// <summary>
@@ -114,6 +124,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="ulong"/> between 0 and <paramref name="max"/>.</returns>
         public ulong ULong(ulong max)
         {
+            if (max == 0)
+                throw new ArgumentOutOfRangeException(nameof(max));
             return ULong(0, max);
         }
         /// <summary>
@@ -124,6 +136,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="ulong"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual ulong ULong(ulong min, ulong max)
         {
+            if (min >= max)
+                throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
             return Fields.getField<ulong>().Generate(Bytes(sizeof(ulong)), Tuple.Create(min, max));
         }
         /// <summary>
@@ -135,6 +149,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="ulong"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public ulong ULong(ulong min, ulong max, bool inclusive)
         {
+            if (min >= max + (inclusive ? 1U : 0U))
+                throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
             return ULong(min, max + (inclusive ? 1U : 0U));
         }
         /// <summary>
@@ -152,6 +168,9 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="double"/> between 0 and <paramref name="max"/>.</returns>
         public double Double(double max)
         {
+            max.ThrowIfAbsurd(nameof(max));
+            if (max <= 0)
+                throw new ArgumentOutOfRangeException(nameof(max));
             return Double(0, max);
         }
         /// <summary>
@@ -162,6 +181,8 @@ namespace WhetStone.Random
         /// <returns>A randomly generated <see cref="double"/> between <paramref name="min"/> and <paramref name="max"/>.</returns>
         public virtual double Double(double min, double max)
         {
+            if (min >= max)
+                throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
             return Fields.getField<double>().Generate(Bytes(sizeof(double)), Tuple.Create(min, max));
         }
         /// <summary>
@@ -171,6 +192,7 @@ namespace WhetStone.Random
         /// <returns><see langword="true"/> at likelihood <paramref name="odds"/></returns>
         public bool success(double odds)
         {
+            odds.ThrowIfAbsurd(nameof(odds),true,true);
             if (odds >= 1)
                 return true;
             if (odds <= 0)
@@ -185,6 +207,10 @@ namespace WhetStone.Random
         /// <returns>A random <see cref="bool"/> with likelihoods of <paramref name="trueodds"/>:<paramref name="falseodds"/></returns>
         public bool randombool(double trueodds = 1, double falseodds = 1)
         {
+            if (trueodds <= 0)
+                throw new ArgumentOutOfRangeException(nameof(trueodds));
+            if (falseodds <= 0)
+                throw new ArgumentOutOfRangeException(nameof(falseodds));
             return success(trueodds / (falseodds + trueodds));
         }
         /// <summary>

@@ -15,6 +15,7 @@ namespace WhetStone.SystemExtensions
         /// <returns><paramref name="this"/>'s clone converted to a <typeparamref name="T"/>.</returns>
         public static T Copy<T>(this T @this) where T : ICloneable
         {
+            @this.ThrowIfNull(nameof(@this));
             return (T)@this.Clone();
         }
     }

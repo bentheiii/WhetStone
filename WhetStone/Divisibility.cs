@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
@@ -19,6 +20,9 @@ namespace NumberStone
         /// <remarks>Running time: O( log( log(n)/log(b) ) )</remarks>
         public static int Divisibility(this int n, int b)
         {
+            n.ThrowIfAbsurd(nameof(n),false);
+            if (b <= 1)
+                throw new ArgumentOutOfRangeException(nameof(b));
             //The recursion idea is like this:
             //div(n,b):
             //k <- 2*div(n,b^2)
@@ -47,6 +51,10 @@ namespace NumberStone
         /// </remarks>
         public static int Divisibility(this BigInteger n, BigInteger b)
         {
+            if (n <= 0)
+                throw new ArgumentOutOfRangeException(nameof(n));
+            if (b <= 1)
+                throw new ArgumentOutOfRangeException(nameof(b));
             BigInteger rem;
             var d = BigInteger.DivRem(n, b, out rem);
             if (n == 1 || b > n || rem != 0)

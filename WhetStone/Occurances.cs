@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -21,6 +22,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<Tuple<T,int>> ToOccurancesSorted<T>(this IEnumerable<T> @this, IEqualityComparer<T> c = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             c = c ?? EqualityComparer<T>.Default;
             using (var tor = @this.GetEnumerator())
             {
@@ -58,6 +60,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IDictionary{T,G}"/> of <see cref="Tuple{T1,T2}"/> of members and their multiplicity.</returns>
         public static IDictionary<T, int> ToOccurances<T>(this IEnumerable<T> arr, IEqualityComparer<T> c = null)
         {
+            arr.ThrowIfNull(nameof(arr));
             c = c ?? EqualityComparer<T>.Default;
             Dictionary<T, int> oc = new Dictionary<T, int>(c);
             foreach (T v in arr)

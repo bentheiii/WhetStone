@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Fielding;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -86,6 +87,7 @@ namespace WhetStone.Looping
         /// <remarks>This function uses Fielding for both type <typeparamref name="T"/> and <typeparamref name="V"/>.</remarks>
         public static T BinarySearch<T,V>(Func<T, V> searcher, T min, T max, V tolerance, T failvalue)
         {
+            searcher.ThrowIfNull(nameof(searcher));
             var fmin = min.ToFieldWrapper();
             while (fmin < max)
             {
@@ -114,6 +116,7 @@ namespace WhetStone.Looping
         /// <remarks>In case both <paramref name="min"/> and <paramref name="max"/> are set to <see langword="null"/>, index 0 will be tested, and an exponential search will be done with zero being either an upper or lower bound.</remarks>
         public static int BinarySearch(Func<int, int> searcher, int? min = null, int? max = null, int failvalue = -1)
         {
+            searcher.ThrowIfNull(nameof(searcher));
             if (min == null)
             {
                 if (max == null)
@@ -152,6 +155,7 @@ namespace WhetStone.Looping
         /// <remarks><para>For every "normal" binary search call, the <paramref name="searcher"/> will be called twice.</para><para>Any exception thrown by the <paramref name="searcher"/> will be treated as a <see langword="false"/> output.</para></remarks>
         public static int BinarySearch(Func<int, bool> searcher, int? min = null, int? max = null, int failvalue = -1, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
         {
+            searcher.ThrowIfNull(nameof(searcher));
             Func<int, int> s;
             if (style == BooleanBinSearchStyle.GetLastTrue)
                 s = i =>
@@ -202,6 +206,7 @@ namespace WhetStone.Looping
         /// <remarks>unlike <see cref="BinarySearch(Func{int,bool},int?,int?,int,BooleanBinSearchStyle)"/>, exception thrown by <paramref name="searcher"/> will not be caught.</remarks>
         public static int BinarySearch<T>(this IList<T> @this, Func<T, bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
         {
+            @this.ThrowIfNull(nameof(@this));
             Func<int, int> s;
             if (style == BooleanBinSearchStyle.GetLastTrue)
                 s = i =>
@@ -232,6 +237,8 @@ namespace WhetStone.Looping
         /// <returns>The index that the binary search returns, or -1 if none found.</returns>
         public static int BinarySearch<T>(this IList<T> @this, Func<T, int> searcher)
         {
+            @this.ThrowIfNull(nameof(@this));
+            searcher.ThrowIfNull(nameof(searcher));
             return BinarySearch(i => searcher(@this[i]), 0, @this.Count);
         }
         /// <summary>
@@ -244,6 +251,7 @@ namespace WhetStone.Looping
         /// <returns>The index of <paramref name="tofind"/> in <paramref name="this"/>, or -1 if <paramref name="tofind"/> is not in <paramref name="this"/>.</returns>
         public static int BinarySearch<T>(this IList<T> @this, T tofind, IComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? Comparer<T>.Default;
             return BinarySearch(@this, a => comp.Compare(a, tofind));
         }
@@ -259,6 +267,7 @@ namespace WhetStone.Looping
         /// <remarks>unlike <see cref="BinarySearch(System.Func{int,bool},System.Nullable{int},System.Nullable{int},int,BooleanBinSearchStyle)"/>, exception thrown by <paramref name="searcher"/> will not be caught.</remarks>
         public static int BinarySearchStartBias<T>(this IList<T> @this, Func<T, bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
         {
+            @this.ThrowIfNull(nameof(@this));
             Func<int, int> s;
             if (style == BooleanBinSearchStyle.GetLastTrue)
                 s = i =>
@@ -289,6 +298,7 @@ namespace WhetStone.Looping
         /// <returns>The index that the binary search returns, or -1 if none found.</returns>
         public static int BinarySearchStartBias<T>(this IList<T> @this, Func<T, int> searcher)
         {
+            @this.ThrowIfNull(nameof(@this));
             return BinarySearch(i => i >= @this.Count ? 1 : searcher(@this[i]), 0);
         }
         /// <summary>
@@ -301,6 +311,7 @@ namespace WhetStone.Looping
         /// <returns>The index of <paramref name="tofind"/> in <paramref name="this"/>, or -1 if <paramref name="tofind"/> is not in <paramref name="this"/>.</returns>
         public static int BinarySearchStartBias<T>(this IList<T> @this, T tofind, IComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? Comparer<T>.Default;
             return BinarySearchStartBias(@this, a => comp.Compare(a, tofind));
         }

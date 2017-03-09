@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Fielding;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -18,6 +20,7 @@ namespace WhetStone.Looping
         /// <remarks>Uses fielding, use <see cref="Enumerable.Aggregate{TSource}"/> for non-generic equivalent.</remarks>
         public static T GetProduct<T>(this IEnumerable<T> toAdd)
         {
+            toAdd.ThrowIfNull(nameof(toAdd));
             var f = Fields.getField<T>();
             return toAdd.Aggregate(f.one, f.multiply);
         }

@@ -18,6 +18,7 @@ namespace WhetStone.SystemExtensions
         /// <remarks>The wrapper still wraps a generic <see cref="IList{T}"/>. Use with caution.</remarks>
         public static IList ToGeneral<T>(this IList<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new GenListWrapper<T>(@this);
         }
         private class GenListWrapper<T> : IList

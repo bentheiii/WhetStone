@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>Whether <paramref name="this"/> is symmetrical.</returns>
         public static bool IsSymmetrical<T>(this IList<T> @this, IEqualityComparer<T> c = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             c = c ?? EqualityComparer<T>.Default;
             return range.Range(@this.Count / 2).All(i => c.Equals(@this[i], @this[@this.Count -i - 1]));
         }

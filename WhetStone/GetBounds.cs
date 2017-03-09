@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -15,6 +16,7 @@ namespace WhetStone.Looping
         /// <returns>A read-only list, each element represent the boundaries in the appropriate dimension.</returns>
         public static IList<Tuple<int, int>> GetBounds(this Array @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return range.Range(@this.Rank).Select(a => Tuple.Create(@this.GetLowerBound(a), @this.GetUpperBound(a)+1));
         }
     }

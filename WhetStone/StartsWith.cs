@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,8 @@ namespace WhetStone.Looping
         /// <returns>Whether <paramref name="this"/> start with <paramref name="prefix"/>.</returns>
         public static bool StartsWith<T>(this IEnumerable<T> @this, IEnumerable<T> prefix, IEqualityComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            prefix.ThrowIfNull(nameof(prefix));
             comp = comp ?? EqualityComparer<T>.Default;
 
             foreach (var p in @this.ZipUnBoundTuple(prefix))

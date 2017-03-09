@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -18,6 +19,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> converted to an <see cref="IDictionary{TKey,TValue}"/>.</returns>
         public static IDictionary<K, V> ToDictionary<K, V>(this IEnumerable<KeyValuePair<K, V>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.ToDictionary(a => a.Key, a => a.Value);
         }
         /// <summary>
@@ -29,6 +31,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> converted to an <see cref="IDictionary{TKey,TValue}"/>.</returns>
         public static IDictionary<K, V> ToDictionary<K, V>(this IEnumerable<Tuple<K, V>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.ToDictionary(a => a.Item1, a => a.Item2);
         }
     }

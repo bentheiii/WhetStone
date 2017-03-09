@@ -430,6 +430,7 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
         public static IList<int> Range(int start, int max, int step = 1)
         {
+            step.ThrowIfAbsurd(nameof(step),false,allowNeg:true);
             if (step < 0)
                 return RRange(start, max, -step);
             return new RangeListExPos(start, max, step);
@@ -546,6 +547,7 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
         public static IList<int> RRange(int start, int max, int step = 1)
         {
+            step.ThrowIfAbsurd(nameof(step), false, allowNeg: true);
             if (step < 0)
                 return Range(start, max, -step);
             return new RangeListExNeg(start, max, step);
@@ -590,6 +592,7 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
         public static IList<int> RIRange(int start, int max, int step = 1)
         {
+            step.ThrowIfAbsurd(nameof(step), false, allowNeg: true);
             if (step < 0)
                 return IRange(start, max, -step);
             return new RangeListInNeg(start, max, step);

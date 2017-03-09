@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Random
 {
@@ -19,6 +20,7 @@ namespace WhetStone.Random
         /// <param name="seed">The initial seed for the SHA generator.</param>
         public ShaGenerator(IEnumerable<byte> seed)
         {
+            seed.ThrowIfNull(nameof(seed));
             _sha = SHA512.Create();
             _seed = new List<byte>(seed);
         }

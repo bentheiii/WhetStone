@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Streams
 {
@@ -17,6 +18,8 @@ namespace WhetStone.Streams
         /// <exception cref="ArgumentException">The stream is unreadable.</exception>
         public static byte[] ReadAll(this Stream @this, int initialchunksize = 256)
         {
+            @this.ThrowIfNull(nameof(@this));
+            initialchunksize.ThrowIfAbsurd(nameof(initialchunksize),false);
             if (!@this.CanRead)
                 throw new ArgumentException("stream is unreadable");
             byte[] buffer = new byte[initialchunksize];

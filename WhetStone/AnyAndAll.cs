@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -18,6 +19,8 @@ namespace WhetStone.Looping
         /// <returns>Whether <paramref name="cond"/> evaluates all elements to <see langword="true"/> and <paramref name="this"/> is not empty.</returns>
         public static bool AnyAndAll<T>(this IEnumerable<T> @this, Func<T, bool> cond)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             using (var tor = @this.GetEnumerator())
             {
                 if (!tor.MoveNext() || !cond(tor.Current))
@@ -38,6 +41,7 @@ namespace WhetStone.Looping
         /// <returns>Whether all elements are <see langword="true"/> and <paramref name="this"/> is not empty.</returns>
         public static bool AnyAndAll(this IEnumerable<bool> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             using (var tor = @this.GetEnumerator())
             {
                 if (!tor.MoveNext() || !tor.Current)

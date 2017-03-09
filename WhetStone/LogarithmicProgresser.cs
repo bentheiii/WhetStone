@@ -28,6 +28,8 @@ namespace NumberStone
         /// <param name="initialValue">The initial antilogarithm.</param>
         public LogarithmicProgresser(int @base, long initialValue = 1)
         {
+            @base.ThrowIfAbsurd(nameof(@base),false,false);
+            initialValue.ThrowIfAbsurd(nameof(initialValue),false);
             this.@base = @base;
             value = initialValue;
             log = Math.Log(value,@base).floor();

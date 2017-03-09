@@ -20,8 +20,8 @@ namespace NumberStone
         /// <returns>The smallest prime number after <paramref name="start"/> that divides <paramref name="value"/>, or <paramref name="value"/> if none found.</returns>
         public static int SmallestFactor(this int value, int? start = null)
         {
-            if (value <= 1)
-                throw new ArithmeticException("cannot find prime factorization of a non-positive number");
+            value.ThrowIfAbsurd(nameof(value),false,false);
+            start.ThrowIfAbsurd(nameof(start));
             if (value%2 == 0)
                 return 2;
             // ReSharper disable once RedundantExplicitArraySize
@@ -206,8 +206,8 @@ namespace NumberStone
         /// <returns>The smallest prime number after <paramref name="start"/> that divides <paramref name="value"/>, or <paramref name="value"/> if none found.</returns>
         public static long SmallestFactor(this long value, long? start = null)
         {
-            if (value <= 1)
-                throw new ArithmeticException("cannot find prime factorization of a non-positive number");
+            value.ThrowIfAbsurd(nameof(value), false, false);
+            start.ThrowIfAbsurd(nameof(start));
             if (value % 2 == 0)
                 return 2;
             if (value < int.MaxValue)

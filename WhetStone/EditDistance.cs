@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Guard;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -42,6 +43,7 @@ namespace WhetStone.Looping
             /// <param name="newInd">The index to add the element in.</param>
             public Insert(T newVal, int newInd)
             {
+                newInd.ThrowIfAbsurd(nameof(newInd));
                 this.newVal = newVal;
                 this.newInd = newInd;
             }
@@ -56,11 +58,15 @@ namespace WhetStone.Looping
             /// <inheritdoc />
             public IEnumerable<T> apply(IEnumerable<T> en)
             {
+                en.ThrowIfNull(nameof(en));
                 return en.Splice(newVal, newInd);
             }
             /// <inheritdoc />
             public void apply(IList<T> li)
             {
+                li.ThrowIfNull(nameof(li));
+                if (li.IsReadOnly)
+                    throw new ArgumentException(nameof(li)+" is read-only");
                 li.Insert(newInd, newVal);
             }
             /// <inheritdoc />
@@ -81,6 +87,7 @@ namespace WhetStone.Looping
             /// <param name="deletedInd">The index of the element to remove.</param>
             public Delete(int deletedInd)
             {
+                deletedInd.ThrowIfAbsurd(nameof(deletedInd));
                 this.deletedInd = deletedInd;
             }
             /// <summary>
@@ -90,11 +97,15 @@ namespace WhetStone.Looping
             /// <inheritdoc />
             public IEnumerable<T> apply(IEnumerable<T> en)
             {
+                en.ThrowIfNull(nameof(en));
                 return en.SkipSlice(deletedInd);
             }
             /// <inheritdoc />
             public void apply(IList<T> li)
             {
+                li.ThrowIfNull(nameof(li));
+                if (li.IsReadOnly)
+                    throw new ArgumentException(nameof(li) + " is read-only");
                 li.RemoveAt(deletedInd);
             }
             /// <inheritdoc />
@@ -116,6 +127,7 @@ namespace WhetStone.Looping
             /// <param name="ind">The index of the element to replace.</param>
             public Substitute(T newVal, int ind)
             {
+                ind.ThrowIfAbsurd(nameof(ind));
                 this.newVal = newVal;
                 this.ind = ind;
             }
@@ -130,11 +142,15 @@ namespace WhetStone.Looping
             /// <inheritdoc />
             public IEnumerable<T> apply(IEnumerable<T> en)
             {
+                en.ThrowIfNull(nameof(en));
                 return en.Cover(newVal, ind);
             }
             /// <inheritdoc />
             public void apply(IList<T> li)
             {
+                li.ThrowIfNull(nameof(li));
+                if (li.IsReadOnly)
+                    throw new ArgumentException(nameof(li) + " is read-only");
                 li[ind] = newVal;
             }
             /// <inheritdoc />
@@ -187,10 +203,28 @@ namespace WhetStone.Looping
                 }
                 yield break;
             }
-            if (insertWeight <= 0 || removeWeight <= 0 || subWeight <= 0)
+            if (insertWeight < 0 || removeWeight < 0 || subWeight < 0)
             {
                 throw new ArgumentException("Cannot handle non-positive weights.");
             }
+            if (double.IsPositiveInfinity(insertWeight))
+            {
+                allowIns = false;
+                insertWeight = 1;
+            }
+            if (double.IsPositiveInfinity(removeWeight))
+            {
+                allowDel = false;
+                removeWeight = 1;
+            }
+            if (double.IsPositiveInfinity(subWeight))
+            {
+                allowSub = false;
+                subWeight = 1;
+            }
+            insertWeight.ThrowIfAbsurd(nameof(insertWeight));
+            removeWeight.ThrowIfAbsurd(nameof(removeWeight));
+            subWeight.ThrowIfAbsurd(nameof(subWeight));
 
             const int ins = 0;
             const int del = 1;

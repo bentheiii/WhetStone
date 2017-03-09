@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,8 @@ namespace WhetStone.Looping
         /// <returns>The equivalence classes for <paramref name="this"/> under <paramref name="matcher"/></returns>
         public static ILookup<T, T> ToLookup<T>(this IEnumerable<T> @this, IEqualityComparer<T> matcher)
         {
+            @this.ThrowIfNull(nameof(@this));
+            matcher.ThrowIfNull(nameof(matcher));
             return @this.ToLookup(a => a, matcher);
         }
     }

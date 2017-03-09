@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Comparison;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -21,6 +22,8 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="tosearch"/> is empty.</exception>
         public static T GetMax<T>(this IEnumerable<T> tosearch, IComparer<T> compare, out int index)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
+            compare.ThrowIfNull(nameof(compare));
             return tosearch.GetMin(compare.Reverse(), out index);
         }
         /// <overloads>Get the maximum element in an enumerable.</overloads>
@@ -34,6 +37,7 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="tosearch"/> is empty.</exception>
         public static T GetMax<T>(this IEnumerable<T> tosearch, IComparer<T> compare = null)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
             int prox;
             return tosearch.GetMax(compare ?? Comparer<T>.Default, out prox);
         }
@@ -48,6 +52,7 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="tosearch"/> is empty.</exception>
         public static T GetMax<T>(this IEnumerable<T> tosearch, out int index)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
             return tosearch.GetMax(Comparer<T>.Default, out index);
         }
     }

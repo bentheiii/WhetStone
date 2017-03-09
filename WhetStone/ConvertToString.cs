@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.WordPlay
 {
@@ -15,6 +17,7 @@ namespace WhetStone.WordPlay
         /// <returns>A string formed of <paramref name="x"/>'s characters.</returns>
         public static string ConvertToString(this IEnumerable<char> x)
         {
+            x.ThrowIfNull(nameof(x));
             return new string(x as char[] ?? x.ToArray());
         }
     }

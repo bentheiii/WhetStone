@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -22,6 +23,7 @@ namespace WhetStone.Looping
         /// </example>
         public static IList<IList<T>> Columns<T>(this T[,] @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return range.Range(@this.GetLength(1)).Select(a => range.Range(@this.GetLength(0)).Select(x => @this[x, a]));
         }
     }

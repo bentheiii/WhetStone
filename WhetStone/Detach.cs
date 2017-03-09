@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Guard;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -54,8 +55,8 @@ namespace WhetStone.Looping
         {
             foreach (var t in @this)
             {
-                informer1.value = t.Item2;
-                informer2.value = t.Item3;
+                informer1.CondSet(t.Item2);
+                informer2.CondSet(t.Item3);
                 yield return t.Item1;
             }
         }
@@ -92,9 +93,9 @@ namespace WhetStone.Looping
         {
             foreach (var t in @this)
             {
-                informer1.value = t.Item2;
-                informer2.value = t.Item3;
-                informer3.value = t.Item4;
+                informer1.CondSet(t.Item2);
+                informer2.CondSet(t.Item3);
+                informer3.CondSet(t.Item4);
                 yield return t.Item1;
             }
         }
@@ -113,8 +114,8 @@ namespace WhetStone.Looping
         {
             foreach (var t in @this)
             {
-                informer2.value = t.Item3;
-                informer3.value = t.Item4;
+                informer2.CondSet(t.Item3);
+                informer3.CondSet(t.Item4);
                 yield return Tuple.Create(t.Item1, t.Item2);
             }
         }
@@ -171,6 +172,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each <see cref="Tuple{T1,T2}"/> member. When an element is enumerated, the second element of the original enumerated member is set to be <paramref name="informer1"/>s value.</returns>
         public static IList<T1> Detach<T1, T2>(this IList<Tuple<T1, T2>> @this, IGuard<T2> informer1 = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new DetachList<T1,T2>(@this,informer1);
         }
         /// <summary>
@@ -185,6 +187,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each <see cref="Tuple{T1,T2}"/> member. When an element is enumerated, the second element of the original enumerated member is set to be <paramref name="informer1"/>s value.</returns>
         public static IList<T1> Detach<T1, T2, T3>(this IList<Tuple<T1, T2, T3>> @this, IGuard<T2> informer1, IGuard<T3> informer2)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Detach(informer2).Detach(informer1);
         }
         /// <summary>
@@ -198,6 +201,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
         public static IList<Tuple<T1,T2>> Detach<T1, T2, T3>(this IList<Tuple<T1, T2, T3>> @this, IGuard<T3> informer1=null)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => Tuple.Create(Tuple.Create(a.Item1, a.Item2), a.Item3)).Detach(informer1);
         }
         /// <summary>
@@ -214,6 +218,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
         public static IList<T1> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T2> informer1, IGuard<T3> informer2, IGuard<T4> informer3)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Detach(informer2, informer3).Detach(informer1);
         }
         /// <summary>
@@ -229,6 +234,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
         public static IList<Tuple<T1, T2>> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T3> informer2, IGuard<T4> informer3)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Detach(informer3).Detach(informer2);
         }
         /// <summary>
@@ -243,6 +249,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
         public static IList<Tuple<T1, T2, T3>> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T4> informer3 = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => Tuple.Create(Tuple.Create(a.Item1, a.Item2, a.Item3), a.Item4)).Detach(informer3);
         }
     }

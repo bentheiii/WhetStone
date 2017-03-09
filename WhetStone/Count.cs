@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Comparison;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -10,30 +12,36 @@ namespace WhetStone.Looping
     public static class count
     {
         /// <summary>
-        /// Counts the number of times <paramref name="query"/> appears in <paramref name="this"/>.
+        /// Counts the number of times <paramref name="target"/> appears in <paramref name="this"/>.
         /// </summary>
         /// <typeparam name="T">The type of <paramref name="this"/>.</typeparam>
         /// <param name="this">The <see cref="IEnumerable{T}"/> to count from.</param>
-        /// <param name="query">The element, whose appearances in <paramref name="this"/> are to be counted.</param>
-        /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to use to equate <paramref name="this"/>'s elements to <paramref name="query"/>. <see langowrd="null"/> will set to default <see cref="IEqualityComparer{T}"/>.</param>
-        /// <returns>The number of elements in <paramref name="this"/> that are equal to <paramref name="query"/> by <paramref name="comp"/>.</returns>
-        public static int Count<T>(this IEnumerable<T> @this, T query, IEqualityComparer<T> comp = null)
+        /// <param name="target">The element, whose appearances in <paramref name="this"/> are to be counted.</param>
+        /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to use to equate <paramref name="this"/>'s elements to <paramref name="target"/>. <see langowrd="null"/> will set to default <see cref="IEqualityComparer{T}"/>.</param>
+        /// <returns>The number of elements in <paramref name="this"/> that are equal to <paramref name="target"/> by <paramref name="comp"/>.</returns>
+        public static int Count<T>(this IEnumerable<T> @this, T target, IEqualityComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? EqualityComparer<T>.Default;
-            return @this.Count(a => comp.Equals(a, query));
+            return @this.Count(a => comp.Equals(a, target));
         }
         /// <summary>
-        /// Count the number of sub-enumerables in <paramref name="this"/> that are equal to <paramref name="query"/>.
+        /// Count the number of sub-enumerables in <paramref name="this"/> that are equal to <paramref name="target"/>.
         /// </summary>
         /// <typeparam name="T">The type of <paramref name="this"/>.</typeparam>
         /// <param name="this">The <see cref="IEnumerable{T}"/> to count from.</param>
-        /// <param name="query">The sub-enumerables, whose appearances in <paramref name="this"/> are to be counted.</param>
-        /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to use to equate <paramref name="this"/>'s sub-enumerables to <paramref name="query"/>. <see langowrd="null"/> will set to default <see cref="IEqualityComparer{T}"/>.</param>
-        /// <returns>The number of sub-enumerables in <paramref name="this"/> that are equal to <paramref name="query"/> by <paramref name="comp"/>.</returns>
-        public static int Count<T>(this IEnumerable<T> @this, IEnumerable<T> query, IEqualityComparer<IEnumerable<T>> comp = null)
+        /// <param name="target">The sub-enumerables, whose appearances in <paramref name="this"/> are to be counted.</param>
+        /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to use to equate <paramref name="this"/>'s sub-enumerables to <paramref name="target"/>. <see langowrd="null"/> will set to default <see cref="IEqualityComparer{T}"/>.</param>
+        /// <returns>The number of sub-enumerables in <paramref name="this"/> that are equal to <paramref name="target"/> by <paramref name="comp"/>.</returns>
+        public static int Count<T>(this IEnumerable<T> @this, IEnumerable<T> target, IEqualityComparer<IEnumerable<T>> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            target.ThrowIfNull(nameof(target));
             comp = comp ?? new EnumerableCompararer<T>();
-            return @this.Trail(query.Count()).Count(a => comp.Equals(@this,a));
+            var qcount = target.Count();
+            if (qcount == 0)
+                throw new ArgumentException(nameof(target)+" is empty!");
+            return @this.Trail(qcount).Count(a => comp.Equals(@this,a));
         }
     }
 }

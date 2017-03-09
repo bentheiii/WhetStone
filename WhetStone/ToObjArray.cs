@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -15,6 +16,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="object"/> <see cref="System.Array"/> with <paramref name="this"/>'s elements.</returns>
         public static object[] ToObjArray(this IEnumerable @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Cast<object>().ToArray();
         }
     }

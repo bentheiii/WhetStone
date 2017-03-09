@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +22,8 @@ namespace WhetStone.Looping
         /// <remarks>If either <see cref="IEnumerable{T}"/>s are <see cref="asCollection.AsCollection{T}"/> compatible, they will not be enumerated at all.</remarks>
         public static int CompareCount<T0, T1>(this IEnumerable<T0> @this, IEnumerable<T1> other)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
 
             int? rect = @this.RecommendCount();
             int? reco = other.RecommendCount();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,9 @@ namespace WhetStone.Looping
         /// <remarks>After confirming <paramref name="this"/> at least <paramref name="minCount"/> members, enumeration will halt.</remarks>
         public static bool CountAtLeast<T>(this IEnumerable<T> @this, int minCount, Func<T, bool> predicate = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            if (minCount <= 0)
+                return true;
             if (predicate != null)
                 @this = @this.Where(predicate);
             else

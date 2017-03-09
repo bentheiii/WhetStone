@@ -1,5 +1,6 @@
 ﻿//#define BYTEWORD
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="size">Initial size of the list</param>
         public BitList(int size=0)
         {
+            size.ThrowIfAbsurd(nameof(size));
             _int = new List<word>(range.Range((size/(double)BITS_IN_CELL).ceil()).Select(a=>(word)0));
             Count = size;
         }
@@ -84,6 +86,8 @@ namespace WhetStone.SystemExtensions
         /// <inheritdoc />
         public void CopyTo(bool[] array, int arrayIndex)
         {
+            array.ThrowIfNull(nameof(array));
+            arrayIndex.ThrowIfAbsurd(nameof(arrayIndex));
             foreach (var v in this)
             {
                 array[arrayIndex++] = v;
@@ -117,6 +121,8 @@ namespace WhetStone.SystemExtensions
         /// <inheritdoc />
         public void Insert(int index, bool item)
         {
+            if (index < 0 || index > Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
             if (index == Count)
             {
                 Add(item);
@@ -130,7 +136,7 @@ namespace WhetStone.SystemExtensions
 
             ulong unshifted;
             ulong shifted;
-            if (newmemberind == 63)
+            if (newmemberind == BITS_IN_CELL-1)
             {
                 shifted = 0;
             }
@@ -167,6 +173,8 @@ namespace WhetStone.SystemExtensions
         /// <inheritdoc />
         public void RemoveAt(int index)
         {
+            if (index < 0 || index >= Count)
+                throw new ArgumentOutOfRangeException(nameof(index));
             if (index == Count-1)
             {
                 Count--;
@@ -239,6 +247,9 @@ namespace WhetStone.SystemExtensions
         /// <param name="value">The value to set the range to.</param>
         public void SetRange(int start, int length, bool value)
         {
+            if (start < 0 || start >= Count)
+                throw new ArgumentOutOfRangeException(nameof(start));
+            length.ThrowIfAbsurd(nameof(length));
             var fill = value ? ~(word)0 : 0;
             int fillStart = (start/(double)BITS_IN_CELL).ceil();
             int fillEnd = ((start+length) / (double)BITS_IN_CELL).floor();

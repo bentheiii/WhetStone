@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +19,7 @@ namespace WhetStone.Looping
         /// <remarks><para>This compares every element to <paramref name="this"/>'s first element.</para><para>If <paramref name="this"/> is empty, <see langword="true"/> is returned.</para></remarks>
         public static bool AllEqual<T>(this IEnumerable<T> @this, IEqualityComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? EqualityComparer<T>.Default;
             using (IEnumerator<T> tor = @this.GetEnumerator())
             {

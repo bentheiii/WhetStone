@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,8 @@ namespace WhetStone.Looping
         /// <returns>All the elements in <paramref name="a"/> converted to <see cref="string"/> and concatenated with <paramref name="seperator"/>.</returns>
         public static string StrConcat<T>(this IEnumerable<T> a, string seperator = ", ")
         {
+            a.ThrowIfNull(nameof(a));
+            seperator.ThrowIfNull(nameof(seperator));
             StringBuilder b = new StringBuilder();
             using (var tor = a.GetEnumerator())
             {
@@ -45,7 +48,11 @@ namespace WhetStone.Looping
         /// <returns>All the elements in <paramref name="a"/> converted to <see cref="string"/> and concatenated with <paramref name="seperator"/>.</returns>
         public static string StrConcat<T>(this IEnumerable<T> a, string seperator, string format, IFormatProvider prov = null) where T:IFormattable
         {
-            return a.Select(x => x.ToString(format, prov ?? CultureInfo.CurrentCulture)).StrConcat(seperator);
+            a.ThrowIfNull(nameof(a));
+            seperator.ThrowIfNull(nameof(seperator));
+            format.ThrowIfNull(nameof(format));
+            prov = prov ?? CultureInfo.CurrentCulture;
+            return a.Select(x => x.ToString(format, prov)).StrConcat(seperator);
         }
         /// <summary>
         /// Concatenates an <see cref="IEnumerable{T}"/> of <see cref="KeyValuePair{TKey,TValue}"/>'s elements in a readable manner.
@@ -58,6 +65,9 @@ namespace WhetStone.Looping
         /// <returns>All the key value pairs in <paramref name="a"/> converted to <see cref="string"/> and concatenated.</returns>
         public static string StrConcat<K, V>(this IEnumerable<KeyValuePair<K, V>> a, string definitionSeperator = ": ", string seperator = ", ")
         {
+            a.ThrowIfNull(nameof(a));
+            seperator.ThrowIfNull(nameof(seperator));
+            definitionSeperator.ThrowIfNull(nameof(definitionSeperator));
             return a.Select(x => new[] {x.Key.ToString(), definitionSeperator, x.Value.ToString()}.StrConcat("")).StrConcat(seperator);
         }
     }

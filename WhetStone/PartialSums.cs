@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NumberStone;
 using WhetStone.Fielding;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -21,6 +22,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<T> PartialSums<T>(this IEnumerable<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             var f = Fields.getField<T>();
             return @this.YieldAggregate(f.add, f.zero);
         }

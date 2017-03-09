@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -15,6 +16,7 @@ namespace WhetStone.Looping
         /// <returns>The length of <paramref name="this"/> or <see langword="null"/> if unsuccessful.</returns>
         public static int? RecommendCount<T>(this IEnumerable<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.AsCollection(false)?.Count;
         }
     }

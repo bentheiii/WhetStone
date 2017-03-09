@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NumberStone;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -48,6 +49,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> with the Cartesian multiple of <paramref name="a"/> by itself.</returns>
         public static IEnumerable<Tuple<T, T>> Join<T>(this IEnumerable<T> a, CartesianType t = CartesianType.AllPairs)
         {
+            a.ThrowIfNull(nameof(a));
             foreach (var v0 in a.CountBind())
             {
                 var iEnumerable = a.CountBind();
@@ -71,6 +73,8 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian multiple of <paramref name="a"/> and <paramref name="b"/>.</returns>
         public static IEnumerable<Tuple<T1, T2>> Join<T1, T2>(this IEnumerable<T1> a, IEnumerable<T2> b)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
             foreach (T1 v0 in a)
             {
                 foreach (T2 v1 in b)
@@ -91,6 +95,9 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian multiple of <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/>.</returns>
         public static IEnumerable<Tuple<T1, T2, T3>> Join<T1, T2, T3>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
+            c.ThrowIfNull(nameof(c));
             foreach (T1 v0 in a)
             {
                 foreach (T2 v1 in b)
@@ -289,6 +296,8 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian exponential of <paramref name="this"/> by <paramref name="cartesLength"/>.</returns>
         public static IEnumerable<T[]> Join<T>(this IEnumerable<T> @this, int cartesLength, CartesianType t = CartesianType.AllPairs)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cartesLength.ThrowIfAbsurd(nameof(@this));
             if (cartesLength == 0)
                 return new[] {new T[0]};
             switch (t)
@@ -313,6 +322,7 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian product of <paramref name="this"/>.</returns>
         public static IEnumerable<T[]> Join<T>(this IEnumerable<IEnumerable<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             var tors = @this.Select(a => a.GetEnumerator()).ToArray();
             //initialization
             if (tors.Any(a => !a.MoveNext()))
@@ -719,6 +729,8 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian multiple of <paramref name="this"/> and <paramref name="other"/>.</returns>
         public static IList<Tuple<T1, T2>> Join<T1, T2>(this IList<T1> @this, IList<T2> other)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return new JointList<T1, T2>(@this,other);
         }
         /// <summary>
@@ -729,6 +741,7 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian product of <paramref name="this"/>.</returns>
         public static IList<T[]> Join<T>(this IList<IList<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new JointList<T>(@this);
         }
         /// <summary>
@@ -739,6 +752,7 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian product of <paramref name="this"/>.</returns>
         public static IList<T[]> Join<T>(this IList<T>[] @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new JointList<T>(@this);
         }
         /// <summary>
@@ -751,6 +765,8 @@ namespace WhetStone.Looping
         /// <returns>The Cartesian exponential of <paramref name="this"/> by <paramref name="length"/>.</returns>
         public static IList<IList<T>> Join<T>(this IList<T> @this, int length, CartesianType t = CartesianType.AllPairs)
         {
+            @this.ThrowIfNull(nameof(@this));
+            length.ThrowIfAbsurd(nameof(length));
             IList<int[]> inter;
             switch (t)
             {
@@ -780,6 +796,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IList{T}"/> with the Cartesian multiple of <paramref name="this"/> by itself.</returns>
         public static IList<Tuple<T,T>> Join<T>(this IList<T> @this, CartesianType t = CartesianType.AllPairs)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Join(2, t).Select(a => Tuple.Create(a[0],a[1]));
         }
 

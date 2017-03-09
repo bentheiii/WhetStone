@@ -22,6 +22,7 @@ namespace WhetStone.Looping
         /// <returns>A new structure, wrapping <paramref name="this"/> and storing its elements as they are enumerated.</returns>
         public static IList<T> Cache<T>(this IEnumerable<T> @this, int? bound = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             if (bound == null)
                 return new EnumerableCache<T>(@this);
             return new EnumerableCacheBound<T>(@this, bound.Value);
@@ -36,6 +37,7 @@ namespace WhetStone.Looping
         /// <remarks>Because of the way caching works, and that lists may be partially cached, there are two ways enumerating a cache can be done. See <see cref="IListCache{T}"/>.</remarks>
         public static IListCache<T> Cache<T>(this IList<T> @this, int? bound = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             if (bound == null)
                 return new ListCache<T>(@this);
             return new ListCacheBound<T>(@this,bound.Value);
@@ -72,8 +74,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    if (ind < 0)
-                        throw new ArgumentOutOfRangeException("ind cannot be negative");
+                    ind.ThrowIfAbsurd(nameof(ind));
                     return ind < Math.Min(_initcount, _cache.Length) ? _cache[ind] : _source.ElementAt(ind);
                 }
             }
@@ -142,8 +143,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    if (ind < 0)
-                        throw new ArgumentOutOfRangeException("ind cannot be negative");
+                    ind.ThrowIfAbsurd(nameof(ind));
                     if (!InflateToIndex(ind))
                         throw new ArgumentOutOfRangeException("IEnumerator ended unexpectedly");
                     return _cache[ind];
@@ -235,8 +235,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    if (ind < 0)
-                        throw new ArgumentOutOfRangeException("ind cannot be negative");
+                    ind.ThrowIfAbsurd(nameof(ind));
                     if (!_initialized[ind])
                         initialize(ind);
                     return _cache[ind];
@@ -369,8 +368,7 @@ namespace WhetStone.Looping
             {
                 get
                 {
-                    if (ind < 0)
-                        throw new ArgumentOutOfRangeException("ind cannot be negative");
+                    ind.ThrowIfAbsurd(nameof(ind));
                     if (ind < _cache.Length)
                     {
                         if (!_initialized[ind])

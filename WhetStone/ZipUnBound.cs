@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -67,6 +68,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<IList<T?>> ZipUnBoundNullable<T>(this IEnumerable<IEnumerable<T>> @this) where T:struct
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => a.Select(x => (T?)x)).ZipUnBound(null);
         }
         /// <summary>
@@ -77,6 +79,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<IList<Tuple<T>>> ZipUnBoundTuple<T>(this IEnumerable<IEnumerable<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => a.Select(x => Tuple.Create(x))).ZipUnBound(null);
         }
         /// <summary>
@@ -86,6 +89,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<IList<Tuple<object>>> ZipUnBound(this IEnumerable<IEnumerable<object>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => a.Select(x => Tuple.Create(x))).ZipUnBound(null);
         }
         /// <summary>
@@ -100,6 +104,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <paramref name="nilValue1"/> or <paramref name="nilValue2"/>.</returns>
         public static IEnumerable<Tuple<T1, T2>> ZipUnBound<T1, T2>(this IEnumerable<T1> @this, IEnumerable<T2> other, T1 nilValue1, T2 nilValue2)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return new[] {@this.Select(a => (object)a), other.Select(a => (object)a) }.ZipUnBound().Select(a =>
             {
                 T1 t1 = nilValue1;
@@ -123,6 +129,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<Tuple<T1?, T2?>> ZipUnBoundNullable<T1, T2>(this IEnumerable<T1> @this, IEnumerable<T2> other) where T1 :struct where T2 : struct
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), null, null);
         }
         /// <summary>
@@ -135,6 +143,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <see langword="null"/>.</returns>
         public static IEnumerable<Tuple<Tuple<T1>, Tuple<T2>>> ZipUnBoundTuple<T1, T2>(this IEnumerable<T1> @this, IEnumerable<T2> other)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), null, null);
         }
         /// <summary>
@@ -152,6 +162,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with <paramref name="nilValue1"/>, <paramref name="nilValue2"/> or <paramref name="nilValue3"/>.</returns>
         public static IEnumerable<Tuple<T1, T2, T3>> ZipUnBound<T1, T2, T3>(this IEnumerable<T1> @this, IEnumerable<T2> other, IEnumerable<T3> other2, T1 nilValue1, T2 nilValue2, T3 nilValue3)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
+            other2.ThrowIfNull(nameof(other2));
             return new[] { @this.Select(a => (object)a), other.Select(a => (object)a), other2.Select(a => (object)a) }.ZipUnBound().Select(a =>
             {
                 T1 t1 = nilValue1;
@@ -181,6 +194,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with null.</returns>
         public static IEnumerable<Tuple<T1?, T2?, T3?>> ZipUnBoundNullable<T1, T2, T3>(this IEnumerable<T1> @this, IEnumerable<T2> other, IEnumerable<T3> other2) where T1 : struct where T2 : struct where T3:struct
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
+            other2.ThrowIfNull(nameof(other2));
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), other2.Select(a=>(T3?)a), null, null, null);
         }
         /// <summary>
@@ -195,6 +211,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IEnumerable{T}"/>s with null.</returns>
         public static IEnumerable<Tuple<Tuple<T1>, Tuple<T2>, Tuple<T3>>> ZipUnBoundTuple<T1, T2, T3>(this IEnumerable<T1> @this, IEnumerable<T2> other, IEnumerable<T3> other2)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
+            other2.ThrowIfNull(nameof(other2));
             return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), other2.Select(a=>Tuple.Create(a)),null, null, null);
         }
 
@@ -252,6 +271,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <paramref name="nilValue"/>.</returns>
         public static IList<IList<T>> ZipUnBound<T>(this IEnumerable<IList<T>> @this, T nilValue)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new ZipUnBoundNilled<T>(@this, nilValue);
         }
         /// <summary>
@@ -262,6 +282,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<IList<T?>> ZipUnBoundNullable<T>(this IEnumerable<IList<T>> @this) where T : struct
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => a.Select(x => (T?)x)).ZipUnBound(null);
         }
         /// <summary>
@@ -272,6 +293,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<IList<Tuple<T>>> ZipUnBoundTuple<T>(this IEnumerable<IList<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => a.Select(x => Tuple.Create(x))).ZipUnBound(null);
         }
         /// <summary>
@@ -281,6 +303,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<IList<Tuple<object>>> ZipUnBound(this IEnumerable<IList<object>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Select(a => a.Select(Tuple.Create)).ZipUnBound(null);
         }
         /// <summary>
@@ -295,6 +318,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <paramref name="nilValue1"/> or <paramref name="nilValue2"/>.</returns>
         public static IList<Tuple<T1, T2>> ZipUnBound<T1, T2>(this IList<T1> @this, IList<T2> other, T1 nilValue1, T2 nilValue2)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return new[] { @this.Select(a => (object)a), other.Select(a => (object)a) }.ZipUnBound().Select(a =>
             {
                 T1 t1 = nilValue1;
@@ -318,6 +343,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<Tuple<T1?, T2?>> ZipUnBoundNullable<T1, T2>(this IList<T1> @this, IList<T2> other) where T1 : struct where T2 : struct
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), null, null);
         }
         /// <summary>
@@ -330,7 +357,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <see langword="null"/>.</returns>
         public static IList<Tuple<Tuple<T1>, Tuple<T2>>> ZipUnBoundTuple<T1, T2>(this IList<T1> @this, IList<T2> other)
         {
-            return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), null, null);
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
+            return @this.Select(Tuple.Create).ZipUnBound(other.Select(a => Tuple.Create(a)), null, null);
         }
         /// <summary>
         /// Get all the elements in <see cref="IList{T}"/>s spliced together, continuing until they all end.
@@ -347,6 +376,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with <paramref name="nilValue1"/>, <paramref name="nilValue2"/> or <paramref name="nilValue3"/>.</returns>
         public static IList<Tuple<T1, T2, T3>> ZipUnBound<T1, T2, T3>(this IList<T1> @this, IList<T2> other, IList<T3> other2, T1 nilValue1, T2 nilValue2, T3 nilValue3)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
+            other2.ThrowIfNull(nameof(other2));
             return new[] { @this.Select(a=>(object)a), other.Select(a => (object)a), other2.Select(a => (object)a) }.ZipUnBound().Select(a =>
             {
                 T1 t1 = nilValue1;
@@ -376,6 +408,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with null.</returns>
         public static IList<Tuple<T1?, T2?, T3?>> ZipUnBoundNullable<T1, T2, T3>(this IList<T1> @this, IList<T2> other, IList<T3> other2) where T1 : struct where T2 : struct where T3 : struct
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
+            other2.ThrowIfNull(nameof(other2));
             return @this.Select(a => (T1?)a).ZipUnBound(other.Select(a => (T2?)a), other2.Select(a => (T3?)a), null, null, null);
         }
         /// <summary>
@@ -390,7 +425,10 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> transposed, filling ended <see cref="IList{T}"/>s with null.</returns>
         public static IList<Tuple<Tuple<T1>, Tuple<T2>, Tuple<T3>>> ZipUnBoundTuple<T1, T2, T3>(this IList<T1> @this, IList<T2> other, IList<T3> other2)
         {
-            return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(a => Tuple.Create(a)), other2.Select(a => Tuple.Create(a)), null, null, null);
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
+            other2.ThrowIfNull(nameof(other2));
+            return @this.Select(a => Tuple.Create(a)).ZipUnBound(other.Select(Tuple.Create), other2.Select(Tuple.Create), null, null, null);
         }
     }
 }

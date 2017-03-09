@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <param name="capacity">The initial capacity of the internal list array.</param>
         public ResizingArray(int capacity = 4)
         {
+            capacity.ThrowIfAbsurd(nameof(capacity));
             _arr = new T[capacity];
         }
         /// <summary>
@@ -64,6 +66,7 @@ namespace WhetStone.Looping
         /// <remarks>The array might become larger than necessary to accommodate the index.</remarks>
         public void ResizeTo(int lastindex)
         {
+            lastindex.ThrowIfAbsurd(nameof(lastindex));
             while (!_arr.IsWithinBounds(lastindex))
                 Array.Resize(ref _arr, Math.Max(arr.Length * 2, lastindex + 1));
         }
@@ -80,6 +83,7 @@ namespace WhetStone.Looping
         /// <param name="x">The elements to add.</param>
         public void AddRange(IEnumerable<T> x)
         {
+            x.ThrowIfNull(nameof(x));
             int c = x.Count();
             ResizeTo(Count + c);
             foreach (var i in countUp.CountUp(Count).Zip(x))
@@ -101,6 +105,9 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void CopyTo(T[] array, int arrayIndex)
         {
+            array.ThrowIfNull(nameof(array));
+            arrayIndex.ThrowIfAbsurd(nameof(arrayIndex));
+
             _arr.Take(Count).CopyTo(array, arrayIndex);
         }
         /// <inheritdoc />
@@ -120,6 +127,8 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void Insert(int index, T item)
         {
+            index.ThrowIfAbsurd(nameof(index));
+
             if (index == Count)
             {
                 Add(item);
@@ -135,6 +144,8 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void RemoveAt(int index)
         {
+            index.ThrowIfAbsurd(nameof(index));
+
             foreach (int i in range.Range(index,Count-1))
             {
                 _arr[i] = _arr[i + 1];
@@ -150,12 +161,16 @@ namespace WhetStone.Looping
         {
             get
             {
+                index.ThrowIfAbsurd(nameof(index));
+
                 if (index >= Count)
                     throw new ArgumentOutOfRangeException();
                 return _arr[index];
             }
             set
             {
+                index.ThrowIfAbsurd(nameof(index));
+
                 if (index >= Count)
                     throw new ArgumentOutOfRangeException();
                 _arr[index] = value;

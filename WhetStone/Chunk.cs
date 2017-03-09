@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -22,7 +24,7 @@ namespace WhetStone.Looping
             {
                 return Chunk((IEnumerable<T>)_source, _chunksize).GetEnumerator();
             }
-            public override int Count => _source.Count/_chunksize + (_source.Count%_chunksize == 0 ? 0 : 1);
+            public override int Count => (_source.Count/(double)_chunksize).ceil();
             public override IList<T> this[int index]
             {
                 get
@@ -42,6 +44,7 @@ namespace WhetStone.Looping
         /// <remarks>If the elements don't evenly divide to <paramref name="chunkSize"/>, the last element of the return value will be shorter.</remarks>
         public static IEnumerable<IList<T>> Chunk<T>(this IEnumerable<T> @this, int chunkSize)
         {
+            chunkSize.ThrowIfAbsurd(nameof(chunkSize),false);
             using (var en = @this.GetEnumerator())
             {
                 var ret = new ResizingArray<T>(chunkSize);
@@ -72,6 +75,8 @@ namespace WhetStone.Looping
         /// <remarks>If the elements don't evenly divide to <paramref name="chunkSize"/>, the last element of the return value will be shorter.</remarks>
         public static IList<IList<T>> Chunk<T>(this IList<T> @this, int chunkSize)
         {
+            @this.ThrowIfNull(nameof(@this));
+            chunkSize.ThrowIfAbsurd(nameof(chunkSize), false);
             return new ChunkList<T>(@this, chunkSize);
         }
     }

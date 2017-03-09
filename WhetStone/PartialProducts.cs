@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using WhetStone.Fielding;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<T> PartialProducts<T>(this IEnumerable<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             var f = Fields.getField<T>();
             return @this.YieldAggregate(f.multiply, f.one);
         }

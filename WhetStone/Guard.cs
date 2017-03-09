@@ -55,6 +55,7 @@ namespace WhetStone.Guard
         {
             if (@this == null)
                 return false;
+            val.ThrowIfNull(nameof(val));
             @this.value = val(@this.value);
             return true;
         }

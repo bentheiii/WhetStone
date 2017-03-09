@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -58,6 +59,7 @@ namespace WhetStone.Looping
         /// <returns>The <see cref="GenericTally{T}"/>, to allow easy piping.</returns>
         public GenericTally<T> Add(ITallier<T> tallier, bool append = true)
         {
+            tallier.ThrowIfNull(nameof(tallier));
             _talliers.Add(Tuple.Create(tallier, append));
             return this;
         }
@@ -96,6 +98,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyAggregate<T,R>(this GenericTally<T> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null, bool append = true)
         {
+            @this.ThrowIfNull(nameof(@this));
+            func.ThrowIfNull(nameof(func));
             ITallier<T> toadd;
             if (@break == null)
                 toadd = new TallierAggregate<T, R>(seed, func);
@@ -117,6 +121,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyAggregateSelect<T, A, R>(this GenericTally<T> @this, Func<T, A, A> func, A seed , Func<A,R> select, Func<A, bool> @break = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            func.ThrowIfNull(nameof(func));
+            select.ThrowIfNull(nameof(select));
             ITallier<T> toadd;
             if (@break == null)
                 toadd = new TallierAggregateSelect<T, A, R>(seed, func, select);
@@ -132,6 +139,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyCount<T>(this GenericTally<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.TallyAggregate((_, a) => a + 1, 0);
         }
         /// <summary>
@@ -143,6 +151,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyCount<T>(this GenericTally<T> @this, Func<T, bool> cond)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             return @this.TallyAggregate((v, a) => cond(v) ? a + 1 : a, 0);
         }
         /// <summary>
@@ -155,6 +165,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyAny<T>(this GenericTally<T> @this, Func<T, bool> cond, bool @break = false)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
         }
         /// <summary>
@@ -166,6 +178,7 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyAny<T>(this GenericTally<T> @this, bool @break = false)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
         }
         /// <summary>
@@ -178,6 +191,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyAll<T>(this GenericTally<T> @this, Func<T, bool> cond, bool @break = false)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
         }
         /// <summary>
@@ -189,6 +204,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyAction<T>(this GenericTally<T> @this, Action<T> action)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
             return @this.Add(new TallierAction<T>(action),false);
         }
         /// <summary>
@@ -200,6 +217,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyAction<T>(this GenericTally<T> @this, Func<T,bool> action)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
             return @this.Add(new TallierActionBreakable<T>(action), false);
         }
         /// <summary>
@@ -213,6 +232,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyFirst<T>(this GenericTally<T> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             ITallier<T> toadd;
             if (@break)
                 toadd = new TallierFirstBreak<T>(cond,initial);
@@ -230,6 +251,8 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/>, to allow piping.</returns>
         public static GenericTally<T> TallyLast<T>(this GenericTally<T> @this, Func<T, bool> cond, T initial = default(T))
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             return @this.Add(new TallierLast<T>(cond, initial));
         }
     }

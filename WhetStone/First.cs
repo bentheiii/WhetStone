@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>The first value in <paramref name="this"/> or <paramref name="def"/> if <paramref name="this"/> is empty.</returns>
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, T def)
         {
+            @this.ThrowIfNull(nameof(@this));
             using (var tor = @this.GetEnumerator())
             {
                 return !tor.MoveNext() ? def : tor.Current;
@@ -32,6 +34,8 @@ namespace WhetStone.Looping
         /// <returns>The first value in <paramref name="this"/> to pass <paramref name="cond"/> or <paramref name="def"/> if none to.</returns>
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             foreach (T t in @this)
             {
                 if (cond(t))
@@ -50,6 +54,8 @@ namespace WhetStone.Looping
         /// <returns>The first value in <paramref name="this"/> to pass <paramref name="cond"/> or <paramref name="def"/> if none to.</returns>
         public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any, T def = default(T))
         {
+            @this.ThrowIfNull(nameof(@this));
+            cond.ThrowIfNull(nameof(cond));
             foreach (T t in @this)
             {
                 if (cond(t))

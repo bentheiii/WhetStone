@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WhetStone.Fielding;
 using WhetStone.LockedStructures;
 
@@ -12,11 +13,13 @@ namespace WhetStone.Looping
         private class CountList<T> : LockedList<T>
         {
             private readonly T _start;
-            private readonly T _step;
+            private readonly FieldWrapper<T> _step;
             public CountList(T start, T step)
             {
                 _start = start;
-                _step = step;
+                _step = step.ToFieldWrapper();
+                if (_step.isZero)
+                    throw new ArgumentException(nameof(step)+" is zero");
             }
             public override IEnumerator<T> GetEnumerator()
             {
@@ -29,20 +32,20 @@ namespace WhetStone.Looping
             }
             public override bool Contains(T item)
             {
-                return ((item.ToFieldWrapper() - _start) % _step).isZero;
+                return (_step.Field.subtract(item,_start) % _step).isZero;
             }
             public override int Count { get; } = int.MaxValue;
             public override int IndexOf(T item)
             {
                 if (!Contains(item))
                     return -1;
-                return (int)((item.ToFieldWrapper() - _start) / _step);
+                return (int)(_step.Field.subtract(item, _start) / _step);
             }
             public override T this[int index]
             {
                 get
                 {
-                    return this._start + this._step.ToFieldWrapper() * index;
+                    return this._start + this._step * index;
                 }
             }
         }
@@ -92,6 +95,8 @@ namespace WhetStone.Looping
         /// <returns>A read-only, infinite <see cref="IList{T}"/> of <see cref="int"/>s.</returns>
         public static IList<int> CountUp(int start = 0, int step = 1)
         {
+            if (step == 0)
+                throw new ArgumentOutOfRangeException(nameof(step));
             return new CountList(start, step);
         }
         /// <summary>

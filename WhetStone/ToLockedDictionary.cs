@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.LockedStructures
 {
@@ -6,6 +7,7 @@ namespace WhetStone.LockedStructures
     {
         public static IDictionary<T, G> ToLockedDictionary<T, G>(this IReadOnlyDictionary<T, G> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new LockedDictionaryReadOnlyAdaptor<T, G>(@this);
         }
     }

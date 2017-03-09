@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -15,6 +16,7 @@ namespace WhetStone.Looping
         /// <returns>A read-only list, representing <paramref name="mat"/>'s lengths on all dimensions.</returns>
         public static IList<int> GetSize(this Array mat)
         {
+            mat.ThrowIfNull(nameof(mat));
             return range.Range(mat.Rank).Select(mat.GetLength);
         }
     }

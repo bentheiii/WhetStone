@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Random
 {
@@ -22,6 +24,7 @@ namespace WhetStone.Random
         /// <inheritdoc />
         public override byte[] Bytes(int length)
         {
+            length.ThrowIfAbsurd(nameof(length));
             return ThreadLocal().Bytes(length);
         }
         /// <inheritdoc />
@@ -37,11 +40,15 @@ namespace WhetStone.Random
         /// <inheritdoc />
         public override double Double(double min, double max)
         {
+            if (min > max)
+                throw new ArgumentOutOfRangeException(nameof(min)+" must be lower than "+nameof(max));
             return ThreadLocal().Double(min, max);
         }
         /// <inheritdoc />
         public override int Int(int min, int max)
         {
+            if (min > max)
+                throw new ArgumentOutOfRangeException(nameof(min) + " must be lower than " + nameof(max));
             return ThreadLocal().Int(min, max);
         }
         /// <summary>

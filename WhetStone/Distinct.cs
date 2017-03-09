@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -21,6 +23,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<T> DistinctSorted<T>(this IEnumerable<T> @this, IEqualityComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.ToOccurancesSorted(comp).Select(a => a.Item1);
         }
     }

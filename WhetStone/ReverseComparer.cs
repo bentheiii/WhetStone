@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Comparison
 {
@@ -15,6 +16,7 @@ namespace WhetStone.Comparison
         /// <returns>A reversed <see cref="IComparer{T}"/> that creates an opposite order than <paramref name="comp"/>.</returns>
         public static IComparer<T> Reverse<T>(this IComparer<T> comp)
         {
+            comp.ThrowIfNull(nameof(comp));
             return new ReverseComparerClass<T>(comp);
         }
         private class ReverseComparerClass<T> : IComparer<T>

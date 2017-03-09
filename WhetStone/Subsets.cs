@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -16,6 +17,7 @@ namespace WhetStone.Looping
         /// <returns>All the (element-wise) subsets of <paramref name="this"/>.</returns>
         public static IList<IEnumerable<T>> SubSets<T>(this IEnumerable<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new[] {false, true}.Join(@this.Count()).Select(a => @this.Zip(a).Where(x => x.Item2).Detach());
         }
         /// <summary>
@@ -26,6 +28,7 @@ namespace WhetStone.Looping
         /// <returns>All the (element-wise) subsets of <paramref name="this"/>.</returns>
         public static IList<IList<T>> SubSets<T>(this IList<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return range.IRange(@this.Count).Select(@this.SubSets).Concat();
         }
         /// <summary>
@@ -37,6 +40,8 @@ namespace WhetStone.Looping
         /// <returns>All the (element-wise) subsets of <paramref name="this"/> of size <paramref name="setSize"/>.</returns>
         public static IEnumerable<IEnumerable<T>> SubSets<T>(this IEnumerable<T> @this, int setSize)
         {
+            @this.ThrowIfNull(nameof(@this));
+            setSize.ThrowIfAbsurd(nameof(setSize));
             return @this.Join(setSize, join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry);
         }
         /// <summary>
@@ -48,6 +53,8 @@ namespace WhetStone.Looping
         /// <returns>All the (element-wise) subsets of <paramref name="this"/> of size <paramref name="setSize"/>.</returns>
         public static IList<IList<T>> SubSets<T>(this IList<T> @this, int setSize)
         {
+            @this.ThrowIfNull(nameof(@this));
+            setSize.ThrowIfAbsurd(nameof(setSize));
             return @this.Join(setSize, join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry);
         }
     }

@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Random
 {
@@ -32,6 +33,7 @@ namespace WhetStone.Random
         /// <inheritdoc />
         public override byte[] Bytes(int length)
         {
+            length.ThrowIfAbsurd(nameof(length));
             byte[] ret = new byte[length];
             _int.NextBytes(ret);
             return ret;

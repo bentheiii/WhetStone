@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Processes
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Processes
         /// <returns>Whether the action completed within the allotted time.</returns>
         public static bool TimeOut(this Action action, TimeSpan maxtime)
         {
+            action.ThrowIfNull(nameof(action));
             var tokenSource = new CancellationTokenSource();
             CancellationToken token = tokenSource.Token;
             int timeOut = (int)maxtime.TotalMilliseconds;
@@ -33,6 +35,7 @@ namespace WhetStone.Processes
         /// <returns>Whether the action completed within the allotted time.</returns>
         public static bool TimeOut<T>(this Func<T> action, TimeSpan maxtime, out T result)
         {
+            action.ThrowIfNull(nameof(action));
             var tokenSource = new CancellationTokenSource();
             CancellationToken token = tokenSource.Token;
             int timeOut = (int)maxtime.TotalMilliseconds;

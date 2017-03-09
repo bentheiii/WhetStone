@@ -1,4 +1,5 @@
 ﻿using System;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Fielding
 {
@@ -304,6 +305,7 @@ namespace WhetStone.Fielding
         /// <inheritdoc />
         public int CompareTo(FieldWrapper<T> other)
         {
+            other.ThrowIfNull(nameof(other));
             return _field.Compare(val, other.val);
         }
         /// <summary>

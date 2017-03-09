@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> stridden in <paramref name="step"/> steps and <paramref name="start"/> offset.</returns>
         public static IEnumerable<T> Step<T>(this IEnumerable<T> @this, int step, int start = 0)
         {
+            step.ThrowIfAbsurd(nameof(step),false);
             int c = start;
             foreach (var t in @this)
             {

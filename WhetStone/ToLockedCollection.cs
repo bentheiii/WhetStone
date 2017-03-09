@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.LockedStructures
 {
@@ -7,6 +8,7 @@ namespace WhetStone.LockedStructures
     {
         public static ICollection<T> ToLockedCollection<T>(this IReadOnlyCollection<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new LockedCollectionReadOnlyAdaptor<T>(@this);
         }
     }

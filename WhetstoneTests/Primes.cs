@@ -22,7 +22,7 @@ namespace Tests
             {
                 Assert.IsTrue(i.IsPrime(), i.ToString());
             }
-            val = new[] {0, 1, 15, 35, 14, 1000, 61*61, 32, -1};
+            val = new[] {1, 15, 35, 14, 1000, 61*61, 32};
             foreach (var i in val)
             {
                 Assert.IsFalse(i.IsPrimeByList() ?? true);

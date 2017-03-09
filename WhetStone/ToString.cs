@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.WordPlay
 {
@@ -16,6 +17,8 @@ namespace WhetStone.WordPlay
         /// <returns><paramref name="this"/> converted to <see cref="string"/> under <paramref name="format"/> and <see cref="CultureInfo.CurrentCulture"/>.</returns>
         public static string ToString(this IFormattable @this, string format)
         {
+            @this.ThrowIfNull(nameof(@this));
+            format.ThrowIfNull(nameof(format));
             return @this.ToString(format, CultureInfo.CurrentCulture);
         }
     }

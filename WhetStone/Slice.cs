@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Guard;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -26,10 +27,8 @@ namespace WhetStone.Looping
         {
             if (max.HasValue && length.HasValue)
                 throw new ArgumentException("either max or length must be null");
-            if (steps <= 0)
-                throw new NotSupportedException("negative steps are not supported");
-            if (start < 0)
-                throw new ArgumentException("start cannot be negative");
+            steps.ThrowIfAbsurd(nameof(steps),false);
+            start.ThrowIfAbsurd();
             if (length.HasValue)
                 max = length*steps + start;
             if (max == null)
@@ -135,6 +134,8 @@ namespace WhetStone.Looping
         /// <returns>A mutability-passing slice of <paramref name="this"/>.</returns>
         public static IEnumerable<T> Slice<T>(this IEnumerable<T> @this, int start = 0, int? max = null, int steps = 1, int? length = null)
         {
+            steps.ThrowIfAbsurd(nameof(steps), false);
+            start.ThrowIfAbsurd();
             if (max.HasValue && length.HasValue)
                 throw new ArgumentException("either max or length must be null");
             if (length.HasValue)

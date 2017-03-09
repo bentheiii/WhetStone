@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -64,6 +65,8 @@ namespace WhetStone.Looping
         /// <seealso cref="Parallel.ForEach{TSource}(IEnumerable{TSource},Action{TSource, ParallelLoopState, long})"/>
         public static ParallelLoopResult AsyncDo<T>(this IEnumerable<T> @this, Action<T, ParallelLoopState, long> action, int maxParallelism)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
             var options = new ParallelOptions {MaxDegreeOfParallelism = maxParallelism};
             return Parallel.ForEach(@this, options, action);
         }
@@ -121,6 +124,9 @@ namespace WhetStone.Looping
         /// <seealso cref="Parallel.ForEach{TSource}(IEnumerable{TSource},Action{TSource, ParallelLoopState, long})"/>
         public static ParallelLoopResult AsyncDo<T>(this IEnumerable<T> @this, Action<T, ParallelLoopState, long> action, ParallelOptions options)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
+            options.ThrowIfNull(nameof(options));
             return Parallel.ForEach(@this, options, action);
         }
         /// <summary>
@@ -173,6 +179,8 @@ namespace WhetStone.Looping
         /// <seealso cref="Parallel.ForEach{TSource}(IEnumerable{TSource},Action{TSource, ParallelLoopState, long})"/>
         public static ParallelLoopResult AsyncDo<T>(this IEnumerable<T> @this, Action<T, ParallelLoopState, long> action)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
             return Parallel.ForEach(@this,action);
         }
         #endregion
@@ -236,6 +244,8 @@ namespace WhetStone.Looping
         /// <para>Each thread is started to independently run over a slice of <paramref name="this"/>. This accesses each member of <paramref name="this"/> via the <see cref="IList{T}.this"/> operator. If the <see cref="IList{T}.this"/> operator is particularly slow, consider the <see cref="AsyncDo{T}(IEnumerable{T},System.Action{T},int)"> Enumerating overloads</see>.</para></remarks>
         public static ParallelLoopResult AsyncDo<T>(this IList<T> @this, Action<T, ParallelLoopState, long> action, int maxParallelism)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
             var options = new ParallelOptions { MaxDegreeOfParallelism = maxParallelism };
             return Parallel.For(0, @this.Count, (l, state) => action(@this[l], state, l));
         }
@@ -297,6 +307,9 @@ namespace WhetStone.Looping
         /// <para>Each thread is started to independently run over a slice of <paramref name="this"/>. This accesses each member of <paramref name="this"/> via the <see cref="IList{T}.this"/> operator. If the <see cref="IList{T}.this"/> operator is particularly slow, consider the <see cref="AsyncDo{T}(IEnumerable{T},System.Action{T},int)"> Enumerating overloads</see>.</para></remarks>
         public static ParallelLoopResult AsyncDo<T>(this IList<T> @this, Action<T, ParallelLoopState, long> action, ParallelOptions options)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
+            options.ThrowIfNull(nameof(options));
             return Parallel.For(0, @this.Count, options, (l, state) => action(@this[l], state, l));
         }
         /// <summary>
@@ -353,6 +366,8 @@ namespace WhetStone.Looping
         /// <para>Each thread is started to independently run over a slice of <paramref name="this"/>. This accesses each member of <paramref name="this"/> via the <see cref="IList{T}.this"/> operator. If the <see cref="IList{T}.this"/> operator is particularly slow, consider the <see cref="AsyncDo{T}(IEnumerable{T},System.Action{T},int)"> Enumerating overloads</see>.</para></remarks>
         public static ParallelLoopResult AsyncDo<T>(this IList<T> @this, Action<T, ParallelLoopState, long> action)
         {
+            @this.ThrowIfNull(nameof(@this));
+            action.ThrowIfNull(nameof(action));
             return Parallel.For(0,@this.Count,(l, state) => action(@this[l],state,l));
         }
         #endregion

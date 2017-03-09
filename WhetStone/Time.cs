@@ -1,4 +1,5 @@
 ﻿using System;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Units.Time
 {
@@ -15,6 +16,7 @@ namespace WhetStone.Units.Time
         /// <returns><paramref name="t"/> divided by <paramref name="divisor"/>.</returns>
         public static TimeSpan Divide(this TimeSpan t, double divisor)
         {
+            divisor.ThrowIfAbsurd(nameof(divisor),allowZero:false);
             return Multiply(t, 1.0 / divisor);
         }
         /// <summary>
@@ -35,6 +37,7 @@ namespace WhetStone.Units.Time
         /// <returns><paramref name="t"/> multiplied by <paramref name="factor"/>.</returns>
         public static TimeSpan Multiply(this TimeSpan t, double factor)
         {
+            factor.ThrowIfAbsurd(nameof(factor));
             return new TimeSpan((long)(t.Ticks * factor));
         }
     }

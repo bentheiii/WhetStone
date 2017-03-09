@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -21,6 +22,8 @@ namespace WhetStone.Looping
         /// <remarks>If the section is outside the bounds of <paramref name="this"/>, the subsections that don't overlap <paramref name="this"/> are ignored.</remarks>
         public static IEnumerable<T> SkipSlice<T>(this IEnumerable<T> @this, int start, int length = 1)
         {
+            @this.ThrowIfNull(nameof(@this));
+            length.ThrowIfAbsurd(nameof(length));
             if (start < 0)
             {
                 start = 0;
@@ -178,6 +181,13 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IList<T> SkipSlice<T>(this IList<T> @this, int start, int length = 1)
         {
+            @this.ThrowIfNull(nameof(@this));
+            length.ThrowIfAbsurd(nameof(length));
+            if (start < 0)
+            {
+                start = 0;
+                length += start;
+            }
             if (start == 0)
                 return @this.Skip(length);
             if (length + start >= @this.Count)

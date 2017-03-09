@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,13 +18,17 @@ namespace WhetStone.Looping
         /// constructor.
         /// </summary>
         /// <param name="generator">A function to generate the <see cref="LazyList{T}"/>'s elements by index.</param>
-        public LazyList(Func<int, T> generator) : this((i, array) => generator(i)) { }
+        public LazyList(Func<int, T> generator) : this((i, array) => generator(i))
+        {
+            generator.ThrowIfNull(nameof(generator));
+        }
         /// <summary>
         /// constructor.
         /// </summary>
         /// <param name="generator">A function to generate the <see cref="LazyList{T}"/>'s elements by index and the <see cref="LazyList{T}"/> itself.</param>
         public LazyList(Func<int, LazyList<T>, T> generator)
         {
+            generator.ThrowIfNull(nameof(generator));
             _generator = generator;
             _data = new InfiniteList<T>();
             _initialized = new InfiniteList<bool>();
@@ -35,6 +40,7 @@ namespace WhetStone.Looping
         /// <returns>Whether the element at an index has been initialized.</returns>
         public bool Initialized(int index)
         {
+            index.ThrowIfAbsurd(nameof(index));
             return _initialized[index];
         }
         /// <summary>
@@ -43,6 +49,7 @@ namespace WhetStone.Looping
         /// <param name="index">The index of the element.</param>
         public void Invalidate(int index)
         {
+            index.ThrowIfAbsurd(nameof(index));
             _initialized[index] = false;
         }
         /// <inheritdoc />
@@ -58,12 +65,14 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void Insert(int index, T item)
         {
+            index.ThrowIfAbsurd(nameof(index));
             _initialized.Insert(index,true);
             _data.Insert(index,item);
         }
         /// <inheritdoc />
         public void RemoveAt(int index)
         {
+            index.ThrowIfAbsurd(nameof(index));
             _initialized.RemoveAt(index);
             _data.RemoveAt(index);
         }

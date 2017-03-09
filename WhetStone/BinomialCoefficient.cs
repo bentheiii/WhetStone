@@ -1,5 +1,6 @@
 ﻿using System;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace NumberStone
 {
@@ -86,6 +87,7 @@ namespace NumberStone
         /// <exception cref="InvalidOperationException">If attempt to decrease super to below sub.</exception>
         public void DecreaseSuper(int div = 1)
         {
+            div.ThrowIfAbsurd(nameof(div));
             if (super-div < sub)
                 throw new InvalidOperationException("cannot bring BinomialCoefficient to desired state.");
             foreach (int i in range.Range(div))
@@ -101,6 +103,7 @@ namespace NumberStone
         /// <param name="div">The amount to increase super by.</param>
         public void IncreaseSuper(int div = 1)
         {
+            div.ThrowIfAbsurd(nameof(div));
             foreach (int i in range.IRange(1,div))
             {
                 _val.Multiply(super + i);
@@ -115,6 +118,7 @@ namespace NumberStone
         /// <exception cref="InvalidOperationException">If attempt to decrease sub to below 0.</exception>
         public void DecreaseSub(int div = 1)
         {
+            div.ThrowIfAbsurd(nameof(div));
             if (div > sub)
                 throw new InvalidOperationException("cannot bring BinomialCoefficient to desired state.");
             foreach (int i in range.Range(div))
@@ -134,6 +138,7 @@ namespace NumberStone
         /// <exception cref="InvalidOperationException">If attempt to increase sub to above super.</exception>
         public void IncreaseSub(int div = 1)
         {
+            div.ThrowIfAbsurd(nameof(div));
             if (sub + div > super)
                 throw new InvalidOperationException("cannot bring BinomialCoefficient to desired state.");
             foreach (int i in range.IRange(1,div))
@@ -153,6 +158,7 @@ namespace NumberStone
         /// <exception cref="InvalidOperationException">If attempt to lower sub to below zero.</exception>
         public void DecreaseBoth(int div = 1)
         {
+            div.ThrowIfAbsurd(nameof(div));
             if (sub < div)
                 throw new InvalidOperationException("cannot bring BinomialCoefficient to desired state.");
             foreach (int i in range.Range(div))
@@ -169,6 +175,7 @@ namespace NumberStone
         /// <param name="div">The amount to increase both super and sub by.</param>
         public void IncreaseBoth(int div = 1)
         {
+            div.ThrowIfAbsurd(nameof(div));
             foreach (int i in range.Range(div))
             {
                 _val.Divide(sub - div);

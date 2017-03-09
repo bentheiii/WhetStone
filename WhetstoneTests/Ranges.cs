@@ -19,6 +19,7 @@ namespace Tests
         [TestMethod]
         public void GenExPosSimples()
         {
+            Assert.IsTrue(range.Range('a','g').SequenceEqual('a','b','c','d','e','f'));
             Assert.IsTrue(range.Range(10.0).SequenceEqual(0, 1, 2, 3, 4, 5, 6, 7, 8, 9));
             Assert.IsTrue(range.Range(0.0).SequenceEqual());
             Assert.IsTrue(range.Range(-1.0).SequenceEqual());

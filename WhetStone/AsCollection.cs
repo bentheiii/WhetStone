@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -23,6 +25,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static ICollection<T> AsCollection<T>(this IEnumerable<T> @this, bool force = true)
         {
+            @this.ThrowIfNull(nameof(@this));
             var l = @this as ICollection<T>;
             if (l != null)
                 return l;

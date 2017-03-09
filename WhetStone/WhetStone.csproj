@@ -28,10 +28,11 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;WIN64</DefineConstants>
+    <DefineConstants>TRACE;WIN64,UNSAFE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\WhetStone.XML</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -72,6 +73,10 @@
   <ItemGroup>
     <Reference Include="BigRationalLibrary">
       <HintPath>..\..\BigRationalLibrary\bin\Debug\BigRationalLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=10.4.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.10.4.0\lib\net\JetBrains.Annotations.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -179,6 +184,7 @@
     <Compile Include="Splice.cs" />
     <Compile Include="Take.cs" />
     <Compile Include="GenericTally.cs" />
+    <Compile Include="throwIf.cs" />
     <Compile Include="TypeTally.cs" />
     <Compile Include="Unzip.cs" />
     <Compile Include="Split.cs" />
@@ -238,6 +244,9 @@
     <Compile Include="YieldAggregate.cs" />
     <Compile Include="Zip.cs" />
     <Compile Include="ZipUnBound.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

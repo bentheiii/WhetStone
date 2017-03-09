@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -20,6 +21,8 @@ namespace WhetStone.Looping
         /// <remarks><c>enumerable.Attach(selector)</c> is functionally identical to <c>enumerable.Zip(enumerable.Select(selector))</c>. Although here, the enumerable is enumerated only once per output enumeration.</remarks>
         public static IEnumerable<Tuple<T1, T2>> Attach<T1, T2>(this IEnumerable<T1> @this, Func<T1, T2> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a, selector(a)));
         }
         /// <summary>
@@ -33,6 +36,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> of type <see cref="Tuple{T1,T2,T3}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
         public static IEnumerable<Tuple<T1, T2, T3>> Attach<T1, T2, T3>(this IEnumerable<Tuple<T1, T2>> @this, Func<T1, T2, T3> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, selector(a.Item1, a.Item2)));
         }
         /// <summary>
@@ -47,6 +52,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> of type <see cref="Tuple{T1,T2,T3,T4}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
         public static IEnumerable<Tuple<T1, T2, T3, T4>> Attach<T1, T2, T3, T4>(this IEnumerable<Tuple<T1, T2, T3>> @this, Func<T1, T2, T3, T4> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, a.Item3, selector(a.Item1, a.Item2, a.Item3)));
         }
         /// <summary>
@@ -62,6 +69,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> of type <see cref="Tuple{T1,T2,T3,T4,T5}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
         public static IEnumerable<Tuple<T1, T2, T3, T4, T5>> Attach<T1, T2, T3, T4, T5>(this IEnumerable<Tuple<T1, T2, T3, T4>> @this, Func<T1, T2, T3, T4, T5> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, a.Item3, a.Item4, selector(a.Item1, a.Item2, a.Item3, a.Item4)));
         }
         /// <summary>
@@ -75,6 +84,8 @@ namespace WhetStone.Looping
         /// <remarks><c>enumerable.Attach(selector)</c> is functionally identical to <c>enumerable.Zip(enumerable.Select(selector))</c>. Although here, the enumerable is enumerated only once per output enumeration, the <see cref="IList{T}.this"/> is invoked once per access.</remarks>
         public static IList<Tuple<T1, T2>> Attach<T1, T2>(this IList<T1> @this, Func<T1, T2> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a, selector(a)));
         }
         /// <summary>
@@ -88,6 +99,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
         public static IList<Tuple<T1, T2, T3>> Attach<T1, T2, T3>(this IList<Tuple<T1, T2>> @this, Func<T1, T2, T3> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, selector(a.Item1, a.Item2)));
         }
         /// <summary>
@@ -102,6 +115,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3,T4}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
         public static IList<Tuple<T1, T2, T3, T4>> Attach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3>> @this, Func<T1, T2, T3, T4> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, a.Item3, selector(a.Item1, a.Item2, a.Item3)));
         }
         /// <summary>
@@ -117,6 +132,8 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IList{T}"/> of type <see cref="Tuple{T1,T2,T3,T4,T5}"/> of <paramref name="this"/>'s elements with the output of the selector function applied to them.</returns>
         public static IList<Tuple<T1, T2, T3, T4, T5>> Attach<T1, T2, T3, T4, T5>(this IList<Tuple<T1, T2, T3, T4>> @this, Func<T1, T2, T3, T4, T5> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return @this.Select(a => Tuple.Create(a.Item1, a.Item2, a.Item3, a.Item4, selector(a.Item1, a.Item2, a.Item3, a.Item4)));
         }
     }

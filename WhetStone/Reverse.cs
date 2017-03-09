@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Guard;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,6 +20,7 @@ namespace WhetStone.Looping
         /// <returns>A mutability-passing <see cref="IList{T}"/> that includes <paramref name="this"/>'s elements in reverse order.</returns>
         public static IList<T> Reverse<T>(this IList<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new ReverseList<T>(@this);
         }
         private class ReverseList<T> : IList<T>

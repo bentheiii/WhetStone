@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> with <paramref name="this"/>'s element's sorted.</returns>
         public static IOrderedEnumerable<T> OrderBy<T>(this IEnumerable<T> @this, IComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? Comparer<T>.Default;
             return @this.OrderBy(a => a, comp);
         }
@@ -29,6 +31,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> with <paramref name="this"/>'s element's sorted in descending order.</returns>
         public static IOrderedEnumerable<T> OrderByDescending<T>(this IEnumerable<T> @this, IComparer<T> comp = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             comp = comp ?? Comparer<T>.Default;
             return @this.OrderByDescending(a => a, comp);
         }

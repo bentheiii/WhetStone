@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,7 +20,9 @@ namespace WhetStone.Looping
         /// <remarks>If <paramref name="limitToCapacity"/> is set to <see langword="true"/>, The resultant array will be returned as soon as the array is filled to capacity.</remarks>
         public static T[] ToArray<T>(this IEnumerable<T> @this, int capacity, bool limitToCapacity = false)
         {
-            T[] ret = new T[capacity <= 0 ? 1 : capacity];
+            @this.ThrowIfNull(nameof(@this));
+            capacity.ThrowIfAbsurd(nameof(capacity));
+            T[] ret = new T[capacity];
             int i = 0;
             foreach (T t in @this)
             {
@@ -27,7 +30,7 @@ namespace WhetStone.Looping
                 {
                     if (limitToCapacity)
                         return ret;
-                    Array.Resize(ref ret, ret.Length * 2);
+                    Array.Resize(ref ret, Math.Max(ret.Length * 2,1));
                 }
                 ret[i] = t;
                 i++;

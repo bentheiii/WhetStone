@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,8 @@ namespace WhetStone.Looping
         /// <returns>A mutability-passing <see cref="IList{T}"/> that skips the first <paramref name="skipCount"/> elements in <paramref name="this"/>.</returns>
         public static IList<T> Skip<T>(this IList<T> @this, int skipCount)
         {
+            @this.ThrowIfNull(nameof(@this));
+            skipCount.ThrowIfAbsurd(nameof(skipCount));
             if (skipCount == 0)
                 return @this;
             return @this.Slice(Math.Min(skipCount, @this.Count));

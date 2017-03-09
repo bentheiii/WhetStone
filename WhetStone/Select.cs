@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -311,6 +312,8 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="IList{T}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s elements.</returns>
         public static IList<R> Select<T, R>(this IList<T> @this, Func<T, R> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return new SelectList<T, R>(@this, selector);
         }
         /// <summary>
@@ -333,6 +336,9 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IList<R> Select<T, R>(this IList<T> @this, Func<T, R> selector, Func<R, T> inverse)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
+            inverse.ThrowIfNull(nameof(inverse));
             return new SelectInverseList<T, R>(@this, selector, inverse);
         }
         /// <overloads>Get a 1-1 mapping of enumerables.</overloads>
@@ -346,6 +352,8 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="ICollection{T}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s elements.</returns>
         public static ICollection<R> Select<T, R>(this ICollection<T> @this, Func<T, R> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return new SelectCollection<T, R>(@this, selector);
         }
         /// <summary>
@@ -368,6 +376,9 @@ namespace WhetStone.Looping
         /// </remarks>
         public static ICollection<R> Select<T, R>(this ICollection<T> @this, Func<T, R> selector, Func<R, T> inverse)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
+            inverse.ThrowIfNull(nameof(inverse));
             return new SelectInverseCollection<T, R>(@this, selector, inverse);
         }
         /// <summary>
@@ -381,6 +392,8 @@ namespace WhetStone.Looping
         /// <returns>A read-only <see cref="IDictionary{T,V}"/> with <paramref name="selector"/> applied on <paramref name="this"/>'s values.</returns>
         public static IDictionary<T,R1> Select<T, R0, R1>(this IDictionary<T,R0> @this, Func<R0, R1> selector)
         {
+            @this.ThrowIfNull(nameof(@this));
+            selector.ThrowIfNull(nameof(selector));
             return new SelectValueDictionary<T,R0,R1>(@this,selector);
         }
         /// <summary>
@@ -398,6 +411,10 @@ namespace WhetStone.Looping
         /// <returns>A mutability-passing <see cref="IDictionary{T,V}"/> with <paramref name="keyMapper"/> and <paramref name="valueMapper"/> applied to <paramref name="this"/>'s elements.</returns>
         public static IDictionary<K1, R1> Select<K0, K1, R0, R1>(this IDictionary<K0, R0> @this, Func<K0, K1> keyMapper, Func<K1, K0> keyInverse, Func<R0, R1> valueMapper, Func<R1,R0> valueInverse=null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            keyMapper.ThrowIfNull(nameof(keyMapper));
+            keyInverse.ThrowIfNull(nameof(keyInverse));
+            valueMapper.ThrowIfNull(nameof(valueMapper));
             return new SelectDictionary<K0, K1, R0, R1>(@this, keyMapper, keyInverse, valueMapper, valueInverse);
         }
     }

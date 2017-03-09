@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Comparison
 {
@@ -16,6 +17,7 @@ namespace WhetStone.Comparison
         /// <param name="c">The <see cref="IComparer{T}"/> to use.</param>
         public PriorityComparer(params IComparer<T>[] c)
         {
+            c.ThrowIfNull(nameof(c));
             this._comps = c.ToArray();
         }
         /// <inheritdoc />

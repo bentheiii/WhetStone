@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -154,6 +155,16 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IList{T}"/> that contains <paramref name="this"/>'s elements repeated.</returns>
         public static IList<T> Cycle<T>(this IList<T> @this, int? amount = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            amount.ThrowIfAbsurd(nameof(amount));
+            if (amount.HasValue && amount.Value == 0)
+                return new T[0];
+            if (@this.Count == 0)
+            {
+                if (amount.HasValue)
+                    return new T[0];
+                throw new ArgumentException(nameof(@this)+" is empty and "+nameof(amount)+" is infinite");
+            }
             if (amount.HasValue)
                 return new RepeatList<T>(@this,amount.Value);
             return new CycleList<T>(@this);
@@ -168,6 +179,16 @@ namespace WhetStone.Looping
         /// <remarks>The underlying class of the return value implements a read-only <see cref="IList{T}"/> interface. This is to accelerate certain LINQ operations, and should not be accessed by the user.</remarks>
         public static IEnumerable<T> Cycle<T>(this IEnumerable<T> @this, int? amount = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            amount.ThrowIfAbsurd(nameof(amount));
+            if (amount.HasValue && amount.Value == 0)
+                return new T[0];
+            if (!@this.Any())
+            {
+                if (amount.HasValue)
+                    return new T[0];
+                throw new ArgumentException(nameof(@this) + " is empty and " + nameof(amount) + " is infinite");
+            }
             if (amount.HasValue)
                 return new RepeatEnumerable<T>(@this, amount.Value);
             return new CycleEnumerable<T>(@this);

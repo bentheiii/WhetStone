@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Guard;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -21,6 +22,8 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="tosearch"/> is empty.</exception>
         public static T GetMin<T>(this IEnumerable<T> tosearch, IComparer<T> compare, out int index)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
+            compare.ThrowIfNull(nameof(compare));
             index = -1;
             var ret = default(T);
             IGuard<int> ind = new Guard<int>();
@@ -47,6 +50,7 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="tosearch"/> is empty.</exception>
         public static T GetMin<T>(this IEnumerable<T> tosearch, IComparer<T> compare = null)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
             int prox;
             return tosearch.GetMin(compare ?? Comparer<T>.Default, out prox);
         }
@@ -60,6 +64,7 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="tosearch"/> is empty.</exception>
         public static T GetMin<T>(this IEnumerable<T> tosearch, out int index)
         {
+            tosearch.ThrowIfNull(nameof(tosearch));
             return tosearch.GetMin(Comparer<T>.Default, out index);
         }
     }

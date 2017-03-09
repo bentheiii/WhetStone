@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Looping;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Random
 {
@@ -20,6 +21,7 @@ namespace WhetStone.Random
         /// <remarks>Running time: O(|<paramref name="this"/>|)</remarks>
         public static T Pick<T>(this IEnumerable<T> @this, RandomGenerator gen = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             return @this.Pick(1, gen).Single();
         }
         /// <summary>
@@ -33,6 +35,8 @@ namespace WhetStone.Random
         /// <remarks>Running time: O(|<paramref name="this"/>| * <paramref name="count"/> / (<paramref name="count"/> + 1))</remarks>
         public static IEnumerable<T> Pick<T>(this IEnumerable<T> @this, int count, RandomGenerator gen = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            count.ThrowIfAbsurd(nameof(count));
             gen = gen ?? new GlobalRandomGenerator();
             int nom = count;
             int denom = @this.Count();
@@ -59,6 +63,7 @@ namespace WhetStone.Random
         /// <returns>A random element from <paramref name="this"/>.</returns>
         public static T Pick<T>(this IList<T> @this, RandomGenerator gen = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             gen = gen ?? new GlobalRandomGenerator();
             return @this[gen.Int(@this.Count)];
         }
@@ -72,6 +77,8 @@ namespace WhetStone.Random
         /// <returns><paramref name="count"/> random elements from <paramref name="this"/>.</returns>
         public static IList<T> Pick<T>(this IList<T> @this, int count, RandomGenerator gen = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            count.ThrowIfAbsurd(nameof(count));
             return range.Range(@this.Count).Join(count, join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry).Pick(gen).Select(a => @this[a]).Reverse();
         }
     }

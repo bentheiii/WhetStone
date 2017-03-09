@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -23,6 +24,7 @@ namespace WhetStone.Looping
         /// <param name="capacity">The initial capacity for non-default members.</param>
         public InfiniteList(T defaultValue = default(T), int capacity = 4)
         {
+            capacity.ThrowIfAbsurd(nameof(capacity));
             this.defaultValue = defaultValue;
             _data = new List<T>(capacity);
         }
@@ -45,6 +47,7 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void Insert(int index, T item)
         {
+            index.ThrowIfAbsurd(nameof(index));
             if (index >= _data.Count)
                 this[index] = item;
             else
@@ -53,6 +56,7 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public void RemoveAt(int index)
         {
+            index.ThrowIfAbsurd(nameof(index));
             if (index >= _data.Count)
                 return;
             _data.RemoveAt(index);
@@ -62,10 +66,12 @@ namespace WhetStone.Looping
         {
             get
             {
+                ind.ThrowIfAbsurd(nameof(ind));
                 return _data.Count <= ind ? defaultValue : _data[ind];
             }
             set
             {
+                ind.ThrowIfAbsurd(nameof(ind));
                 ExpandTo(ind + 1);
                 _data[ind] = value;
             }

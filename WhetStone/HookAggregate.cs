@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.Guard;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -9,6 +10,7 @@ namespace WhetStone.Looping
     /// </summary>
     public static class hookAggregate
     {
+        //todo unsafe flag and hooking pointer sink
         /// <summary>
         /// Hooks an aggregate value to an <see cref="IGuard{T}"/>, to be recalculated upon enumeration.
         /// </summary>
@@ -21,6 +23,9 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> that, when enumerated, will also aggregate <paramref name="sink"/>'s value.</returns>
         public static IEnumerable<T> HookAggregate<T, R>(this IEnumerable<T> @this, IGuard<R> sink, Func<T, R, R> aggregator, R seed = default(R))
         {
+            @this.ThrowIfNull(nameof(@this));
+            sink.ThrowIfNull(nameof(sink));
+            aggregator.ThrowIfNull(nameof(aggregator));
             return @this.AttachAggregate(aggregator,seed).Detach(sink);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -18,6 +19,7 @@ namespace WhetStone.Looping
         /// <exception cref="InvalidOperationException">If the argument contains more than one element.</exception>
         public static T SingleOrDefault<T>(this IEnumerable<T> @this, T @default)
         {
+            @this.ThrowIfNull(nameof(@this));
             using (var tor = @this.GetEnumerator())
             {
                 if (!tor.MoveNext())

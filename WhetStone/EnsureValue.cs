@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -18,6 +20,7 @@ namespace WhetStone.Looping
         /// <returns>Whether a value existed before the method was called.</returns>
         public static bool EnsureValue<T, G>(this IDictionary<T, G> @this, T key, G defaultval = default(G))
         {
+            @this.ThrowIfNull(nameof(@this));
             if (@this.ContainsKey(key))
                 return true;
             @this[key] = defaultval;

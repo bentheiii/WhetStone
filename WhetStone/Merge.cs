@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -17,6 +18,7 @@ namespace WhetStone.Looping
         /// <returns>A new <see cref="IEnumerable{T}"/> composed of <paramref name="this"/>'s members combined.</returns>
         public static IEnumerable<T> Merge<T>(this IEnumerable<IEnumerable<T>> @this, IComparer<T> chooser = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             chooser = chooser ?? Comparer<T>.Default;
             var numerators = new List<IEnumerator<T>>(@this.Select(a => a.GetEnumerator()));
             numerators.RemoveAll(a => !a.MoveNext());
@@ -39,6 +41,8 @@ namespace WhetStone.Looping
         /// <returns></returns>
         public static IEnumerable<T> Merge<T>(this IEnumerable<T> @this, IEnumerable<T> other, IComparer<T> chooser = null)
         {
+            @this.ThrowIfNull(nameof(@this));
+            other.ThrowIfNull(nameof(other));
             return new[] { @this, other }.Merge(chooser);
         }
     }

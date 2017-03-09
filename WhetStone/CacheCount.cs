@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -56,6 +58,7 @@ namespace WhetStone.Looping
         /// <returns>A new, read only <see cref="ICollection{T}"/> that remembers the count of <paramref name="this"/> hen it is calculated.</returns>
         public static ICollection<T> CacheCount<T>(this IEnumerable<T> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new CountCache<T>(@this);
         }
     }

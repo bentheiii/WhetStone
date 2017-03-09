@@ -174,6 +174,7 @@ namespace NumberStone
         /// <returns>Whether <paramref name="x"/> is prime or <see langword="null"/> id uncertain.</returns>
         public static bool? IsPrimeByList(this int x)
         {
+            x.ThrowIfAbsurd(nameof(x),false);
             if (x == 2)
                 return true;
             if (x % 2 == 0)
@@ -190,10 +191,13 @@ namespace NumberStone
         /// <returns>Whether <paramref name="x"/> is prime or not.</returns>
         public static bool IsPrime(this int x, int huristicTrials = 32)
         {
+            x.ThrowIfAbsurd(nameof(x), false);
+            huristicTrials.ThrowIfAbsurd(nameof(huristicTrials));
             var l = x.IsPrimeByList();
             if (l.HasValue)
                 return l.Value;
-            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() == x);
+            return (huristicTrials == 0 || isProbablyPrime(x, huristicTrials))
+                && (x.Primefactors().First() == x);
         }
         /// <summary>
         /// Performs a full check as whether a number is prime.
@@ -203,11 +207,14 @@ namespace NumberStone
         /// <returns>Whether <paramref name="x"/> is prime or not.</returns>
         public static bool IsPrime(this long x, int huristicTrials = 64)
         {
+            x.ThrowIfAbsurd(nameof(x), false);
+            huristicTrials.ThrowIfAbsurd(nameof(huristicTrials));
             if (x < int.MaxValue)
             {
                 return IsPrime((int)x, huristicTrials);
             }
-            return isProbablyPrime(x, huristicTrials) && (x.Primefactors().First() == x);
+            return (huristicTrials == 0 || isProbablyPrime(x, huristicTrials)) 
+                && (x.Primefactors().First() == x);
         }
         /// <overloads>Performs a statistical trial to check for primality.</overloads>
         /// <summary>
@@ -220,6 +227,8 @@ namespace NumberStone
         /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to (1-0.5^<paramref name="iterations"/>) certainty.</para></remarks>
         public static bool isProbablyPrime(this int x, int iterations=32, RandomGenerator generator = null)
         {
+            x.ThrowIfAbsurd(nameof(x), false);
+            iterations.ThrowIfAbsurd(nameof(iterations), false);
             generator = generator ?? new GlobalRandomGenerator();
             if (x <= 0)
                 throw new Exception("can't check a negative number");
@@ -233,6 +242,8 @@ namespace NumberStone
         /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to 0.5 certainty.</para></remarks>
         public static bool isProbablyPrime(this int x, RandomGenerator generator)
         {
+            x.ThrowIfAbsurd(nameof(x), false);
+            generator.ThrowIfNull(nameof(generator));
             int a = generator.Int(1, x);
             return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && a.powmod(x - 1, x) == 1;
         }
@@ -244,6 +255,8 @@ namespace NumberStone
         /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to 0.5 certainty.</para></remarks>
         public static bool isProbablyPrime(this long x, RandomGenerator generator)
         {
+            x.ThrowIfAbsurd(nameof(x), false);
+            generator.ThrowIfNull(nameof(generator));
             int a = generator.Int(1, (int)Math.Min(int.MaxValue, x));
             return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && ((long)a).powmod(x - 1, x) == 1;
         }
@@ -257,6 +270,8 @@ namespace NumberStone
         /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to (1-0.5^<paramref name="iterations"/>) certainty.</para></remarks>
         public static bool isProbablyPrime(this long x, int iterations=64, RandomGenerator generator = null)
         {
+            x.ThrowIfAbsurd(nameof(x), false);
+            iterations.ThrowIfAbsurd(nameof(iterations), false);
             generator = generator ?? new GlobalRandomGenerator();
             if (x <= 0)
                 throw new Exception("can't check a negative number");
@@ -270,7 +285,9 @@ namespace NumberStone
         /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to 0.5 certainty.</para></remarks>
         public static bool isProbablyPrime(this BigInteger x, RandomGenerator generator)
         {
-            
+            if (x <= 0)
+                throw new ArgumentOutOfRangeException(nameof(x));
+            generator.ThrowIfNull(nameof(generator));
             int a = generator.Int(1, (int)BigInteger.Min(int.MaxValue, x));
             return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && BigInteger.ModPow(a, x - 1, x) == 1;
         }
@@ -284,6 +301,9 @@ namespace NumberStone
         /// <remarks><para><see langword="false"/> means that <paramref name="x"/> is definitely not prime, <see langword="true"/> means the number is prime to (1-0.5^<paramref name="iterations"/>) certainty.</para></remarks>
         public static bool isProbablyPrime(this BigInteger x, int iterations=128, RandomGenerator generator = null)
         {
+            if (x <= 0)
+                throw new ArgumentOutOfRangeException(nameof(x));
+            iterations.ThrowIfAbsurd(nameof(iterations), false);
             generator = generator ?? new GlobalRandomGenerator();
             if (x <= 0)
                 throw new Exception("can't check a negative number");

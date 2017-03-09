@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -19,6 +20,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
         public static IEnumerable<Tuple<T, int>> CountBind<T>(this IEnumerable<T> a, int start = 0)
         {
+            a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));
         }
         /// <summary>
@@ -32,6 +34,7 @@ namespace WhetStone.Looping
         /// <remarks>This function uses fielding to increment the index.</remarks>
         public static IEnumerable<Tuple<T, C>> CountBind<T, C>(this IEnumerable<T> a, C start)
         {
+            a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));
         }
         private class CountBindCollection<T> : LockedCollection<Tuple<T,int>>
@@ -73,6 +76,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="ICollection{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
         public static ICollection<Tuple<T, int>> CountBind<T>(this ICollection<T> a, int start = 0)
         {
+            a.ThrowIfNull(nameof(a));
             return new CountBindCollection<T>(a,start);
         }
         /// <summary>
@@ -86,6 +90,7 @@ namespace WhetStone.Looping
         /// <remarks>This function uses fielding to increment the index.</remarks>
         public static ICollection<Tuple<T, C>> CountBind<T, C>(this ICollection<T> a, C start)
         {
+            a.ThrowIfNull(nameof(a));
             return new CountBindCollection<T,C>(a, start);
         }
         /// <summary>
@@ -97,6 +102,7 @@ namespace WhetStone.Looping
         /// <returns>An <see cref="IList{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
         public static IList<Tuple<T, int>> CountBind<T>(this IList<T> a, int start = 0)
         {
+            a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));
         }
         /// <summary>
@@ -110,6 +116,7 @@ namespace WhetStone.Looping
         /// <remarks>This function uses fielding to increment the index.</remarks>
         public static IList<Tuple<T, C>> CountBind<T, C>(this IList<T> a, C start)
         {
+            a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));
         }
     }

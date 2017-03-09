@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -22,6 +23,11 @@ namespace WhetStone.Looping
         /// <remarks>The returned enumerable is as long as <paramref name="this"/>, regardless of <paramref name="cover"/>'s length.</remarks>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, IEnumerable<T> cover, int start = 0)
         {
+            if (start < 0)
+            {
+                cover = cover.Skip(-start);
+                start = 0;
+            }
             using (var tor = @this.GetEnumerator())
             {
                 foreach (var _ in range.Range(start))
@@ -115,6 +121,8 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, params T[] cover)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cover.ThrowIfNull(nameof(cover));
             return Cover(@this, cover, 0);
         }
         /// <summary>
@@ -127,6 +135,9 @@ namespace WhetStone.Looping
         /// <returns><paramref name="this"/> overlayed with <paramref name="cover"/> at index <paramref name="start"/>.</returns>
         public static IEnumerable<T> Cover<T>(this IEnumerable<T> @this, T cover, int start = 0)
         {
+            @this.ThrowIfNull(nameof(@this));
+            if (start < 0)
+                return @this;
             return @this.Cover(cover.Enumerate(),start);
         }
         private class CoverList<T> : IList<T>
@@ -361,6 +372,9 @@ namespace WhetStone.Looping
         /// <exception cref="ArgumentException">If <paramref name="cover"/> is empty.</exception>
         public static IList<T> Cover<T>(this IList<T> @this, IList<T> cover, IList<int> coverindices)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cover.ThrowIfNull(nameof(cover));
+            coverindices.ThrowIfNull(nameof(coverindices));
             if (!cover.Any() && coverindices.Any())
                 throw new ArgumentException("Empty cover.");
             return new CoverListIndices<T>(@this, cover, coverindices);
@@ -379,6 +393,13 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IList<T> Cover<T>(this IList<T> @this, IList<T> cover, int start = 0)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cover.ThrowIfNull(nameof(cover));
+            if (start < 0)
+            {
+                cover = cover.Skip(-start);
+                start = 0;
+            }
             return new CoverList<T>(@this,cover,start);
         }
         /// <summary>
@@ -394,6 +415,8 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IList<T> Cover<T>(this IList<T> @this, params T[] cover)
         {
+            @this.ThrowIfNull(nameof(@this));
+            cover.ThrowIfNull(nameof(cover));
             return @this.Cover(cover.AsList());
         }
         /// <summary>
@@ -409,6 +432,9 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IList<T> Cover<T>(this IList<T> @this, T cover, int start)
         {
+            @this.ThrowIfNull(nameof(@this));
+            if (start < 0)
+                return @this;
             return @this.Cover(cover.Enumerate(),start);
         }
     }

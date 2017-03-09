@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using WhetStone.LockedStructures;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -27,6 +28,7 @@ namespace WhetStone.Looping
         /// </remarks>
         public static IList<T> AsList<T>(this IEnumerable<T> @this, bool force = true)
         {
+            @this.ThrowIfNull(nameof(@this));
             var l = @this as IList<T>;
             if (l != null)
                 return l;
@@ -45,6 +47,7 @@ namespace WhetStone.Looping
         /// <returns>A wrapping, partially read-only <see cref="IList{T}"/> of type <see cref="bool"/> (like a <see cref="Array"/> of type <see cref="bool"/>), with ability to add and remove from the end.(</returns>
         public static IList<bool> AsList(this BitArray @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new ListBitArrayAdaptor(@this);
         }
         /// <summary>

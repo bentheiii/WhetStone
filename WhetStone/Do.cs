@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
 {
@@ -16,6 +17,7 @@ namespace WhetStone.Looping
         /// <param name="action">The <see cref="Action{T}"/> to invoke on each element. If null, no action will be invoked, but the <paramref name="this"/> will still be enumerated.</param>
         public static void Do<T>(this IEnumerable<T> @this, Action<T> action = null)
         {
+            @this.ThrowIfNull(nameof(@this));
             foreach (T t in @this)
             {
                 action?.Invoke(t);

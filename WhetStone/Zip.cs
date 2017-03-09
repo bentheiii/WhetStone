@@ -98,6 +98,7 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IList<IList<T>> Zip<T>(this IList<IList<T>> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new ListZip<T>(@this);
         }
         /// <summary>
@@ -122,6 +123,7 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IList<IList> Zip(this IList<IList> @this)
         {
+            @this.ThrowIfNull(nameof(@this));
             return new ListZip(@this);
         }
 
@@ -136,6 +138,8 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IEnumerable<Tuple<T1, T2>> Zip<T1, T2>(this IEnumerable<T1> a, IEnumerable<T2> b)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
             return Zip(new IEnumerable[] { a, b }).Select(x => x.ToTuple<T1, T2>());
         }
         /// <summary>
@@ -151,6 +155,9 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IEnumerable<Tuple<T1, T2, T3>> Zip<T1, T2, T3>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
+            c.ThrowIfNull(nameof(c));
             return Zip(new IEnumerable[] { a, b, c }).Select(x => x.ToTuple<T1, T2, T3>());
         }
         /// <summary>
@@ -168,6 +175,10 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IEnumerable<Tuple<T1, T2, T3, T4>> Zip<T1, T2, T3, T4>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c, IEnumerable<T4> d)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
+            c.ThrowIfNull(nameof(c));
+            d.ThrowIfNull(nameof(d));
             return Zip(new IEnumerable[] { a, b, c, d }).Select(x => x.ToTuple<T1, T2, T3, T4>());
         }
         /// <summary>
@@ -187,6 +198,11 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IEnumerable<Tuple<T1, T2, T3, T4, T5>> Zip<T1, T2, T3, T4, T5>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c, IEnumerable<T4> d, IEnumerable<T5> e)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
+            c.ThrowIfNull(nameof(c));
+            d.ThrowIfNull(nameof(d));
+            e.ThrowIfNull(nameof(e));
             return Zip(new IEnumerable[] { a, b, c, d, e }).Select(x => x.ToTuple<T1, T2, T3, T4, T5>());
         }
 
@@ -201,6 +217,8 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IList<Tuple<T1, T2>> Zip<T1, T2>(this IList<T1> a, IList<T2> b)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
             return Zip(new[] { a.ToGeneral(), b.ToGeneral() }).Select(x => x.ToTuple<T1, T2>());
         }
         /// <summary>
@@ -216,6 +234,9 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IList<Tuple<T1, T2,T3>> Zip<T1, T2, T3>(this IList<T1> a, IList<T2> b, IList<T3> c)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
+            c.ThrowIfNull(nameof(c));
             return Zip(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral()}).Select(x => x.ToTuple<T1, T2,T3>());
         }
         /// <summary>
@@ -233,6 +254,10 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IList<Tuple<T1, T2, T3, T4>> Zip<T1, T2, T3, T4>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
+            c.ThrowIfNull(nameof(c));
+            d.ThrowIfNull(nameof(d));
             return Zip(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral(), d.ToGeneral() }).Select(x => x.ToTuple<T1, T2, T3, T4>());
         }
         /// <summary>
@@ -252,6 +277,11 @@ namespace WhetStone.Looping
         /// <remarks>The result is only as long as the shortest input</remarks>
         public static IList<Tuple<T1, T2, T3, T4, T5>> Zip<T1, T2, T3, T4, T5>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d, IList<T5> e)
         {
+            a.ThrowIfNull(nameof(a));
+            b.ThrowIfNull(nameof(b));
+            c.ThrowIfNull(nameof(c));
+            d.ThrowIfNull(nameof(d));
+            e.ThrowIfNull(nameof(e));
             return Zip(new[] { a.ToGeneral(), b.ToGeneral(), c.ToGeneral(), d.ToGeneral(), e.ToGeneral() }).Select(x => x.ToTuple<T1, T2, T3, T4, T5>());
         }
     }
