@@ -17,7 +17,7 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IEnumerable{T}"/> to check.</param>
         /// <param name="cond">The selector to use on each element to check for trueness.</param>
         /// <returns>Whether <paramref name="cond"/> evaluates all elements to <see langword="true"/> and <paramref name="this"/> is not empty.</returns>
-        public static bool AnyAndAll<T>(this IEnumerable<T> @this, Func<T, bool> cond)
+        public static bool AnyAndAll<T>(this IEnumerable<T> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));

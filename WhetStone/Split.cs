@@ -96,7 +96,7 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IEnumerable{T}"/> to split.</param>
         /// <param name="divisorDetector">A method to get whether an element is a divisor element.</param>
         /// <returns><paramref name="this"/> as split by divisors.</returns>
-        public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> @this, Func<T, bool> divisorDetector)
+        public static IEnumerable<IEnumerable<T>> Split<T>(this IEnumerable<T> @this, Func<T,bool> divisorDetector)
         {
             @this.ThrowIfNull(nameof(@this));
             divisorDetector.ThrowIfNull(nameof(divisorDetector));

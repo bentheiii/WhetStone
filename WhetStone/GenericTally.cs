@@ -96,7 +96,7 @@ namespace WhetStone.Looping
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <param name="append">Whether to add the aggregate result to the tally result.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAggregate<T,R>(this GenericTally<T> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null, bool append = true)
+        public static GenericTally<T> TallyAggregate<T,R>(this GenericTally<T> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null, bool append = true)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -119,7 +119,7 @@ namespace WhetStone.Looping
         /// <param name="select">The selector function to apply to the aggregate result and add to the tally result.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAggregateSelect<T, A, R>(this GenericTally<T> @this, Func<T, A, A> func, A seed , Func<A,R> select, Func<A, bool> @break = null)
+        public static GenericTally<T> TallyAggregateSelect<T, A, R>(this GenericTally<T> @this, Func<T, A, A> func, A seed , Func<A,R> select, Func<A,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -149,7 +149,7 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="GenericTally{T}"/> to add to.</param>
         /// <param name="cond">The condition for which to count an element.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyCount<T>(this GenericTally<T> @this, Func<T, bool> cond)
+        public static GenericTally<T> TallyCount<T>(this GenericTally<T> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -163,11 +163,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAny<T>(this GenericTally<T> @this, Func<T, bool> cond, bool @break = false)
+        public static GenericTally<T> TallyAny<T>(this GenericTally<T> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a <see cref="GenericTally{T}"/>.
@@ -179,7 +179,7 @@ namespace WhetStone.Looping
         public static GenericTally<T> TallyAny<T>(this GenericTally<T> @this, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an all to a <see cref="GenericTally{T}"/>.
@@ -189,11 +189,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found to return false.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAll<T>(this GenericTally<T> @this, Func<T, bool> cond, bool @break = false)
+        public static GenericTally<T> TallyAll<T>(this GenericTally<T> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an ignored tally action to a <see cref="GenericTally{T}"/>.
@@ -230,7 +230,7 @@ namespace WhetStone.Looping
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <param name="break">Whether to break when an element has been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyFirst<T>(this GenericTally<T> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        public static GenericTally<T> TallyFirst<T>(this GenericTally<T> @this, Func<T,bool> cond, T initial = default(T), bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -249,7 +249,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyLast<T>(this GenericTally<T> @this, Func<T, bool> cond, T initial = default(T))
+        public static GenericTally<T> TallyLast<T>(this GenericTally<T> @this, Func<T,bool> cond, T initial = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -279,8 +279,8 @@ namespace WhetStone.Looping
         }
         private readonly R _seed;
         private readonly Func<T, R, R> _func;
-        private readonly Func<R, bool> _break;
-        public TallierAggregateBreakable(R seed, Func<T, R, R> func, Func<R, bool> @break)
+        private readonly Func<R,bool> _break;
+        public TallierAggregateBreakable(R seed, Func<T, R, R> func, Func<R,bool> @break)
         {
             _seed = seed;
             _func = func;
@@ -382,9 +382,9 @@ namespace WhetStone.Looping
         }
         private readonly A _seed;
         private readonly Func<T, A, A> _func;
-        private readonly Func<A, bool> _break;
+        private readonly Func<A,bool> _break;
         private readonly Func<A, R> _selector;
-        public TallierAggregateBreakableSelect(A seed, Func<T, A, A> func, Func<A, bool> @break, Func<A, R> selector)
+        public TallierAggregateBreakableSelect(A seed, Func<T, A, A> func, Func<A,bool> @break, Func<A, R> selector)
         {
             _seed = seed;
             _func = func;
@@ -443,7 +443,7 @@ namespace WhetStone.Looping
                 return null;
             }
         }
-        private readonly Func<T, bool> _func;
+        private readonly Func<T,bool> _func;
         public TallierActionBreakable(Func<T,bool> func)
         {
             _func = func;
@@ -479,9 +479,9 @@ namespace WhetStone.Looping
                 return _ret;
             }
         }
-        private readonly Func<T, bool> _func;
+        private readonly Func<T,bool> _func;
         private readonly T _init;
-        public TallierFirst(Func<T, bool> func, T init)
+        public TallierFirst(Func<T,bool> func, T init)
         {
             _func = func;
             _init = init;
@@ -516,9 +516,9 @@ namespace WhetStone.Looping
                 return _ret;
             }
         }
-        private readonly Func<T, bool> _func;
+        private readonly Func<T,bool> _func;
         private readonly T _init;
-        public TallierFirstBreak(Func<T, bool> func, T init)
+        public TallierFirstBreak(Func<T,bool> func, T init)
         {
             _func = func;
             _init = init;
@@ -550,9 +550,9 @@ namespace WhetStone.Looping
                 return _ret;
             }
         }
-        private readonly Func<T, bool> _func;
+        private readonly Func<T,bool> _func;
         private readonly T _init;
-        public TallierLast(Func<T, bool> func, T init)
+        public TallierLast(Func<T,bool> func, T init)
         {
             _func = func;
             _init = init;

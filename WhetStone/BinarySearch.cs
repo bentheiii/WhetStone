@@ -153,7 +153,7 @@ namespace WhetStone.Looping
         /// <param name="style">The boolean search style, whether to return the index of the first or last <see langword="true"/>.</param>
         /// <returns>The index on which <paramref name="searcher"/> returned the first or last <see langword="true"/>, or <paramref name="failvalue"/> if such is not found.</returns>
         /// <remarks><para>For every "normal" binary search call, the <paramref name="searcher"/> will be called twice.</para><para>Any exception thrown by the <paramref name="searcher"/> will be treated as a <see langword="false"/> output.</para></remarks>
-        public static int BinarySearch(Func<int, bool> searcher, int? min = null, int? max = null, int failvalue = -1, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
+        public static int BinarySearch(Func<int,bool> searcher, int? min = null, int? max = null, int failvalue = -1, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
         {
             searcher.ThrowIfNull(nameof(searcher));
             Func<int, int> s;
@@ -204,7 +204,7 @@ namespace WhetStone.Looping
         /// <param name="style">The search style of the boolean binary search.</param>
         /// <returns>The index that the binary search returns, or -1 if none found.</returns>
         /// <remarks>unlike <see cref="BinarySearch(Func{int,bool},int?,int?,int,BooleanBinSearchStyle)"/>, exception thrown by <paramref name="searcher"/> will not be caught.</remarks>
-        public static int BinarySearch<T>(this IList<T> @this, Func<T, bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
+        public static int BinarySearch<T>(this IList<T> @this, Func<T,bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
         {
             @this.ThrowIfNull(nameof(@this));
             Func<int, int> s;
@@ -264,8 +264,8 @@ namespace WhetStone.Looping
         /// <param name="searcher">The binary searcher function.</param>
         /// <param name="style">The search style of the boolean binary search.</param>
         /// <returns>The index that the binary search returns, or -1 if none found.</returns>
-        /// <remarks>unlike <see cref="BinarySearch(System.Func{int,bool},System.Nullable{int},System.Nullable{int},int,BooleanBinSearchStyle)"/>, exception thrown by <paramref name="searcher"/> will not be caught.</remarks>
-        public static int BinarySearchStartBias<T>(this IList<T> @this, Func<T, bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
+        /// <remarks>unlike <see cref="BinarySearch(Func{int,bool},System.Nullable{int},System.Nullable{int},int,BooleanBinSearchStyle)"/>, exception thrown by <paramref name="searcher"/> will not be caught.</remarks>
+        public static int BinarySearchStartBias<T>(this IList<T> @this, Func<T,bool> searcher, BooleanBinSearchStyle style = BooleanBinSearchStyle.GetLastTrue)
         {
             @this.ThrowIfNull(nameof(@this));
             Func<int, int> s;

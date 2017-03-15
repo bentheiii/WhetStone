@@ -18,7 +18,7 @@ namespace WhetStone.Looping
         /// <param name="sink">The <see cref="IGuard{T}"/> to update.</param>
         /// <param name="criteria">The criteria to check. Or <see langword="null"/> for all elements.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> that updates <paramref name="sink"/>'s value when enumerated.</returns>
-        public static IEnumerable<T> HookCount<T>(this IEnumerable<T> @this, IGuard<int> sink, Func<T, bool> criteria = null)
+        public static IEnumerable<T> HookCount<T>(this IEnumerable<T> @this, IGuard<int> sink, Func<T,bool> criteria = null)
         {
             @this.ThrowIfNull(nameof(@this));
             sink.ThrowIfNull(nameof(sink));
@@ -35,7 +35,7 @@ namespace WhetStone.Looping
         /// <param name="sink">The <see cref="IGuard{T}"/> to update.</param>
         /// <param name="criteria">The criteria to check. Or <see langword="null"/> for all elements.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> that updates <paramref name="sink"/>'s value when enumerated.</returns>
-        public static unsafe IEnumerable<T> HookCount<T>(this IEnumerable<T> @this, int* sink, Func<T, bool> criteria = null)
+        public static unsafe IEnumerable<T> HookCount<T>(this IEnumerable<T> @this, int* sink, Func<T,bool> criteria = null)
         {
             @this.ThrowIfNull(nameof(@this));
             throwIf.ThrowIfPtrNull(sink,nameof(sink));

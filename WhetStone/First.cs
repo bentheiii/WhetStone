@@ -32,7 +32,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition to qualify members for being returned.</param>
         /// <param name="def">The value to return if <paramref name="this"/> is empty of qualified members.</param>
         /// <returns>The first value in <paramref name="this"/> to pass <paramref name="cond"/> or <paramref name="def"/> if none to.</returns>
-        public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def)
+        public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T,bool> cond, T def)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -52,7 +52,7 @@ namespace WhetStone.Looping
         /// <param name="any">Whether an element in <paramref name="this"/> was found or the default value was returned.</param>
         /// <param name="def">The value to return if <paramref name="this"/> is empty of qualified members.</param>
         /// <returns>The first value in <paramref name="this"/> to pass <paramref name="cond"/> or <paramref name="def"/> if none to.</returns>
-        public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any, T def = default(T))
+        public static T FirstOrDefault<T>(this IEnumerable<T> @this, Func<T,bool> cond, out bool any, T def = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));

@@ -20,7 +20,7 @@ namespace Tests
         [TestMethod]
         public void SimpleFirst()
         {
-            Func<int, bool> func = i => i >= 100;
+            Func<int,bool> func = i => i >= 100;
             Assert.AreEqual(binarySearch.BinarySearch(func, -100, 1000, style:GetFirstTrue), 100);
             Assert.AreEqual(binarySearch.BinarySearch(func, 0, style: GetFirstTrue), 100);
             Assert.AreEqual(binarySearch.BinarySearch(func, max: 1000, style: GetFirstTrue), 100);

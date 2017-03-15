@@ -19,7 +19,7 @@ namespace WhetStone.Looping
         /// <param name="predicate">The predicate elements must satisfy. If set to <see langword="null"/>, all elements satisfy.</param>
         /// <returns>Whether there are at least <paramref name="minCount"/> elements in <paramref name="this"/> that satisfy <paramref name="predicate"/>.</returns>
         /// <remarks>After confirming <paramref name="this"/> at least <paramref name="minCount"/> members, enumeration will halt.</remarks>
-        public static bool CountAtLeast<T>(this IEnumerable<T> @this, int minCount, Func<T, bool> predicate = null)
+        public static bool CountAtLeast<T>(this IEnumerable<T> @this, int minCount, Func<T,bool> predicate = null)
         {
             @this.ThrowIfNull(nameof(@this));
             if (minCount <= 0)

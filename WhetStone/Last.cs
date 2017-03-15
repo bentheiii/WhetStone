@@ -40,7 +40,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition to consider elements after.</param>
         /// <param name="def">The default value to return if no elements in <paramref name="this"/> are found.</param>
         /// <returns>The last element in <paramref name="this"/> to uphold <paramref name="cond"/>.</returns>
-        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, T def = default(T))
+        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T,bool> cond, T def = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -66,7 +66,7 @@ namespace WhetStone.Looping
         /// <param name="any">Whether an element was found or not.</param>
         /// <param name="def">The default value to return if no elements in <paramref name="this"/> are found.</param>
         /// <returns>The last element in <paramref name="this"/> to uphold <paramref name="cond"/>.</returns>
-        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T, bool> cond, out bool any, T def = default(T))
+        public static T LastOrDefault<T>(this IEnumerable<T> @this, Func<T,bool> cond, out bool any, T def = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));

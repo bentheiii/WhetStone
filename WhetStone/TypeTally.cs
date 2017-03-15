@@ -295,7 +295,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T,R> TallyAggregate<T, R>(this TypeTally<T> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T,R> TallyAggregate<T, R>(this TypeTally<T> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -317,7 +317,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, R> TallyAggregate<T, T0, R>(this TypeTally<T, T0> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, R> TallyAggregate<T, T0, R>(this TypeTally<T, T0> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -340,7 +340,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, R> TallyAggregate<T, T0, T1, R>(this TypeTally<T, T0, T1> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, T1, R> TallyAggregate<T, T0, T1, R>(this TypeTally<T, T0, T1> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -364,7 +364,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, R> TallyAggregate<T, T0, T1, T2, R>(this TypeTally<T, T0, T1, T2> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, T1, T2, R> TallyAggregate<T, T0, T1, T2, R>(this TypeTally<T, T0, T1, T2> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -389,7 +389,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, R> TallyAggregate<T, T0, T1, T2, T3, R>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, T1, T2, T3, R> TallyAggregate<T, T0, T1, T2, T3, R>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -415,7 +415,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAggregate<T, T0, T1, T2, T3, T4, R>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static GenericTally<T> TallyAggregate<T, T0, T1, T2, T3, T4, R>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -438,7 +438,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T> TallyAggregatehidden<T, R>(this TypeTally<T> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T> TallyAggregatehidden<T, R>(this TypeTally<T> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -460,7 +460,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0> TallyAggregatehidden<T, T0, R>(this TypeTally<T, T0> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0> TallyAggregatehidden<T, T0, R>(this TypeTally<T, T0> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -483,7 +483,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1> TallyAggregatehidden<T, T0, T1, R>(this TypeTally<T, T0, T1> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, T1> TallyAggregatehidden<T, T0, T1, R>(this TypeTally<T, T0, T1> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -507,7 +507,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2> TallyAggregatehidden<T, T0, T1, T2, R>(this TypeTally<T, T0, T1, T2> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, T1, T2> TallyAggregatehidden<T, T0, T1, T2, R>(this TypeTally<T, T0, T1, T2> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -532,7 +532,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3> TallyAggregatehidden<T, T0, T1, T2, T3, R>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, T1, T2, T3> TallyAggregatehidden<T, T0, T1, T2, T3, R>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -558,7 +558,7 @@ namespace WhetStone.Looping
         /// <param name="seed">The seed of the aggregate function.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, T4> TallyAggregatehidden<T, T0, T1, T2, T3, T4, R>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, R, R> func, R seed = default(R), Func<R, bool> @break = null)
+        public static TypeTally<T, T0, T1, T2, T3, T4> TallyAggregatehidden<T, T0, T1, T2, T3, T4, R>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, R, R> func, R seed = default(R), Func<R,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -583,7 +583,7 @@ namespace WhetStone.Looping
         /// <param name="select">The selector function to apply to the aggregate result and add to the tally result.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, R> TallyAggregateSelect<T, A, R>(this TypeTally<T> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A, bool> @break = null)
+        public static TypeTally<T, R> TallyAggregateSelect<T, A, R>(this TypeTally<T> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -608,7 +608,7 @@ namespace WhetStone.Looping
         /// <param name="select">The selector function to apply to the aggregate result and add to the tally result.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, R> TallyAggregateSelect<T, T0, A, R>(this TypeTally<T, T0> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A, bool> @break = null)
+        public static TypeTally<T, T0, R> TallyAggregateSelect<T, T0, A, R>(this TypeTally<T, T0> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -634,7 +634,7 @@ namespace WhetStone.Looping
         /// <param name="select">The selector function to apply to the aggregate result and add to the tally result.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, R> TallyAggregateSelect<T, T0, T1, A, R>(this TypeTally<T, T0, T1> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A, bool> @break = null)
+        public static TypeTally<T, T0, T1, R> TallyAggregateSelect<T, T0, T1, A, R>(this TypeTally<T, T0, T1> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -661,7 +661,7 @@ namespace WhetStone.Looping
         /// <param name="select">The selector function to apply to the aggregate result and add to the tally result.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, R> TallyAggregateSelect<T, T0, T1, T2, A, R>(this TypeTally<T, T0, T1, T2> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A, bool> @break = null)
+        public static TypeTally<T, T0, T1, T2, R> TallyAggregateSelect<T, T0, T1, T2, A, R>(this TypeTally<T, T0, T1, T2> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -689,7 +689,7 @@ namespace WhetStone.Looping
         /// <param name="select">The selector function to apply to the aggregate result and add to the tally result.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, R> TallyAggregateSelect<T, T0, T1, T2, T3, A, R>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A, bool> @break = null)
+        public static TypeTally<T, T0, T1, T2, T3, R> TallyAggregateSelect<T, T0, T1, T2, T3, A, R>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -718,7 +718,7 @@ namespace WhetStone.Looping
         /// <param name="select">The selector function to apply to the aggregate result and add to the tally result.</param>
         /// <param name="break">The condition for the aggregated value on which to break, or <see langword="null"/> to never break.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAggregateSelect<T, T0, T1, T2, T3, T4, A, R>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A, bool> @break = null)
+        public static GenericTally<T> TallyAggregateSelect<T, T0, T1, T2, T3, T4, A, R>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, A, A> func, A seed, Func<A, R> select, Func<A,bool> @break = null)
         {
             @this.ThrowIfNull(nameof(@this));
             func.ThrowIfNull(nameof(func));
@@ -822,7 +822,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="cond">The condition for which to count an element.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, int> TallyCount<T>(this TypeTally<T> @this, Func<T, bool> cond)
+        public static TypeTally<T, int> TallyCount<T>(this TypeTally<T> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -836,7 +836,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="cond">The condition for which to count an element.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, int> TallyCount<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> cond)
+        public static TypeTally<T, T0, int> TallyCount<T, T0>(this TypeTally<T, T0> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -851,7 +851,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="cond">The condition for which to count an element.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, int> TallyCount<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> cond)
+        public static TypeTally<T, T0, T1, int> TallyCount<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -867,7 +867,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="cond">The condition for which to count an element.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, int> TallyCount<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> cond)
+        public static TypeTally<T, T0, T1, T2, int> TallyCount<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -884,7 +884,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="cond">The condition for which to count an element.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, int> TallyCount<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> cond)
+        public static TypeTally<T, T0, T1, T2, T3, int> TallyCount<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -902,7 +902,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="cond">The condition for which to count an element.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyCount<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> cond)
+        public static GenericTally<T> TallyCount<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T,bool> cond)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -920,7 +920,7 @@ namespace WhetStone.Looping
         public static TypeTally<T, bool> TallyAny<T>(this TypeTally<T> @this, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -933,7 +933,7 @@ namespace WhetStone.Looping
         public static TypeTally<T, T0, bool> TallyAny<T, T0>(this TypeTally<T, T0> @this, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -947,7 +947,7 @@ namespace WhetStone.Looping
         public static TypeTally<T, T0, T1, bool> TallyAny<T, T0, T1>(this TypeTally<T, T0, T1> @this, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -962,7 +962,7 @@ namespace WhetStone.Looping
         public static TypeTally<T, T0, T1, T2, bool> TallyAny<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -978,7 +978,7 @@ namespace WhetStone.Looping
         public static TypeTally<T, T0, T1, T2, T3, bool> TallyAny<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -995,7 +995,7 @@ namespace WhetStone.Looping
         public static GenericTally<T> TallyAny<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => true, false, @break ? a => a : (Func<bool,bool>)null);
         }
         #endregion
         #region AnyPred
@@ -1007,11 +1007,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, bool> TallyAny<T>(this TypeTally<T> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, bool> TallyAny<T>(this TypeTally<T> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -1022,11 +1022,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, bool> TallyAny<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, bool> TallyAny<T, T0>(this TypeTally<T, T0> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -1038,11 +1038,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, bool> TallyAny<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, T1, bool> TallyAny<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -1055,11 +1055,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, bool> TallyAny<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, T1, T2, bool> TallyAny<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -1073,11 +1073,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, bool> TallyAny<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, T1, T2, T3, bool> TallyAny<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an any to a tally.
@@ -1092,11 +1092,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAny<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> cond, bool @break = false)
+        public static GenericTally<T> TallyAny<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a || cond(v), false, @break ? a => a : (Func<bool,bool>)null);
         }
         #endregion
         #region AllPred
@@ -1108,11 +1108,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found to return false.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, bool> TallyAll<T>(this TypeTally<T> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, bool> TallyAll<T>(this TypeTally<T> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an all to a tally.
@@ -1123,11 +1123,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found to return false.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, bool> TallyAll<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, bool> TallyAll<T, T0>(this TypeTally<T, T0> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an all to a tally.
@@ -1139,11 +1139,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found to return false.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, bool> TallyAll<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, T1, bool> TallyAll<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an all to a tally.
@@ -1156,11 +1156,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found to return false.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, bool> TallyAll<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, T1, T2, bool> TallyAll<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an all to a tally.
@@ -1174,11 +1174,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found to return false.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, bool> TallyAll<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> cond, bool @break = false)
+        public static TypeTally<T, T0, T1, T2, T3, bool> TallyAll<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool,bool>)null);
         }
         /// <summary>
         /// Add an all to a tally.
@@ -1193,11 +1193,11 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="break">Whether to break when an element is found to return false.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyAll<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> cond, bool @break = false)
+        public static GenericTally<T> TallyAll<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T,bool> cond, bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
-            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool, bool>)null);
+            return @this.TallyAggregate((v, a) => a && cond(v), true, @break ? a => !a : (Func<bool,bool>)null);
         }
         #endregion
         #region ActionNoRet
@@ -1315,7 +1315,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="action">The <see cref="Action{T}"/> to invoke on every element tallied. The action returns whether or not to continue the tallying.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0> TallyAction<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> action)
+        public static TypeTally<T, T0> TallyAction<T, T0>(this TypeTally<T, T0> @this, Func<T,bool> action)
         {
             @this.ThrowIfNull(nameof(@this));
             action.ThrowIfNull(nameof(action));
@@ -1330,7 +1330,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="action">The <see cref="Action{T}"/> to invoke on every element tallied. The action returns whether or not to continue the tallying.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1> TallyAction<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> action)
+        public static TypeTally<T, T0, T1> TallyAction<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T,bool> action)
         {
             @this.ThrowIfNull(nameof(@this));
             action.ThrowIfNull(nameof(action));
@@ -1346,7 +1346,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="action">The <see cref="Action{T}"/> to invoke on every element tallied. The action returns whether or not to continue the tallying.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2> TallyAction<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> action)
+        public static TypeTally<T, T0, T1, T2> TallyAction<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T,bool> action)
         {
             @this.ThrowIfNull(nameof(@this));
             action.ThrowIfNull(nameof(action));
@@ -1363,7 +1363,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="action">The <see cref="Action{T}"/> to invoke on every element tallied. The action returns whether or not to continue the tallying.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3> TallyAction<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> action)
+        public static TypeTally<T, T0, T1, T2, T3> TallyAction<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T,bool> action)
         {
             @this.ThrowIfNull(nameof(@this));
             action.ThrowIfNull(nameof(action));
@@ -1381,7 +1381,7 @@ namespace WhetStone.Looping
         /// <param name="this">The tally to add to.</param>
         /// <param name="action">The <see cref="Action{T}"/> to invoke on every element tallied. The action returns whether or not to continue the tallying.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, T4> TallyAction<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> action)
+        public static TypeTally<T, T0, T1, T2, T3, T4> TallyAction<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T,bool> action)
         {
             @this.ThrowIfNull(nameof(@this));
             action.ThrowIfNull(nameof(action));
@@ -1398,7 +1398,7 @@ namespace WhetStone.Looping
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <param name="break">Whether to break when an element has been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T> TallyFirst<T>(this TypeTally<T> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        public static TypeTally<T, T> TallyFirst<T>(this TypeTally<T> @this, Func<T,bool> cond, T initial = default(T), bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1419,7 +1419,7 @@ namespace WhetStone.Looping
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <param name="break">Whether to break when an element has been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T> TallyFirst<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        public static TypeTally<T, T0, T> TallyFirst<T, T0>(this TypeTally<T, T0> @this, Func<T,bool> cond, T initial = default(T), bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1441,7 +1441,7 @@ namespace WhetStone.Looping
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <param name="break">Whether to break when an element has been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T> TallyFirst<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        public static TypeTally<T, T0, T1, T> TallyFirst<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T,bool> cond, T initial = default(T), bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1464,7 +1464,7 @@ namespace WhetStone.Looping
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <param name="break">Whether to break when an element has been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T> TallyFirst<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        public static TypeTally<T, T0, T1, T2, T> TallyFirst<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T,bool> cond, T initial = default(T), bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1488,7 +1488,7 @@ namespace WhetStone.Looping
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <param name="break">Whether to break when an element has been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, T> TallyFirst<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        public static TypeTally<T, T0, T1, T2, T3, T> TallyFirst<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T,bool> cond, T initial = default(T), bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1513,7 +1513,7 @@ namespace WhetStone.Looping
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <param name="break">Whether to break when an element has been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyFirst<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> cond, T initial = default(T), bool @break = false)
+        public static GenericTally<T> TallyFirst<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T,bool> cond, T initial = default(T), bool @break = false)
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1534,7 +1534,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T> TallyLast<T>(this TypeTally<T> @this, Func<T, bool> cond, T initial = default(T))
+        public static TypeTally<T, T> TallyLast<T>(this TypeTally<T> @this, Func<T,bool> cond, T initial = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1549,7 +1549,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T> TallyLast<T, T0>(this TypeTally<T, T0> @this, Func<T, bool> cond, T initial = default(T))
+        public static TypeTally<T, T0, T> TallyLast<T, T0>(this TypeTally<T, T0> @this, Func<T,bool> cond, T initial = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1565,7 +1565,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T> TallyLast<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T, bool> cond, T initial = default(T))
+        public static TypeTally<T, T0, T1, T> TallyLast<T, T0, T1>(this TypeTally<T, T0, T1> @this, Func<T,bool> cond, T initial = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1582,7 +1582,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T> TallyLast<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T, bool> cond, T initial = default(T))
+        public static TypeTally<T, T0, T1, T2, T> TallyLast<T, T0, T1, T2>(this TypeTally<T, T0, T1, T2> @this, Func<T,bool> cond, T initial = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1600,7 +1600,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static TypeTally<T, T0, T1, T2, T3, T> TallyLast<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T, bool> cond, T initial = default(T))
+        public static TypeTally<T, T0, T1, T2, T3, T> TallyLast<T, T0, T1, T2, T3>(this TypeTally<T, T0, T1, T2, T3> @this, Func<T,bool> cond, T initial = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));
@@ -1619,7 +1619,7 @@ namespace WhetStone.Looping
         /// <param name="cond">The condition for which to count an element.</param>
         /// <param name="initial">The initial result for when an element has not been found.</param>
         /// <returns><paramref name="this"/>, to allow piping.</returns>
-        public static GenericTally<T> TallyLast<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T, bool> cond, T initial = default(T))
+        public static GenericTally<T> TallyLast<T, T0, T1, T2, T3, T4>(this TypeTally<T, T0, T1, T2, T3, T4> @this, Func<T,bool> cond, T initial = default(T))
         {
             @this.ThrowIfNull(nameof(@this));
             cond.ThrowIfNull(nameof(cond));

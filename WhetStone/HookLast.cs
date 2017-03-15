@@ -34,7 +34,7 @@ namespace WhetStone.Looping
         /// <param name="critiria">The criteria that finds the last element</param>
         /// <returns>An <see cref="IEnumerable{T}"/> that sets <paramref name="sink"/> to its last enumerated value that matches <paramref name="critiria"/>.</returns>
         /// <remarks>If <paramref name="sink"/> contains <see langword="null"/>, a last value has not yet been set.</remarks>
-        public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink, Func<T, bool> critiria)
+        public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<Tuple<T>> sink, Func<T,bool> critiria)
         {
             @this.ThrowIfNull(nameof(@this));
             sink.ThrowIfNull(nameof(sink));
@@ -63,7 +63,7 @@ namespace WhetStone.Looping
         /// <param name="sink">The <see cref="IGuard{T}"/> to update.</param>
         /// <param name="critiria">The criteria that finds the last element</param>
         /// <returns>An <see cref="IEnumerable{T}"/> that sets <paramref name="sink"/> to its last enumerated value that matches <paramref name="critiria"/>.</returns>
-        public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink, Func<T, bool> critiria)
+        public static IEnumerable<T> HookLast<T>(this IEnumerable<T> @this, IGuard<T> sink, Func<T,bool> critiria)
         {
             @this.ThrowIfNull(nameof(@this));
             sink.ThrowIfNull(nameof(sink));
