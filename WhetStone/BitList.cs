@@ -13,9 +13,11 @@ System.UInt64
 #elif WIN32
 System.UIint32
 #else
-#error word not defined
+#error word not defined, you must define either BYTEWORD, WIN64, or WIN32
 #endif
 ;
+// ReSharper disable RedundantCast
+// ReSharper disable RedundantOverflowCheckingContext
 
 namespace WhetStone.SystemExtensions
 {
@@ -68,7 +70,7 @@ namespace WhetStone.SystemExtensions
             }
             else
             {
-                _int[_int.Count - 1] |= (word)1 << lmod;
+                _int[_int.Count - 1] |= (word)((word)1 << lmod);
             }
             Count++;
         }
@@ -142,7 +144,7 @@ namespace WhetStone.SystemExtensions
             }
             else
             {
-                shifted = (_int[shiftMemberInd] >> newmemberind) << newmemberind;
+                shifted = (word)((_int[shiftMemberInd] >> newmemberind) << newmemberind);
             }
             if (newmemberind == 0)
             {
@@ -154,10 +156,10 @@ namespace WhetStone.SystemExtensions
             }
             var newval = (shifted << 1) | unshifted;
             if (item)
-                newval |= ((word)1 << newmemberind);
+                newval |= (word)((word)1 << newmemberind);
             else
-                newval &= ~((word)1 << newmemberind);
-            _int[shiftMemberInd] = newval;
+                newval &= (word)~((word)1 << newmemberind);
+            _int[shiftMemberInd] = (word)newval;
             foreach (var ind in range.Range(shiftMemberInd+1,_int.Count))
             {
                 var newcarry = (_int[ind] & carrymask) != 0;
@@ -178,13 +180,13 @@ namespace WhetStone.SystemExtensions
             if (index == Count-1)
             {
                 Count--;
-                _int[_int.Count - 1] &= ~((word)1 << (index));
+                _int[_int.Count - 1] &= (word)~((word)1 << (index));
                 return;
             }
             int shiftMemberInd = index / BITS_IN_CELL;
             int removedmemberind = index % BITS_IN_CELL;
             bool carry = false;
-            const word carrymask = (word)1 << (BITS_IN_CELL - 1);
+            const word carrymask = (word)((word)1 << (BITS_IN_CELL - 1));
             foreach (var ind in range.Range(_int.Count-1, shiftMemberInd, -1))
             {
                 var newcarry = (_int[ind] & 1) == 1;
@@ -202,7 +204,7 @@ namespace WhetStone.SystemExtensions
             }
             else
             {
-                shifted = (_int[shiftMemberInd] >> removedmemberind) << removedmemberind;
+                shifted = (word)((_int[shiftMemberInd] >> removedmemberind) << removedmemberind);
             }
             if (removedmemberind == 0)
             {
@@ -216,8 +218,8 @@ namespace WhetStone.SystemExtensions
             if (carry)
                 newval |= carrymask;
             else
-                newval &= ~carrymask;
-            _int[shiftMemberInd] = newval;
+                newval &= unchecked((word)~carrymask);
+            _int[shiftMemberInd] = (word)newval;
             Count--;
             
             if ((Count/(double)BITS_IN_CELL).ceil() < _int.Count)
@@ -234,9 +236,9 @@ namespace WhetStone.SystemExtensions
             {
                 var mask = (word)1 << (index%BITS_IN_CELL);
                 if (value)
-                    _int[index/BITS_IN_CELL] |= mask;
+                    _int[index/BITS_IN_CELL] |= (word)mask;
                 else
-                    _int[index/BITS_IN_CELL] &= ~mask;
+                    _int[index/BITS_IN_CELL] &= (word)~(word)mask;
             }
         }
         /// <summary>
@@ -250,7 +252,7 @@ namespace WhetStone.SystemExtensions
             if (start < 0 || start >= Count)
                 throw new ArgumentOutOfRangeException(nameof(start));
             length.ThrowIfAbsurd(nameof(length));
-            var fill = value ? ~(word)0 : 0;
+            word fill = value ? word.MaxValue : (word)0;
             int fillStart = (start/(double)BITS_IN_CELL).ceil();
             int fillEnd = ((start+length) / (double)BITS_IN_CELL).floor();
 
@@ -260,22 +262,22 @@ namespace WhetStone.SystemExtensions
             if (smod != 0)
             {
                 int ind = fillStart - 1;
-                word mask = (~(word)0) << smod;
+                word mask = (word)(word.MaxValue << smod);
                 if (value)
                     _int[ind] |= mask;
                 else
-                    _int[ind] &= ~mask;
+                    _int[ind] &= (word)~mask;
             }
 
             var emod = (start+length) % BITS_IN_CELL;
             if (emod != 0)
             {
                 int ind = fillEnd;
-                word mask = ~(word)0 >> (BITS_IN_CELL-emod);
+                word mask = (word)(word.MaxValue >> (BITS_IN_CELL-emod));
                 if (value)
                     _int[ind] |= mask;
                 else
-                    _int[ind] &= ~mask;
+                    _int[ind] &= (word)~mask;
             }
         }
     }

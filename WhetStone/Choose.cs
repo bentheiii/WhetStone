@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Numerics;
-using WhetStone.Guard;
 using WhetStone.Looping;
 using WhetStone.SystemExtensions;
 

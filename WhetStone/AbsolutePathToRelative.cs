@@ -10,7 +10,6 @@ namespace WhetStone.Path
     /// </summary>
     public static class absolutePathToRelative
     {
-        //todo resharper annontations
         ///<summary>
         ///Returns the <paramref name="destination"/> path as a relative path, relative to <paramref name="origin"/>
         ///</summary>

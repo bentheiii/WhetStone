@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using WhetStone.Looping;
 using WhetStone.SystemExtensions;
 
