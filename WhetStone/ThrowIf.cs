@@ -79,7 +79,7 @@ namespace WhetStone.SystemExtensions
         public static void ThrowIfAbsurd(this double @this, string paramName = "parameter", bool allowPosInfinity = false, bool allowNegInfity = false, bool allowNan = false, bool allowZero = true)
         {
             if (!allowNan && double.IsNaN(@this))
-                throw new ArgumentException(paramName+" cannot be NAN");
+                throw new ArgumentException(paramName + " cannot be NAN");
             if (!allowPosInfinity && double.IsPositiveInfinity(@this))
                 throw new ArgumentException(paramName + " cannot be infinity");
             if (!allowNegInfity && double.IsNegativeInfinity(@this))
