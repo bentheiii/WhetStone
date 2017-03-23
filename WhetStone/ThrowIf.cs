@@ -34,7 +34,7 @@ namespace WhetStone.SystemExtensions
         /// </summary>
         /// <param name="x">The value to check.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
-        [SourceTemplate] public static void throwIfNull<T>(this T x)
+        [SourceTemplate] internal static void throwIfNull<T>(this T x)
         {
             x.ThrowIfNull(nameof(x));/*$$END$*/
         }
@@ -43,7 +43,7 @@ namespace WhetStone.SystemExtensions
         /// </summary>
         /// <param name="x">The value to check.</param>
         /// <typeparam name="T">The type of the value.</typeparam>
-        [SourceTemplate] public static void throwIfAbsurd<T>(this T x)
+        [SourceTemplate] internal static void throwIfAbsurd<T>(this T x)
         {
             //$ x.ThrowIfAbsurd(nameof(x));$END$
         }

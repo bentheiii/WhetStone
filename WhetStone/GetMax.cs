@@ -38,8 +38,7 @@ namespace WhetStone.Looping
         public static T GetMax<T>(this IEnumerable<T> tosearch, IComparer<T> compare = null)
         {
             tosearch.ThrowIfNull(nameof(tosearch));
-            int prox;
-            return tosearch.GetMax(compare ?? Comparer<T>.Default, out prox);
+            return tosearch.GetMax(compare ?? Comparer<T>.Default, out int prox);
         }
         /// <overloads>Get the maximum element in an enumerable.</overloads>
         /// <summary>

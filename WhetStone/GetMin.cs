@@ -26,12 +26,11 @@ namespace WhetStone.Looping
             compare.ThrowIfNull(nameof(compare));
             index = -1;
             var ret = default(T);
-            IGuard<int> ind = new Guard<int>();
-            foreach (T t in tosearch.CountBind().Detach(ind))
+            foreach ((T t, var ind) in tosearch.CountBind())
             {
                 if (index < 0 || compare.Compare(t, ret) < 0)
                 {
-                    index = ind.value;
+                    index = ind;
                     ret = t;
                 }
             }
@@ -51,8 +50,7 @@ namespace WhetStone.Looping
         public static T GetMin<T>(this IEnumerable<T> tosearch, IComparer<T> compare = null)
         {
             tosearch.ThrowIfNull(nameof(tosearch));
-            int prox;
-            return tosearch.GetMin(compare ?? Comparer<T>.Default, out prox);
+            return tosearch.GetMin(compare ?? Comparer<T>.Default, out int prox);
         }
         /// <summary>
         /// Get the smallest element in an <see cref="IEnumerable{T}"/>.

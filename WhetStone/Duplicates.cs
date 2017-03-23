@@ -26,8 +26,7 @@ namespace WhetStone.Looping
             var occurances = new Dictionary<T, int>(comp);
             foreach (var t in arr)
             {
-                int olval;
-                bool exists = occurances.TryGetValue(t, out olval);
+                bool exists = occurances.TryGetValue(t, out int olval);
                 int newval;
                 if (!exists)
                 {

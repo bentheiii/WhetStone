@@ -28,8 +28,7 @@ namespace NumberStone
             //k <- 2*div(n,b^2)
             //if b^(k+1) divides n, increment k by 1
             //return k 
-            int rem;
-            var d = Math.DivRem(n, b, out rem);
+            var d = Math.DivRem(n, b, out int rem);
             if (n == 1 || b > n || n % b != 0)
                 return 0;
             n = d;
@@ -55,8 +54,7 @@ namespace NumberStone
                 throw new ArgumentOutOfRangeException(nameof(n));
             if (b <= 1)
                 throw new ArgumentOutOfRangeException(nameof(b));
-            BigInteger rem;
-            var d = BigInteger.DivRem(n, b, out rem);
+            var d = BigInteger.DivRem(n, b, out BigInteger rem);
             if (n == 1 || b > n || rem != 0)
                 return 0;
             n = d;

@@ -25,7 +25,9 @@ namespace WhetStone.Looping
             @this.ThrowIfNull(nameof(@this));
             sink.ThrowIfNull(nameof(sink));
             aggregator.ThrowIfNull(nameof(aggregator));
+#pragma warning disable 618
             return @this.AttachAggregate(aggregator,seed).Detach(sink);
+#pragma warning restore 618
         }
     }
 }

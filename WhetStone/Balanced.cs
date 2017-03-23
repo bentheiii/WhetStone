@@ -60,8 +60,7 @@ namespace WhetStone.Looping
             }
             var count = @this.RecommendCount();
             int ret = 0;
-            Guard<int> index = new Guard<int>();
-            foreach (var t in @this.CountBind().Detach(index))
+            foreach ((var t, var index) in @this.CountBind())
             {
                 if (t.Equals(opener))
                 {

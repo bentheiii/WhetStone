@@ -204,8 +204,7 @@ namespace WhetStone.SystemExtensions
              * a^b = (a^[b/m])^m + a^(b%m)
              * note that a^[b/m] is recursive. Max stack size is log(b)/32
              */
-            BigInteger rem;
-            var div = BigInteger.DivRem(b, new BigInteger(int.MaxValue), out rem);
+            var div = BigInteger.DivRem(b, new BigInteger(int.MaxValue), out BigInteger rem);
             BigInteger divpow = BigInteger.One;
             if (!div.IsZero)
             {

@@ -1037,8 +1037,7 @@ namespace WhetStone.Fielding {
             }
             public override double? toDouble(string a)
             {
-                double o;
-                bool suc = double.TryParse(a,out o);
+                bool suc = double.TryParse(a, out double o);
                 return suc ? (double?)o : null;
             }
             public override bool Invertible => false;

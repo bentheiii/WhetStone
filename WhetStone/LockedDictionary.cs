@@ -8,8 +8,7 @@ namespace WhetStone.LockedStructures
     {
         public virtual bool ContainsKey(T key)
         {
-            G val;
-            return this.TryGetValue(key, out val);
+            return this.TryGetValue(key, out G val);
         }
         public void Add(T key, G value)
         {
@@ -24,8 +23,7 @@ namespace WhetStone.LockedStructures
         {
             get
             {
-                G ret;
-                if (!TryGetValue(key, out ret))
+                if (!TryGetValue(key, out G ret))
                     throw new KeyNotFoundException();
                 return ret;
             }
