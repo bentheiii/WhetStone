@@ -109,7 +109,7 @@ namespace WhetStone.Looping
                         return i.Key;
                     ind -= i.Value;
                 }
-                throw new IndexOutOfRangeException();
+                throw new ArgumentOutOfRangeException();
             }
         }
     }

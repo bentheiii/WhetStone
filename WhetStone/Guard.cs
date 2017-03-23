@@ -82,11 +82,6 @@ namespace WhetStone.Guard
             var ret = new Guard<T>(value);
             return ret;
         }
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            return this.value.GetHashCode();
-        }
         /// <summary>
         /// Converts a <see cref="Guard{T}"/> to a <typeparamref name="T"/> type.
         /// </summary>
@@ -231,12 +226,6 @@ namespace WhetStone.Guard
                 drawn = this.drawn.Copy()
             };
             return ret;
-        }
-        /// <inheritdoc />
-        public override int GetHashCode()
-        {
-            return this.value.GetHashCode() ^ this.changed.GetInvocationList().GetHashCode() ^
-                this.accessed.GetInvocationList().GetHashCode() ^ this.drawn.GetInvocationList().GetHashCode();
         }
         /// <inheritdoc />
         public override string ToString()

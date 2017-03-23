@@ -311,13 +311,7 @@ namespace WhetStone.Fielding
         /// <summary>
         /// Get the <see cref="Field{T}"/> used for all arithmetic operations.
         /// </summary>
-        public Field<T> Field
-        {
-            get
-            {
-                return _field;
-            }
-        }
+        public Field<T> Field => _field;
         /// <summary>
         /// Get whether the element is strictly negative.
         /// </summary>
@@ -357,6 +351,16 @@ namespace WhetStone.Fielding
             {
                 return Field.Equals(Field.one, this);
             }
+        }
+        /// <summary>
+        /// Deconstruct the wrapped member to an original member and wrapping field.
+        /// </summary>
+        /// <param name="value">The wrapped value.</param>
+        /// <param name="field">The wrapping field.</param>
+        public void Deconstruct(out T value, out Field<T> field)
+        {
+            value = this.val;
+            field = _field;
         }
     }
 }

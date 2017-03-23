@@ -40,9 +40,17 @@ namespace WhetStone.Random
             }
         }
         /// <inheritdoc />
-        public void Dispose()
+        public virtual void Dispose()
         {
-            _sha.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _sha.Dispose();
+            }
         }
     }
 }

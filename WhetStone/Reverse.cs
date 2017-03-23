@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using WhetStone.Guard;
 using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping

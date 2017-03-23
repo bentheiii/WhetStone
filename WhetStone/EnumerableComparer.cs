@@ -64,7 +64,7 @@ namespace WhetStone.Comparison
         {
             obj.ThrowIfNull(nameof(obj));
             if (_eq == null)
-                throw new NotSupportedException();
+                throw new InvalidOperationException("A comparer cannot hash with its equality comparer unset");
             if (_hashtake.HasValue)
                 obj = obj.Take(_hashtake.Value);
             return obj.Select(a => _eq.GetHashCode(a)).Aggregate((a, b) => a ^ b);
