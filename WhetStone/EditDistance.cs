@@ -354,9 +354,10 @@ namespace WhetStone.Looping
             {
                 var temp = new int[v.Count];
                 temp[0] = allowDel ? v[0] + 1 : -2;
-                Guard<int> i = new Guard<int>();
-                foreach (var o in other.CountBind(1).Detach(i))
+                foreach (var ou in other.CountBind(1))
                 {
+                    var o = ou.Item1;
+                    var i = ou.Item2;
                     int cost = 1;
                     if (comp.Equals(t, o))
                         cost = 0;

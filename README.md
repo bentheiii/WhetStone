@@ -1,7 +1,7 @@
 # WhetStone
 The C# companion Library
 
-Whetstone seeks to do what the .NET standard library and the C# language don't. It has a bunch of features that together create an optimized, versatile toolset for any C# programmer, made to help write cleaner, better code.
+Whetstone seeks to do what the .NET standard library and the C# language doesn't. It has a bunch of features that together create an optimized, versatile toolset for any C# programmer, made to help write cleaner, better code.
 
 Whetstone focuses on optimization, versatility, and usability, all while keeping LINQ-style deferred execution in mind.
 
@@ -16,7 +16,7 @@ list.Count(); //O(1) operation
 list.Select(x=>x*x).Count(); //O(n) operation, even though the solution is trivial
 ```
 
-LINQ's `Count()` method, as well as other methods (like `Contains()`and `ElementAt()`), have special checks in case the IEnumerable is an IList or ICollection. If the method LINQ is trying to execute can be executed by the Interface method, then it is executed instead. This is why `list.Count()` is O(1) operation, LINQ's `Count()` sees that list is an IList, and instead returns the IList's `Count` property.
+LINQ's `Count()` method, as well as other methods (like `Contains()`and `ElementAt()`), have special checks in case the IEnumerable is an IList or ICollection. If the method LINQ is trying to execute can be executed by the Interface method, then it is executed instead. This is why `list.Count()` is O(1) operation, LINQ's `Count()` sees that `list` is an IList, and instead returns the IList's `Count` property.
 
 The Issue is that even though `list.Select(x=>x*x).Count()` **can** be an O(1) operation, it isn't, because `Select()` always returns a pure IEnumerable, that does not implement `ICollection`'s `Count`. The solution is simple, if the `Select()` method sees an ICollection, it will return an ICollection, disguised as an IEnumerable. This solution has two chief problems, both to be addressed:
 
@@ -58,7 +58,7 @@ var slice = originalList.Skip(2); //Still a list!
 slice.Insert(0,5);//wait...
 ```
 Should `originalList` now be {2,3,5,7,11} and `slice` be {5,7,11}? Should `originalList` stay how it is, and `slice` copy itself into a new List with the added item? Should an exception be thrown, making this theoretical usage impossible? The decisions are:
-* Whetstone's specialized LINQ functions are made to be constant-memory, and they will always stay that way.
+* Whetstone's specialized LINQ functions are made to be constant-memory, and they will stay that way.
 * IList and ICollection mutations will be allowed, and **they will mutate the original IEnumerable**.
 * The returned value will be read-only if the input is read-only.
 
@@ -97,20 +97,18 @@ public static T Abs<T>(T value)
 }
 ```
 ### \#2- Support for Custom Types
-Another strong tool is the support for user-created types. A user can make his type Field supported in one of two ways:
-1. Create a Field object, and add it to the central dictionary (Check the API as to how).
+Another strong tool is the support for user-created types. A user can make their type Field supported in one of two ways:
+1. Create a Field object, and add it to the central dictionary (Check the API as to how). It is recommended to add the field with the type's static constructor.
 2. Simply add the relevent operators and castings into your custom type! (If a relevent field cannot be found, a dynamic field will be returned, that uses dynamic dispatch).
 
 ### \#3- Overhead Avoidance
-Obviously, all these lookups and calls have some overhead. Which is why, in most cases where fields are involved, you can bring your own, precompiled values.
+Obviously, all these lookups and calls have some overhead. Which is why, in most cases where fields are involved, you should bring your own, precompiled values.
 ```csharp
 var list = new int[]{2,3,5,7,11};
 //instead of this:
 list.GetProduct();
 //this is better:
-list.GetProduct(1);
-//yes, this is even better:
-list.GetProduct(1,(a,b)=>a*b);
+list.Aggregate(1,(a,b)=>a*b);
 ```
 For this reason, many common functions like `range.Range` have specialized, non-generic cases for common types.
 ### \#4- Repercussions
@@ -121,7 +119,7 @@ var concatedNumbers = range.Range(10).Select(a=>a.ToString()).GetSum();//"012345
 ```
 
 ## IV: Hooking & Tallying
-It's a common, yet rare adressed problem that Hooking and Tallting seek to solve. Say you want to write a function that takes probabilities of events, as an `IEnumerable<double>`. You need your input to uphold three conditions:
+It's a common, yet rarely addressed problem that Hooking and Tallying seek to solve. Say you want to write a function that takes probabilities of events, as an `IEnumerable<double>`. You need your input to uphold three conditions:
 1. `Input` cannot be empty.
 2. `Input`'s sum cannot exceed 1.
 3. None of the `Input`'s elements can be negative.
@@ -193,12 +191,14 @@ But IGuards are cumbersome and inefficient. Also, hooking does not allow to brea
 Tallying is like LINQ in reverse, first building the query, then running it through an `IEnumerable<T>`.
 ```csharp
 public void Foo(IEnumerable<double> input){
-    var tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0).TallyAny(a=>a<0).TallyCount();
+    var tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0) //get the sum of an ienumerable
+					.TallyAny(a=>a<0) //also, get whether any of the elemnts are negative
+					.TallyCount(); //also get the count.
     //you can also set the tally to break if any of the sub-tallies (called talliers)
     tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0,a=>a>1) //break is sum exceeds one
             .TallyAny(a=>a<0, true) //break if an element is negative
             .TallyCount();
-    Tuple<double,bool,int> result = tally.Do(input) //The tuple is (sum,anyNegatives,count)
+    Tuple<double,bool,int> result = tally.Do(input) //The tuple is (sum, anyNegatives, count)
     //These lines can also be done in a LINQ-style query in 1 line:
     result = input.Tally().TallyAggregate((a,b)=>a+b,0.0,a=>a>1).TallyAny(a=>a<0, true).TallyCount().Do;
     if (result.Item1 > 1)
@@ -212,7 +212,7 @@ public void Foo(IEnumerable<double> input){
 ```
 Tally combines the simplicity and fluidity of LINQ with the efficiency of a single-enumeration loop.
 ## V: Many, Many Extension Methods
-This library features a lot of extention methods that you never knew you needed. Designed to make the code more readable, usable, and efficient. Here are some examples:
+This library features a lot of extension methods that you never knew you needed. Designed to make the code more readable, usable, and efficient. Here are some examples:
 ```csharp
 var lists = new []{range.Range(10),range.Range(12,22),range.Range(0,100,10)};
 lists.Select(a=>a.Count).AllEqual(); //checks that all members of an enumerable are equal
@@ -233,7 +233,7 @@ lucky1.CompareCount(lucky2); //but now we don't have to wait for it!
 
 new int[]{2,3,5,7}.Trail(2);//{{2,3},{3,5},{5,7}}
 
-"This is a very long string".LongestCommonPrefix("This is an even longer string", invariantcomp).UnZip(); //"This is a"
+"This is a very long string".LongestCommonPrefix("This is an even longer string"); //"This is a"
 ```
 
 And much, much more.

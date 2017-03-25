@@ -26,12 +26,13 @@ namespace WhetStone.Looping
             compare.ThrowIfNull(nameof(compare));
             index = -1;
             var ret = default(T);
-            IGuard<int> ind = new Guard<int>();
-            foreach (T t in tosearch.CountBind().Detach(ind))
+            foreach (var tu in tosearch.CountBind())
             {
+                var t = tu.Item1;
+                var ind = tu.Item2;
                 if (index < 0 || compare.Compare(t, ret) < 0)
                 {
-                    index = ind.value;
+                    index = ind;
                     ret = t;
                 }
             }

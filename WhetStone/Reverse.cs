@@ -52,10 +52,9 @@ namespace WhetStone.Looping
             }
             public void CopyTo(T[] array, int arrayIndex)
             {
-                var i = new Guard<int>();
-                foreach (var t in this.CountBind(arrayIndex).Detach(i))
+                foreach (var t in this)
                 {
-                    array[i] = t;
+                    array[arrayIndex++] = t;
                 }
             }
             public bool Remove(T item)
