@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WhetStone.Fielding;
 using WhetStone.Guard;
@@ -35,6 +36,8 @@ namespace WhetStone.Looping
                 sum = tosearch.HookCount(cg).GetSum();
                 count = cg.value;
             }
+            if (count == 0)
+                throw new InvalidOperationException("IEnumerable is empty");
             return sum/count;
         }
         /// <summary>
@@ -62,6 +65,8 @@ namespace WhetStone.Looping
                 product = tosearch.HookCount(cg).Aggregate(f.one,f.multiply);
                 count = cg.value;
             }
+            if (count == 0)
+                throw new InvalidOperationException("IEnumerable is empty");
             return f.pow(product, f.Invert(f.fromInt(count)));
         }
     }

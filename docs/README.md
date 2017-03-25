@@ -231,7 +231,7 @@ var lucky1 = Lucky(new Random(),0.5);
 var lucky2 = Lucky(new Random(),0.99);//this guy could take a while...
 lucky1.CompareCount(lucky2); //but now we don't have to wait for it!
 
-new int[]{2,3,5,7}.Trail(2);//{{2,3},{3,5},{5,7}}
+new int[]{2,3,5,7}.Trail(2);//{ {2,3},{3,5},{5,7} }
 
 "This is a very long string".LongestCommonPrefix("This is an even longer string"); //"This is a"
 ```

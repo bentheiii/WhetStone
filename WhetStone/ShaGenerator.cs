@@ -40,7 +40,7 @@ namespace WhetStone.Random
             }
         }
         /// <inheritdoc />
-        public virtual void Dispose()
+        public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
