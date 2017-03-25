@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.SystemExtensions;
+using WhetStone.Guard;
 
 namespace WhetStone.Looping
 {
@@ -73,7 +74,8 @@ namespace WhetStone.Looping
             }
             public void CopyTo(T[] array, int arrayIndex)
             {
-                foreach ((var t, int i) in this.CountBind(arrayIndex))
+                var i = new Guard<int>();
+                foreach (var t in this.CountBind(arrayIndex).Detach(i))
                 {
                     array[i] = t;
                 }

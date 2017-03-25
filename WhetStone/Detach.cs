@@ -33,7 +33,6 @@ namespace WhetStone.Looping
         /// }
         /// </code>
         /// </example>
-        [Obsolete("use of detatch is discouraged")]
         public static IEnumerable<T1> Detach<T1, T2>(this IEnumerable<Tuple<T1, T2>> @this, IGuard<T2> informer1 = null)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -53,7 +52,6 @@ namespace WhetStone.Looping
         /// <param name="informer1">The <see cref="IGuard{T}"/> to which put the second values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <param name="informer2">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> with only the first member of each <see cref="Tuple{T1,T2}"/> member. When an element is enumerated, the second element of the original enumerated member is set to be <paramref name="informer1"/>s value.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IEnumerable<T1> Detach<T1, T2, T3>(this IEnumerable<Tuple<T1, T2, T3>> @this, IGuard<T2> informer1, IGuard<T3> informer2)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -73,7 +71,6 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IEnumerable{T}"/> to transform</param>
         /// <param name="informer1">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IEnumerable<Tuple<T1, T2>> Detach<T1, T2, T3>(this IEnumerable<Tuple<T1, T2, T3>> @this, IGuard<T3> informer1 = null)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -95,7 +92,6 @@ namespace WhetStone.Looping
         /// <param name="informer2">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <param name="informer3">The <see cref="IGuard{T}"/> to which put the fourth values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IEnumerable<T1> Detach<T1, T2, T3, T4>(this IEnumerable<Tuple<T1, T2, T3, T4>> @this, IGuard<T2> informer1, IGuard<T3> informer2, IGuard<T4> informer3)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -118,7 +114,6 @@ namespace WhetStone.Looping
         /// <param name="informer2">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <param name="informer3">The <see cref="IGuard{T}"/> to which put the fourth values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IEnumerable<Tuple<T1, T2>> Detach<T1, T2, T3, T4>(this IEnumerable<Tuple<T1, T2, T3, T4>> @this, IGuard<T3> informer2, IGuard<T4> informer3)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -139,7 +134,6 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IEnumerable{T}"/> to transform</param>
         /// <param name="informer3">The <see cref="IGuard{T}"/> to which put the fourth values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IEnumerable<Tuple<T1, T2, T3>> Detach<T1, T2, T3, T4>(this IEnumerable<Tuple<T1, T2, T3, T4>> @this, IGuard<T4> informer3 = null)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -149,7 +143,7 @@ namespace WhetStone.Looping
                 yield return Tuple.Create(t.Item1, t.Item2, t.Item3);
             }
         }
-        [Obsolete("use of detatch is discouraged")]
+
         private class DetachList<T1,T2> : LockedList<T1>
         {
             private readonly IList<Tuple<T1, T2>> _source;
@@ -182,7 +176,6 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IList{T}"/> to transform</param>
         /// <param name="informer1">The <see cref="IGuard{T}"/> to which put the second values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each <see cref="Tuple{T1,T2}"/> member. When an element is enumerated, the second element of the original enumerated member is set to be <paramref name="informer1"/>s value.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IList<T1> Detach<T1, T2>(this IList<Tuple<T1, T2>> @this, IGuard<T2> informer1 = null)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -198,7 +191,6 @@ namespace WhetStone.Looping
         /// <param name="informer1">The <see cref="IGuard{T}"/> to which put the second values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <param name="informer2">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each <see cref="Tuple{T1,T2}"/> member. When an element is enumerated, the second element of the original enumerated member is set to be <paramref name="informer1"/>s value.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IList<T1> Detach<T1, T2, T3>(this IList<Tuple<T1, T2, T3>> @this, IGuard<T2> informer1, IGuard<T3> informer2)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -213,7 +205,6 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IList{T}"/> to transform</param>
         /// <param name="informer1">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IList<Tuple<T1,T2>> Detach<T1, T2, T3>(this IList<Tuple<T1, T2, T3>> @this, IGuard<T3> informer1=null)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -231,7 +222,6 @@ namespace WhetStone.Looping
         /// <param name="informer2">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <param name="informer3">The <see cref="IGuard{T}"/> to which put the fourth values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IList<T1> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T2> informer1, IGuard<T3> informer2, IGuard<T4> informer3)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -248,7 +238,6 @@ namespace WhetStone.Looping
         /// <param name="informer2">The <see cref="IGuard{T}"/> to which put the third values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <param name="informer3">The <see cref="IGuard{T}"/> to which put the fourth values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IList<Tuple<T1, T2>> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T3> informer2, IGuard<T4> informer3)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -264,7 +253,6 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IList{T}"/> to transform</param>
         /// <param name="informer3">The <see cref="IGuard{T}"/> to which put the fourth values of the members. Setting to <see langword="null"/> will put the values nowhere.</param>
         /// <returns>A new <see cref="IList{T}"/> with only the first member of each tuple member. When an element is enumerated, the remaining elements of the original enumerated member is set to be the informer's values.</returns>
-        [Obsolete("use of detatch is discouraged")]
         public static IList<Tuple<T1, T2, T3>> Detach<T1, T2, T3, T4>(this IList<Tuple<T1, T2, T3, T4>> @this, IGuard<T4> informer3 = null)
         {
             @this.ThrowIfNull(nameof(@this));

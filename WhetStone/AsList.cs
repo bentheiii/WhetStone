@@ -78,11 +78,14 @@ namespace WhetStone.Looping
                 return ret;
             }
             @this.ThrowIfNull(nameof(@this));
-            if (@this is IList<T> l)
+            var l = @this as IList<T>;
+            if (l != null)
                 return l;
-            if (@this is IReadOnlyList<T> r)
+            var r = @this as IReadOnlyList<T>;
+            if (r != null)
                 return r.ToLockedList();
-            if ((@this as IEnumerable<char>) is string s && typeof(T) == typeof(char))
+            var s = @this as string;
+            if (s != null && typeof(T) == typeof(char))
                 return (IList<T>)new LockedListStringAdaptor(s);
             return force ? @this.ToList() : null;
         }

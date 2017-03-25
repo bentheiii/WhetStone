@@ -18,7 +18,7 @@ namespace WhetStone.Looping
         public static IList<IEnumerable<T>> SubSets<T>(this IEnumerable<T> @this)
         {
             @this.ThrowIfNull(nameof(@this));
-            return new[] {false, true}.Join(@this.Count()).Select(a => @this.Zip(a).Where(x => x.Item2).Select(x=>x.Item1));
+            return new[] {false, true}.Join(@this.Count()).Select(a => @this.Zip(a).Where(x => x.Item2).Detach());
         }
         /// <summary>
         /// Get all the subsets from an <see cref="IList{T}"/>'s elements.

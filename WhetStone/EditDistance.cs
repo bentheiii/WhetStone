@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WhetStone.SystemExtensions;
+using WhetStone.Guard;
 
 namespace WhetStone.Looping
 {
@@ -353,7 +354,8 @@ namespace WhetStone.Looping
             {
                 var temp = new int[v.Count];
                 temp[0] = allowDel ? v[0] + 1 : -2;
-                foreach ((var o, var i) in other.CountBind(1))
+                Guard<int> i = new Guard<int>();
+                foreach (var o in other.CountBind(1).Detach(i))
                 {
                     int cost = 1;
                     if (comp.Equals(t, o))

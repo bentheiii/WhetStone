@@ -202,7 +202,8 @@ namespace WhetStone.Looping
             public override int Count => _source.Count;
             public override bool TryGetValue(K key, out V1 value)
             {
-                bool ret = _source.TryGetValue(key, out V0 s);
+                V0 s;
+                bool ret = _source.TryGetValue(key, out s);
                 value = _mapper(s);
                 return ret;
             }
@@ -250,7 +251,8 @@ namespace WhetStone.Looping
             }
             public bool Contains(KeyValuePair<K1, V1> item)
             {
-                return TryGetValue(item.Key, out V1 val) && item.Value.Equals(val);
+                V1 val;
+                return TryGetValue(item.Key, out val) && item.Value.Equals(val);
             }
             public void CopyTo(KeyValuePair<K1, V1>[] array, int arrayIndex)
             {
@@ -278,7 +280,8 @@ namespace WhetStone.Looping
             }
             public bool TryGetValue(K1 key, out V1 value)
             {
-                var ret = _inner.TryGetValue(_keyinv(key), out V0 val);
+                V0 val;
+                var ret = _inner.TryGetValue(_keyinv(key), out val);
                 value = _valsel(val);
                 return ret;
             }

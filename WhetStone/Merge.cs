@@ -24,7 +24,8 @@ namespace WhetStone.Looping
             numerators.RemoveAll(a => !a.MoveNext());
             while (numerators.Any())
             {
-                numerators.Select(a => a.Current).ToArray().GetMin(chooser, out int index);
+                int index;
+                numerators.Select(a => a.Current).ToArray().GetMin(chooser, out index);
                 yield return numerators[index].Current;
                 if (!numerators[index].MoveNext())
                     numerators.RemoveAt(index);
