@@ -32,7 +32,10 @@ namespace WhetStone.Random
         /// <param name="count">The number of elements to return.</param>
         /// <param name="gen">The <see cref="RandomGenerator"/> to use to roll for a random element. <see langword="null"/> for <see cref="GlobalRandomGenerator"/>.</param>
         /// <returns><paramref name="count"/> random elements from <paramref name="this"/>.</returns>
-        /// <remarks>Running time: O(|<paramref name="this"/>| * <paramref name="count"/> / (<paramref name="count"/> + 1))</remarks>
+        /// <remarks>
+        /// <para>Running time: O(|<paramref name="this"/>| * <paramref name="count"/> / (<paramref name="count"/> + 1))</para>
+        /// <para>The results are sorted by <paramref name="this"/>'s order.</para>
+        /// </remarks>
         public static IEnumerable<T> Pick<T>(this IEnumerable<T> @this, int count, RandomGenerator gen = null)
         {
             @this.ThrowIfNull(nameof(@this));
@@ -75,11 +78,15 @@ namespace WhetStone.Random
         /// <param name="count">The number of elements to return.</param>
         /// <param name="gen">The <see cref="RandomGenerator"/> to use to roll for a random element. <see langword="null"/> for <see cref="GlobalRandomGenerator"/>.</param>
         /// <returns><paramref name="count"/> random elements from <paramref name="this"/>.</returns>
+        /// <remarks>
+        /// <para>The results are sorted by <paramref name="this"/>'s order.</para>
+        /// </remarks>
         public static IList<T> Pick<T>(this IList<T> @this, int count, RandomGenerator gen = null)
         {
             @this.ThrowIfNull(nameof(@this));
             count.ThrowIfAbsurd(nameof(count));
-            return range.Range(@this.Count).Join(count, join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry).Pick(gen).Select(a => @this[a]).Reverse();
+            return range.Range(@this.Count).Join(count, join.CartesianType.NoReflexive | join.CartesianType.NoSymmatry).Pick(gen)
+                .Select(a => @this[a]).Reverse();
         }
     }
 }
