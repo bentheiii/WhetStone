@@ -205,7 +205,7 @@ namespace WhetStone.Random
         /// <param name="trueodds">Odds <see langword="true"/>  will be returned.</param>
         /// <param name="falseodds">Odds <see langword="false"/> will be returned.</param>
         /// <returns>A random <see cref="bool"/> with likelihoods of <paramref name="trueodds"/>:<paramref name="falseodds"/></returns>
-        public bool randombool(double trueodds = 1, double falseodds = 1)
+        public bool Bool(double trueodds = 1, double falseodds = 1)
         {
             if (trueodds <= 0)
                 throw new ArgumentOutOfRangeException(nameof(trueodds));
