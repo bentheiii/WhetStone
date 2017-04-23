@@ -1,0 +1,1810 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Id="fad0dd77-f0cc-49f4-b781-4dee66ddffde" Title="Whetstone" Url="html/R_Project_DocBuilder.htm">
+    <HelpTOCNode Id="12187d59-d3f9-49f5-937a-47f8b639b6a5" Title="NumberStone" Url="html/N_NumberStone.htm">
+      <HelpTOCNode Id="f4b43cba-7cfc-4f31-8ff7-5973b87ed9b6" Title="BigProduct Class" Url="html/T_NumberStone_BigProduct.htm">
+        <HelpTOCNode Title="BigProduct Constructor " Url="html/M_NumberStone_BigProduct__ctor.htm" />
+        <HelpTOCNode Id="5a658f98-3e21-4293-ad69-f677e66785c9" Title="BigProduct Properties" Url="html/Properties_T_NumberStone_BigProduct.htm">
+          <HelpTOCNode Title="sign Property " Url="html/P_NumberStone_BigProduct_sign.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="1dfe517b-df41-4918-ba79-386a0a3bc4a4" Title="BigProduct Methods" Url="html/Methods_T_NumberStone_BigProduct.htm">
+          <HelpTOCNode Title="Divide Method " Url="html/M_NumberStone_BigProduct_Divide.htm" />
+          <HelpTOCNode Title="DivideFactorial Method " Url="html/M_NumberStone_BigProduct_DivideFactorial.htm" />
+          <HelpTOCNode Title="isInteger Method " Url="html/M_NumberStone_BigProduct_isInteger.htm" />
+          <HelpTOCNode Title="Multiply Method " Url="html/M_NumberStone_BigProduct_Multiply.htm" />
+          <HelpTOCNode Title="MultiplyFactorial Method " Url="html/M_NumberStone_BigProduct_MultiplyFactorial.htm" />
+          <HelpTOCNode Title="pow Method " Url="html/M_NumberStone_BigProduct_pow.htm" />
+          <HelpTOCNode Title="toFraction Method " Url="html/M_NumberStone_BigProduct_toFraction.htm" />
+          <HelpTOCNode Title="toNum Method " Url="html/M_NumberStone_BigProduct_toNum.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="07a644c5-64e1-4c18-bf81-18b3b57b0c77" Title="BinomialCoefficient Class" Url="html/T_NumberStone_BinomialCoefficient.htm">
+        <HelpTOCNode Title="BinomialCoefficient Constructor " Url="html/M_NumberStone_BinomialCoefficient__ctor.htm" />
+        <HelpTOCNode Id="fbc6c31b-19c2-4c27-9635-56b083d2d5f5" Title="BinomialCoefficient Properties" Url="html/Properties_T_NumberStone_BinomialCoefficient.htm">
+          <HelpTOCNode Title="sub Property " Url="html/P_NumberStone_BinomialCoefficient_sub.htm" />
+          <HelpTOCNode Title="super Property " Url="html/P_NumberStone_BinomialCoefficient_super.htm" />
+          <HelpTOCNode Title="value Property " Url="html/P_NumberStone_BinomialCoefficient_value.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="e904e5c1-5897-4be9-b3ac-bd6e34649545" Title="BinomialCoefficient Methods" Url="html/Methods_T_NumberStone_BinomialCoefficient.htm">
+          <HelpTOCNode Title="DecreaseBoth Method " Url="html/M_NumberStone_BinomialCoefficient_DecreaseBoth.htm" />
+          <HelpTOCNode Title="DecreaseSub Method " Url="html/M_NumberStone_BinomialCoefficient_DecreaseSub.htm" />
+          <HelpTOCNode Title="DecreaseSuper Method " Url="html/M_NumberStone_BinomialCoefficient_DecreaseSuper.htm" />
+          <HelpTOCNode Title="IncreaseBoth Method " Url="html/M_NumberStone_BinomialCoefficient_IncreaseBoth.htm" />
+          <HelpTOCNode Title="IncreaseSub Method " Url="html/M_NumberStone_BinomialCoefficient_IncreaseSub.htm" />
+          <HelpTOCNode Title="IncreaseSuper Method " Url="html/M_NumberStone_BinomialCoefficient_IncreaseSuper.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="6eb4d7f8-6de5-441a-8942-d7b8e9d68224" Title="choose Class" Url="html/T_NumberStone_choose.htm">
+        <HelpTOCNode Id="5eda8df2-8d27-41ec-acc6-bbd695e43233" Title="choose Methods" Url="html/Methods_T_NumberStone_choose.htm">
+          <HelpTOCNode Title="Choose Method " Url="html/M_NumberStone_choose_Choose.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="5656fdce-3131-410e-a88f-9c0eb026497b" Title="divisibility Class" Url="html/T_NumberStone_divisibility.htm">
+        <HelpTOCNode Id="42f8d5bc-5da2-46ac-9e27-4fd2b7bb0c00" Title="divisibility Methods" Url="html/Methods_T_NumberStone_divisibility.htm">
+          <HelpTOCNode Id="79758194-9c05-453d-aed6-fe6b99349ba1" Title="Divisibility Method " Url="html/Overload_NumberStone_divisibility_Divisibility.htm">
+            <HelpTOCNode Title="Divisibility Method (Int32, Int32)" Url="html/M_NumberStone_divisibility_Divisibility.htm" />
+            <HelpTOCNode Title="Divisibility Method (BigInteger, BigInteger)" Url="html/M_NumberStone_divisibility_Divisibility_1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="16ff7430-4fe7-4073-ba3b-59e073c069f0" Title="factors Class" Url="html/T_NumberStone_factors.htm">
+        <HelpTOCNode Id="4f620506-0a58-459b-803f-990d595a8b62" Title="factors Methods" Url="html/Methods_T_NumberStone_factors.htm">
+          <HelpTOCNode Title="Factors Method " Url="html/M_NumberStone_factors_Factors.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="cfed0ea7-c6ec-43ce-9342-f36e7f2c9436" Title="greatestCommonDivisor Class" Url="html/T_NumberStone_greatestCommonDivisor.htm">
+        <HelpTOCNode Id="d07cb726-cc1d-46ec-ab6c-41aecb049db7" Title="greatestCommonDivisor Methods" Url="html/Methods_T_NumberStone_greatestCommonDivisor.htm">
+          <HelpTOCNode Id="23589ff8-84f6-4fd8-b7fa-10474f9b6d40" Title="GreatestCommonDivisor Method " Url="html/Overload_NumberStone_greatestCommonDivisor_GreatestCommonDivisor.htm">
+            <HelpTOCNode Title="GreatestCommonDivisor Method (IList(Int64))" Url="html/M_NumberStone_greatestCommonDivisor_GreatestCommonDivisor.htm" />
+            <HelpTOCNode Title="GreatestCommonDivisor Method (IList(BigInteger))" Url="html/M_NumberStone_greatestCommonDivisor_GreatestCommonDivisor_1.htm" />
+            <HelpTOCNode Title="GreatestCommonDivisor Method (Int32[])" Url="html/M_NumberStone_greatestCommonDivisor_GreatestCommonDivisor_2.htm" />
+            <HelpTOCNode Title="GreatestCommonDivisor Method (Int64[])" Url="html/M_NumberStone_greatestCommonDivisor_GreatestCommonDivisor_3.htm" />
+            <HelpTOCNode Title="GreatestCommonDivisor Method (BigInteger[])" Url="html/M_NumberStone_greatestCommonDivisor_GreatestCommonDivisor_4.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="bd1ded6a-ed51-4702-a102-8818a8878896" Title="isPrime Class" Url="html/T_NumberStone_isPrime.htm">
+        <HelpTOCNode Id="78f9a21d-04f7-43d3-90bf-cd7f9036a234" Title="isPrime Methods" Url="html/Methods_T_NumberStone_isPrime.htm">
+          <HelpTOCNode Id="faac9e5f-0a8a-4dea-9a21-b2da9fc62dbb" Title="IsPrime Method " Url="html/Overload_NumberStone_isPrime_IsPrime.htm">
+            <HelpTOCNode Title="IsPrime Method (Int32, Int32)" Url="html/M_NumberStone_isPrime_IsPrime.htm" />
+            <HelpTOCNode Title="IsPrime Method (Int64, Int32)" Url="html/M_NumberStone_isPrime_IsPrime_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="IsPrimeByList Method " Url="html/M_NumberStone_isPrime_IsPrimeByList.htm" />
+          <HelpTOCNode Id="cb2ce1ce-a287-49d6-8665-d7ea93f56a68" Title="isProbablyPrime Method " Url="html/Overload_NumberStone_isPrime_isProbablyPrime.htm">
+            <HelpTOCNode Title="isProbablyPrime Method (Int32, RandomGenerator)" Url="html/M_NumberStone_isPrime_isProbablyPrime_1.htm" />
+            <HelpTOCNode Title="isProbablyPrime Method (Int64, RandomGenerator)" Url="html/M_NumberStone_isPrime_isProbablyPrime_3.htm" />
+            <HelpTOCNode Title="isProbablyPrime Method (BigInteger, RandomGenerator)" Url="html/M_NumberStone_isPrime_isProbablyPrime_5.htm" />
+            <HelpTOCNode Title="isProbablyPrime Method (Int32, Int32, RandomGenerator)" Url="html/M_NumberStone_isPrime_isProbablyPrime.htm" />
+            <HelpTOCNode Title="isProbablyPrime Method (Int64, Int32, RandomGenerator)" Url="html/M_NumberStone_isPrime_isProbablyPrime_2.htm" />
+            <HelpTOCNode Title="isProbablyPrime Method (BigInteger, Int32, RandomGenerator)" Url="html/M_NumberStone_isPrime_isProbablyPrime_4.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="4659c1b7-c9f0-4ccb-8f52-2f1937491a22" Title="isPrime Fields" Url="html/Fields_T_NumberStone_isPrime.htm">
+          <HelpTOCNode Title="PrimeList Field" Url="html/F_NumberStone_isPrime_PrimeList.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="9a55154c-5b9c-43db-9d20-d4c51a42a6c3" Title="isWithin Class" Url="html/T_NumberStone_isWithin.htm">
+        <HelpTOCNode Id="271c3d68-ede9-4e9e-bae9-c1ca29749fba" Title="isWithin Methods" Url="html/Methods_T_NumberStone_isWithin.htm">
+          <HelpTOCNode Id="a92825e3-dfac-443b-9561-ba3acaaa040a" Title="iswithin Method " Url="html/Overload_NumberStone_isWithin_iswithin.htm">
+            <HelpTOCNode Title="iswithin Method (Double, Double, Double)" Url="html/M_NumberStone_isWithin_iswithin.htm" />
+            <HelpTOCNode Title="iswithin Method (Int32, Int32, Int32)" Url="html/M_NumberStone_isWithin_iswithin_1.htm" />
+            <HelpTOCNode Title="iswithin(T) Method (T, T, T, IComparer(T))" Url="html/M_NumberStone_isWithin_iswithin__1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="d1c9dc39-0234-4702-a007-48f2b0dbcbac" Title="iswithinexclusive Method " Url="html/Overload_NumberStone_isWithin_iswithinexclusive.htm">
+            <HelpTOCNode Title="iswithinexclusive Method (Double, Double, Double)" Url="html/M_NumberStone_isWithin_iswithinexclusive.htm" />
+            <HelpTOCNode Title="iswithinexclusive Method (Int32, Int32, Int32)" Url="html/M_NumberStone_isWithin_iswithinexclusive_1.htm" />
+            <HelpTOCNode Title="iswithinexclusive(T) Method (T, T, T, IComparer(T))" Url="html/M_NumberStone_isWithin_iswithinexclusive__1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="fb69127e-319c-474c-8ab7-4c3c35ad65f2" Title="iswithinPartialExclusive Method " Url="html/Overload_NumberStone_isWithin_iswithinPartialExclusive.htm">
+            <HelpTOCNode Title="iswithinPartialExclusive Method (Double, Double, Double)" Url="html/M_NumberStone_isWithin_iswithinPartialExclusive.htm" />
+            <HelpTOCNode Title="iswithinPartialExclusive Method (Int32, Int32, Int32)" Url="html/M_NumberStone_isWithin_iswithinPartialExclusive_1.htm" />
+            <HelpTOCNode Title="iswithinPartialExclusive(T) Method (T, T, T, IComparer(T))" Url="html/M_NumberStone_isWithin_iswithinPartialExclusive__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="dd830e8c-3504-429b-b323-afc84db1de9b" Title="KahanSum Class" Url="html/T_NumberStone_KahanSum.htm">
+        <HelpTOCNode Title="KahanSum Constructor " Url="html/M_NumberStone_KahanSum__ctor.htm" />
+        <HelpTOCNode Id="e81cb3b1-892d-4be6-96a7-5d1169d66973" Title="KahanSum Properties" Url="html/Properties_T_NumberStone_KahanSum.htm">
+          <HelpTOCNode Title="Sum Property " Url="html/P_NumberStone_KahanSum_Sum.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="ce22daa9-8995-4db9-ae05-ba0b4410e9b0" Title="KahanSum Methods" Url="html/Methods_T_NumberStone_KahanSum.htm">
+          <HelpTOCNode Title="Add Method " Url="html/M_NumberStone_KahanSum_Add.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="ed990887-79ea-4ee6-988d-cedda5faf4a2" Title="KahanSum(T) Class" Url="html/T_NumberStone_KahanSum_1.htm">
+        <HelpTOCNode Title="KahanSum(T) Constructor " Url="html/M_NumberStone_KahanSum_1__ctor.htm" />
+        <HelpTOCNode Id="4db1709e-e761-4668-a3ab-9971d28efc3d" Title="KahanSum(T) Properties" Url="html/Properties_T_NumberStone_KahanSum_1.htm">
+          <HelpTOCNode Title="Sum Property " Url="html/P_NumberStone_KahanSum_1_Sum.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="0b180479-ed56-41ab-b9f8-4d1ee887533b" Title="KahanSum(T) Methods" Url="html/Methods_T_NumberStone_KahanSum_1.htm">
+          <HelpTOCNode Title="Add Method " Url="html/M_NumberStone_KahanSum_1_Add.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="c31eafd9-b195-46d8-bd3d-50a32d0006e7" Title="LogarithmicProgresser Class" Url="html/T_NumberStone_LogarithmicProgresser.htm">
+        <HelpTOCNode Title="LogarithmicProgresser Constructor " Url="html/M_NumberStone_LogarithmicProgresser__ctor.htm" />
+        <HelpTOCNode Id="699b514c-d1b7-4fc3-ba57-f193c82083a8" Title="LogarithmicProgresser Properties" Url="html/Properties_T_NumberStone_LogarithmicProgresser.htm">
+          <HelpTOCNode Title="base Property " Url="html/P_NumberStone_LogarithmicProgresser_base.htm" />
+          <HelpTOCNode Title="log Property " Url="html/P_NumberStone_LogarithmicProgresser_log.htm" />
+          <HelpTOCNode Title="value Property " Url="html/P_NumberStone_LogarithmicProgresser_value.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Id="fa56a8c0-39e8-4a99-990a-6762d967d8b9" Title="LogarithmicProgresser Methods" Url="html/Methods_T_NumberStone_LogarithmicProgresser.htm">
+          <HelpTOCNode Title="Decrement Method " Url="html/M_NumberStone_LogarithmicProgresser_Decrement.htm" />
+          <HelpTOCNode Title="Increment Method " Url="html/M_NumberStone_LogarithmicProgresser_Increment.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="8ea227ae-84eb-4ab8-a6f3-6714709b78d6" Title="primeFactors Class" Url="html/T_NumberStone_primeFactors.htm">
+        <HelpTOCNode Id="1765f2c6-2f2d-4e15-a48c-bb370b154434" Title="primeFactors Methods" Url="html/Methods_T_NumberStone_primeFactors.htm">
+          <HelpTOCNode Id="c5f084ee-02a1-4a38-bda6-63f0008334a2" Title="Primefactors Method " Url="html/Overload_NumberStone_primeFactors_Primefactors.htm">
+            <HelpTOCNode Title="Primefactors Method (Int32)" Url="html/M_NumberStone_primeFactors_Primefactors.htm" />
+            <HelpTOCNode Title="Primefactors Method (Int64)" Url="html/M_NumberStone_primeFactors_Primefactors_1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="1a91d724-9e98-419e-a549-3ac2c90d0169" Title="primes Class" Url="html/T_NumberStone_primes.htm">
+        <HelpTOCNode Id="1f798a7d-9614-4aa7-b58c-6226a26359e4" Title="primes Methods" Url="html/Methods_T_NumberStone_primes.htm">
+          <HelpTOCNode Id="9554392d-c3fb-4513-8920-b693c0f85a17" Title="Primes Method " Url="html/Overload_NumberStone_primes_Primes.htm">
+            <HelpTOCNode Title="Primes Method " Url="html/M_NumberStone_primes_Primes.htm" />
+            <HelpTOCNode Title="Primes Method (Int32)" Url="html/M_NumberStone_primes_Primes_1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="3f053a6d-3e50-4fe5-a1fb-128d1cc62e56" Title="smallestFactor Class" Url="html/T_NumberStone_smallestFactor.htm">
+        <HelpTOCNode Id="f1f6b7fb-fc2b-4088-a625-2798cd7a57d3" Title="smallestFactor Methods" Url="html/Methods_T_NumberStone_smallestFactor.htm">
+          <HelpTOCNode Id="8c6c0e89-b679-4ed0-84c1-6a63a2f003b6" Title="SmallestFactor Method " Url="html/Overload_NumberStone_smallestFactor_SmallestFactor.htm">
+            <HelpTOCNode Title="SmallestFactor Method (Int32, Nullable(Int32))" Url="html/M_NumberStone_smallestFactor_SmallestFactor.htm" />
+            <HelpTOCNode Title="SmallestFactor Method (Int64, Nullable(Int64))" Url="html/M_NumberStone_smallestFactor_SmallestFactor_1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="8e733ee0-ddcd-4264-9d09-ca9148cc13aa" Title="unsignedDiff Class" Url="html/T_NumberStone_unsignedDiff.htm">
+        <HelpTOCNode Id="9fb16d31-a945-4423-a88a-5bac15da4870" Title="unsignedDiff Methods" Url="html/Methods_T_NumberStone_unsignedDiff.htm">
+          <HelpTOCNode Id="1f50544c-e655-4b57-add3-a337844af1e2" Title="UnsignedDiff Method " Url="html/Overload_NumberStone_unsignedDiff_UnsignedDiff.htm">
+            <HelpTOCNode Title="UnsignedDiff Method (Byte, Byte)" Url="html/M_NumberStone_unsignedDiff_UnsignedDiff.htm" />
+            <HelpTOCNode Title="UnsignedDiff Method (UInt16, UInt16)" Url="html/M_NumberStone_unsignedDiff_UnsignedDiff_1.htm" />
+            <HelpTOCNode Title="UnsignedDiff Method (UInt32, UInt32)" Url="html/M_NumberStone_unsignedDiff_UnsignedDiff_2.htm" />
+            <HelpTOCNode Title="UnsignedDiff Method (UInt64, UInt64)" Url="html/M_NumberStone_unsignedDiff_UnsignedDiff_3.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="a800abcb-899a-4289-8e56-f8d750f39fd3" Title="WhetStone Namespaces" Url="html/G_WhetStone.htm">
+      <HelpTOCNode Id="dde98be5-cd27-4a3b-b009-06ff68f405d7" Title="WhetStone.Comparison" Url="html/N_WhetStone_Comparison.htm">
+        <HelpTOCNode Id="b6bbb640-d976-4abd-b0e5-9d98a659ff99" Title="EnumerableCompararer(T) Class" Url="html/T_WhetStone_Comparison_EnumerableCompararer_1.htm">
+          <HelpTOCNode Title="EnumerableCompararer(T) Constructor " Url="html/M_WhetStone_Comparison_EnumerableCompararer_1__ctor.htm" />
+          <HelpTOCNode Id="8f2f7263-ed37-4255-8f50-34cee92d0664" Title="EnumerableCompararer(T) Methods" Url="html/Methods_T_WhetStone_Comparison_EnumerableCompararer_1.htm">
+            <HelpTOCNode Title="Compare Method " Url="html/M_WhetStone_Comparison_EnumerableCompararer_1_Compare.htm" />
+            <HelpTOCNode Id="a3bc8be2-d125-4e87-96d3-40f17dca1244" Title="Equals Method " Url="html/Overload_WhetStone_Comparison_EnumerableCompararer_1_Equals.htm">
+              <HelpTOCNode Title="Equals Method (IEnumerable(T), IEnumerable(T))" Url="html/M_WhetStone_Comparison_EnumerableCompararer_1_Equals.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="b75635d0-b86a-43ed-9967-0c41c98e4ef1" Title="GetHashCode Method " Url="html/Overload_WhetStone_Comparison_EnumerableCompararer_1_GetHashCode.htm">
+              <HelpTOCNode Title="GetHashCode Method (IEnumerable(T))" Url="html/M_WhetStone_Comparison_EnumerableCompararer_1_GetHashCode.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="b24679c5-8b65-412b-8d84-e1ac8624b3f4" Title="FunctionComparer(T, G) Class" Url="html/T_WhetStone_Comparison_FunctionComparer_2.htm">
+          <HelpTOCNode Title="FunctionComparer(T, G) Constructor " Url="html/M_WhetStone_Comparison_FunctionComparer_2__ctor.htm" />
+          <HelpTOCNode Id="8a5cc644-eb69-419f-97a5-e3ffefa854bf" Title="FunctionComparer(T, G) Methods" Url="html/Methods_T_WhetStone_Comparison_FunctionComparer_2.htm">
+            <HelpTOCNode Title="Compare Method " Url="html/M_WhetStone_Comparison_FunctionComparer_2_Compare.htm" />
+            <HelpTOCNode Id="de00ee36-67bc-4599-8d78-48c2fd688575" Title="Equals Method " Url="html/Overload_WhetStone_Comparison_FunctionComparer_2_Equals.htm">
+              <HelpTOCNode Title="Equals Method (T, T)" Url="html/M_WhetStone_Comparison_FunctionComparer_2_Equals.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="52fa2bd7-ae13-4519-b80c-c1fe6216c7c8" Title="GetHashCode Method " Url="html/Overload_WhetStone_Comparison_FunctionComparer_2_GetHashCode.htm">
+              <HelpTOCNode Title="GetHashCode Method (T)" Url="html/M_WhetStone_Comparison_FunctionComparer_2_GetHashCode.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c3e782e8-54a8-4163-81f7-35da7f481fc4" Title="minmax Class" Url="html/T_WhetStone_Comparison_minmax.htm">
+          <HelpTOCNode Id="4c288865-3e15-42aa-9f9a-abcf5ef3290e" Title="minmax Methods" Url="html/Methods_T_WhetStone_Comparison_minmax.htm">
+            <HelpTOCNode Id="c5457f53-e2a1-401e-8362-9543597acd9a" Title="MinMax Method " Url="html/Overload_WhetStone_Comparison_minmax_MinMax.htm">
+              <HelpTOCNode Title="MinMax Method (Double, Double)" Url="html/M_WhetStone_Comparison_minmax_MinMax.htm" />
+              <HelpTOCNode Title="MinMax Method (Int32, Int32)" Url="html/M_WhetStone_Comparison_minmax_MinMax_1.htm" />
+              <HelpTOCNode Title="MinMax Method (BigInteger, BigInteger)" Url="html/M_WhetStone_Comparison_minmax_MinMax_2.htm" />
+              <HelpTOCNode Title="MinMax(T) Method (T, T, IComparer(T))" Url="html/M_WhetStone_Comparison_minmax_MinMax__1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="112773bf-12b6-46a7-a5ea-469230c72c69" Title="PriorityComparer(T) Class" Url="html/T_WhetStone_Comparison_PriorityComparer_1.htm">
+          <HelpTOCNode Title="PriorityComparer(T) Constructor " Url="html/M_WhetStone_Comparison_PriorityComparer_1__ctor.htm" />
+          <HelpTOCNode Id="6baaff52-791f-414a-87c8-7046e459cc43" Title="PriorityComparer(T) Methods" Url="html/Methods_T_WhetStone_Comparison_PriorityComparer_1.htm">
+            <HelpTOCNode Title="Compare Method " Url="html/M_WhetStone_Comparison_PriorityComparer_1_Compare.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="1770512f-bf5c-4a8d-aae4-d6a77102e12a" Title="ReverseComparer Class" Url="html/T_WhetStone_Comparison_ReverseComparer.htm">
+          <HelpTOCNode Id="3f46bbd6-279b-4864-971b-29d4d1612ebb" Title="ReverseComparer Methods" Url="html/Methods_T_WhetStone_Comparison_ReverseComparer.htm">
+            <HelpTOCNode Title="Reverse(T) Method " Url="html/M_WhetStone_Comparison_ReverseComparer_Reverse__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="7eef40f9-7b75-439e-bc39-9070a90aa663" Title="TupleEqualityComparer(T1, T2) Class" Url="html/T_WhetStone_Comparison_TupleEqualityComparer_2.htm">
+          <HelpTOCNode Title="TupleEqualityComparer(T1, T2) Constructor " Url="html/M_WhetStone_Comparison_TupleEqualityComparer_2__ctor.htm" />
+          <HelpTOCNode Id="a248a85a-066a-4a9a-aa4f-0b3a03152701" Title="TupleEqualityComparer(T1, T2) Methods" Url="html/Methods_T_WhetStone_Comparison_TupleEqualityComparer_2.htm">
+            <HelpTOCNode Id="9a223de5-6bd1-4c15-bd2a-755014074c5d" Title="Equals Method " Url="html/Overload_WhetStone_Comparison_TupleEqualityComparer_2_Equals.htm">
+              <HelpTOCNode Title="Equals Method (Tuple(T1, T2), Tuple(T1, T2))" Url="html/M_WhetStone_Comparison_TupleEqualityComparer_2_Equals.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="fca0873a-4ca9-4f24-81e9-d4b84eb6c77e" Title="GetHashCode Method " Url="html/Overload_WhetStone_Comparison_TupleEqualityComparer_2_GetHashCode.htm">
+              <HelpTOCNode Title="GetHashCode Method (Tuple(T1, T2))" Url="html/M_WhetStone_Comparison_TupleEqualityComparer_2_GetHashCode.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="03251b39-5744-4c38-afbf-59ca3530f64a" Title="TupleEqualityComparer(T1, T2, T3) Class" Url="html/T_WhetStone_Comparison_TupleEqualityComparer_3.htm">
+          <HelpTOCNode Title="TupleEqualityComparer(T1, T2, T3) Constructor " Url="html/M_WhetStone_Comparison_TupleEqualityComparer_3__ctor.htm" />
+          <HelpTOCNode Id="b3cd7de6-078a-4d61-be5e-c37c15fa5516" Title="TupleEqualityComparer(T1, T2, T3) Methods" Url="html/Methods_T_WhetStone_Comparison_TupleEqualityComparer_3.htm">
+            <HelpTOCNode Id="4cbf55e9-134e-481e-99e5-d020ec689da5" Title="Equals Method " Url="html/Overload_WhetStone_Comparison_TupleEqualityComparer_3_Equals.htm">
+              <HelpTOCNode Title="Equals Method (Tuple(T1, T2, T3), Tuple(T1, T2, T3))" Url="html/M_WhetStone_Comparison_TupleEqualityComparer_3_Equals.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="69962f92-6141-4c35-97ef-d9f7a8f2d34d" Title="GetHashCode Method " Url="html/Overload_WhetStone_Comparison_TupleEqualityComparer_3_GetHashCode.htm">
+              <HelpTOCNode Title="GetHashCode Method (Tuple(T1, T2, T3))" Url="html/M_WhetStone_Comparison_TupleEqualityComparer_3_GetHashCode.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="b90a8e58-c036-4f88-9323-4a97ff977221" Title="WhetStone.Enviroment" Url="html/N_WhetStone_Enviroment.htm">
+        <HelpTOCNode Id="8c9afb02-e120-4006-b494-7db5b8f99e06" Title="macAddress Class" Url="html/T_WhetStone_Enviroment_macAddress.htm">
+          <HelpTOCNode Id="e9b51469-b850-42f5-b870-6a7a7bf4502b" Title="macAddress Methods" Url="html/Methods_T_WhetStone_Enviroment_macAddress.htm">
+            <HelpTOCNode Title="MacAddress Method " Url="html/M_WhetStone_Enviroment_macAddress_MacAddress.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="79348caf-a13e-40c0-9fbc-d83c1cbbbd75" Title="WhetStone.Fielding" Url="html/N_WhetStone_Fielding.htm">
+        <HelpTOCNode Id="063f6d80-c6c5-4a1f-aa29-af1fb410f9ee" Title="Field Interface" Url="html/T_WhetStone_Fielding_Field.htm">
+          <HelpTOCNode Id="3e4e2887-df03-4ac8-a481-5da585856749" Title="Field Properties" Url="html/Properties_T_WhetStone_Fielding_Field.htm">
+            <HelpTOCNode Title="SubjectType Property " Url="html/P_WhetStone_Fielding_Field_SubjectType.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="3943566f-f2c5-4d0b-8018-bcf2ac8bf644" Title="Field(T) Class" Url="html/T_WhetStone_Fielding_Field_1.htm">
+          <HelpTOCNode Title="Field(T) Constructor " Url="html/M_WhetStone_Fielding_Field_1__ctor.htm" />
+          <HelpTOCNode Id="9d791b3b-a383-47a4-bacc-d1957194d4a1" Title="Field(T) Properties" Url="html/Properties_T_WhetStone_Fielding_Field_1.htm">
+            <HelpTOCNode Title="GenType Property " Url="html/P_WhetStone_Fielding_Field_1_GenType.htm" />
+            <HelpTOCNode Title="Invertible Property " Url="html/P_WhetStone_Fielding_Field_1_Invertible.htm" />
+            <HelpTOCNode Title="Max Property " Url="html/P_WhetStone_Fielding_Field_1_Max.htm" />
+            <HelpTOCNode Title="Min Property " Url="html/P_WhetStone_Fielding_Field_1_Min.htm" />
+            <HelpTOCNode Title="Negatable Property " Url="html/P_WhetStone_Fielding_Field_1_Negatable.htm" />
+            <HelpTOCNode Title="negativeone Property " Url="html/P_WhetStone_Fielding_Field_1_negativeone.htm" />
+            <HelpTOCNode Title="one Property " Url="html/P_WhetStone_Fielding_Field_1_one.htm" />
+            <HelpTOCNode Title="SubjectType Property " Url="html/P_WhetStone_Fielding_Field_1_SubjectType.htm" />
+            <HelpTOCNode Title="zero Property " Url="html/P_WhetStone_Fielding_Field_1_zero.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="f19a419f-5f9e-45fa-8a31-396bc204cac1" Title="Field(T) Methods" Url="html/Methods_T_WhetStone_Fielding_Field_1.htm">
+            <HelpTOCNode Title="abs Method " Url="html/M_WhetStone_Fielding_Field_1_abs.htm" />
+            <HelpTOCNode Title="add Method " Url="html/M_WhetStone_Fielding_Field_1_add.htm" />
+            <HelpTOCNode Title="Compare Method " Url="html/M_WhetStone_Fielding_Field_1_Compare.htm" />
+            <HelpTOCNode Title="divide Method " Url="html/M_WhetStone_Fielding_Field_1_divide.htm" />
+            <HelpTOCNode Id="2d8489f1-5c6a-41d6-956e-81d6b965801e" Title="Equals Method " Url="html/Overload_WhetStone_Fielding_Field_1_Equals.htm">
+              <HelpTOCNode Title="Equals Method (T, T)" Url="html/M_WhetStone_Fielding_Field_1_Equals.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="ae6b7a59-5c9d-42d7-a7ee-8a7a8a9a3431" Title="fromFraction Method " Url="html/Overload_WhetStone_Fielding_Field_1_fromFraction.htm">
+              <HelpTOCNode Title="fromFraction Method (Double)" Url="html/M_WhetStone_Fielding_Field_1_fromFraction.htm" />
+              <HelpTOCNode Title="fromFraction Method (Int32, Int32)" Url="html/M_WhetStone_Fielding_Field_1_fromFraction_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="522dd018-426b-4d4f-83fd-e3cdd726c50e" Title="fromInt Method " Url="html/Overload_WhetStone_Fielding_Field_1_fromInt.htm">
+              <HelpTOCNode Title="fromInt Method (Int32)" Url="html/M_WhetStone_Fielding_Field_1_fromInt.htm" />
+              <HelpTOCNode Title="fromInt Method (UInt64)" Url="html/M_WhetStone_Fielding_Field_1_fromInt_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="Generate Method " Url="html/M_WhetStone_Fielding_Field_1_Generate.htm" />
+            <HelpTOCNode Id="00cf56e6-527f-46c9-8f38-ec972dfa8389" Title="GetHashCode Method " Url="html/Overload_WhetStone_Fielding_Field_1_GetHashCode.htm">
+              <HelpTOCNode Title="GetHashCode Method (T)" Url="html/M_WhetStone_Fielding_Field_1_GetHashCode.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="Invert Method " Url="html/M_WhetStone_Fielding_Field_1_Invert.htm" />
+            <HelpTOCNode Title="isNegative Method " Url="html/M_WhetStone_Fielding_Field_1_isNegative.htm" />
+            <HelpTOCNode Title="isPositive Method " Url="html/M_WhetStone_Fielding_Field_1_isPositive.htm" />
+            <HelpTOCNode Title="log Method " Url="html/M_WhetStone_Fielding_Field_1_log.htm" />
+            <HelpTOCNode Title="mod Method " Url="html/M_WhetStone_Fielding_Field_1_mod.htm" />
+            <HelpTOCNode Title="multiply Method " Url="html/M_WhetStone_Fielding_Field_1_multiply.htm" />
+            <HelpTOCNode Title="Negate Method " Url="html/M_WhetStone_Fielding_Field_1_Negate.htm" />
+            <HelpTOCNode Title="Parse Method " Url="html/M_WhetStone_Fielding_Field_1_Parse.htm" />
+            <HelpTOCNode Title="M:WhetStone.Fielding.Field`1.pow(`0,`0)" Url="" />
+            <HelpTOCNode Title="pow Method " Url="html/M_WhetStone_Fielding_Field_1_Pow.htm" />
+            <HelpTOCNode Title="subtract Method " Url="html/M_WhetStone_Fielding_Field_1_subtract.htm" />
+            <HelpTOCNode Title="toDouble Method " Url="html/M_WhetStone_Fielding_Field_1_toDouble.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="ae75c274-1173-4f7d-8909-c0e99690b7e9" Title="Fields Class" Url="html/T_WhetStone_Fielding_Fields.htm">
+          <HelpTOCNode Id="b50a3a51-a683-4fb3-a67e-f04bafcf3133" Title="Fields Methods" Url="html/Methods_T_WhetStone_Fielding_Fields.htm">
+            <HelpTOCNode Title="getField(T) Method " Url="html/M_WhetStone_Fielding_Fields_getField__1.htm" />
+            <HelpTOCNode Title="setField(T) Method " Url="html/M_WhetStone_Fielding_Fields_setField__1.htm" />
+            <HelpTOCNode Title="ToFieldWrapper(T) Method " Url="html/M_WhetStone_Fielding_Fields_ToFieldWrapper__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e06564c0-b4f9-4f92-bb43-fd5b82e96861" Title="FieldWrapper(T) Class" Url="html/T_WhetStone_Fielding_FieldWrapper_1.htm">
+          <HelpTOCNode Id="2803900f-f8a8-4b45-bea7-8d8ca822335b" Title="FieldWrapper(T) Constructor " Url="html/Overload_WhetStone_Fielding_FieldWrapper_1__ctor.htm">
+            <HelpTOCNode Title="FieldWrapper(T) Constructor (Double)" Url="html/M_WhetStone_Fielding_FieldWrapper_1__ctor.htm" />
+            <HelpTOCNode Title="FieldWrapper(T) Constructor (Int32)" Url="html/M_WhetStone_Fielding_FieldWrapper_1__ctor_1.htm" />
+            <HelpTOCNode Title="FieldWrapper(T) Constructor (UInt64)" Url="html/M_WhetStone_Fielding_FieldWrapper_1__ctor_2.htm" />
+            <HelpTOCNode Title="FieldWrapper(T) Constructor (T)" Url="html/M_WhetStone_Fielding_FieldWrapper_1__ctor_3.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="c2b56825-bee7-4d49-920d-02b5afa41213" Title="FieldWrapper(T) Properties" Url="html/Properties_T_WhetStone_Fielding_FieldWrapper_1.htm">
+            <HelpTOCNode Title="Field Property " Url="html/P_WhetStone_Fielding_FieldWrapper_1_Field.htm" />
+            <HelpTOCNode Title="IsNegative Property " Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsNegative.htm" />
+            <HelpTOCNode Title="isOne Property " Url="html/P_WhetStone_Fielding_FieldWrapper_1_isOne.htm" />
+            <HelpTOCNode Title="IsPositive Property " Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsPositive.htm" />
+            <HelpTOCNode Title="isZero Property " Url="html/P_WhetStone_Fielding_FieldWrapper_1_isZero.htm" />
+            <HelpTOCNode Title="val Property " Url="html/P_WhetStone_Fielding_FieldWrapper_1_val.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="66aa5507-1231-41fa-a07e-d04fbd40ddcb" Title="FieldWrapper(T) Methods" Url="html/Methods_T_WhetStone_Fielding_FieldWrapper_1.htm">
+            <HelpTOCNode Title="abs Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_abs.htm" />
+            <HelpTOCNode Id="07ec0fbb-fac7-48ee-8e41-4ea97a9e95e6" Title="CompareTo Method " Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_CompareTo.htm">
+              <HelpTOCNode Title="CompareTo Method (T)" Url="html/M_WhetStone_Fielding_FieldWrapper_1_CompareTo.htm" />
+              <HelpTOCNode Title="CompareTo Method (FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_CompareTo_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="Deconstruct Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_Deconstruct.htm" />
+            <HelpTOCNode Id="8e525dba-3681-43d3-8cde-19454a990366" Title="Equals Method " Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_Equals.htm">
+              <HelpTOCNode Title="Equals Method (Object)" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Equals.htm" />
+              <HelpTOCNode Title="Equals Method (T)" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Equals_1.htm" />
+              <HelpTOCNode Title="Equals Method (FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Equals_2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="GetHashCode Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_GetHashCode.htm" />
+            <HelpTOCNode Title="Invert Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_Invert.htm" />
+            <HelpTOCNode Title="log Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_log.htm" />
+            <HelpTOCNode Id="643c8eec-6f84-4573-9c1d-0fad507726b2" Title="pow Method " Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_pow.htm">
+              <HelpTOCNode Title="pow Method (Int32)" Url="html/M_WhetStone_Fielding_FieldWrapper_1_pow.htm" />
+              <HelpTOCNode Title="pow Method (FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_pow_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="ToString Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_ToString.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="1d9b1570-e5e9-42df-9e66-ce2d9638bc49" Title="FieldWrapper(T) Operators and Type Conversions" Url="html/Operators_T_WhetStone_Fielding_FieldWrapper_1.htm">
+            <HelpTOCNode Title="Addition Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Addition.htm" />
+            <HelpTOCNode Title="Division Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Division.htm" />
+            <HelpTOCNode Id="7ad550ff-01e6-4c54-9cfc-3566c24cafe4" Title="ExclusiveOr Operator " Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_op_ExclusiveOr.htm">
+              <HelpTOCNode Title="ExclusiveOr Operator (FieldWrapper(T), Int32)" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_ExclusiveOr.htm" />
+              <HelpTOCNode Title="ExclusiveOr Operator (FieldWrapper(T), FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_ExclusiveOr_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="8a721b0f-36e7-47c9-bcb3-c93b5e5cea4f" Title="Explicit Conversion Operators" Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_op_Explicit.htm">
+              <HelpTOCNode Title="Explicit Conversion (FieldWrapper(T) to Nullable(Double))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Explicit.htm" />
+              <HelpTOCNode Title="Explicit Conversion (FieldWrapper(T) to Double)" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Explicit_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="GreaterThan Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThan.htm" />
+            <HelpTOCNode Title="GreaterThanOrEqual Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThanOrEqual.htm" />
+            <HelpTOCNode Id="d0ff7236-6c56-426a-b98f-3ccc4f0a2b2c" Title="Implicit Conversion Operators" Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_op_Implicit.htm">
+              <HelpTOCNode Title="Implicit Conversion (Double to FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit.htm" />
+              <HelpTOCNode Title="Implicit Conversion (Int32 to FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_1.htm" />
+              <HelpTOCNode Title="Implicit Conversion (UInt64 to FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_2.htm" />
+              <HelpTOCNode Title="Implicit Conversion (T to FieldWrapper(T))" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_3.htm" />
+              <HelpTOCNode Title="Implicit Conversion (FieldWrapper(T) to T)" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_4.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="LessThan Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_LessThan.htm" />
+            <HelpTOCNode Title="LessThanOrEqual Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_LessThanOrEqual.htm" />
+            <HelpTOCNode Title="Modulus Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Modulus.htm" />
+            <HelpTOCNode Title="Multiply Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Multiply.htm" />
+            <HelpTOCNode Title="Subtraction Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Subtraction.htm" />
+            <HelpTOCNode Title="UnaryNegation Operator " Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_UnaryNegation.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Title="GenerationType Enumeration" Url="html/T_WhetStone_Fielding_GenerationType.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="aa6f7734-3862-4a82-9b97-57f20ea357ea" Title="WhetStone.Guard" Url="html/N_WhetStone_Guard.htm">
+        <HelpTOCNode Id="f47aaef8-1861-4df7-95ac-4e35bc76c1ef" Title="EventGuard(T) Class" Url="html/T_WhetStone_Guard_EventGuard_1.htm">
+          <HelpTOCNode Title="EventGuard(T) Constructor " Url="html/M_WhetStone_Guard_EventGuard_1__ctor.htm" />
+          <HelpTOCNode Id="898b82d8-7ee6-46db-8fb3-f86d188f38b5" Title="EventGuard(T) Properties" Url="html/Properties_T_WhetStone_Guard_EventGuard_1.htm">
+            <HelpTOCNode Title="EventValue Property " Url="html/P_WhetStone_Guard_EventGuard_1_EventValue.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="6e64a85e-2024-4b85-aa6e-cd3683d06d36" Title="EventGuard(T) Methods" Url="html/Methods_T_WhetStone_Guard_EventGuard_1.htm">
+            <HelpTOCNode Title="Clone Method " Url="html/M_WhetStone_Guard_EventGuard_1_Clone.htm" />
+            <HelpTOCNode Title="ToString Method " Url="html/M_WhetStone_Guard_EventGuard_1_ToString.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="72b817b7-89e3-425e-8658-adb483cf8bf1" Title="EventGuard(T) Events" Url="html/Events_T_WhetStone_Guard_EventGuard_1.htm">
+            <HelpTOCNode Title="accessed Event" Url="html/E_WhetStone_Guard_EventGuard_1_accessed.htm" />
+            <HelpTOCNode Title="changed Event" Url="html/E_WhetStone_Guard_EventGuard_1_changed.htm" />
+            <HelpTOCNode Title="drawn Event" Url="html/E_WhetStone_Guard_EventGuard_1_drawn.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="887cc91b-c3c4-4cd1-a04c-7d1c68be31da" Title="EventGuard(T).EventGuardAccessArgs Class" Url="html/T_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs.htm">
+          <HelpTOCNode Title="EventGuard(T).EventGuardAccessArgs Constructor " Url="html/M_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs__ctor.htm" />
+          <HelpTOCNode Id="8f2a1f7c-b1fb-405a-8d64-17a746de9e2e" Title="EventGuardAccessArgs Properties" Url="html/Properties_T_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs.htm">
+            <HelpTOCNode Title="AccesType Property " Url="html/P_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs_AccesType.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="EventGuardAccessArgs Methods" Url="html/Methods_T_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="EventGuard(T).EventGuardAccessArgs.AccessType Enumeration" Url="html/T_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs_AccessType.htm" />
+        <HelpTOCNode Id="dea3eb87-6379-4dd6-8b47-d195702f5386" Title="EventGuard(T).EventGuardSetArgs Class" Url="html/T_WhetStone_Guard_EventGuard_1_EventGuardSetArgs.htm">
+          <HelpTOCNode Title="EventGuard(T).EventGuardSetArgs Constructor " Url="html/M_WhetStone_Guard_EventGuard_1_EventGuardSetArgs__ctor.htm" />
+          <HelpTOCNode Id="9b0e73ea-4bc4-42c2-95ad-69c97d9a242f" Title="EventGuardSetArgs Properties" Url="html/Properties_T_WhetStone_Guard_EventGuard_1_EventGuardSetArgs.htm">
+            <HelpTOCNode Title="newVal Property " Url="html/P_WhetStone_Guard_EventGuard_1_EventGuardSetArgs_newVal.htm" />
+            <HelpTOCNode Title="oldVal Property " Url="html/P_WhetStone_Guard_EventGuard_1_EventGuardSetArgs_oldVal.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="EventGuardSetArgs Methods" Url="html/Methods_T_WhetStone_Guard_EventGuard_1_EventGuardSetArgs.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="EventGuard(T).GuardAccessedHandler Delegate" Url="html/T_WhetStone_Guard_EventGuard_1_GuardAccessedHandler.htm" />
+        <HelpTOCNode Title="EventGuard(T).GuardGetHandler Delegate" Url="html/T_WhetStone_Guard_EventGuard_1_GuardGetHandler.htm" />
+        <HelpTOCNode Title="EventGuard(T).GuardSetHandler Delegate" Url="html/T_WhetStone_Guard_EventGuard_1_GuardSetHandler.htm" />
+        <HelpTOCNode Id="ee561dc3-d6ad-422e-9aac-19c0eca3d029" Title="Guard Class" Url="html/T_WhetStone_Guard_Guard.htm">
+          <HelpTOCNode Id="8ca91f40-698c-47ef-9cf8-6e0f6ef45413" Title="Guard Methods" Url="html/Methods_T_WhetStone_Guard_Guard.htm">
+            <HelpTOCNode Title="CondGet(T) Method " Url="html/M_WhetStone_Guard_Guard_CondGet__1.htm" />
+            <HelpTOCNode Title="CondMutate(T) Method " Url="html/M_WhetStone_Guard_Guard_CondMutate__1.htm" />
+            <HelpTOCNode Title="CondSet(T) Method " Url="html/M_WhetStone_Guard_Guard_CondSet__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="48a8d5b1-bba2-4328-a817-13af854c6eea" Title="Guard(T) Class" Url="html/T_WhetStone_Guard_Guard_1.htm">
+          <HelpTOCNode Title="Guard(T) Constructor " Url="html/M_WhetStone_Guard_Guard_1__ctor.htm" />
+          <HelpTOCNode Id="46df1403-93a3-4d50-aaed-be3e7a18fede" Title="Guard(T) Properties" Url="html/Properties_T_WhetStone_Guard_Guard_1.htm">
+            <HelpTOCNode Title="value Property " Url="html/P_WhetStone_Guard_Guard_1_value.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="4dde3d9e-29f6-4b0c-9981-0d03e054af54" Title="Guard(T) Methods" Url="html/Methods_T_WhetStone_Guard_Guard_1.htm">
+            <HelpTOCNode Title="Clone Method " Url="html/M_WhetStone_Guard_Guard_1_Clone.htm" />
+            <HelpTOCNode Title="ToString Method " Url="html/M_WhetStone_Guard_Guard_1_ToString.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="6d5a4951-c983-42e3-8975-9531ff009c82" Title="Guard(T) Type Conversions" Url="html/Operators_T_WhetStone_Guard_Guard_1.htm">
+            <HelpTOCNode Title="Implicit Conversion (Guard(T) to T)" Url="html/M_WhetStone_Guard_Guard_1_op_Implicit.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="3f162fcf-8170-4851-bcff-990d883f24bd" Title="IGuard(T) Interface" Url="html/T_WhetStone_Guard_IGuard_1.htm">
+          <HelpTOCNode Id="1b9a06cd-c252-4ef1-ae9d-289e358f2641" Title="IGuard(T) Properties" Url="html/Properties_T_WhetStone_Guard_IGuard_1.htm">
+            <HelpTOCNode Title="value Property " Url="html/P_WhetStone_Guard_IGuard_1_value.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Title="IGuard(T) Methods" Url="html/Methods_T_WhetStone_Guard_IGuard_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="36310332-b52b-45d0-81ac-2d97c88d8a9f" Title="WhetStone.Looping" Url="html/N_WhetStone_Looping.htm">
+        <HelpTOCNode Id="01bab63b-b261-42e4-bfa9-512ece6a1234" Title="all Class" Url="html/T_WhetStone_Looping_all.htm">
+          <HelpTOCNode Id="39337d44-c65a-4f35-ad8c-07739c88a49d" Title="all Methods" Url="html/Methods_T_WhetStone_Looping_all.htm">
+            <HelpTOCNode Title="All Method " Url="html/M_WhetStone_Looping_all_All.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="2498631d-b419-45cd-81be-ff018b0b7ce1" Title="allEqual Class" Url="html/T_WhetStone_Looping_allEqual.htm">
+          <HelpTOCNode Id="ef6b87e0-5032-4874-aaf5-66c68e2eb7f6" Title="allEqual Methods" Url="html/Methods_T_WhetStone_Looping_allEqual.htm">
+            <HelpTOCNode Id="bc58a1d5-1218-41a1-9188-95ff7c341f12" Title="AllEqual Method " Url="html/Overload_WhetStone_Looping_allEqual_AllEqual.htm">
+              <HelpTOCNode Title="AllEqual(T) Method (IEnumerable(T), IEqualityComparer(T))" Url="html/M_WhetStone_Looping_allEqual_AllEqual__1.htm" />
+              <HelpTOCNode Title="AllEqual(T) Method (IEnumerable(T), T, IEqualityComparer(T))" Url="html/M_WhetStone_Looping_allEqual_AllEqual__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="77516f9c-90d6-4828-89c4-fa59c2399b0c" Title="anyAndAll Class" Url="html/T_WhetStone_Looping_anyAndAll.htm">
+          <HelpTOCNode Id="15b3f304-c052-45b8-b13a-6c59f2d7996e" Title="anyAndAll Methods" Url="html/Methods_T_WhetStone_Looping_anyAndAll.htm">
+            <HelpTOCNode Id="65512aeb-b2c4-4a67-91f5-3b6adc29b3eb" Title="AnyAndAll Method " Url="html/Overload_WhetStone_Looping_anyAndAll_AnyAndAll.htm">
+              <HelpTOCNode Title="AnyAndAll Method (IEnumerable(Boolean))" Url="html/M_WhetStone_Looping_anyAndAll_AnyAndAll.htm" />
+              <HelpTOCNode Title="AnyAndAll(T) Method (IEnumerable(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_anyAndAll_AnyAndAll__1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="70cd8947-dacf-473a-9c7b-0e190e1eab7c" Title="append Class" Url="html/T_WhetStone_Looping_append.htm">
+          <HelpTOCNode Id="65d6c09e-06dd-40d0-afc8-25e26dab0a76" Title="append Methods" Url="html/Methods_T_WhetStone_Looping_append.htm">
+            <HelpTOCNode Id="94b30f6e-5d6f-4d84-811f-2ace230c6840" Title="Append Method " Url="html/Overload_WhetStone_Looping_append_Append.htm">
+              <HelpTOCNode Title="Append(T) Method (T[], IEnumerable(T))" Url="html/M_WhetStone_Looping_append_Append__1.htm" />
+              <HelpTOCNode Title="Append(T) Method (T[], T[])" Url="html/M_WhetStone_Looping_append_Append__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="8d37d6eb-6d39-4912-a99f-235418f02b7b" Title="asCollection Class" Url="html/T_WhetStone_Looping_asCollection.htm">
+          <HelpTOCNode Id="dda39ccb-c5f0-43bc-9f0e-5d550c6c4a41" Title="asCollection Methods" Url="html/Methods_T_WhetStone_Looping_asCollection.htm">
+            <HelpTOCNode Title="AsCollection(T) Method " Url="html/M_WhetStone_Looping_asCollection_AsCollection__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="cc162cde-a981-4bcc-87d7-bb0363382915" Title="asList Class" Url="html/T_WhetStone_Looping_asList.htm">
+          <HelpTOCNode Id="f82ca13f-f10e-441b-8ed6-34b0468e52ad" Title="asList Methods" Url="html/Methods_T_WhetStone_Looping_asList.htm">
+            <HelpTOCNode Id="8651cdba-3265-4c4c-ad21-286cb516d4c0" Title="AsList Method " Url="html/Overload_WhetStone_Looping_asList_AsList.htm">
+              <HelpTOCNode Title="AsList Method (BitArray)" Url="html/M_WhetStone_Looping_asList_AsList.htm" />
+              <HelpTOCNode Title="AsList Method (BitVector32)" Url="html/M_WhetStone_Looping_asList_AsList_1.htm" />
+              <HelpTOCNode Title="AsList(T) Method (IEnumerable(T), Boolean, Boolean)" Url="html/M_WhetStone_Looping_asList_AsList__1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="37b530b0-2dff-48c0-a17f-c5be76f71245" Title="asyncDo Class" Url="html/T_WhetStone_Looping_asyncDo.htm">
+          <HelpTOCNode Id="52e82e55-cf0d-46c6-ad28-326789c2daab" Title="asyncDo Methods" Url="html/Methods_T_WhetStone_Looping_asyncDo.htm">
+            <HelpTOCNode Id="ff7d4566-e13b-436a-8953-048e8f87e255" Title="AsyncDo Method " Url="html/Overload_WhetStone_Looping_asyncDo_AsyncDo.htm">
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, Int64))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_3.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, ParallelLoopState))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_6.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, ParallelLoopState, Int64))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_9.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_12.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, Int64))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_15.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, ParallelLoopState))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_18.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, ParallelLoopState, Int64))" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_21.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_1.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_2.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, Int64), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_4.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, Int64), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_5.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, ParallelLoopState), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_7.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, ParallelLoopState), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_8.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, ParallelLoopState, Int64), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_10.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IEnumerable(T), Action(T, ParallelLoopState, Int64), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_11.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_13.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_14.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, Int64), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_16.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, Int64), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_17.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, ParallelLoopState), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_19.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, ParallelLoopState), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_20.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, ParallelLoopState, Int64), Int32)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_22.htm" />
+              <HelpTOCNode Title="AsyncDo(T) Method (IList(T), Action(T, ParallelLoopState, Int64), ParallelOptions)" Url="html/M_WhetStone_Looping_asyncDo_AsyncDo__1_23.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d6797aec-a8ac-4a51-9651-91835071faa2" Title="attach Class" Url="html/T_WhetStone_Looping_attach.htm">
+          <HelpTOCNode Id="67ebc21d-ab51-4c37-8258-708567d47c74" Title="attach Methods" Url="html/Methods_T_WhetStone_Looping_attach.htm">
+            <HelpTOCNode Id="05b12a08-b47e-426f-b914-7d369d59e075" Title="Attach Method " Url="html/Overload_WhetStone_Looping_attach_Attach.htm">
+              <HelpTOCNode Title="Attach(T1, T2, T3) Method (IEnumerable(Tuple(T1, T2)), Func(T1, T2, T3))" Url="html/M_WhetStone_Looping_attach_Attach__3.htm" />
+              <HelpTOCNode Title="Attach(T1, T2, T3, T4) Method (IEnumerable(Tuple(T1, T2, T3)), Func(T1, T2, T3, T4))" Url="html/M_WhetStone_Looping_attach_Attach__4.htm" />
+              <HelpTOCNode Title="Attach(T1, T2, T3, T4, T5) Method (IEnumerable(Tuple(T1, T2, T3, T4)), Func(T1, T2, T3, T4, T5))" Url="html/M_WhetStone_Looping_attach_Attach__5.htm" />
+              <HelpTOCNode Title="Attach(T1, T2) Method (IEnumerable(T1), Func(T1, T2))" Url="html/M_WhetStone_Looping_attach_Attach__2.htm" />
+              <HelpTOCNode Title="Attach(T1, T2, T3) Method (IList(Tuple(T1, T2)), Func(T1, T2, T3))" Url="html/M_WhetStone_Looping_attach_Attach__3_1.htm" />
+              <HelpTOCNode Title="Attach(T1, T2, T3, T4) Method (IList(Tuple(T1, T2, T3)), Func(T1, T2, T3, T4))" Url="html/M_WhetStone_Looping_attach_Attach__4_1.htm" />
+              <HelpTOCNode Title="Attach(T1, T2, T3, T4, T5) Method (IList(Tuple(T1, T2, T3, T4)), Func(T1, T2, T3, T4, T5))" Url="html/M_WhetStone_Looping_attach_Attach__5_1.htm" />
+              <HelpTOCNode Title="Attach(T1, T2) Method (IList(T1), Func(T1, T2))" Url="html/M_WhetStone_Looping_attach_Attach__2_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="da6c754e-20bc-4a79-aac0-30e17b9d0d6a" Title="attachAggregate Class" Url="html/T_WhetStone_Looping_attachAggregate.htm">
+          <HelpTOCNode Id="3cc21c20-560c-49cd-b366-8392af5c6145" Title="attachAggregate Methods" Url="html/Methods_T_WhetStone_Looping_attachAggregate.htm">
+            <HelpTOCNode Title="AttachAggregate(T, R) Method " Url="html/M_WhetStone_Looping_attachAggregate_AttachAggregate__2.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="787dfe76-7929-4dd4-a5aa-b5eaed09d6cd" Title="balanced Class" Url="html/T_WhetStone_Looping_balanced.htm">
+          <HelpTOCNode Id="4222bed8-8254-4d8f-95ed-9628e13cad55" Title="balanced Methods" Url="html/Methods_T_WhetStone_Looping_balanced.htm">
+            <HelpTOCNode Id="c11ddc32-c28f-4e5c-a251-5f198c220bd0" Title="Balanced Method " Url="html/Overload_WhetStone_Looping_balanced_Balanced.htm">
+              <HelpTOCNode Title="Balanced(T) Method (IEnumerable(T), IEnumerable(Tuple(T, T)), Nullable(Int32))" Url="html/M_WhetStone_Looping_balanced_Balanced__1.htm" />
+              <HelpTOCNode Title="Balanced(T) Method (IEnumerable(T), IEnumerable(T), IEnumerable(T), Nullable(Int32))" Url="html/M_WhetStone_Looping_balanced_Balanced__1_1.htm" />
+              <HelpTOCNode Title="Balanced(T) Method (IEnumerable(T), T, T, Nullable(Int32))" Url="html/M_WhetStone_Looping_balanced_Balanced__1_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="36a6ef76-891d-4975-bade-cf7913610a62" Title="binarySearch Class" Url="html/T_WhetStone_Looping_binarySearch.htm">
+          <HelpTOCNode Id="17c76045-7330-4a70-ad0d-5f9c6b30a555" Title="binarySearch Methods" Url="html/Methods_T_WhetStone_Looping_binarySearch.htm">
+            <HelpTOCNode Id="5b6bc343-0191-4e81-9e6a-4c1188426d48" Title="BinarySearch Method " Url="html/Overload_WhetStone_Looping_binarySearch_BinarySearch.htm">
+              <HelpTOCNode Title="BinarySearch(T) Method (IList(T), Func(T, Int32))" Url="html/M_WhetStone_Looping_binarySearch_BinarySearch__1_1.htm" />
+              <HelpTOCNode Title="BinarySearch(T) Method (IList(T), Func(T, Boolean), binarySearch.BooleanBinSearchStyle)" Url="html/M_WhetStone_Looping_binarySearch_BinarySearch__1.htm" />
+              <HelpTOCNode Title="BinarySearch(T) Method (IList(T), T, IComparer(T))" Url="html/M_WhetStone_Looping_binarySearch_BinarySearch__1_2.htm" />
+              <HelpTOCNode Title="BinarySearch Method (Func(Int32, Int32), Nullable(Int32), Nullable(Int32), Int32)" Url="html/M_WhetStone_Looping_binarySearch_BinarySearch_1.htm" />
+              <HelpTOCNode Title="BinarySearch Method (Func(Int32, Boolean), Nullable(Int32), Nullable(Int32), Int32, binarySearch.BooleanBinSearchStyle)" Url="html/M_WhetStone_Looping_binarySearch_BinarySearch.htm" />
+              <HelpTOCNode Title="BinarySearch(T, V) Method (Func(T, V), T, T, V, T)" Url="html/M_WhetStone_Looping_binarySearch_BinarySearch__2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="245da9f0-d859-4b82-b403-5d379de84f32" Title="BinarySearchStartBias Method " Url="html/Overload_WhetStone_Looping_binarySearch_BinarySearchStartBias.htm">
+              <HelpTOCNode Title="BinarySearchStartBias(T) Method (IList(T), Func(T, Int32))" Url="html/M_WhetStone_Looping_binarySearch_BinarySearchStartBias__1_1.htm" />
+              <HelpTOCNode Title="BinarySearchStartBias(T) Method (IList(T), Func(T, Boolean), binarySearch.BooleanBinSearchStyle)" Url="html/M_WhetStone_Looping_binarySearch_BinarySearchStartBias__1.htm" />
+              <HelpTOCNode Title="BinarySearchStartBias(T) Method (IList(T), T, IComparer(T))" Url="html/M_WhetStone_Looping_binarySearch_BinarySearchStartBias__1_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Title="binarySearch.BooleanBinSearchStyle Enumeration" Url="html/T_WhetStone_Looping_binarySearch_BooleanBinSearchStyle.htm" />
+        <HelpTOCNode Id="608ea5d6-bc9d-4339-9fb2-996e6dbfb596" Title="cache Class" Url="html/T_WhetStone_Looping_cache.htm">
+          <HelpTOCNode Id="01f006a8-642f-4310-8d00-ee93b942a28b" Title="cache Methods" Url="html/Methods_T_WhetStone_Looping_cache.htm">
+            <HelpTOCNode Id="ca165e77-9ff7-42e4-a5ce-9a43c18a04ea" Title="Cache Method " Url="html/Overload_WhetStone_Looping_cache_Cache.htm">
+              <HelpTOCNode Title="Cache(T) Method (IEnumerable(T), Nullable(Int32))" Url="html/M_WhetStone_Looping_cache_Cache__1.htm" />
+              <HelpTOCNode Title="Cache(T) Method (IList(T), Nullable(Int32))" Url="html/M_WhetStone_Looping_cache_Cache__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="4136ea60-970f-4f49-984b-abf32932795f" Title="cache.IListCache(T) Class" Url="html/T_WhetStone_Looping_cache_IListCache_1.htm">
+          <HelpTOCNode Title="cache.IListCache(T) Constructor " Url="html/M_WhetStone_Looping_cache_IListCache_1__ctor.htm" />
+          <HelpTOCNode Id="d0c86a57-979a-4d78-9654-eb3d45ee6a11" Title="IListCache(T) Properties" Url="html/Properties_T_WhetStone_Looping_cache_IListCache_1.htm">
+            <HelpTOCNode Title="Count Property " Url="html/P_WhetStone_Looping_cache_IListCache_1_Count.htm" />
+            <HelpTOCNode Title="IsReadOnly Property " Url="html/P_WhetStone_Looping_cache_IListCache_1_IsReadOnly.htm" />
+            <HelpTOCNode Title="Item Property " Url="html/P_WhetStone_Looping_cache_IListCache_1_Item.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="41be779c-5638-4f6d-8ace-badfe2a5ad5c" Title="IListCache(T) Methods" Url="html/Methods_T_WhetStone_Looping_cache_IListCache_1.htm">
+            <HelpTOCNode Title="Add Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Add.htm" />
+            <HelpTOCNode Title="Clear Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Clear.htm" />
+            <HelpTOCNode Title="Contains Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Contains.htm" />
+            <HelpTOCNode Title="CopyTo Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_CopyTo.htm" />
+            <HelpTOCNode Title="GetEnumerator Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_GetEnumerator.htm" />
+            <HelpTOCNode Title="GetEnumeratorRandAccess Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_GetEnumeratorRandAccess.htm" />
+            <HelpTOCNode Title="IndexOf Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_IndexOf.htm" />
+            <HelpTOCNode Title="Insert Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Insert.htm" />
+            <HelpTOCNode Title="Remove Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Remove.htm" />
+            <HelpTOCNode Title="RemoveAt Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_RemoveAt.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e9f46572-350d-42b1-8d0f-2484562227f1" Title="cacheCount Class" Url="html/T_WhetStone_Looping_cacheCount.htm">
+          <HelpTOCNode Id="870aedcb-b97d-4d96-992c-fd98c61b4740" Title="cacheCount Methods" Url="html/Methods_T_WhetStone_Looping_cacheCount.htm">
+            <HelpTOCNode Title="CacheCount(T) Method " Url="html/M_WhetStone_Looping_cacheCount_CacheCount__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d703f014-c301-49d9-97ab-6c9c0117d977" Title="chunk Class" Url="html/T_WhetStone_Looping_chunk.htm">
+          <HelpTOCNode Id="37627555-751b-4e4a-ab06-d4996440689c" Title="chunk Methods" Url="html/Methods_T_WhetStone_Looping_chunk.htm">
+            <HelpTOCNode Id="7153706b-139b-4877-afbe-070615349bec" Title="Chunk Method " Url="html/Overload_WhetStone_Looping_chunk_Chunk.htm">
+              <HelpTOCNode Title="Chunk(T) Method (IEnumerable(T), Int32)" Url="html/M_WhetStone_Looping_chunk_Chunk__1.htm" />
+              <HelpTOCNode Title="Chunk(T) Method (IList(T), Int32)" Url="html/M_WhetStone_Looping_chunk_Chunk__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="17162df8-52a4-4361-bcff-066ade5f193f" Title="columns Class" Url="html/T_WhetStone_Looping_columns.htm">
+          <HelpTOCNode Id="6e9ff7b0-7ad0-4aae-9319-93537e1f4b3c" Title="columns Methods" Url="html/Methods_T_WhetStone_Looping_columns.htm">
+            <HelpTOCNode Title="Columns(T) Method " Url="html/M_WhetStone_Looping_columns_Columns__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="f20ff768-5015-4c0f-9464-7798d58e6be9" Title="compareCount Class" Url="html/T_WhetStone_Looping_compareCount.htm">
+          <HelpTOCNode Id="4b06434e-6c02-4f39-a556-f1b196a04cb8" Title="compareCount Methods" Url="html/Methods_T_WhetStone_Looping_compareCount.htm">
+            <HelpTOCNode Title="CompareCount(T0, T1) Method " Url="html/M_WhetStone_Looping_compareCount_CompareCount__2.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5d65a31f-3537-4568-9fc2-3cefe9323d68" Title="concat Class" Url="html/T_WhetStone_Looping_concat.htm">
+          <HelpTOCNode Id="de09d34c-e2b9-4b06-8045-61a57389332b" Title="concat Methods" Url="html/Methods_T_WhetStone_Looping_concat.htm">
+            <HelpTOCNode Id="9c940d3c-feb7-4da3-acc7-69c0be907970" Title="Concat Method " Url="html/Overload_WhetStone_Looping_concat_Concat.htm">
+              <HelpTOCNode Title="Concat(T) Method (IEnumerable(IEnumerable(T)))" Url="html/M_WhetStone_Looping_concat_Concat__1.htm" />
+              <HelpTOCNode Title="Concat(T) Method (IList(IEnumerable(T)))" Url="html/M_WhetStone_Looping_concat_Concat__1_1.htm" />
+              <HelpTOCNode Title="Concat(T) Method (IList(IList(T)), Nullable(Boolean))" Url="html/M_WhetStone_Looping_concat_Concat__1_2.htm" />
+              <HelpTOCNode Title="Concat(T) Method (IList(T), IList(T))" Url="html/M_WhetStone_Looping_concat_Concat__1_3.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="beb0e7e8-10e4-4853-a59c-ccd08ebbbd6a" Title="coordinateBind Class" Url="html/T_WhetStone_Looping_coordinateBind.htm">
+          <HelpTOCNode Id="447991a2-6549-41ea-85b2-b159632251d2" Title="coordinateBind Methods" Url="html/Methods_T_WhetStone_Looping_coordinateBind.htm">
+            <HelpTOCNode Id="7def83f0-8af7-436e-80f3-709bfc5e264c" Title="CoordinateBind Method " Url="html/Overload_WhetStone_Looping_coordinateBind_CoordinateBind.htm">
+              <HelpTOCNode Title="CoordinateBind Method (Array)" Url="html/M_WhetStone_Looping_coordinateBind_CoordinateBind.htm" />
+              <HelpTOCNode Title="CoordinateBind(T) Method (Array)" Url="html/M_WhetStone_Looping_coordinateBind_CoordinateBind__1.htm" />
+              <HelpTOCNode Title="CoordinateBind(T) Method (IEnumerable(IEnumerable(IEnumerable(T))))" Url="html/M_WhetStone_Looping_coordinateBind_CoordinateBind__1_1.htm" />
+              <HelpTOCNode Title="CoordinateBind(T) Method (IEnumerable(IEnumerable(T)))" Url="html/M_WhetStone_Looping_coordinateBind_CoordinateBind__1_2.htm" />
+              <HelpTOCNode Title="CoordinateBind(T) Method (T[,])" Url="html/M_WhetStone_Looping_coordinateBind_CoordinateBind__1_3.htm" />
+              <HelpTOCNode Title="CoordinateBind(T) Method (T[,])" Url="html/M_WhetStone_Looping_coordinateBind_CoordinateBind__1_4.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d945a696-8f93-4c48-a064-6252c6e1bb66" Title="count Class" Url="html/T_WhetStone_Looping_count.htm">
+          <HelpTOCNode Id="11a9cf9b-2a32-45b1-8579-98149880a24a" Title="count Methods" Url="html/Methods_T_WhetStone_Looping_count.htm">
+            <HelpTOCNode Id="d4883dc3-f7fd-4943-99d8-078edeb30541" Title="Count Method " Url="html/Overload_WhetStone_Looping_count_Count.htm">
+              <HelpTOCNode Title="Count(T) Method (IEnumerable(T), IEnumerable(T), IEqualityComparer(IEnumerable(T)))" Url="html/M_WhetStone_Looping_count_Count__1.htm" />
+              <HelpTOCNode Title="Count(T) Method (IEnumerable(T), T, IEqualityComparer(T))" Url="html/M_WhetStone_Looping_count_Count__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="11b11e6c-1f81-401f-a346-dba2c93b7c08" Title="countAtleast Class" Url="html/T_WhetStone_Looping_countAtleast.htm">
+          <HelpTOCNode Id="a65bc2d6-da68-45a2-b6d5-3cc8a3a4b805" Title="countAtleast Methods" Url="html/Methods_T_WhetStone_Looping_countAtleast.htm">
+            <HelpTOCNode Title="CountAtLeast(T) Method " Url="html/M_WhetStone_Looping_countAtleast_CountAtLeast__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="0dc57a3e-c853-43c6-93fb-4286e437d6c7" Title="countBind Class" Url="html/T_WhetStone_Looping_countBind.htm">
+          <HelpTOCNode Id="510c675c-d3a3-47ac-9f01-d7466d4843aa" Title="countBind Methods" Url="html/Methods_T_WhetStone_Looping_countBind.htm">
+            <HelpTOCNode Id="79f6e261-ec51-476c-8d06-cef8224cdee1" Title="CountBind Method " Url="html/Overload_WhetStone_Looping_countBind_CountBind.htm">
+              <HelpTOCNode Title="CountBind(T) Method (ICollection(T), Int32)" Url="html/M_WhetStone_Looping_countBind_CountBind__1.htm" />
+              <HelpTOCNode Title="CountBind(T, C) Method (ICollection(T), C)" Url="html/M_WhetStone_Looping_countBind_CountBind__2.htm" />
+              <HelpTOCNode Title="CountBind(T) Method (IEnumerable(T), Int32)" Url="html/M_WhetStone_Looping_countBind_CountBind__1_1.htm" />
+              <HelpTOCNode Title="CountBind(T, C) Method (IEnumerable(T), C)" Url="html/M_WhetStone_Looping_countBind_CountBind__2_1.htm" />
+              <HelpTOCNode Title="CountBind(T) Method (IList(T), Int32)" Url="html/M_WhetStone_Looping_countBind_CountBind__1_2.htm" />
+              <HelpTOCNode Title="CountBind(T, C) Method (IList(T), C)" Url="html/M_WhetStone_Looping_countBind_CountBind__2_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="0a8f7d3a-9fdf-4e38-a36e-7d9ada5f3e75" Title="countUp Class" Url="html/T_WhetStone_Looping_countUp.htm">
+          <HelpTOCNode Id="09715849-67cc-4e7c-b2eb-1e31867fc37f" Title="countUp Methods" Url="html/Methods_T_WhetStone_Looping_countUp.htm">
+            <HelpTOCNode Id="352eb731-4cd4-462f-8901-771abc210167" Title="CountUp Method " Url="html/Overload_WhetStone_Looping_countUp_CountUp.htm">
+              <HelpTOCNode Title="CountUp(T) Method " Url="html/M_WhetStone_Looping_countUp_CountUp__1.htm" />
+              <HelpTOCNode Title="CountUp(T) Method (T)" Url="html/M_WhetStone_Looping_countUp_CountUp__1_1.htm" />
+              <HelpTOCNode Title="CountUp Method (Int32, Int32)" Url="html/M_WhetStone_Looping_countUp_CountUp.htm" />
+              <HelpTOCNode Title="CountUp(T) Method (T, T)" Url="html/M_WhetStone_Looping_countUp_CountUp__1_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="a92a8269-010a-4e93-a307-ca8e8a364767" Title="cover Class" Url="html/T_WhetStone_Looping_cover.htm">
+          <HelpTOCNode Id="e38e7901-eef9-45d4-bba1-a1885c666c1d" Title="cover Methods" Url="html/Methods_T_WhetStone_Looping_cover.htm">
+            <HelpTOCNode Id="1bc309a8-2293-4374-bc8a-2cc3cdd7604b" Title="Cover Method " Url="html/Overload_WhetStone_Looping_cover_Cover.htm">
+              <HelpTOCNode Title="Cover(T) Method (IEnumerable(T), T[])" Url="html/M_WhetStone_Looping_cover_Cover__1_3.htm" />
+              <HelpTOCNode Title="Cover(T) Method (IList(T), T[])" Url="html/M_WhetStone_Looping_cover_Cover__1_7.htm" />
+              <HelpTOCNode Title="Cover(T) Method (IEnumerable(T), IEnumerable(T), IEnumerable(Int32))" Url="html/M_WhetStone_Looping_cover_Cover__1.htm" />
+              <HelpTOCNode Title="Cover(T) Method (IEnumerable(T), IEnumerable(T), Int32)" Url="html/M_WhetStone_Looping_cover_Cover__1_1.htm" />
+              <HelpTOCNode Title="Cover(T) Method (IEnumerable(T), T, Int32)" Url="html/M_WhetStone_Looping_cover_Cover__1_2.htm" />
+              <HelpTOCNode Title="Cover(T) Method (IList(T), IList(T), IList(Int32))" Url="html/M_WhetStone_Looping_cover_Cover__1_4.htm" />
+              <HelpTOCNode Title="Cover(T) Method (IList(T), IList(T), Int32)" Url="html/M_WhetStone_Looping_cover_Cover__1_5.htm" />
+              <HelpTOCNode Title="Cover(T) Method (IList(T), T, Int32)" Url="html/M_WhetStone_Looping_cover_Cover__1_6.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="da208af3-98bb-4429-9d3e-afae38ce60ec" Title="cycle Class" Url="html/T_WhetStone_Looping_cycle.htm">
+          <HelpTOCNode Id="f5e7953c-6266-4e13-8bef-ddbbce2dfd63" Title="cycle Methods" Url="html/Methods_T_WhetStone_Looping_cycle.htm">
+            <HelpTOCNode Id="6967056a-5bad-468c-9e57-8d02ae8ba62a" Title="Cycle Method " Url="html/Overload_WhetStone_Looping_cycle_Cycle.htm">
+              <HelpTOCNode Title="Cycle(T) Method (IEnumerable(T), Nullable(Int32))" Url="html/M_WhetStone_Looping_cycle_Cycle__1.htm" />
+              <HelpTOCNode Title="Cycle(T) Method (IList(T), Nullable(Int32))" Url="html/M_WhetStone_Looping_cycle_Cycle__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="7d2f0378-10ab-4280-a8e1-d67ee8f1f88c" Title="detach Class" Url="html/T_WhetStone_Looping_detach.htm">
+          <HelpTOCNode Id="f96a7b96-58f1-4d8c-8644-f45fa5a73159" Title="detach Methods" Url="html/Methods_T_WhetStone_Looping_detach.htm">
+            <HelpTOCNode Id="75a2c60c-107e-4699-b58a-78b588a75687" Title="Detach Method " Url="html/Overload_WhetStone_Looping_detach_Detach.htm">
+              <HelpTOCNode Title="Detach(T1, T2) Method (IEnumerable(Tuple(T1, T2)), IGuard(T2))" Url="html/M_WhetStone_Looping_detach_Detach__2.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3) Method (IEnumerable(Tuple(T1, T2, T3)), IGuard(T3))" Url="html/M_WhetStone_Looping_detach_Detach__3_1.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3, T4) Method (IEnumerable(Tuple(T1, T2, T3, T4)), IGuard(T4))" Url="html/M_WhetStone_Looping_detach_Detach__4_2.htm" />
+              <HelpTOCNode Title="Detach(T1, T2) Method (IList(Tuple(T1, T2)), IGuard(T2))" Url="html/M_WhetStone_Looping_detach_Detach__2_1.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3) Method (IList(Tuple(T1, T2, T3)), IGuard(T3))" Url="html/M_WhetStone_Looping_detach_Detach__3_3.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3, T4) Method (IList(Tuple(T1, T2, T3, T4)), IGuard(T4))" Url="html/M_WhetStone_Looping_detach_Detach__4_5.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3) Method (IEnumerable(Tuple(T1, T2, T3)), IGuard(T2), IGuard(T3))" Url="html/M_WhetStone_Looping_detach_Detach__3.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3, T4) Method (IEnumerable(Tuple(T1, T2, T3, T4)), IGuard(T3), IGuard(T4))" Url="html/M_WhetStone_Looping_detach_Detach__4_1.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3) Method (IList(Tuple(T1, T2, T3)), IGuard(T2), IGuard(T3))" Url="html/M_WhetStone_Looping_detach_Detach__3_2.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3, T4) Method (IList(Tuple(T1, T2, T3, T4)), IGuard(T3), IGuard(T4))" Url="html/M_WhetStone_Looping_detach_Detach__4_4.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3, T4) Method (IEnumerable(Tuple(T1, T2, T3, T4)), IGuard(T2), IGuard(T3), IGuard(T4))" Url="html/M_WhetStone_Looping_detach_Detach__4.htm" />
+              <HelpTOCNode Title="Detach(T1, T2, T3, T4) Method (IList(Tuple(T1, T2, T3, T4)), IGuard(T2), IGuard(T3), IGuard(T4))" Url="html/M_WhetStone_Looping_detach_Detach__4_3.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="882b813a-4ed5-4475-8a26-96d79cb73651" Title="distinct Class" Url="html/T_WhetStone_Looping_distinct.htm">
+          <HelpTOCNode Id="f7891722-fe30-43a0-9086-d1cd05260aae" Title="distinct Methods" Url="html/Methods_T_WhetStone_Looping_distinct.htm">
+            <HelpTOCNode Title="DistinctSorted(T) Method " Url="html/M_WhetStone_Looping_distinct_DistinctSorted__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="ef18756f-34fb-4921-bc5f-e25e77148fd2" Title="do Class" Url="html/T_WhetStone_Looping_do.htm">
+          <HelpTOCNode Id="e3d3d218-9550-4590-b9af-7fc8b81fba5f" Title="do Methods" Url="html/Methods_T_WhetStone_Looping_do.htm">
+            <HelpTOCNode Title="Do(T) Method " Url="html/M_WhetStone_Looping_do_Do__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="80c8143c-fced-4ef1-b8ca-9797f6baae63" Title="duplicates Class" Url="html/T_WhetStone_Looping_duplicates.htm">
+          <HelpTOCNode Id="88d94240-8aa9-4470-acfb-a4c7ff543784" Title="duplicates Methods" Url="html/Methods_T_WhetStone_Looping_duplicates.htm">
+            <HelpTOCNode Title="Duplicates(T) Method " Url="html/M_WhetStone_Looping_duplicates_Duplicates__1.htm" />
+            <HelpTOCNode Title="DuplicatesSorted(T) Method " Url="html/M_WhetStone_Looping_duplicates_DuplicatesSorted__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5bb82a90-46ca-48cb-b313-bac55865ef9c" Title="editDistance Class" Url="html/T_WhetStone_Looping_editDistance.htm">
+          <HelpTOCNode Id="58ef2899-1cf4-4594-b30b-394112c82933" Title="editDistance Methods" Url="html/Methods_T_WhetStone_Looping_editDistance.htm">
+            <HelpTOCNode Title="EditDistance(T) Method " Url="html/M_WhetStone_Looping_editDistance_EditDistance__1.htm" />
+            <HelpTOCNode Title="EditSteps(T) Method " Url="html/M_WhetStone_Looping_editDistance_EditSteps__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c72a2bb4-ab6e-4256-8ebe-3709085c01b3" Title="editDistance.Delete(T) Class" Url="html/T_WhetStone_Looping_editDistance_Delete_1.htm">
+          <HelpTOCNode Title="editDistance.Delete(T) Constructor " Url="html/M_WhetStone_Looping_editDistance_Delete_1__ctor.htm" />
+          <HelpTOCNode Id="058139df-dd20-4392-bbdd-159002bc48c5" Title="Delete(T) Properties" Url="html/Properties_T_WhetStone_Looping_editDistance_Delete_1.htm">
+            <HelpTOCNode Title="deletedInd Property " Url="html/P_WhetStone_Looping_editDistance_Delete_1_deletedInd.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="9932d529-fb1d-4271-9db3-0ee4e4b68846" Title="Delete(T) Methods" Url="html/Methods_T_WhetStone_Looping_editDistance_Delete_1.htm">
+            <HelpTOCNode Id="e55e3514-b4cd-43b9-a37c-85972cf496fb" Title="apply Method " Url="html/Overload_WhetStone_Looping_editDistance_Delete_1_apply.htm">
+              <HelpTOCNode Title="apply Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_editDistance_Delete_1_apply.htm" />
+              <HelpTOCNode Title="apply Method (IList(T))" Url="html/M_WhetStone_Looping_editDistance_Delete_1_apply_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="ToString Method " Url="html/M_WhetStone_Looping_editDistance_Delete_1_ToString.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="f3ac2945-324b-4918-b055-a9de628dc17d" Title="editDistance.IEditStep(T) Interface" Url="html/T_WhetStone_Looping_editDistance_IEditStep_1.htm">
+          <HelpTOCNode Id="11df88a7-f68b-4b9f-aee2-a739b04c230d" Title="IEditStep(T) Methods" Url="html/Methods_T_WhetStone_Looping_editDistance_IEditStep_1.htm">
+            <HelpTOCNode Id="567349bb-8391-458d-aada-6f84232af3de" Title="apply Method " Url="html/Overload_WhetStone_Looping_editDistance_IEditStep_1_apply.htm">
+              <HelpTOCNode Title="apply Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_editDistance_IEditStep_1_apply.htm" />
+              <HelpTOCNode Title="apply Method (IList(T))" Url="html/M_WhetStone_Looping_editDistance_IEditStep_1_apply_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="3960a6d2-b067-43ae-8ea8-7d3d0547d03f" Title="editDistance.Insert(T) Class" Url="html/T_WhetStone_Looping_editDistance_Insert_1.htm">
+          <HelpTOCNode Title="editDistance.Insert(T) Constructor " Url="html/M_WhetStone_Looping_editDistance_Insert_1__ctor.htm" />
+          <HelpTOCNode Id="459ab0fc-5917-429c-b169-81390001fab4" Title="Insert(T) Properties" Url="html/Properties_T_WhetStone_Looping_editDistance_Insert_1.htm">
+            <HelpTOCNode Title="newInd Property " Url="html/P_WhetStone_Looping_editDistance_Insert_1_newInd.htm" />
+            <HelpTOCNode Title="newVal Property " Url="html/P_WhetStone_Looping_editDistance_Insert_1_newVal.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="b3316c82-ea65-498c-b210-aa426db57112" Title="Insert(T) Methods" Url="html/Methods_T_WhetStone_Looping_editDistance_Insert_1.htm">
+            <HelpTOCNode Id="3a4bfb21-cc3e-4ce6-a611-d58e36c59b97" Title="apply Method " Url="html/Overload_WhetStone_Looping_editDistance_Insert_1_apply.htm">
+              <HelpTOCNode Title="apply Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_editDistance_Insert_1_apply.htm" />
+              <HelpTOCNode Title="apply Method (IList(T))" Url="html/M_WhetStone_Looping_editDistance_Insert_1_apply_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="ToString Method " Url="html/M_WhetStone_Looping_editDistance_Insert_1_ToString.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="ae232166-6da8-4061-abe3-9be149d05100" Title="editDistance.Substitute(T) Class" Url="html/T_WhetStone_Looping_editDistance_Substitute_1.htm">
+          <HelpTOCNode Title="editDistance.Substitute(T) Constructor " Url="html/M_WhetStone_Looping_editDistance_Substitute_1__ctor.htm" />
+          <HelpTOCNode Id="f9fb225f-37d7-46ea-a50a-3127fd8c28ed" Title="Substitute(T) Properties" Url="html/Properties_T_WhetStone_Looping_editDistance_Substitute_1.htm">
+            <HelpTOCNode Title="ind Property " Url="html/P_WhetStone_Looping_editDistance_Substitute_1_ind.htm" />
+            <HelpTOCNode Title="newVal Property " Url="html/P_WhetStone_Looping_editDistance_Substitute_1_newVal.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="bef64090-7b54-421d-bf83-bba67417149e" Title="Substitute(T) Methods" Url="html/Methods_T_WhetStone_Looping_editDistance_Substitute_1.htm">
+            <HelpTOCNode Id="f440eda3-4396-47c3-af11-e4c75b6b7d71" Title="apply Method " Url="html/Overload_WhetStone_Looping_editDistance_Substitute_1_apply.htm">
+              <HelpTOCNode Title="apply Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_editDistance_Substitute_1_apply.htm" />
+              <HelpTOCNode Title="apply Method (IList(T))" Url="html/M_WhetStone_Looping_editDistance_Substitute_1_apply_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="ToString Method " Url="html/M_WhetStone_Looping_editDistance_Substitute_1_ToString.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="3538a008-a4fb-4245-b73e-83eb59772aac" Title="ensureValue Class" Url="html/T_WhetStone_Looping_ensureValue.htm">
+          <HelpTOCNode Id="54981e9b-fec7-4a93-bbd8-3b0e8c72df07" Title="ensureValue Methods" Url="html/Methods_T_WhetStone_Looping_ensureValue.htm">
+            <HelpTOCNode Title="EnsureValue(T, G) Method " Url="html/M_WhetStone_Looping_ensureValue_EnsureValue__2.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="647d3709-de96-461d-95ba-76a4caf9482f" Title="enum Class" Url="html/T_WhetStone_Looping_enum.htm">
+          <HelpTOCNode Id="2341964f-312c-4cfa-b952-242743f644cb" Title="enum Methods" Url="html/Methods_T_WhetStone_Looping_enum.htm">
+            <HelpTOCNode Title="Enum(T) Method " Url="html/M_WhetStone_Looping_enum_Enum__1.htm" />
+            <HelpTOCNode Id="485de247-66ec-47ff-a88b-a07013ecddc1" Title="EnumFlags Method " Url="html/Overload_WhetStone_Looping_enum_EnumFlags.htm">
+              <HelpTOCNode Title="EnumFlags(T) Method " Url="html/M_WhetStone_Looping_enum_EnumFlags__1.htm" />
+              <HelpTOCNode Title="EnumFlags(T) Method (T)" Url="html/M_WhetStone_Looping_enum_EnumFlags__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="84ff193d-a17c-47c3-b349-afc60c4c03c4" Title="enumerate Class" Url="html/T_WhetStone_Looping_enumerate.htm">
+          <HelpTOCNode Id="bae002a5-817e-4b03-863d-38c2b2ccb99f" Title="enumerate Methods" Url="html/Methods_T_WhetStone_Looping_enumerate.htm">
+            <HelpTOCNode Title="Enumerate(T) Method " Url="html/M_WhetStone_Looping_enumerate_Enumerate__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e1d8ec1a-5d31-4344-9894-1a3f2d5eb751" Title="enumerationHook Class" Url="html/T_WhetStone_Looping_enumerationHook.htm">
+          <HelpTOCNode Id="f284092b-2c2a-4648-89b3-22cf4b72dab2" Title="enumerationHook Methods" Url="html/Methods_T_WhetStone_Looping_enumerationHook.htm">
+            <HelpTOCNode Id="a9be3de3-b8b5-42d3-884a-666ea65f179d" Title="EnumerationHook Method " Url="html/Overload_WhetStone_Looping_enumerationHook_EnumerationHook.htm">
+              <HelpTOCNode Title="EnumerationHook(T) Method (IEnumerable(T), Func(T, Boolean), Func(T, Boolean))" Url="html/M_WhetStone_Looping_enumerationHook_EnumerationHook__1_1.htm" />
+              <HelpTOCNode Title="EnumerationHook(T) Method (IEnumerable(T), Action(T), Action(T), Action, Action)" Url="html/M_WhetStone_Looping_enumerationHook_EnumerationHook__1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="9e40babd-128c-4226-b585-7150937686cc" Title="fill Class" Url="html/T_WhetStone_Looping_fill.htm">
+          <HelpTOCNode Id="e5e767da-511c-4813-97be-a38b626b6730" Title="fill Methods" Url="html/Methods_T_WhetStone_Looping_fill.htm">
+            <HelpTOCNode Id="a97105be-cfd1-497a-bc8a-998ed2f1545a" Title="Fill Method " Url="html/Overload_WhetStone_Looping_fill_Fill.htm">
+              <HelpTOCNode Title="Fill(T) Method (IList(T), T[])" Url="html/M_WhetStone_Looping_fill_Fill__1_2.htm" />
+              <HelpTOCNode Title="Fill(T) Method (Int32, T[])" Url="html/M_WhetStone_Looping_fill_Fill__1_6.htm" />
+              <HelpTOCNode Title="Fill(T) Method (IList(T), Func(T), Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_fill_Fill__1.htm" />
+              <HelpTOCNode Title="Fill(T) Method (IList(T), Func(Int32, T), Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_fill_Fill__1_1.htm" />
+              <HelpTOCNode Title="Fill(T) Method (IList(T), T[], Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_fill_Fill__1_3.htm" />
+              <HelpTOCNode Title="Fill(T) Method (Int32, Func(T), Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_fill_Fill__1_4.htm" />
+              <HelpTOCNode Title="Fill(T) Method (Int32, Func(Int32, T), Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_fill_Fill__1_5.htm" />
+              <HelpTOCNode Title="Fill(T) Method (Int32, T[], Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_fill_Fill__1_7.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="3ec5d3eb-3a95-4a4e-94a8-5b7c24fde1f9" Title="first Class" Url="html/T_WhetStone_Looping_first.htm">
+          <HelpTOCNode Id="2516351e-ad48-4ba3-b3fc-a031bb5b3867" Title="first Methods" Url="html/Methods_T_WhetStone_Looping_first.htm">
+            <HelpTOCNode Id="19d925c7-1986-4112-b16d-8fa3259ae9e2" Title="FirstOrDefault Method " Url="html/Overload_WhetStone_Looping_first_FirstOrDefault.htm">
+              <HelpTOCNode Title="FirstOrDefault(T) Method (IEnumerable(T), T)" Url="html/M_WhetStone_Looping_first_FirstOrDefault__1_2.htm" />
+              <HelpTOCNode Title="FirstOrDefault(T) Method (IEnumerable(T), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_first_FirstOrDefault__1_1.htm" />
+              <HelpTOCNode Title="FirstOrDefault(T) Method (IEnumerable(T), Func(T, Boolean), Boolean, T)" Url="html/M_WhetStone_Looping_first_FirstOrDefault__1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="2a2e900f-d683-4957-a3cf-d5059734e17b" Title="generate Class" Url="html/T_WhetStone_Looping_generate.htm">
+          <HelpTOCNode Id="443c304f-273a-4ecb-8887-f40f45c683d2" Title="generate Methods" Url="html/Methods_T_WhetStone_Looping_generate.htm">
+            <HelpTOCNode Title="Generate(T) Method " Url="html/M_WhetStone_Looping_generate_Generate__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5ad5092e-a0be-4a69-88c7-78d652024031" Title="GenericTally(T) Class" Url="html/T_WhetStone_Looping_GenericTally_1.htm">
+          <HelpTOCNode Title="GenericTally(T) Constructor " Url="html/M_WhetStone_Looping_GenericTally_1__ctor.htm" />
+          <HelpTOCNode Id="35887bbf-96ec-4fd4-b078-dd8b060a3dda" Title="GenericTally(T) Methods" Url="html/Methods_T_WhetStone_Looping_GenericTally_1.htm">
+            <HelpTOCNode Title="Add Method " Url="html/M_WhetStone_Looping_GenericTally_1_Add.htm" />
+            <HelpTOCNode Title="Do Method " Url="html/M_WhetStone_Looping_GenericTally_1_Do.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="eba750c9-3822-4e8a-b2d0-9335aa8622e4" Title="getAverage Class" Url="html/T_WhetStone_Looping_getAverage.htm">
+          <HelpTOCNode Id="87ddc3fc-0a0d-458f-bdbf-8827710434e8" Title="getAverage Methods" Url="html/Methods_T_WhetStone_Looping_getAverage.htm">
+            <HelpTOCNode Title="GetAverage(T) Method " Url="html/M_WhetStone_Looping_getAverage_GetAverage__1.htm" />
+            <HelpTOCNode Title="GetGeometricAverage(T) Method " Url="html/M_WhetStone_Looping_getAverage_GetGeometricAverage__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="70c20278-7a6d-4a44-9d10-6ef1764fb7ea" Title="getBounds Class" Url="html/T_WhetStone_Looping_getBounds.htm">
+          <HelpTOCNode Id="1e08f4b2-c80d-4251-bae2-d8f6cd2d214d" Title="getBounds Methods" Url="html/Methods_T_WhetStone_Looping_getBounds.htm">
+            <HelpTOCNode Title="GetBounds Method " Url="html/M_WhetStone_Looping_getBounds_GetBounds.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="10c5e265-4ca5-49d1-8882-7861a1a5b37b" Title="getMax Class" Url="html/T_WhetStone_Looping_getMax.htm">
+          <HelpTOCNode Id="267a6007-f993-4f70-8b2f-39b6873c661d" Title="getMax Methods" Url="html/Methods_T_WhetStone_Looping_getMax.htm">
+            <HelpTOCNode Id="00e43ce8-00b8-4d03-abea-a99c313dbe9c" Title="GetMax Method " Url="html/Overload_WhetStone_Looping_getMax_GetMax.htm">
+              <HelpTOCNode Title="GetMax(T) Method (IEnumerable(T), IComparer(T))" Url="html/M_WhetStone_Looping_getMax_GetMax__1.htm" />
+              <HelpTOCNode Title="GetMax(T) Method (IEnumerable(T), Int32)" Url="html/M_WhetStone_Looping_getMax_GetMax__1_2.htm" />
+              <HelpTOCNode Title="GetMax(T) Method (IEnumerable(T), IComparer(T), Int32)" Url="html/M_WhetStone_Looping_getMax_GetMax__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e342f2d8-c173-4fb2-817d-c01b7e9d46dd" Title="getMin Class" Url="html/T_WhetStone_Looping_getMin.htm">
+          <HelpTOCNode Id="f26650f6-fb18-429c-934d-abbf48abf8d0" Title="getMin Methods" Url="html/Methods_T_WhetStone_Looping_getMin.htm">
+            <HelpTOCNode Id="e49f2100-164e-487b-a563-e8cd59773c98" Title="GetMin Method " Url="html/Overload_WhetStone_Looping_getMin_GetMin.htm">
+              <HelpTOCNode Title="GetMin(T) Method (IEnumerable(T), IComparer(T))" Url="html/M_WhetStone_Looping_getMin_GetMin__1.htm" />
+              <HelpTOCNode Title="GetMin(T) Method (IEnumerable(T), Int32)" Url="html/M_WhetStone_Looping_getMin_GetMin__1_2.htm" />
+              <HelpTOCNode Title="GetMin(T) Method (IEnumerable(T), IComparer(T), Int32)" Url="html/M_WhetStone_Looping_getMin_GetMin__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c8b1b2c2-3b52-4083-8bb7-54184c31b241" Title="getProduct Class" Url="html/T_WhetStone_Looping_getProduct.htm">
+          <HelpTOCNode Id="fa6b72d6-8d95-4416-832f-3eb6538e9a64" Title="getProduct Methods" Url="html/Methods_T_WhetStone_Looping_getProduct.htm">
+            <HelpTOCNode Title="GetProduct(T) Method " Url="html/M_WhetStone_Looping_getProduct_GetProduct__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e0ee2a86-7d74-420e-a920-1402cb9031d3" Title="getSize Class" Url="html/T_WhetStone_Looping_getSize.htm">
+          <HelpTOCNode Id="8c17b1f5-8a45-4fef-b52a-6928abfae280" Title="getSize Methods" Url="html/Methods_T_WhetStone_Looping_getSize.htm">
+            <HelpTOCNode Title="GetSize Method " Url="html/M_WhetStone_Looping_getSize_GetSize.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="6326ddbc-8308-45da-ac14-ef6a9385b43f" Title="getSum Class" Url="html/T_WhetStone_Looping_getSum.htm">
+          <HelpTOCNode Id="68820cde-653f-4295-9a4c-b2161e496ba7" Title="getSum Methods" Url="html/Methods_T_WhetStone_Looping_getSum.htm">
+            <HelpTOCNode Id="42218291-c3a3-4d6e-aa54-b93444be6fa6" Title="GetCompensatingSum Method " Url="html/Overload_WhetStone_Looping_getSum_GetCompensatingSum.htm">
+              <HelpTOCNode Title="GetCompensatingSum Method (IEnumerable(Double))" Url="html/M_WhetStone_Looping_getSum_GetCompensatingSum.htm" />
+              <HelpTOCNode Title="GetCompensatingSum(T) Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_getSum_GetCompensatingSum__1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="GetSum(T) Method " Url="html/M_WhetStone_Looping_getSum_GetSum__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="57c0edbb-71df-4514-96f9-3275a79ab4a2" Title="hookAggregate Class" Url="html/T_WhetStone_Looping_hookAggregate.htm">
+          <HelpTOCNode Id="7deffe55-7bb6-4488-9743-f98233d39fda" Title="hookAggregate Methods" Url="html/Methods_T_WhetStone_Looping_hookAggregate.htm">
+            <HelpTOCNode Title="HookAggregate(T, R) Method " Url="html/M_WhetStone_Looping_hookAggregate_HookAggregate__2.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d1d6a793-c524-4980-89ef-bcf2b3502ee4" Title="hookCount Class" Url="html/T_WhetStone_Looping_hookCount.htm">
+          <HelpTOCNode Id="7a344cdf-f3e6-4539-8160-8a7c3a87b84f" Title="hookCount Methods" Url="html/Methods_T_WhetStone_Looping_hookCount.htm">
+            <HelpTOCNode Title="HookCount(T) Method " Url="html/M_WhetStone_Looping_hookCount_HookCount__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="7eb12153-fcce-40cb-b87c-51e4c46d8e90" Title="hookFirst Class" Url="html/T_WhetStone_Looping_hookFirst.htm">
+          <HelpTOCNode Id="273160a2-8aeb-4ef4-ad97-c2ddbe1be9ef" Title="hookFirst Methods" Url="html/Methods_T_WhetStone_Looping_hookFirst.htm">
+            <HelpTOCNode Id="536ce25a-5cfe-44ca-a2e1-0a930f027280" Title="HookFirst Method " Url="html/Overload_WhetStone_Looping_hookFirst_HookFirst.htm">
+              <HelpTOCNode Title="HookFirst(T) Method (IEnumerable(T), IGuard(Tuple(T)))" Url="html/M_WhetStone_Looping_hookFirst_HookFirst__1.htm" />
+              <HelpTOCNode Title="HookFirst(T) Method (IEnumerable(T), IGuard(T))" Url="html/M_WhetStone_Looping_hookFirst_HookFirst__1_2.htm" />
+              <HelpTOCNode Title="HookFirst(T) Method (IEnumerable(T), IGuard(Tuple(T)), Func(T, Boolean))" Url="html/M_WhetStone_Looping_hookFirst_HookFirst__1_1.htm" />
+              <HelpTOCNode Title="HookFirst(T) Method (IEnumerable(T), IGuard(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_hookFirst_HookFirst__1_3.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="88a66ca0-2298-4857-b9f2-72380b5e77b1" Title="hookLast Class" Url="html/T_WhetStone_Looping_hookLast.htm">
+          <HelpTOCNode Id="693d4c6a-8868-46ca-9042-e7701c287701" Title="hookLast Methods" Url="html/Methods_T_WhetStone_Looping_hookLast.htm">
+            <HelpTOCNode Id="3cbecb66-7aef-4e80-ab38-50e2b34d611d" Title="HookLast Method " Url="html/Overload_WhetStone_Looping_hookLast_HookLast.htm">
+              <HelpTOCNode Title="HookLast(T) Method (IEnumerable(T), IGuard(Tuple(T)))" Url="html/M_WhetStone_Looping_hookLast_HookLast__1.htm" />
+              <HelpTOCNode Title="HookLast(T) Method (IEnumerable(T), IGuard(T))" Url="html/M_WhetStone_Looping_hookLast_HookLast__1_2.htm" />
+              <HelpTOCNode Title="HookLast(T) Method (IEnumerable(T), IGuard(Tuple(T)), Func(T, Boolean))" Url="html/M_WhetStone_Looping_hookLast_HookLast__1_1.htm" />
+              <HelpTOCNode Title="HookLast(T) Method (IEnumerable(T), IGuard(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_hookLast_HookLast__1_3.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="05db04a8-544a-4bda-931c-9468ba7fa724" Title="indices Class" Url="html/T_WhetStone_Looping_indices.htm">
+          <HelpTOCNode Id="81a45eea-82de-41ec-824c-4b1dff1d018d" Title="indices Methods" Url="html/Methods_T_WhetStone_Looping_indices.htm">
+            <HelpTOCNode Id="450463a2-9bc4-4e4d-8300-ceb66755357b" Title="Indices Method " Url="html/Overload_WhetStone_Looping_indices_Indices.htm">
+              <HelpTOCNode Title="Indices Method (Array)" Url="html/M_WhetStone_Looping_indices_Indices.htm" />
+              <HelpTOCNode Title="Indices(T) Method (IList(T))" Url="html/M_WhetStone_Looping_indices_Indices__1.htm" />
+              <HelpTOCNode Title="Indices(T) Method (T[])" Url="html/M_WhetStone_Looping_indices_Indices__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c81d4fc9-9bf3-4a04-80c5-6b6b87bf3c6f" Title="infinite Class" Url="html/T_WhetStone_Looping_infinite.htm">
+          <HelpTOCNode Id="dc2a360e-ea10-40b8-9f70-3aea39711b14" Title="infinite Methods" Url="html/Methods_T_WhetStone_Looping_infinite.htm">
+            <HelpTOCNode Title="Infinite Method " Url="html/M_WhetStone_Looping_infinite_Infinite.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e97084c1-f9a2-4b16-bc21-43170b74eb39" Title="InfiniteList(T) Class" Url="html/T_WhetStone_Looping_InfiniteList_1.htm">
+          <HelpTOCNode Title="InfiniteList(T) Constructor " Url="html/M_WhetStone_Looping_InfiniteList_1__ctor.htm" />
+          <HelpTOCNode Id="9c3010f1-1cc5-4d18-a029-03fd6879ecaf" Title="InfiniteList(T) Properties" Url="html/Properties_T_WhetStone_Looping_InfiniteList_1.htm">
+            <HelpTOCNode Title="Count Property " Url="html/P_WhetStone_Looping_InfiniteList_1_Count.htm" />
+            <HelpTOCNode Title="defaultValue Property " Url="html/P_WhetStone_Looping_InfiniteList_1_defaultValue.htm" />
+            <HelpTOCNode Title="IsReadOnly Property " Url="html/P_WhetStone_Looping_InfiniteList_1_IsReadOnly.htm" />
+            <HelpTOCNode Title="Item Property " Url="html/P_WhetStone_Looping_InfiniteList_1_Item.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="0f8fd296-6a52-4b84-b8e5-0da4fc1198e0" Title="InfiniteList(T) Methods" Url="html/Methods_T_WhetStone_Looping_InfiniteList_1.htm">
+            <HelpTOCNode Title="Add Method " Url="html/M_WhetStone_Looping_InfiniteList_1_Add.htm" />
+            <HelpTOCNode Title="Clear Method " Url="html/M_WhetStone_Looping_InfiniteList_1_Clear.htm" />
+            <HelpTOCNode Title="Contains Method " Url="html/M_WhetStone_Looping_InfiniteList_1_Contains.htm" />
+            <HelpTOCNode Title="CopyTo Method " Url="html/M_WhetStone_Looping_InfiniteList_1_CopyTo.htm" />
+            <HelpTOCNode Title="GetEnumerator Method " Url="html/M_WhetStone_Looping_InfiniteList_1_GetEnumerator.htm" />
+            <HelpTOCNode Title="IndexOf Method " Url="html/M_WhetStone_Looping_InfiniteList_1_IndexOf.htm" />
+            <HelpTOCNode Title="Insert Method " Url="html/M_WhetStone_Looping_InfiniteList_1_Insert.htm" />
+            <HelpTOCNode Title="Remove Method " Url="html/M_WhetStone_Looping_InfiniteList_1_Remove.htm" />
+            <HelpTOCNode Title="RemoveAt Method " Url="html/M_WhetStone_Looping_InfiniteList_1_RemoveAt.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="6317d63c-6d2c-4b9b-b1f3-301673b430b8" Title="isSorted Class" Url="html/T_WhetStone_Looping_isSorted.htm">
+          <HelpTOCNode Id="355333a2-220c-4695-a3c2-b8e5390d1e0e" Title="isSorted Methods" Url="html/Methods_T_WhetStone_Looping_isSorted.htm">
+            <HelpTOCNode Title="IsSorted(T) Method " Url="html/M_WhetStone_Looping_isSorted_IsSorted__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="0f71f42e-9b67-4b73-9a34-920ed014e3bd" Title="isSymmetrical Class" Url="html/T_WhetStone_Looping_isSymmetrical.htm">
+          <HelpTOCNode Id="39958a44-59d6-4ec8-80ff-b514f5b8640e" Title="isSymmetrical Methods" Url="html/Methods_T_WhetStone_Looping_isSymmetrical.htm">
+            <HelpTOCNode Title="IsSymmetrical(T) Method " Url="html/M_WhetStone_Looping_isSymmetrical_IsSymmetrical__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="931bb975-65f0-40b2-bcb6-7f5c86b5583b" Title="isWithinBounds Class" Url="html/T_WhetStone_Looping_isWithinBounds.htm">
+          <HelpTOCNode Id="82bd85d5-81c8-419a-9f32-5d9fb180aaef" Title="isWithinBounds Methods" Url="html/Methods_T_WhetStone_Looping_isWithinBounds.htm">
+            <HelpTOCNode Id="1c76160e-8d06-4b90-b00b-51ae3f937db2" Title="IsWithinBounds Method " Url="html/Overload_WhetStone_Looping_isWithinBounds_IsWithinBounds.htm">
+              <HelpTOCNode Title="IsWithinBounds Method (Array, Int32[])" Url="html/M_WhetStone_Looping_isWithinBounds_IsWithinBounds.htm" />
+              <HelpTOCNode Title="IsWithinBounds(T) Method (IList(T), Int32)" Url="html/M_WhetStone_Looping_isWithinBounds_IsWithinBounds__1.htm" />
+              <HelpTOCNode Title="IsWithinBounds(T) Method (T[], Int32)" Url="html/M_WhetStone_Looping_isWithinBounds_IsWithinBounds__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="a738f9a7-808b-4486-bef8-b82067379dd2" Title="ITalliator(T) Interface" Url="html/T_WhetStone_Looping_ITalliator_1.htm">
+          <HelpTOCNode Id="44a0ebbf-060b-4890-b6ae-76dbb2a4ab46" Title="ITalliator(T) Methods" Url="html/Methods_T_WhetStone_Looping_ITalliator_1.htm">
+            <HelpTOCNode Title="end Method " Url="html/M_WhetStone_Looping_ITalliator_1_end.htm" />
+            <HelpTOCNode Title="next Method " Url="html/M_WhetStone_Looping_ITalliator_1_next.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c27b71ec-c887-4ea3-8679-6223d01ce3b5" Title="ITallier(T) Interface" Url="html/T_WhetStone_Looping_ITallier_1.htm">
+          <HelpTOCNode Id="12c7e7e1-999c-4f47-add4-8dd6939b7164" Title="ITallier(T) Methods" Url="html/Methods_T_WhetStone_Looping_ITallier_1.htm">
+            <HelpTOCNode Title="GetTalliaror Method " Url="html/M_WhetStone_Looping_ITallier_1_GetTalliaror.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c9598902-26dc-454d-a12c-f0bb145665d2" Title="join Class" Url="html/T_WhetStone_Looping_join.htm">
+          <HelpTOCNode Id="c5ab6c71-1f1b-437e-a6bf-69c566e5e7c5" Title="join Methods" Url="html/Methods_T_WhetStone_Looping_join.htm">
+            <HelpTOCNode Id="27af3ea0-7f28-4db1-b8a5-5e3f295b3e3b" Title="Join Method " Url="html/Overload_WhetStone_Looping_join_Join.htm">
+              <HelpTOCNode Title="Join(T) Method (IEnumerable(IEnumerable(T)))" Url="html/M_WhetStone_Looping_join_Join__1.htm" />
+              <HelpTOCNode Title="Join(T) Method (IList(IList(T)))" Url="html/M_WhetStone_Looping_join_Join__1_3.htm" />
+              <HelpTOCNode Title="Join(T) Method (IList(T)[])" Url="html/M_WhetStone_Looping_join_Join__1_6.htm" />
+              <HelpTOCNode Title="Join(T) Method (IEnumerable(T), join.CartesianType)" Url="html/M_WhetStone_Looping_join_Join__1_2.htm" />
+              <HelpTOCNode Title="Join(T1, T2) Method (IEnumerable(T1), IEnumerable(T2))" Url="html/M_WhetStone_Looping_join_Join__2.htm" />
+              <HelpTOCNode Title="Join(T) Method (IList(T), join.CartesianType)" Url="html/M_WhetStone_Looping_join_Join__1_5.htm" />
+              <HelpTOCNode Title="Join(T1, T2) Method (IList(T1), IList(T2))" Url="html/M_WhetStone_Looping_join_Join__2_1.htm" />
+              <HelpTOCNode Title="Join(T) Method (IEnumerable(T), Int32, join.CartesianType)" Url="html/M_WhetStone_Looping_join_Join__1_1.htm" />
+              <HelpTOCNode Title="Join(T1, T2, T3) Method (IEnumerable(T1), IEnumerable(T2), IEnumerable(T3))" Url="html/M_WhetStone_Looping_join_Join__3.htm" />
+              <HelpTOCNode Title="Join(T) Method (IList(T), Int32, join.CartesianType)" Url="html/M_WhetStone_Looping_join_Join__1_4.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Title="join.CartesianType Enumeration" Url="html/T_WhetStone_Looping_join_CartesianType.htm" />
+        <HelpTOCNode Id="99b57b75-87e4-4c42-8be4-fadc93476f91" Title="last Class" Url="html/T_WhetStone_Looping_last.htm">
+          <HelpTOCNode Id="e228230a-8ad9-4195-9c70-aac82d9a46d7" Title="last Methods" Url="html/Methods_T_WhetStone_Looping_last.htm">
+            <HelpTOCNode Id="9344b1b6-2916-470b-b8b5-d72527fcd6c1" Title="LastOrDefault Method " Url="html/Overload_WhetStone_Looping_last_LastOrDefault.htm">
+              <HelpTOCNode Title="LastOrDefault(T) Method (IEnumerable(T), T)" Url="html/M_WhetStone_Looping_last_LastOrDefault__1_2.htm" />
+              <HelpTOCNode Title="LastOrDefault(T) Method (IEnumerable(T), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_last_LastOrDefault__1_1.htm" />
+              <HelpTOCNode Title="LastOrDefault(T) Method (IEnumerable(T), Func(T, Boolean), Boolean, T)" Url="html/M_WhetStone_Looping_last_LastOrDefault__1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c2068406-45a0-436d-b7d9-a02e8051d931" Title="LazyList(T) Class" Url="html/T_WhetStone_Looping_LazyList_1.htm">
+          <HelpTOCNode Id="0bb99066-9159-4328-9632-1a2d8ef33572" Title="LazyList(T) Constructor " Url="html/Overload_WhetStone_Looping_LazyList_1__ctor.htm">
+            <HelpTOCNode Title="LazyList(T) Constructor (Func(Int32, T))" Url="html/M_WhetStone_Looping_LazyList_1__ctor.htm" />
+            <HelpTOCNode Title="LazyList(T) Constructor (Func(Int32, LazyList(T), T))" Url="html/M_WhetStone_Looping_LazyList_1__ctor_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="0f557fe0-3f29-42d4-aa09-97801c7e17ff" Title="LazyList(T) Properties" Url="html/Properties_T_WhetStone_Looping_LazyList_1.htm">
+            <HelpTOCNode Title="Count Property " Url="html/P_WhetStone_Looping_LazyList_1_Count.htm" />
+            <HelpTOCNode Title="IsReadOnly Property " Url="html/P_WhetStone_Looping_LazyList_1_IsReadOnly.htm" />
+            <HelpTOCNode Title="Item Property " Url="html/P_WhetStone_Looping_LazyList_1_Item.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="17eea5ab-cbd9-4f4c-96fa-2dd430c426f0" Title="LazyList(T) Methods" Url="html/Methods_T_WhetStone_Looping_LazyList_1.htm">
+            <HelpTOCNode Title="Add Method " Url="html/M_WhetStone_Looping_LazyList_1_Add.htm" />
+            <HelpTOCNode Title="Clear Method " Url="html/M_WhetStone_Looping_LazyList_1_Clear.htm" />
+            <HelpTOCNode Title="Contains Method " Url="html/M_WhetStone_Looping_LazyList_1_Contains.htm" />
+            <HelpTOCNode Title="CopyTo Method " Url="html/M_WhetStone_Looping_LazyList_1_CopyTo.htm" />
+            <HelpTOCNode Title="GetEnumerator Method " Url="html/M_WhetStone_Looping_LazyList_1_GetEnumerator.htm" />
+            <HelpTOCNode Title="IndexOf Method " Url="html/M_WhetStone_Looping_LazyList_1_IndexOf.htm" />
+            <HelpTOCNode Title="Initialized Method " Url="html/M_WhetStone_Looping_LazyList_1_Initialized.htm" />
+            <HelpTOCNode Title="Insert Method " Url="html/M_WhetStone_Looping_LazyList_1_Insert.htm" />
+            <HelpTOCNode Title="Invalidate Method " Url="html/M_WhetStone_Looping_LazyList_1_Invalidate.htm" />
+            <HelpTOCNode Title="Remove Method " Url="html/M_WhetStone_Looping_LazyList_1_Remove.htm" />
+            <HelpTOCNode Title="RemoveAt Method " Url="html/M_WhetStone_Looping_LazyList_1_RemoveAt.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="119baf05-216b-4a8d-af6f-869b7c4d986b" Title="longestCommonPrefix Class" Url="html/T_WhetStone_Looping_longestCommonPrefix.htm">
+          <HelpTOCNode Id="a89a7c50-d4a4-4a1b-8e47-4d12394641bb" Title="longestCommonPrefix Methods" Url="html/Methods_T_WhetStone_Looping_longestCommonPrefix.htm">
+            <HelpTOCNode Id="ade70c0e-d17a-49ce-bca0-dacfeff2d2f9" Title="LongestCommonPrefix Method " Url="html/Overload_WhetStone_Looping_longestCommonPrefix_LongestCommonPrefix.htm">
+              <HelpTOCNode Title="LongestCommonPrefix(T) Method (IEnumerable(IEnumerable(T)))" Url="html/M_WhetStone_Looping_longestCommonPrefix_LongestCommonPrefix__1.htm" />
+              <HelpTOCNode Title="LongestCommonPrefix(T) Method (IEnumerable(IEnumerable(T)), IEqualityComparer(T))" Url="html/M_WhetStone_Looping_longestCommonPrefix_LongestCommonPrefix__1_1.htm" />
+              <HelpTOCNode Title="LongestCommonPrefix(T) Method (IEnumerable(T), IEnumerable(T))" Url="html/M_WhetStone_Looping_longestCommonPrefix_LongestCommonPrefix__1_2.htm" />
+              <HelpTOCNode Title="LongestCommonPrefix(T) Method (IEnumerable(T), IEnumerable(T), IEqualityComparer(T))" Url="html/M_WhetStone_Looping_longestCommonPrefix_LongestCommonPrefix__1_3.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e0732739-eda1-4a93-96bb-e3388107ac41" Title="merge Class" Url="html/T_WhetStone_Looping_merge.htm">
+          <HelpTOCNode Id="5953eeaa-532e-44e3-96e1-7569ae8bb6c5" Title="merge Methods" Url="html/Methods_T_WhetStone_Looping_merge.htm">
+            <HelpTOCNode Id="e4eb5785-170a-4157-a0be-7bf66c056f88" Title="Merge Method " Url="html/Overload_WhetStone_Looping_merge_Merge.htm">
+              <HelpTOCNode Title="Merge(T) Method (IEnumerable(IEnumerable(T)), IComparer(T))" Url="html/M_WhetStone_Looping_merge_Merge__1.htm" />
+              <HelpTOCNode Title="Merge(T) Method (IEnumerable(T), IEnumerable(T), IComparer(T))" Url="html/M_WhetStone_Looping_merge_Merge__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="191e7933-6fe3-40ca-8f57-312c21887191" Title="MultiCollection(T) Class" Url="html/T_WhetStone_Looping_MultiCollection_1.htm">
+          <HelpTOCNode Title="MultiCollection(T) Constructor " Url="html/M_WhetStone_Looping_MultiCollection_1__ctor.htm" />
+          <HelpTOCNode Id="7c2aacb2-d74c-46b4-9790-774dfb804989" Title="MultiCollection(T) Properties" Url="html/Properties_T_WhetStone_Looping_MultiCollection_1.htm">
+            <HelpTOCNode Title="Count Property " Url="html/P_WhetStone_Looping_MultiCollection_1_Count.htm" />
+            <HelpTOCNode Title="IsReadOnly Property " Url="html/P_WhetStone_Looping_MultiCollection_1_IsReadOnly.htm" />
+            <HelpTOCNode Title="Item Property " Url="html/P_WhetStone_Looping_MultiCollection_1_Item.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="7e6aa899-7eb8-419f-9bb1-ba5ed99e1519" Title="MultiCollection(T) Methods" Url="html/Methods_T_WhetStone_Looping_MultiCollection_1.htm">
+            <HelpTOCNode Id="6c0a029a-5356-4208-84d6-03a3363f9d89" Title="Add Method " Url="html/Overload_WhetStone_Looping_MultiCollection_1_Add.htm">
+              <HelpTOCNode Title="Add Method (T)" Url="html/M_WhetStone_Looping_MultiCollection_1_Add.htm" />
+              <HelpTOCNode Title="Add Method (T, Int32)" Url="html/M_WhetStone_Looping_MultiCollection_1_Add_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="Clear Method " Url="html/M_WhetStone_Looping_MultiCollection_1_Clear.htm" />
+            <HelpTOCNode Title="Contains Method " Url="html/M_WhetStone_Looping_MultiCollection_1_Contains.htm" />
+            <HelpTOCNode Title="CopyTo Method " Url="html/M_WhetStone_Looping_MultiCollection_1_CopyTo.htm" />
+            <HelpTOCNode Title="GetEnumerator Method " Url="html/M_WhetStone_Looping_MultiCollection_1_GetEnumerator.htm" />
+            <HelpTOCNode Id="accebcf7-2b95-4280-9691-d6aaa572b072" Title="Remove Method " Url="html/Overload_WhetStone_Looping_MultiCollection_1_Remove.htm">
+              <HelpTOCNode Title="Remove Method (T)" Url="html/M_WhetStone_Looping_MultiCollection_1_Remove.htm" />
+              <HelpTOCNode Title="Remove Method (T, Int32)" Url="html/M_WhetStone_Looping_MultiCollection_1_Remove_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5bc7f8cd-6d32-4495-b6f1-db149fdcbaaf" Title="occurances Class" Url="html/T_WhetStone_Looping_occurances.htm">
+          <HelpTOCNode Id="0eeb3e41-b4ee-4d0b-b162-94b18823b885" Title="occurances Methods" Url="html/Methods_T_WhetStone_Looping_occurances.htm">
+            <HelpTOCNode Title="ToOccurances(T) Method " Url="html/M_WhetStone_Looping_occurances_ToOccurances__1.htm" />
+            <HelpTOCNode Title="ToOccurancesSorted(T) Method " Url="html/M_WhetStone_Looping_occurances_ToOccurancesSorted__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="454020e0-47d3-4da6-b9e4-923cf3b8ff05" Title="orderBy Class" Url="html/T_WhetStone_Looping_orderBy.htm">
+          <HelpTOCNode Id="2a97a3ca-a1c0-422c-8609-bba87421a673" Title="orderBy Methods" Url="html/Methods_T_WhetStone_Looping_orderBy.htm">
+            <HelpTOCNode Title="OrderBy(T) Method " Url="html/M_WhetStone_Looping_orderBy_OrderBy__1.htm" />
+            <HelpTOCNode Title="OrderByDescending(T) Method " Url="html/M_WhetStone_Looping_orderBy_OrderByDescending__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="fa0a24ba-a42c-4cc1-a389-e03affaf0fed" Title="partialProducts Class" Url="html/T_WhetStone_Looping_partialProducts.htm">
+          <HelpTOCNode Id="f12952a1-cf17-4581-b5aa-944fe199b909" Title="partialProducts Methods" Url="html/Methods_T_WhetStone_Looping_partialProducts.htm">
+            <HelpTOCNode Title="PartialProducts(T) Method " Url="html/M_WhetStone_Looping_partialProducts_PartialProducts__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="9a52d652-90e5-4741-9db0-4f6ae539b105" Title="partialSums Class" Url="html/T_WhetStone_Looping_partialSums.htm">
+          <HelpTOCNode Id="bda581c6-3e62-4136-88f5-dfd459696e70" Title="partialSums Methods" Url="html/Methods_T_WhetStone_Looping_partialSums.htm">
+            <HelpTOCNode Id="f3629af0-4eea-4fad-b5cc-ff4463361e41" Title="PartialCompensatingSums Method " Url="html/Overload_WhetStone_Looping_partialSums_PartialCompensatingSums.htm">
+              <HelpTOCNode Title="PartialCompensatingSums Method (IEnumerable(Double))" Url="html/M_WhetStone_Looping_partialSums_PartialCompensatingSums.htm" />
+              <HelpTOCNode Title="PartialCompensatingSums(T) Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_partialSums_PartialCompensatingSums__1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="PartialSums(T) Method " Url="html/M_WhetStone_Looping_partialSums_PartialSums__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c47796ad-64ff-4b9e-b5c4-96c064412c8e" Title="positionBind Class" Url="html/T_WhetStone_Looping_positionBind.htm">
+          <HelpTOCNode Id="9bc12c53-765a-44ae-8581-be05c6609bd9" Title="positionBind Methods" Url="html/Methods_T_WhetStone_Looping_positionBind.htm">
+            <HelpTOCNode Id="71fd6f84-771f-4dcf-a387-b883938c8e93" Title="PositionBind Method " Url="html/Overload_WhetStone_Looping_positionBind_PositionBind.htm">
+              <HelpTOCNode Title="PositionBind(T) Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_positionBind_PositionBind__1.htm" />
+              <HelpTOCNode Title="PositionBind(T) Method (IList(T))" Url="html/M_WhetStone_Looping_positionBind_PositionBind__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Title="positionBind.Position Enumeration" Url="html/T_WhetStone_Looping_positionBind_Position.htm" />
+        <HelpTOCNode Id="3f3614d9-2cbd-430a-a811-2e6651f00aed" Title="range Class" Url="html/T_WhetStone_Looping_range.htm">
+          <HelpTOCNode Id="45c21856-058f-4e60-80ee-e79bb9df6bc9" Title="range Methods" Url="html/Methods_T_WhetStone_Looping_range.htm">
+            <HelpTOCNode Id="104f117d-60fc-45d2-b58e-75783b0977f4" Title="IRange Method " Url="html/Overload_WhetStone_Looping_range_IRange.htm">
+              <HelpTOCNode Title="IRange Method (Int32)" Url="html/M_WhetStone_Looping_range_IRange.htm" />
+              <HelpTOCNode Title="IRange(T) Method (T)" Url="html/M_WhetStone_Looping_range_IRange__1.htm" />
+              <HelpTOCNode Title="IRange(T) Method (T, T)" Url="html/M_WhetStone_Looping_range_IRange__1_1.htm" />
+              <HelpTOCNode Title="IRange Method (Int32, Int32, Int32)" Url="html/M_WhetStone_Looping_range_IRange_1.htm" />
+              <HelpTOCNode Title="IRange(T) Method (T, T, T)" Url="html/M_WhetStone_Looping_range_IRange__1_2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="70172d0d-3272-4d47-84ea-a2abd8a2502f" Title="Range Method " Url="html/Overload_WhetStone_Looping_range_Range.htm">
+              <HelpTOCNode Title="Range Method (Int32)" Url="html/M_WhetStone_Looping_range_Range.htm" />
+              <HelpTOCNode Title="Range(T) Method (T)" Url="html/M_WhetStone_Looping_range_Range__1.htm" />
+              <HelpTOCNode Title="Range(T) Method (T, T)" Url="html/M_WhetStone_Looping_range_Range__1_1.htm" />
+              <HelpTOCNode Title="Range Method (Int32, Int32, Int32)" Url="html/M_WhetStone_Looping_range_Range_1.htm" />
+              <HelpTOCNode Title="Range(T) Method (T, T, T)" Url="html/M_WhetStone_Looping_range_Range__1_2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="381b6e47-b638-43ae-bd8b-1edf637bd22c" Title="RIRange Method " Url="html/Overload_WhetStone_Looping_range_RIRange.htm">
+              <HelpTOCNode Title="RIRange(T) Method (T, T)" Url="html/M_WhetStone_Looping_range_RIRange__1.htm" />
+              <HelpTOCNode Title="RIRange Method (Int32, Int32, Int32)" Url="html/M_WhetStone_Looping_range_RIRange.htm" />
+              <HelpTOCNode Title="RIRange(T) Method (T, T, T)" Url="html/M_WhetStone_Looping_range_RIRange__1_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="9652f8d6-12b4-4122-bf0e-589a0462ffba" Title="RRange Method " Url="html/Overload_WhetStone_Looping_range_RRange.htm">
+              <HelpTOCNode Title="RRange(T) Method (T, T)" Url="html/M_WhetStone_Looping_range_RRange__1.htm" />
+              <HelpTOCNode Title="RRange Method (Int32, Int32, Int32)" Url="html/M_WhetStone_Looping_range_RRange.htm" />
+              <HelpTOCNode Title="RRange(T) Method (T, T, T)" Url="html/M_WhetStone_Looping_range_RRange__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="417b7aa6-851b-487e-ac11-31dc52272799" Title="recommendSize Class" Url="html/T_WhetStone_Looping_recommendSize.htm">
+          <HelpTOCNode Id="79f0797d-e48f-4922-ba88-6d793aeb9ab0" Title="recommendSize Methods" Url="html/Methods_T_WhetStone_Looping_recommendSize.htm">
+            <HelpTOCNode Title="RecommendCount(T) Method " Url="html/M_WhetStone_Looping_recommendSize_RecommendCount__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e8c3888c-77ef-4b1c-99b6-bb83a94eaffe" Title="ResizingArray(T) Class" Url="html/T_WhetStone_Looping_ResizingArray_1.htm">
+          <HelpTOCNode Title="ResizingArray(T) Constructor " Url="html/M_WhetStone_Looping_ResizingArray_1__ctor.htm" />
+          <HelpTOCNode Id="0ed67666-5394-46a0-b86c-534bec1d9297" Title="ResizingArray(T) Properties" Url="html/Properties_T_WhetStone_Looping_ResizingArray_1.htm">
+            <HelpTOCNode Title="arr Property " Url="html/P_WhetStone_Looping_ResizingArray_1_arr.htm" />
+            <HelpTOCNode Title="Count Property " Url="html/P_WhetStone_Looping_ResizingArray_1_Count.htm" />
+            <HelpTOCNode Title="IsReadOnly Property " Url="html/P_WhetStone_Looping_ResizingArray_1_IsReadOnly.htm" />
+            <HelpTOCNode Title="Item Property " Url="html/P_WhetStone_Looping_ResizingArray_1_Item.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="571821dd-ccb8-4764-beea-78d5ecca4a23" Title="ResizingArray(T) Methods" Url="html/Methods_T_WhetStone_Looping_ResizingArray_1.htm">
+            <HelpTOCNode Title="Add Method " Url="html/M_WhetStone_Looping_ResizingArray_1_Add.htm" />
+            <HelpTOCNode Title="AddRange Method " Url="html/M_WhetStone_Looping_ResizingArray_1_AddRange.htm" />
+            <HelpTOCNode Title="Clear Method " Url="html/M_WhetStone_Looping_ResizingArray_1_Clear.htm" />
+            <HelpTOCNode Title="Contains Method " Url="html/M_WhetStone_Looping_ResizingArray_1_Contains.htm" />
+            <HelpTOCNode Title="CopyTo Method " Url="html/M_WhetStone_Looping_ResizingArray_1_CopyTo.htm" />
+            <HelpTOCNode Title="GetEnumerator Method " Url="html/M_WhetStone_Looping_ResizingArray_1_GetEnumerator.htm" />
+            <HelpTOCNode Title="IndexOf Method " Url="html/M_WhetStone_Looping_ResizingArray_1_IndexOf.htm" />
+            <HelpTOCNode Title="Insert Method " Url="html/M_WhetStone_Looping_ResizingArray_1_Insert.htm" />
+            <HelpTOCNode Title="minimize Method " Url="html/M_WhetStone_Looping_ResizingArray_1_minimize.htm" />
+            <HelpTOCNode Title="Remove Method " Url="html/M_WhetStone_Looping_ResizingArray_1_Remove.htm" />
+            <HelpTOCNode Title="RemoveAt Method " Url="html/M_WhetStone_Looping_ResizingArray_1_RemoveAt.htm" />
+            <HelpTOCNode Title="ResizeTo Method " Url="html/M_WhetStone_Looping_ResizingArray_1_ResizeTo.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="9d9ed494-09fe-47a6-ae6e-09c38bb64f6d" Title="reverse Class" Url="html/T_WhetStone_Looping_reverse.htm">
+          <HelpTOCNode Id="a26145cd-affd-4fd7-a73b-5774f9e355d3" Title="reverse Methods" Url="html/Methods_T_WhetStone_Looping_reverse.htm">
+            <HelpTOCNode Title="Reverse(T) Method " Url="html/M_WhetStone_Looping_reverse_Reverse__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="1aaa2cf7-6b5d-4763-b4d4-07b07b787b9b" Title="rows Class" Url="html/T_WhetStone_Looping_rows.htm">
+          <HelpTOCNode Id="516a3508-3b39-4740-8197-5161e985adaa" Title="rows Methods" Url="html/Methods_T_WhetStone_Looping_rows.htm">
+            <HelpTOCNode Title="Rows(T) Method " Url="html/M_WhetStone_Looping_rows_Rows__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="9bf9fb85-6fd8-4ccd-8b0c-d94a115c3f4e" Title="select Class" Url="html/T_WhetStone_Looping_select.htm">
+          <HelpTOCNode Id="3a0773b5-cf4a-4da7-9dd8-1ab1c8166ba8" Title="select Methods" Url="html/Methods_T_WhetStone_Looping_select.htm">
+            <HelpTOCNode Id="f1d458a4-1f69-4029-854f-4b00ff03e418" Title="Select Method " Url="html/Overload_WhetStone_Looping_select_Select.htm">
+              <HelpTOCNode Title="Select(T, R) Method (ICollection(T), Func(T, R))" Url="html/M_WhetStone_Looping_select_Select__2.htm" />
+              <HelpTOCNode Title="Select(T, R0, R1) Method (IDictionary(T, R0), Func(R0, R1))" Url="html/M_WhetStone_Looping_select_Select__3.htm" />
+              <HelpTOCNode Title="Select(T, R) Method (IList(T), Func(T, R))" Url="html/M_WhetStone_Looping_select_Select__2_2.htm" />
+              <HelpTOCNode Title="Select(T, R) Method (ICollection(T), Func(T, R), Func(R, T))" Url="html/M_WhetStone_Looping_select_Select__2_1.htm" />
+              <HelpTOCNode Title="Select(T, R) Method (IList(T), Func(T, R), Func(R, T))" Url="html/M_WhetStone_Looping_select_Select__2_3.htm" />
+              <HelpTOCNode Title="Select(K0, K1, R0, R1) Method (IDictionary(K0, R0), Func(K0, K1), Func(K1, K0), Func(R0, R1), Func(R1, R0))" Url="html/M_WhetStone_Looping_select_Select__4.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="2da6d206-e3e4-41a5-828e-091861214cef" Title="selectMany Class" Url="html/T_WhetStone_Looping_selectMany.htm">
+          <HelpTOCNode Id="e01cb3dd-6b5c-49dd-97f5-4105ab549d31" Title="selectMany Methods" Url="html/Methods_T_WhetStone_Looping_selectMany.htm">
+            <HelpTOCNode Title="SelectMany(T, R) Method " Url="html/M_WhetStone_Looping_selectMany_SelectMany__2.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="660dab9d-4634-489b-a56d-a1dd78cc99da" Title="shuffle Class" Url="html/T_WhetStone_Looping_shuffle.htm">
+          <HelpTOCNode Id="dba3a4d3-9ce2-40b2-a79e-ec61a5eb100c" Title="shuffle Methods" Url="html/Methods_T_WhetStone_Looping_shuffle.htm">
+            <HelpTOCNode Title="Shuffle(T) Method " Url="html/M_WhetStone_Looping_shuffle_Shuffle__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="b6fae731-9e95-4c8d-a6f6-4d5d7e2c7169" Title="single Class" Url="html/T_WhetStone_Looping_single.htm">
+          <HelpTOCNode Id="f64413de-6ebb-4f48-bd3f-8d1d936c7ff8" Title="single Methods" Url="html/Methods_T_WhetStone_Looping_single.htm">
+            <HelpTOCNode Title="SingleOrDefault(T) Method " Url="html/M_WhetStone_Looping_single_SingleOrDefault__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e9b27d8a-74dc-4c3f-b6c1-10d1ff3cc3a0" Title="skip Class" Url="html/T_WhetStone_Looping_skip.htm">
+          <HelpTOCNode Id="1398ef5e-61df-4346-a13e-f2ef2a12234b" Title="skip Methods" Url="html/Methods_T_WhetStone_Looping_skip.htm">
+            <HelpTOCNode Title="Skip(T) Method " Url="html/M_WhetStone_Looping_skip_Skip__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="88ff0f15-64b5-4359-bdcc-2076c0aadc51" Title="skipSlice Class" Url="html/T_WhetStone_Looping_skipSlice.htm">
+          <HelpTOCNode Id="d1b13823-adaa-4af4-96ce-57ccb9c55757" Title="skipSlice Methods" Url="html/Methods_T_WhetStone_Looping_skipSlice.htm">
+            <HelpTOCNode Id="f6059f0b-fbb0-4566-bad0-fda2413fc8fc" Title="SkipSlice Method " Url="html/Overload_WhetStone_Looping_skipSlice_SkipSlice.htm">
+              <HelpTOCNode Title="SkipSlice(T) Method (IEnumerable(T), Int32, Int32)" Url="html/M_WhetStone_Looping_skipSlice_SkipSlice__1.htm" />
+              <HelpTOCNode Title="SkipSlice(T) Method (IList(T), Int32, Int32)" Url="html/M_WhetStone_Looping_skipSlice_SkipSlice__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d7d38604-4bd5-48d0-8d06-db81891f294a" Title="slice Class" Url="html/T_WhetStone_Looping_slice.htm">
+          <HelpTOCNode Id="48b47cdd-fcf8-4a90-8de6-bacf706e4292" Title="slice Methods" Url="html/Methods_T_WhetStone_Looping_slice.htm">
+            <HelpTOCNode Id="30d6cec9-9af2-4245-8786-5db55e8be6c0" Title="Slice Method " Url="html/Overload_WhetStone_Looping_slice_Slice.htm">
+              <HelpTOCNode Title="Slice(T) Method (IEnumerable(T), Int32, Nullable(Int32), Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_slice_Slice__1.htm" />
+              <HelpTOCNode Title="Slice(T) Method (IList(T), Int32, Nullable(Int32), Int32, Nullable(Int32))" Url="html/M_WhetStone_Looping_slice_Slice__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="71b7a99d-40e5-40d8-bffc-36dc33094090" Title="splice Class" Url="html/T_WhetStone_Looping_splice.htm">
+          <HelpTOCNode Id="4bc816e9-7444-4b22-80f3-f379295db1b7" Title="splice Methods" Url="html/Methods_T_WhetStone_Looping_splice.htm">
+            <HelpTOCNode Id="aa979ef1-954b-441f-843b-148ffcd2c434" Title="Splice Method " Url="html/Overload_WhetStone_Looping_splice_Splice.htm">
+              <HelpTOCNode Title="Splice(T) Method (IEnumerable(T), IEnumerable(T), Int32)" Url="html/M_WhetStone_Looping_splice_Splice__1.htm" />
+              <HelpTOCNode Title="Splice(T) Method (IEnumerable(T), T, Int32)" Url="html/M_WhetStone_Looping_splice_Splice__1_1.htm" />
+              <HelpTOCNode Title="Splice(T) Method (IList(T), IList(T), Int32)" Url="html/M_WhetStone_Looping_splice_Splice__1_2.htm" />
+              <HelpTOCNode Title="Splice(T) Method (IList(T), T, Int32)" Url="html/M_WhetStone_Looping_splice_Splice__1_3.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="b6b0b6a7-6148-4d3c-afe8-108ba9b2d675" Title="split Class" Url="html/T_WhetStone_Looping_split.htm">
+          <HelpTOCNode Id="c4ddb942-05e7-4bc6-9dd0-418c6e24e02a" Title="split Methods" Url="html/Methods_T_WhetStone_Looping_split.htm">
+            <HelpTOCNode Id="48388cae-32b3-4e95-b50c-fe67f5b2075a" Title="Split Method " Url="html/Overload_WhetStone_Looping_split_Split.htm">
+              <HelpTOCNode Title="Split(T) Method (IEnumerable(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_split_Split__1.htm" />
+              <HelpTOCNode Title="Split(T) Method (IEnumerable(T), Func(IList(T), T, Boolean))" Url="html/M_WhetStone_Looping_split_Split__1_1.htm" />
+              <HelpTOCNode Title="Split(T) Method (IList(T), Func(IList(T), T, Boolean))" Url="html/M_WhetStone_Looping_split_Split__1_3.htm" />
+              <HelpTOCNode Title="Split(T) Method (IEnumerable(T), T, IEqualityComparer(T))" Url="html/M_WhetStone_Looping_split_Split__1_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="f3afcbcf-4484-4b98-a357-4bd49bcb595a" Title="splitAt Class" Url="html/T_WhetStone_Looping_splitAt.htm">
+          <HelpTOCNode Id="9db43928-0c33-4eef-9147-682360c50ef6" Title="splitAt Methods" Url="html/Methods_T_WhetStone_Looping_splitAt.htm">
+            <HelpTOCNode Id="849d4ad3-7d09-4007-9e2c-6d7d3ccb02c7" Title="SplitAt Method " Url="html/Overload_WhetStone_Looping_splitAt_SplitAt.htm">
+              <HelpTOCNode Title="SplitAt(T) Method (IEnumerable(T), Int32[])" Url="html/M_WhetStone_Looping_splitAt_SplitAt__1.htm" />
+              <HelpTOCNode Title="SplitAt(T) Method (IList(T), IList(Int32))" Url="html/M_WhetStone_Looping_splitAt_SplitAt__1_1.htm" />
+              <HelpTOCNode Title="SplitAt(T) Method (IList(T), Int32[])" Url="html/M_WhetStone_Looping_splitAt_SplitAt__1_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="be5a2083-d3ec-4160-918f-975a1d3b4fc5" Title="startsWith Class" Url="html/T_WhetStone_Looping_startsWith.htm">
+          <HelpTOCNode Id="1857dae7-6000-4e26-810c-21a6adae7847" Title="startsWith Methods" Url="html/Methods_T_WhetStone_Looping_startsWith.htm">
+            <HelpTOCNode Title="StartsWith(T) Method " Url="html/M_WhetStone_Looping_startsWith_StartsWith__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="bf3b3255-672c-421f-872a-6ecc2f076f42" Title="step Class" Url="html/T_WhetStone_Looping_step.htm">
+          <HelpTOCNode Id="68582df4-288e-480f-b9a0-6d9015cb570e" Title="step Methods" Url="html/Methods_T_WhetStone_Looping_step.htm">
+            <HelpTOCNode Title="Step(T) Method " Url="html/M_WhetStone_Looping_step_Step__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="68f59771-a53b-45ab-a455-9552af63dcb3" Title="strConcat Class" Url="html/T_WhetStone_Looping_strConcat.htm">
+          <HelpTOCNode Id="949138c8-b53f-4c5e-9310-0241027ec2dd" Title="strConcat Methods" Url="html/Methods_T_WhetStone_Looping_strConcat.htm">
+            <HelpTOCNode Id="ccb09c8a-9121-4697-8ba5-c29ee6aa4575" Title="StrConcat Method " Url="html/Overload_WhetStone_Looping_strConcat_StrConcat.htm">
+              <HelpTOCNode Title="StrConcat(T) Method (IEnumerable(T), String)" Url="html/M_WhetStone_Looping_strConcat_StrConcat__1.htm" />
+              <HelpTOCNode Title="StrConcat(K, V) Method (IEnumerable(KeyValuePair(K, V)), String, String)" Url="html/M_WhetStone_Looping_strConcat_StrConcat__2.htm" />
+              <HelpTOCNode Title="StrConcat(T) Method (IEnumerable(T), String, String, IFormatProvider)" Url="html/M_WhetStone_Looping_strConcat_StrConcat__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="39b854a8-12d2-4aaf-8d41-6c5ad4d35656" Title="subsets Class" Url="html/T_WhetStone_Looping_subsets.htm">
+          <HelpTOCNode Id="58504585-a364-4083-98fe-7f75e4a1aa6e" Title="subsets Methods" Url="html/Methods_T_WhetStone_Looping_subsets.htm">
+            <HelpTOCNode Id="14f36168-4846-4822-a57b-430cd10ea041" Title="SubSets Method " Url="html/Overload_WhetStone_Looping_subsets_SubSets.htm">
+              <HelpTOCNode Title="SubSets(T) Method (IEnumerable(T))" Url="html/M_WhetStone_Looping_subsets_SubSets__1.htm" />
+              <HelpTOCNode Title="SubSets(T) Method (IList(T))" Url="html/M_WhetStone_Looping_subsets_SubSets__1_2.htm" />
+              <HelpTOCNode Title="SubSets(T) Method (IEnumerable(T), Int32)" Url="html/M_WhetStone_Looping_subsets_SubSets__1_1.htm" />
+              <HelpTOCNode Title="SubSets(T) Method (IList(T), Int32)" Url="html/M_WhetStone_Looping_subsets_SubSets__1_3.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5b904167-d490-4561-aa00-82f386304ba2" Title="take Class" Url="html/T_WhetStone_Looping_take.htm">
+          <HelpTOCNode Id="6e9c494f-1a7d-4981-b418-68c9b0820949" Title="take Methods" Url="html/Methods_T_WhetStone_Looping_take.htm">
+            <HelpTOCNode Title="Take(T) Method " Url="html/M_WhetStone_Looping_take_Take__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="c29da489-c17f-4c29-a8e3-d1de88eb84d5" Title="takeWhile Class" Url="html/T_WhetStone_Looping_takeWhile.htm">
+          <HelpTOCNode Id="f3d1061f-fb26-449f-b01e-bf674bd299a6" Title="takeWhile Methods" Url="html/Methods_T_WhetStone_Looping_takeWhile.htm">
+            <HelpTOCNode Title="TakeWhileInclusive(T) Method " Url="html/M_WhetStone_Looping_takeWhile_TakeWhileInclusive__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="fd248418-fc55-4524-be9c-7417dee919eb" Title="TallierExtensions Class" Url="html/T_WhetStone_Looping_TallierExtensions.htm">
+          <HelpTOCNode Id="7344d42a-61b8-4216-a85f-9af628e868c9" Title="TallierExtensions Methods" Url="html/Methods_T_WhetStone_Looping_TallierExtensions.htm">
+            <HelpTOCNode Title="Tally(T) Method " Url="html/M_WhetStone_Looping_TallierExtensions_Tally__1.htm" />
+            <HelpTOCNode Id="446bb183-2d29-46c8-8f13-1a3131176c25" Title="TallyAction Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyAction.htm">
+              <HelpTOCNode Title="TallyAction(T) Method (GenericTally(T), Action(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__1.htm" />
+              <HelpTOCNode Title="TallyAction(T) Method (GenericTally(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__1_1.htm" />
+              <HelpTOCNode Title="TallyAction(T) Method (TypeTally(T), Action(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__1_2.htm" />
+              <HelpTOCNode Title="TallyAction(T) Method (TypeTally(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__1_3.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0) Method (TypeTally(T, T0), Action(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__2.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0) Method (TypeTally(T, T0), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__2_1.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1) Method (TypeTally(T, T0, T1), Action(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__3.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1) Method (TypeTally(T, T0, T1), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__3_1.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Action(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__4.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__4_1.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Action(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__5.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__5_1.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Action(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__6.htm" />
+              <HelpTOCNode Title="TallyAction(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAction__6_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="9623c35f-758d-4e40-a057-39f87801ba00" Title="TallyAggregate Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyAggregate.htm">
+              <HelpTOCNode Title="TallyAggregate(T, R) Method (TypeTally(T), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregate__2_1.htm" />
+              <HelpTOCNode Title="TallyAggregate(T, T0, R) Method (TypeTally(T, T0), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregate__3.htm" />
+              <HelpTOCNode Title="TallyAggregate(T, T0, T1, R) Method (TypeTally(T, T0, T1), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregate__4.htm" />
+              <HelpTOCNode Title="TallyAggregate(T, T0, T1, T2, R) Method (TypeTally(T, T0, T1, T2), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregate__5.htm" />
+              <HelpTOCNode Title="TallyAggregate(T, T0, T1, T2, T3, R) Method (TypeTally(T, T0, T1, T2, T3), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregate__6.htm" />
+              <HelpTOCNode Title="TallyAggregate(T, T0, T1, T2, T3, T4, R) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregate__7.htm" />
+              <HelpTOCNode Title="TallyAggregate(T, R) Method (GenericTally(T), Func(T, R, R), R, Func(R, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregate__2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="2287e59b-1b83-40cc-b337-45619ce0b045" Title="TallyAggregatehidden Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyAggregatehidden.htm">
+              <HelpTOCNode Title="TallyAggregatehidden(T, R) Method (TypeTally(T), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregatehidden__2.htm" />
+              <HelpTOCNode Title="TallyAggregatehidden(T, T0, R) Method (TypeTally(T, T0), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregatehidden__3.htm" />
+              <HelpTOCNode Title="TallyAggregatehidden(T, T0, T1, R) Method (TypeTally(T, T0, T1), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregatehidden__4.htm" />
+              <HelpTOCNode Title="TallyAggregatehidden(T, T0, T1, T2, R) Method (TypeTally(T, T0, T1, T2), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregatehidden__5.htm" />
+              <HelpTOCNode Title="TallyAggregatehidden(T, T0, T1, T2, T3, R) Method (TypeTally(T, T0, T1, T2, T3), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregatehidden__6.htm" />
+              <HelpTOCNode Title="TallyAggregatehidden(T, T0, T1, T2, T3, T4, R) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, R, R), R, Func(R, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregatehidden__7.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="a439b81d-75b2-4de5-994e-b1716a4616c7" Title="TallyAggregateSelect Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyAggregateSelect.htm">
+              <HelpTOCNode Title="TallyAggregateSelect(T, A, R) Method (GenericTally(T), Func(T, A, A), A, Func(A, R), Func(A, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregateSelect__3.htm" />
+              <HelpTOCNode Title="TallyAggregateSelect(T, A, R) Method (TypeTally(T), Func(T, A, A), A, Func(A, R), Func(A, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregateSelect__3_1.htm" />
+              <HelpTOCNode Title="TallyAggregateSelect(T, T0, A, R) Method (TypeTally(T, T0), Func(T, A, A), A, Func(A, R), Func(A, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregateSelect__4.htm" />
+              <HelpTOCNode Title="TallyAggregateSelect(T, T0, T1, A, R) Method (TypeTally(T, T0, T1), Func(T, A, A), A, Func(A, R), Func(A, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregateSelect__5.htm" />
+              <HelpTOCNode Title="TallyAggregateSelect(T, T0, T1, T2, A, R) Method (TypeTally(T, T0, T1, T2), Func(T, A, A), A, Func(A, R), Func(A, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregateSelect__6.htm" />
+              <HelpTOCNode Title="TallyAggregateSelect(T, T0, T1, T2, T3, A, R) Method (TypeTally(T, T0, T1, T2, T3), Func(T, A, A), A, Func(A, R), Func(A, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregateSelect__7.htm" />
+              <HelpTOCNode Title="TallyAggregateSelect(T, T0, T1, T2, T3, T4, A, R) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, A, A), A, Func(A, R), Func(A, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAggregateSelect__8.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="f61a1c4f-e29d-4c24-9009-09fe63b6e34a" Title="TallyAll Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyAll.htm">
+              <HelpTOCNode Title="TallyAll(T) Method (GenericTally(T), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAll__1.htm" />
+              <HelpTOCNode Title="TallyAll(T) Method (TypeTally(T), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAll__1_1.htm" />
+              <HelpTOCNode Title="TallyAll(T, T0) Method (TypeTally(T, T0), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAll__2.htm" />
+              <HelpTOCNode Title="TallyAll(T, T0, T1) Method (TypeTally(T, T0, T1), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAll__3.htm" />
+              <HelpTOCNode Title="TallyAll(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAll__4.htm" />
+              <HelpTOCNode Title="TallyAll(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAll__5.htm" />
+              <HelpTOCNode Title="TallyAll(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAll__6.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="76286d82-4f5a-4609-b784-7b9aeb6181af" Title="TallyAny Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyAny.htm">
+              <HelpTOCNode Title="TallyAny(T) Method (GenericTally(T), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__1.htm" />
+              <HelpTOCNode Title="TallyAny(T) Method (TypeTally(T), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__1_2.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0) Method (TypeTally(T, T0), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__2.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1) Method (TypeTally(T, T0, T1), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__3.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__4.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__5.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__6.htm" />
+              <HelpTOCNode Title="TallyAny(T) Method (GenericTally(T), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__1_1.htm" />
+              <HelpTOCNode Title="TallyAny(T) Method (TypeTally(T), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__1_3.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0) Method (TypeTally(T, T0), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__2_1.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1) Method (TypeTally(T, T0, T1), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__3_1.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__4_1.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__5_1.htm" />
+              <HelpTOCNode Title="TallyAny(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, Boolean), Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyAny__6_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="76cfdd7c-eca1-4bc9-a03e-06efb44f748b" Title="TallyCount Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyCount.htm">
+              <HelpTOCNode Title="TallyCount(T) Method (GenericTally(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__1.htm" />
+              <HelpTOCNode Title="TallyCount(T) Method (TypeTally(T))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__1_2.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0) Method (TypeTally(T, T0))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__2.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1) Method (TypeTally(T, T0, T1))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__3.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__4.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__5.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__6.htm" />
+              <HelpTOCNode Title="TallyCount(T) Method (GenericTally(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__1_1.htm" />
+              <HelpTOCNode Title="TallyCount(T) Method (TypeTally(T), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__1_3.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0) Method (TypeTally(T, T0), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__2_1.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1) Method (TypeTally(T, T0, T1), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__3_1.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__4_1.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__5_1.htm" />
+              <HelpTOCNode Title="TallyCount(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, Boolean))" Url="html/M_WhetStone_Looping_TallierExtensions_TallyCount__6_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="50d7c18a-2c6e-4d26-9fd5-df40b0d5d38f" Title="TallyFirst Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyFirst.htm">
+              <HelpTOCNode Title="TallyFirst(T) Method (GenericTally(T), Func(T, Boolean), T, Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyFirst__1.htm" />
+              <HelpTOCNode Title="TallyFirst(T) Method (TypeTally(T), Func(T, Boolean), T, Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyFirst__1_1.htm" />
+              <HelpTOCNode Title="TallyFirst(T, T0) Method (TypeTally(T, T0), Func(T, Boolean), T, Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyFirst__2.htm" />
+              <HelpTOCNode Title="TallyFirst(T, T0, T1) Method (TypeTally(T, T0, T1), Func(T, Boolean), T, Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyFirst__3.htm" />
+              <HelpTOCNode Title="TallyFirst(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Func(T, Boolean), T, Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyFirst__4.htm" />
+              <HelpTOCNode Title="TallyFirst(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Func(T, Boolean), T, Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyFirst__5.htm" />
+              <HelpTOCNode Title="TallyFirst(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, Boolean), T, Boolean)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyFirst__6.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="af7e4834-e24c-4078-8bd0-86682db406e8" Title="TallyLast Method " Url="html/Overload_WhetStone_Looping_TallierExtensions_TallyLast.htm">
+              <HelpTOCNode Title="TallyLast(T) Method (GenericTally(T), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyLast__1.htm" />
+              <HelpTOCNode Title="TallyLast(T) Method (TypeTally(T), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyLast__1_1.htm" />
+              <HelpTOCNode Title="TallyLast(T, T0) Method (TypeTally(T, T0), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyLast__2.htm" />
+              <HelpTOCNode Title="TallyLast(T, T0, T1) Method (TypeTally(T, T0, T1), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyLast__3.htm" />
+              <HelpTOCNode Title="TallyLast(T, T0, T1, T2) Method (TypeTally(T, T0, T1, T2), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyLast__4.htm" />
+              <HelpTOCNode Title="TallyLast(T, T0, T1, T2, T3) Method (TypeTally(T, T0, T1, T2, T3), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyLast__5.htm" />
+              <HelpTOCNode Title="TallyLast(T, T0, T1, T2, T3, T4) Method (TypeTally(T, T0, T1, T2, T3, T4), Func(T, Boolean), T)" Url="html/M_WhetStone_Looping_TallierExtensions_TallyLast__6.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="1928f5f6-1328-4924-8fea-c5e575b6e99e" Title="toArray Class" Url="html/T_WhetStone_Looping_toArray.htm">
+          <HelpTOCNode Id="652d6313-2df7-4edd-a0ab-62a65050db7e" Title="toArray Methods" Url="html/Methods_T_WhetStone_Looping_toArray.htm">
+            <HelpTOCNode Title="ToArray(T) Method " Url="html/M_WhetStone_Looping_toArray_ToArray__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="935c54c2-5470-4f18-ae5c-e5969d329c16" Title="toDictionary Class" Url="html/T_WhetStone_Looping_toDictionary.htm">
+          <HelpTOCNode Id="3c135253-f801-44e4-b15a-3f08728e1772" Title="toDictionary Methods" Url="html/Methods_T_WhetStone_Looping_toDictionary.htm">
+            <HelpTOCNode Id="5b61df1a-436c-45ca-9ac1-4bfb28e769a2" Title="ToDictionary Method " Url="html/Overload_WhetStone_Looping_toDictionary_ToDictionary.htm">
+              <HelpTOCNode Title="ToDictionary(K, V) Method (IEnumerable(KeyValuePair(K, V)))" Url="html/M_WhetStone_Looping_toDictionary_ToDictionary__2.htm" />
+              <HelpTOCNode Title="ToDictionary(K, V) Method (IEnumerable(Tuple(K, V)))" Url="html/M_WhetStone_Looping_toDictionary_ToDictionary__2_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e0fc4b76-cace-4667-8bca-40dded5871bf" Title="toLookup Class" Url="html/T_WhetStone_Looping_toLookup.htm">
+          <HelpTOCNode Id="a81a742d-fad3-44c0-b8a5-5b477b8a7f63" Title="toLookup Methods" Url="html/Methods_T_WhetStone_Looping_toLookup.htm">
+            <HelpTOCNode Title="ToLookup(T) Method " Url="html/M_WhetStone_Looping_toLookup_ToLookup__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="11eda61f-3063-4600-872f-6e26d3e7c2c4" Title="toObjArray Class" Url="html/T_WhetStone_Looping_toObjArray.htm">
+          <HelpTOCNode Id="9ae709a7-07af-4f9c-9876-1f1f3b22a088" Title="toObjArray Methods" Url="html/Methods_T_WhetStone_Looping_toObjArray.htm">
+            <HelpTOCNode Title="ToObjArray Method " Url="html/M_WhetStone_Looping_toObjArray_ToObjArray.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="e165a2d8-c725-4049-aaf2-9107005c0770" Title="topologicalSort Class" Url="html/T_WhetStone_Looping_topologicalSort.htm">
+          <HelpTOCNode Id="2d368e69-286b-48c0-ba74-31220ce692c2" Title="topologicalSort Methods" Url="html/Methods_T_WhetStone_Looping_topologicalSort.htm">
+            <HelpTOCNode Title="TopologicalSort(T, TDependencies) Method " Url="html/M_WhetStone_Looping_topologicalSort_TopologicalSort__2.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d504373f-c826-425b-9f6e-931fb825b336" Title="trail Class" Url="html/T_WhetStone_Looping_trail.htm">
+          <HelpTOCNode Id="a0ed3122-15c2-44d1-b279-ab8dbc1ae044" Title="trail Methods" Url="html/Methods_T_WhetStone_Looping_trail.htm">
+            <HelpTOCNode Id="39138ffd-410b-4dde-897d-d7f2c4581823" Title="Trail Method " Url="html/Overload_WhetStone_Looping_trail_Trail.htm">
+              <HelpTOCNode Title="Trail(T) Method (IEnumerable(T), Int32, Boolean)" Url="html/M_WhetStone_Looping_trail_Trail__1.htm" />
+              <HelpTOCNode Title="Trail(T) Method (IList(T), Int32, Boolean)" Url="html/M_WhetStone_Looping_trail_Trail__1_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="148acb60-84f7-4a3b-9eda-9f65a5762269" Title="TypeTally(T) Class" Url="html/T_WhetStone_Looping_TypeTally_1.htm">
+          <HelpTOCNode Title="TypeTally(T) Constructor " Url="html/M_WhetStone_Looping_TypeTally_1__ctor.htm" />
+          <HelpTOCNode Id="c44813aa-bd30-4535-8cd4-892edc037e08" Title="TypeTally(T) Methods" Url="html/Methods_T_WhetStone_Looping_TypeTally_1.htm">
+            <HelpTOCNode Title="Add(T0) Method " Url="html/M_WhetStone_Looping_TypeTally_1_Add__1.htm" />
+            <HelpTOCNode Title="AddHidden Method " Url="html/M_WhetStone_Looping_TypeTally_1_AddHidden.htm" />
+            <HelpTOCNode Title="Do Method " Url="html/M_WhetStone_Looping_TypeTally_1_Do.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="1efa4db4-8e3e-410f-aaf9-909cb01341bd" Title="TypeTally(T, T0) Class" Url="html/T_WhetStone_Looping_TypeTally_2.htm">
+          <HelpTOCNode Id="aa4d1b10-f625-4fd0-964e-19ff2f8e174e" Title="TypeTally(T, T0) Methods" Url="html/Methods_T_WhetStone_Looping_TypeTally_2.htm">
+            <HelpTOCNode Title="Add(T1) Method " Url="html/M_WhetStone_Looping_TypeTally_2_Add__1.htm" />
+            <HelpTOCNode Title="AddHidden Method " Url="html/M_WhetStone_Looping_TypeTally_2_AddHidden.htm" />
+            <HelpTOCNode Title="Do Method " Url="html/M_WhetStone_Looping_TypeTally_2_Do.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="8859d637-20b3-4284-8525-5a16c14ab370" Title="TypeTally(T, T0, T1) Class" Url="html/T_WhetStone_Looping_TypeTally_3.htm">
+          <HelpTOCNode Id="e4332e3c-3e1f-4375-b589-fa2607e24dcc" Title="TypeTally(T, T0, T1) Methods" Url="html/Methods_T_WhetStone_Looping_TypeTally_3.htm">
+            <HelpTOCNode Title="Add(T2) Method " Url="html/M_WhetStone_Looping_TypeTally_3_Add__1.htm" />
+            <HelpTOCNode Title="AddHidden Method " Url="html/M_WhetStone_Looping_TypeTally_3_AddHidden.htm" />
+            <HelpTOCNode Title="Do Method " Url="html/M_WhetStone_Looping_TypeTally_3_Do.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="29251b29-23da-4f5e-b27a-2b33fe26c4a6" Title="TypeTally(T, T0, T1, T2) Class" Url="html/T_WhetStone_Looping_TypeTally_4.htm">
+          <HelpTOCNode Id="1682b144-b211-4cc3-bf72-df3babca1820" Title="TypeTally(T, T0, T1, T2) Methods" Url="html/Methods_T_WhetStone_Looping_TypeTally_4.htm">
+            <HelpTOCNode Title="Add(T3) Method " Url="html/M_WhetStone_Looping_TypeTally_4_Add__1.htm" />
+            <HelpTOCNode Title="AddHidden Method " Url="html/M_WhetStone_Looping_TypeTally_4_AddHidden.htm" />
+            <HelpTOCNode Title="Do Method " Url="html/M_WhetStone_Looping_TypeTally_4_Do.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="54f72f9a-8eff-4e25-a0eb-eb337f6ed561" Title="TypeTally(T, T0, T1, T2, T3) Class" Url="html/T_WhetStone_Looping_TypeTally_5.htm">
+          <HelpTOCNode Id="4d2a240d-dfb5-49bb-b60a-3ee997ea9dc9" Title="TypeTally(T, T0, T1, T2, T3) Methods" Url="html/Methods_T_WhetStone_Looping_TypeTally_5.htm">
+            <HelpTOCNode Title="Add(T4) Method " Url="html/M_WhetStone_Looping_TypeTally_5_Add__1.htm" />
+            <HelpTOCNode Title="AddHidden Method " Url="html/M_WhetStone_Looping_TypeTally_5_AddHidden.htm" />
+            <HelpTOCNode Title="Do Method " Url="html/M_WhetStone_Looping_TypeTally_5_Do.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5f3f0cad-697c-4fd4-836a-c0007a6d225c" Title="TypeTally(T, T0, T1, T2, T3, T4) Class" Url="html/T_WhetStone_Looping_TypeTally_6.htm">
+          <HelpTOCNode Id="f88c0baf-54ab-44ef-ba67-5898d0c0f958" Title="TypeTally(T, T0, T1, T2, T3, T4) Methods" Url="html/Methods_T_WhetStone_Looping_TypeTally_6.htm">
+            <HelpTOCNode Title="Add Method " Url="html/M_WhetStone_Looping_TypeTally_6_Add.htm" />
+            <HelpTOCNode Title="AddHidden Method " Url="html/M_WhetStone_Looping_TypeTally_6_AddHidden.htm" />
+            <HelpTOCNode Title="Do Method " Url="html/M_WhetStone_Looping_TypeTally_6_Do.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="ab0e3650-6082-4714-86b2-0b38fc2175fd" Title="unZip Class" Url="html/T_WhetStone_Looping_unZip.htm">
+          <HelpTOCNode Id="15069f22-976f-4af6-8a5d-d972c185a117" Title="unZip Methods" Url="html/Methods_T_WhetStone_Looping_unZip.htm">
+            <HelpTOCNode Id="dee2056d-4e16-4d71-9c06-4396a33a6e85" Title="UnZip Method " Url="html/Overload_WhetStone_Looping_unZip_UnZip.htm">
+              <HelpTOCNode Title="UnZip(T1, T2) Method (IEnumerable(Tuple(T1, T2)))" Url="html/M_WhetStone_Looping_unZip_UnZip__2.htm" />
+              <HelpTOCNode Title="UnZip(T1, T2, T3) Method (IEnumerable(Tuple(T1, T2, T3)))" Url="html/M_WhetStone_Looping_unZip_UnZip__3.htm" />
+              <HelpTOCNode Title="UnZip(T1, T2, T3, T4) Method (IEnumerable(Tuple(T1, T2, T3, T4)))" Url="html/M_WhetStone_Looping_unZip_UnZip__4.htm" />
+              <HelpTOCNode Title="UnZip(T1, T2, T3, T4, T5) Method (IEnumerable(Tuple(T1, T2, T3, T4, T5)))" Url="html/M_WhetStone_Looping_unZip_UnZip__5.htm" />
+              <HelpTOCNode Title="UnZip(T1, T2) Method (IList(Tuple(T1, T2)))" Url="html/M_WhetStone_Looping_unZip_UnZip__2_1.htm" />
+              <HelpTOCNode Title="UnZip(T1, T2, T3) Method (IList(Tuple(T1, T2, T3)))" Url="html/M_WhetStone_Looping_unZip_UnZip__3_1.htm" />
+              <HelpTOCNode Title="UnZip(T1, T2, T3, T4) Method (IList(Tuple(T1, T2, T3, T4)))" Url="html/M_WhetStone_Looping_unZip_UnZip__4_1.htm" />
+              <HelpTOCNode Title="UnZip(T1, T2, T3, T4, T5) Method (IList(Tuple(T1, T2, T3, T4, T5)))" Url="html/M_WhetStone_Looping_unZip_UnZip__5_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5fbcc404-616c-4158-89ef-d4edd96fd1ea" Title="yieldAggregate Class" Url="html/T_WhetStone_Looping_yieldAggregate.htm">
+          <HelpTOCNode Id="d62e9653-89d9-4b79-b8d6-79154046e774" Title="yieldAggregate Methods" Url="html/Methods_T_WhetStone_Looping_yieldAggregate.htm">
+            <HelpTOCNode Id="f72f0945-4887-4b8e-b31e-2c862578eb41" Title="YieldAggregate Method " Url="html/Overload_WhetStone_Looping_yieldAggregate_YieldAggregate.htm">
+              <HelpTOCNode Title="YieldAggregate(T) Method (Func(T, T), T)" Url="html/M_WhetStone_Looping_yieldAggregate_YieldAggregate__1.htm" />
+              <HelpTOCNode Title="YieldAggregate(T, R) Method (IEnumerable(T), Func(T, R, R), R)" Url="html/M_WhetStone_Looping_yieldAggregate_YieldAggregate__2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="347e1e1f-748f-4364-9d50-327ef9526a04" Title="zip Class" Url="html/T_WhetStone_Looping_zip.htm">
+          <HelpTOCNode Id="bfac959a-4a5c-4e17-b014-32d2afa802a9" Title="zip Methods" Url="html/Methods_T_WhetStone_Looping_zip.htm">
+            <HelpTOCNode Id="4da45e9f-62ca-4f5b-81b1-a92f80fd4859" Title="Zip Method " Url="html/Overload_WhetStone_Looping_zip_Zip.htm">
+              <HelpTOCNode Title="Zip(T) Method (IEnumerable(IEnumerable(T)))" Url="html/M_WhetStone_Looping_zip_Zip__1.htm" />
+              <HelpTOCNode Title="Zip Method (IEnumerable(IEnumerable))" Url="html/M_WhetStone_Looping_zip_Zip.htm" />
+              <HelpTOCNode Title="Zip(T) Method (IList(IList(T)))" Url="html/M_WhetStone_Looping_zip_Zip__1_1.htm" />
+              <HelpTOCNode Title="Zip Method (IList(IList))" Url="html/M_WhetStone_Looping_zip_Zip_1.htm" />
+              <HelpTOCNode Title="Zip(T1, T2) Method (IEnumerable(T1), IEnumerable(T2))" Url="html/M_WhetStone_Looping_zip_Zip__2.htm" />
+              <HelpTOCNode Title="Zip(T1, T2) Method (IList(T1), IList(T2))" Url="html/M_WhetStone_Looping_zip_Zip__2_1.htm" />
+              <HelpTOCNode Title="Zip(T1, T2, T3) Method (IEnumerable(T1), IEnumerable(T2), IEnumerable(T3))" Url="html/M_WhetStone_Looping_zip_Zip__3.htm" />
+              <HelpTOCNode Title="Zip(T1, T2, T3) Method (IList(T1), IList(T2), IList(T3))" Url="html/M_WhetStone_Looping_zip_Zip__3_1.htm" />
+              <HelpTOCNode Title="Zip(T1, T2, T3, T4) Method (IEnumerable(T1), IEnumerable(T2), IEnumerable(T3), IEnumerable(T4))" Url="html/M_WhetStone_Looping_zip_Zip__4.htm" />
+              <HelpTOCNode Title="Zip(T1, T2, T3, T4) Method (IList(T1), IList(T2), IList(T3), IList(T4))" Url="html/M_WhetStone_Looping_zip_Zip__4_1.htm" />
+              <HelpTOCNode Title="Zip(T1, T2, T3, T4, T5) Method (IEnumerable(T1), IEnumerable(T2), IEnumerable(T3), IEnumerable(T4), IEnumerable(T5))" Url="html/M_WhetStone_Looping_zip_Zip__5.htm" />
+              <HelpTOCNode Title="Zip(T1, T2, T3, T4, T5) Method (IList(T1), IList(T2), IList(T3), IList(T4), IList(T5))" Url="html/M_WhetStone_Looping_zip_Zip__5_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="b7ae52ab-4188-4448-81e9-8d0708df7e99" Title="zipUnBound Class" Url="html/T_WhetStone_Looping_zipUnBound.htm">
+          <HelpTOCNode Id="1740da94-b9dd-45ca-b9a0-439b53f99c5d" Title="zipUnBound Methods" Url="html/Methods_T_WhetStone_Looping_zipUnBound.htm">
+            <HelpTOCNode Id="c80b94bb-1f47-4cb8-9b01-d912cb9506a3" Title="ZipUnBound Method " Url="html/Overload_WhetStone_Looping_zipUnBound_ZipUnBound.htm">
+              <HelpTOCNode Title="ZipUnBound Method (IEnumerable(IEnumerable(Object)))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound.htm" />
+              <HelpTOCNode Title="ZipUnBound Method (IEnumerable(IList(Object)))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound_1.htm" />
+              <HelpTOCNode Title="ZipUnBound(T) Method (IEnumerable(IEnumerable(T)), T)" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound__1.htm" />
+              <HelpTOCNode Title="ZipUnBound(T) Method (IEnumerable(IList(T)), T)" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound__1_1.htm" />
+              <HelpTOCNode Title="ZipUnBound(T1, T2) Method (IEnumerable(T1), IEnumerable(T2), T1, T2)" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound__2.htm" />
+              <HelpTOCNode Title="ZipUnBound(T1, T2) Method (IList(T1), IList(T2), T1, T2)" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound__2_1.htm" />
+              <HelpTOCNode Title="ZipUnBound(T1, T2, T3) Method (IEnumerable(T1), IEnumerable(T2), IEnumerable(T3), T1, T2, T3)" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound__3.htm" />
+              <HelpTOCNode Title="ZipUnBound(T1, T2, T3) Method (IList(T1), IList(T2), IList(T3), T1, T2, T3)" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBound__3_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="d7930801-f3e0-46f8-aed8-474dad24f25a" Title="ZipUnBoundNullable Method " Url="html/Overload_WhetStone_Looping_zipUnBound_ZipUnBoundNullable.htm">
+              <HelpTOCNode Title="ZipUnBoundNullable(T) Method (IEnumerable(IEnumerable(T)))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundNullable__1.htm" />
+              <HelpTOCNode Title="ZipUnBoundNullable(T) Method (IEnumerable(IList(T)))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundNullable__1_1.htm" />
+              <HelpTOCNode Title="ZipUnBoundNullable(T1, T2) Method (IEnumerable(T1), IEnumerable(T2))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundNullable__2.htm" />
+              <HelpTOCNode Title="ZipUnBoundNullable(T1, T2) Method (IList(T1), IList(T2))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundNullable__2_1.htm" />
+              <HelpTOCNode Title="ZipUnBoundNullable(T1, T2, T3) Method (IEnumerable(T1), IEnumerable(T2), IEnumerable(T3))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundNullable__3.htm" />
+              <HelpTOCNode Title="ZipUnBoundNullable(T1, T2, T3) Method (IList(T1), IList(T2), IList(T3))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundNullable__3_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="14ad4e3a-2f93-4b93-baca-70db54519a54" Title="ZipUnBoundTuple Method " Url="html/Overload_WhetStone_Looping_zipUnBound_ZipUnBoundTuple.htm">
+              <HelpTOCNode Title="ZipUnBoundTuple(T) Method (IEnumerable(IEnumerable(T)))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundTuple__1.htm" />
+              <HelpTOCNode Title="ZipUnBoundTuple(T) Method (IEnumerable(IList(T)))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundTuple__1_1.htm" />
+              <HelpTOCNode Title="ZipUnBoundTuple(T1, T2) Method (IEnumerable(T1), IEnumerable(T2))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundTuple__2.htm" />
+              <HelpTOCNode Title="ZipUnBoundTuple(T1, T2) Method (IList(T1), IList(T2))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundTuple__2_1.htm" />
+              <HelpTOCNode Title="ZipUnBoundTuple(T1, T2, T3) Method (IEnumerable(T1), IEnumerable(T2), IEnumerable(T3))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundTuple__3.htm" />
+              <HelpTOCNode Title="ZipUnBoundTuple(T1, T2, T3) Method (IList(T1), IList(T2), IList(T3))" Url="html/M_WhetStone_Looping_zipUnBound_ZipUnBoundTuple__3_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="aa42690d-c9f4-48db-9376-4e295832b5c6" Title="WhetStone.Path" Url="html/N_WhetStone_Path.htm">
+        <HelpTOCNode Id="3129e7a1-62d7-455d-ab46-335803f73eaa" Title="absolutePathToRelative Class" Url="html/T_WhetStone_Path_absolutePathToRelative.htm">
+          <HelpTOCNode Id="d0ed2b77-9667-49fb-9ae9-3b0b3cf0c11a" Title="absolutePathToRelative Methods" Url="html/Methods_T_WhetStone_Path_absolutePathToRelative.htm">
+            <HelpTOCNode Title="AbsolutePathToRelative Method " Url="html/M_WhetStone_Path_absolutePathToRelative_AbsolutePathToRelative.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="e92d5548-ec03-4eb8-8855-ebfd2e85b277" Title="WhetStone.Processes" Url="html/N_WhetStone_Processes.htm">
+        <HelpTOCNode Id="28f27e95-b6b5-4a0c-8ee4-9c53c15dec13" Title="timeout Class" Url="html/T_WhetStone_Processes_timeout.htm">
+          <HelpTOCNode Id="70f732c0-7530-42f0-b84a-47354e20c94f" Title="timeout Methods" Url="html/Methods_T_WhetStone_Processes_timeout.htm">
+            <HelpTOCNode Id="a198aae8-7d2f-43b2-a0a7-c99e7625f74d" Title="TimeOut Method " Url="html/Overload_WhetStone_Processes_timeout_TimeOut.htm">
+              <HelpTOCNode Title="TimeOut Method (Action, TimeSpan)" Url="html/M_WhetStone_Processes_timeout_TimeOut.htm" />
+              <HelpTOCNode Title="TimeOut(T) Method (Func(T), TimeSpan, T)" Url="html/M_WhetStone_Processes_timeout_TimeOut__1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="c3f39df9-f5c9-4f8d-b362-2e248d89a3b1" Title="WhetStone.Random" Url="html/N_WhetStone_Random.htm">
+        <HelpTOCNode Id="61825b1d-27b0-4aee-abce-a32a49adb91e" Title="ByteEnumeratorGenerator Class" Url="html/T_WhetStone_Random_ByteEnumeratorGenerator.htm">
+          <HelpTOCNode Title="ByteEnumeratorGenerator Constructor " Url="html/M_WhetStone_Random_ByteEnumeratorGenerator__ctor.htm" />
+          <HelpTOCNode Id="f95586b1-30ea-4f7f-8009-b0c35436eb27" Title="ByteEnumeratorGenerator Methods" Url="html/Methods_T_WhetStone_Random_ByteEnumeratorGenerator.htm">
+            <HelpTOCNode Title="Byte Method " Url="html/M_WhetStone_Random_ByteEnumeratorGenerator_Byte.htm" />
+            <HelpTOCNode Id="e7f5d783-e451-459e-a2c9-cb2fe2e1a510" Title="Bytes Method " Url="html/Overload_WhetStone_Random_ByteEnumeratorGenerator_Bytes.htm">
+              <HelpTOCNode Title="Bytes Method (Int32)" Url="html/M_WhetStone_Random_ByteEnumeratorGenerator_Bytes.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="5d81db34-724b-4900-8c48-0e4275cac145" Title="GlobalRandomGenerator Class" Url="html/T_WhetStone_Random_GlobalRandomGenerator.htm">
+          <HelpTOCNode Title="GlobalRandomGenerator Constructor " Url="html/M_WhetStone_Random_GlobalRandomGenerator__ctor.htm" />
+          <HelpTOCNode Id="3e79bf20-2177-4614-8bb9-12bef4c0c502" Title="GlobalRandomGenerator Methods" Url="html/Methods_T_WhetStone_Random_GlobalRandomGenerator.htm">
+            <HelpTOCNode Title="Byte Method " Url="html/M_WhetStone_Random_GlobalRandomGenerator_Byte.htm" />
+            <HelpTOCNode Id="8ad1f2b5-e09a-4e3f-ae18-86ebb20cd7ce" Title="Bytes Method " Url="html/Overload_WhetStone_Random_GlobalRandomGenerator_Bytes.htm">
+              <HelpTOCNode Title="Bytes Method (Int32)" Url="html/M_WhetStone_Random_GlobalRandomGenerator_Bytes.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="5dd5e216-b80e-44ac-9450-df5e00857eaa" Title="Double Method " Url="html/Overload_WhetStone_Random_GlobalRandomGenerator_Double.htm">
+              <HelpTOCNode Title="Double Method " Url="html/M_WhetStone_Random_GlobalRandomGenerator_Double.htm" />
+              <HelpTOCNode Title="Double Method (Double, Double)" Url="html/M_WhetStone_Random_GlobalRandomGenerator_Double_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="84813fb1-6fd5-4363-b61c-f5a907b42c7f" Title="Int Method " Url="html/Overload_WhetStone_Random_GlobalRandomGenerator_Int.htm">
+              <HelpTOCNode Title="Int Method (Int32, Int32)" Url="html/M_WhetStone_Random_GlobalRandomGenerator_Int.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="reset Method " Url="html/M_WhetStone_Random_GlobalRandomGenerator_reset.htm" />
+            <HelpTOCNode Title="ThreadLocal Method " Url="html/M_WhetStone_Random_GlobalRandomGenerator_ThreadLocal.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="74d72e03-bfcf-4d92-910b-bc774681ccbd" Title="LocalRandomGenerator Class" Url="html/T_WhetStone_Random_LocalRandomGenerator.htm">
+          <HelpTOCNode Id="87cea8c1-610e-409c-b6ca-9a82e6d4e551" Title="LocalRandomGenerator Constructor " Url="html/Overload_WhetStone_Random_LocalRandomGenerator__ctor.htm">
+            <HelpTOCNode Title="LocalRandomGenerator Constructor (Int32)" Url="html/M_WhetStone_Random_LocalRandomGenerator__ctor.htm" />
+            <HelpTOCNode Title="LocalRandomGenerator Constructor (Nullable(Int32))" Url="html/M_WhetStone_Random_LocalRandomGenerator__ctor_1.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="1da33d28-e5f0-429b-83d0-a955367a07dd" Title="LocalRandomGenerator Methods" Url="html/Methods_T_WhetStone_Random_LocalRandomGenerator.htm">
+            <HelpTOCNode Title="Byte Method " Url="html/M_WhetStone_Random_LocalRandomGenerator_Byte.htm" />
+            <HelpTOCNode Id="14b16aae-b72a-4f44-b884-30f6cf9a32d7" Title="Bytes Method " Url="html/Overload_WhetStone_Random_LocalRandomGenerator_Bytes.htm">
+              <HelpTOCNode Title="Bytes Method (Int32)" Url="html/M_WhetStone_Random_LocalRandomGenerator_Bytes.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="7f839a8f-d782-4d55-8dc8-6ce97798e22d" Title="Double Method " Url="html/Overload_WhetStone_Random_LocalRandomGenerator_Double.htm">
+              <HelpTOCNode Title="Double Method " Url="html/M_WhetStone_Random_LocalRandomGenerator_Double.htm" />
+              <HelpTOCNode Title="Double Method (Double, Double)" Url="html/M_WhetStone_Random_LocalRandomGenerator_Double_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="8759c16c-0f78-41c4-9615-e6d89fd21874" Title="Int Method " Url="html/Overload_WhetStone_Random_LocalRandomGenerator_Int.htm">
+              <HelpTOCNode Title="Int Method (Int32, Int32)" Url="html/M_WhetStone_Random_LocalRandomGenerator_Int.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="20092905-a3a4-44da-845b-a8d33ce17d6a" Title="pick Class" Url="html/T_WhetStone_Random_pick.htm">
+          <HelpTOCNode Id="c910581c-4f58-454b-bd9d-1dbc81dbed2e" Title="pick Methods" Url="html/Methods_T_WhetStone_Random_pick.htm">
+            <HelpTOCNode Id="8ddf3c56-cc28-4458-bbbb-f7bdc6193070" Title="Pick Method " Url="html/Overload_WhetStone_Random_pick_Pick.htm">
+              <HelpTOCNode Title="Pick(T) Method (IEnumerable(T), RandomGenerator)" Url="html/M_WhetStone_Random_pick_Pick__1_1.htm" />
+              <HelpTOCNode Title="Pick(T) Method (IList(T), RandomGenerator)" Url="html/M_WhetStone_Random_pick_Pick__1_3.htm" />
+              <HelpTOCNode Title="Pick(T) Method (IEnumerable(T), Int32, RandomGenerator)" Url="html/M_WhetStone_Random_pick_Pick__1.htm" />
+              <HelpTOCNode Title="Pick(T) Method (IList(T), Int32, RandomGenerator)" Url="html/M_WhetStone_Random_pick_Pick__1_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="36f56dfd-991c-418a-bbab-a06016ab77b5" Title="RandomGenerator Class" Url="html/T_WhetStone_Random_RandomGenerator.htm">
+          <HelpTOCNode Title="RandomGenerator Constructor " Url="html/M_WhetStone_Random_RandomGenerator__ctor.htm" />
+          <HelpTOCNode Id="bad32bf6-6421-43ae-aabe-b66ea9ded283" Title="RandomGenerator Methods" Url="html/Methods_T_WhetStone_Random_RandomGenerator.htm">
+            <HelpTOCNode Title="Bool Method " Url="html/M_WhetStone_Random_RandomGenerator_Bool.htm" />
+            <HelpTOCNode Title="Byte Method " Url="html/M_WhetStone_Random_RandomGenerator_Byte.htm" />
+            <HelpTOCNode Id="69ce9796-3a7c-4e72-a4f9-ee96d900bc9b" Title="Bytes Method " Url="html/Overload_WhetStone_Random_RandomGenerator_Bytes.htm">
+              <HelpTOCNode Title="Bytes Method " Url="html/M_WhetStone_Random_RandomGenerator_Bytes.htm" />
+              <HelpTOCNode Title="Bytes Method (Int32)" Url="html/M_WhetStone_Random_RandomGenerator_Bytes_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="eededa44-2ac8-43dc-84c2-0d10ca14035c" Title="Double Method " Url="html/Overload_WhetStone_Random_RandomGenerator_Double.htm">
+              <HelpTOCNode Title="Double Method " Url="html/M_WhetStone_Random_RandomGenerator_Double.htm" />
+              <HelpTOCNode Title="Double Method (Double)" Url="html/M_WhetStone_Random_RandomGenerator_Double_1.htm" />
+              <HelpTOCNode Title="Double Method (Double, Double)" Url="html/M_WhetStone_Random_RandomGenerator_Double_2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="f7561c92-0254-4704-877c-e3eedfa8db1b" Title="FromField Method " Url="html/Overload_WhetStone_Random_RandomGenerator_FromField.htm">
+              <HelpTOCNode Title="FromField(T) Method " Url="html/M_WhetStone_Random_RandomGenerator_FromField__1.htm" />
+              <HelpTOCNode Title="FromField(T) Method (T, T)" Url="html/M_WhetStone_Random_RandomGenerator_FromField__1_1.htm" />
+              <HelpTOCNode Title="FromField(T) Method (T, T, Object)" Url="html/M_WhetStone_Random_RandomGenerator_FromField__1_2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="736a503c-0c61-4a09-a0b5-b3d21c2e09f2" Title="Int Method " Url="html/Overload_WhetStone_Random_RandomGenerator_Int.htm">
+              <HelpTOCNode Title="Int Method " Url="html/M_WhetStone_Random_RandomGenerator_Int.htm" />
+              <HelpTOCNode Title="Int Method (Int32)" Url="html/M_WhetStone_Random_RandomGenerator_Int_1.htm" />
+              <HelpTOCNode Title="Int Method (Int32, Int32)" Url="html/M_WhetStone_Random_RandomGenerator_Int_2.htm" />
+              <HelpTOCNode Title="Int Method (Int32, Int32, Boolean)" Url="html/M_WhetStone_Random_RandomGenerator_Int_3.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="76461096-ea46-40df-b01d-ae12e1514cb4" Title="Long Method " Url="html/Overload_WhetStone_Random_RandomGenerator_Long.htm">
+              <HelpTOCNode Title="Long Method (Int64)" Url="html/M_WhetStone_Random_RandomGenerator_Long.htm" />
+              <HelpTOCNode Title="Long Method (Int64, Int64)" Url="html/M_WhetStone_Random_RandomGenerator_Long_1.htm" />
+              <HelpTOCNode Title="Long Method (Int64, Int64, Boolean)" Url="html/M_WhetStone_Random_RandomGenerator_Long_2.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="success Method " Url="html/M_WhetStone_Random_RandomGenerator_success.htm" />
+            <HelpTOCNode Id="05719ad6-8d27-483f-a5d3-f8f8ea73531b" Title="ULong Method " Url="html/Overload_WhetStone_Random_RandomGenerator_ULong.htm">
+              <HelpTOCNode Title="ULong Method (UInt64)" Url="html/M_WhetStone_Random_RandomGenerator_ULong.htm" />
+              <HelpTOCNode Title="ULong Method (UInt64, UInt64)" Url="html/M_WhetStone_Random_RandomGenerator_ULong_1.htm" />
+              <HelpTOCNode Title="ULong Method (UInt64, UInt64, Boolean)" Url="html/M_WhetStone_Random_RandomGenerator_ULong_2.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="350d0577-6012-4c5e-b157-06033ff68069" Title="ShaGenerator Class" Url="html/T_WhetStone_Random_ShaGenerator.htm">
+          <HelpTOCNode Title="ShaGenerator Constructor " Url="html/M_WhetStone_Random_ShaGenerator__ctor.htm" />
+          <HelpTOCNode Id="d20a931c-104c-4150-a44f-e47c268e30c9" Title="ShaGenerator Methods" Url="html/Methods_T_WhetStone_Random_ShaGenerator.htm">
+            <HelpTOCNode Id="76a105b6-ff5e-4919-a206-3373b1f5a789" Title="Bytes Method " Url="html/Overload_WhetStone_Random_ShaGenerator_Bytes.htm">
+              <HelpTOCNode Title="Bytes Method " Url="html/M_WhetStone_Random_ShaGenerator_Bytes.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="Dispose Method " Url="html/M_WhetStone_Random_ShaGenerator_Dispose.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="44fa5a30-94f6-41dc-869e-55880ab917f1" Title="WhetStone.Streams" Url="html/N_WhetStone_Streams.htm">
+        <HelpTOCNode Id="292e4262-d16d-4d68-98ef-52ab662321cd" Title="loop Class" Url="html/T_WhetStone_Streams_loop.htm">
+          <HelpTOCNode Id="6bf8661d-c8a2-4950-af0e-5eec9dde3345" Title="loop Methods" Url="html/Methods_T_WhetStone_Streams_loop.htm">
+            <HelpTOCNode Id="f1804fc2-f00c-46d6-9c4f-0c01873fbe3c" Title="Loop Method " Url="html/Overload_WhetStone_Streams_loop_Loop.htm">
+              <HelpTOCNode Title="Loop Method (Stream, Nullable(Int32))" Url="html/M_WhetStone_Streams_loop_Loop.htm" />
+              <HelpTOCNode Title="Loop Method (TextReader, Int32, Int32)" Url="html/M_WhetStone_Streams_loop_Loop_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="85b1d2bc-a4b5-4a31-bb5c-e3e4961fa8a4" Title="readAll Class" Url="html/T_WhetStone_Streams_readAll.htm">
+          <HelpTOCNode Id="aa0bd1b1-2879-4016-a563-77d83539fda9" Title="readAll Methods" Url="html/Methods_T_WhetStone_Streams_readAll.htm">
+            <HelpTOCNode Title="ReadAll Method " Url="html/M_WhetStone_Streams_readAll_ReadAll.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="a3cb5aae-9ebd-46b1-8d99-61b63b5b29f2" Title="WhetStone.SystemExtensions" Url="html/N_WhetStone_SystemExtensions.htm">
+        <HelpTOCNode Id="f733a961-c50c-4a59-a37e-ccc92b1ff10a" Title="BitList Class" Url="html/T_WhetStone_SystemExtensions_BitList.htm">
+          <HelpTOCNode Title="BitList Constructor " Url="html/M_WhetStone_SystemExtensions_BitList__ctor.htm" />
+          <HelpTOCNode Id="083f1316-72ed-4a7b-a445-6fbc60442394" Title="BitList Properties" Url="html/Properties_T_WhetStone_SystemExtensions_BitList.htm">
+            <HelpTOCNode Title="Count Property " Url="html/P_WhetStone_SystemExtensions_BitList_Count.htm" />
+            <HelpTOCNode Title="IsReadOnly Property " Url="html/P_WhetStone_SystemExtensions_BitList_IsReadOnly.htm" />
+            <HelpTOCNode Title="Item Property " Url="html/P_WhetStone_SystemExtensions_BitList_Item.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="b4dd4dd9-1f5a-44cf-aef0-37cee3013ccb" Title="BitList Methods" Url="html/Methods_T_WhetStone_SystemExtensions_BitList.htm">
+            <HelpTOCNode Title="Add Method " Url="html/M_WhetStone_SystemExtensions_BitList_Add.htm" />
+            <HelpTOCNode Title="Clear Method " Url="html/M_WhetStone_SystemExtensions_BitList_Clear.htm" />
+            <HelpTOCNode Title="Contains Method " Url="html/M_WhetStone_SystemExtensions_BitList_Contains.htm" />
+            <HelpTOCNode Title="CopyTo Method " Url="html/M_WhetStone_SystemExtensions_BitList_CopyTo.htm" />
+            <HelpTOCNode Title="GetEnumerator Method " Url="html/M_WhetStone_SystemExtensions_BitList_GetEnumerator.htm" />
+            <HelpTOCNode Title="IndexOf Method " Url="html/M_WhetStone_SystemExtensions_BitList_IndexOf.htm" />
+            <HelpTOCNode Title="Insert Method " Url="html/M_WhetStone_SystemExtensions_BitList_Insert.htm" />
+            <HelpTOCNode Title="Remove Method " Url="html/M_WhetStone_SystemExtensions_BitList_Remove.htm" />
+            <HelpTOCNode Title="RemoveAt Method " Url="html/M_WhetStone_SystemExtensions_BitList_RemoveAt.htm" />
+            <HelpTOCNode Title="SetRange Method " Url="html/M_WhetStone_SystemExtensions_BitList_SetRange.htm" />
+          </HelpTOCNode>
+          <HelpTOCNode Id="fcf8438b-3325-4957-989f-6104f9fbecb0" Title="BitList Fields" Url="html/Fields_T_WhetStone_SystemExtensions_BitList.htm">
+            <HelpTOCNode Title="BITS_IN_CELL Field" Url="html/F_WhetStone_SystemExtensions_BitList_BITS_IN_CELL.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d723e97f-8c2f-4639-9de5-7d0a55473618" Title="copy Class" Url="html/T_WhetStone_SystemExtensions_copy.htm">
+          <HelpTOCNode Id="efb979de-89aa-4315-aca7-42b961bd9de9" Title="copy Methods" Url="html/Methods_T_WhetStone_SystemExtensions_copy.htm">
+            <HelpTOCNode Title="Copy(T) Method " Url="html/M_WhetStone_SystemExtensions_copy_Copy__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="98991cd9-67a5-4bb9-add5-9e69a2092c24" Title="SystemExtension Class" Url="html/T_WhetStone_SystemExtensions_SystemExtension.htm">
+          <HelpTOCNode Id="83dbf77a-34d7-4782-8ee2-c0cd632e5a19" Title="SystemExtension Methods" Url="html/Methods_T_WhetStone_SystemExtensions_SystemExtension.htm">
+            <HelpTOCNode Title="ceil Method " Url="html/M_WhetStone_SystemExtensions_SystemExtension_ceil.htm" />
+            <HelpTOCNode Title="floor Method " Url="html/M_WhetStone_SystemExtensions_SystemExtension_floor.htm" />
+            <HelpTOCNode Id="edf81c04-fc68-45d3-8393-d5dd2f860a76" Title="Indicator Method " Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_Indicator.htm">
+              <HelpTOCNode Title="Indicator Method (Boolean)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_Indicator.htm" />
+              <HelpTOCNode Title="Indicator(T) Method (Boolean, T, T)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_Indicator__1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="2c2e8d9e-4604-4753-a1d0-37c5a8df0cf3" Title="pow Method " Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_pow.htm">
+              <HelpTOCNode Title="pow Method (BigRational, BigInteger)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_1.htm" />
+              <HelpTOCNode Title="pow Method (Byte, Byte)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_2.htm" />
+              <HelpTOCNode Title="pow Method (Decimal, Decimal)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_3.htm" />
+              <HelpTOCNode Title="pow Method (Double, Double)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_4.htm" />
+              <HelpTOCNode Title="pow Method (Int16, Int16)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_5.htm" />
+              <HelpTOCNode Title="pow Method (Int32, Int32)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_6.htm" />
+              <HelpTOCNode Title="pow Method (Int64, Int64)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_7.htm" />
+              <HelpTOCNode Title="pow Method (BigInteger, BigInteger)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_8.htm" />
+              <HelpTOCNode Title="pow Method (SByte, SByte)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_9.htm" />
+              <HelpTOCNode Title="pow Method (Single, Single)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_10.htm" />
+              <HelpTOCNode Title="pow Method (UInt16, UInt16)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_11.htm" />
+              <HelpTOCNode Title="pow Method (UInt32, UInt32)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_12.htm" />
+              <HelpTOCNode Title="pow Method (UInt64, UInt64)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow_13.htm" />
+              <HelpTOCNode Title="pow Method (BigRational, BigRational, BigRational)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_pow.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="c37d9cea-5dd1-4dfc-9483-e38e6449a755" Title="powmod Method " Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_powmod.htm">
+              <HelpTOCNode Title="powmod Method (Int32, Int32, Int32)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_powmod.htm" />
+              <HelpTOCNode Title="powmod Method (Int64, Int64, Int64)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_powmod_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Id="48a88b2b-d0a6-4522-9e5d-ed8d6780e134" Title="root Method " Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_root.htm">
+              <HelpTOCNode Title="root Method (BigRational, BigInteger, BigRational)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_root.htm" />
+              <HelpTOCNode Title="root Method (BigInteger, BigInteger, BigRational)" Url="html/M_WhetStone_SystemExtensions_SystemExtension_root_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="d26bc646-7c07-4bdc-991c-3026d5dfa696" Title="throwIf Class" Url="html/T_WhetStone_SystemExtensions_throwIf.htm">
+          <HelpTOCNode Id="36befffd-8a7c-4693-aa96-9fa06cc6e8ca" Title="throwIf Methods" Url="html/Methods_T_WhetStone_SystemExtensions_throwIf.htm">
+            <HelpTOCNode Id="a137607d-d603-441b-8514-9e23206031e9" Title="ThrowIfAbsurd Method " Url="html/Overload_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd.htm">
+              <HelpTOCNode Title="ThrowIfAbsurd Method (Int32, String, Boolean, Boolean, Boolean)" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd_1.htm" />
+              <HelpTOCNode Title="ThrowIfAbsurd Method (Int64, String, Boolean, Boolean, Boolean)" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd_2.htm" />
+              <HelpTOCNode Title="ThrowIfAbsurd Method (Double, String, Boolean, Boolean, Boolean, Boolean)" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd.htm" />
+              <HelpTOCNode Title="ThrowIfAbsurd Method (Nullable(Int32), String, Boolean, Boolean, Boolean, Boolean)" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd_3.htm" />
+              <HelpTOCNode Title="ThrowIfAbsurd Method (Nullable(Int64), String, Boolean, Boolean, Boolean, Boolean)" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd_4.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="ThrowIfNull(T) Method " Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfNull__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="2675034e-208f-4bd3-8793-334902a91531" Title="toGenList Class" Url="html/T_WhetStone_SystemExtensions_toGenList.htm">
+          <HelpTOCNode Id="7ea5b6d3-5a48-45f8-94ec-dfb698b3827d" Title="toGenList Methods" Url="html/Methods_T_WhetStone_SystemExtensions_toGenList.htm">
+            <HelpTOCNode Title="ToGeneral(T) Method " Url="html/M_WhetStone_SystemExtensions_toGenList_ToGeneral__1.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="8eb23e6a-b643-4f01-a3e3-f538c9d3e30d" Title="WhetStone.Tuples" Url="html/N_WhetStone_Tuples.htm">
+        <HelpTOCNode Id="31cfd21a-c7da-4f55-976d-114c445c22b6" Title="toTuple Class" Url="html/T_WhetStone_Tuples_toTuple.htm">
+          <HelpTOCNode Id="5267c890-e9e3-4cdc-9bbe-789f5c6f32d4" Title="toTuple Methods" Url="html/Methods_T_WhetStone_Tuples_toTuple.htm">
+            <HelpTOCNode Id="efc5519b-aa6b-47d2-8b67-c1fc6f7fdd65" Title="ToTuple Method " Url="html/Overload_WhetStone_Tuples_toTuple_ToTuple.htm">
+              <HelpTOCNode Title="ToTuple(T1) Method (IEnumerable)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__1.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2) Method (IEnumerable)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__2.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2, T3) Method (IEnumerable)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__3.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2, T3, T4) Method (IEnumerable)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__4.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2, T3, T4, T5) Method (IEnumerable)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__5.htm" />
+              <HelpTOCNode Title="ToTuple(T1) Method (IList)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__1_1.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2) Method (IList)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__2_1.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2, T3) Method (IList)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__3_1.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2, T3, T4) Method (IList)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__4_1.htm" />
+              <HelpTOCNode Title="ToTuple(T1, T2, T3, T4, T5) Method (IList)" Url="html/M_WhetStone_Tuples_toTuple_ToTuple__5_1.htm" />
+            </HelpTOCNode>
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="dda9a3fa-0406-42cd-af1d-6ba129fa005b" Title="WhetStone.Units.Time" Url="html/N_WhetStone_Units_Time.htm">
+        <HelpTOCNode Id="316b3343-debd-4055-aa1d-833cf8883799" Title="TimeExtentions Class" Url="html/T_WhetStone_Units_Time_TimeExtentions.htm">
+          <HelpTOCNode Id="afa63f67-46e4-4d5b-883d-54c0a62704a7" Title="TimeExtentions Methods" Url="html/Methods_T_WhetStone_Units_Time_TimeExtentions.htm">
+            <HelpTOCNode Id="1a0f916c-6d90-489a-86c6-a47f5ca0f0d1" Title="Divide Method " Url="html/Overload_WhetStone_Units_Time_TimeExtentions_Divide.htm">
+              <HelpTOCNode Title="Divide Method (TimeSpan, Double)" Url="html/M_WhetStone_Units_Time_TimeExtentions_Divide.htm" />
+              <HelpTOCNode Title="Divide Method (TimeSpan, TimeSpan)" Url="html/M_WhetStone_Units_Time_TimeExtentions_Divide_1.htm" />
+            </HelpTOCNode>
+            <HelpTOCNode Title="Multiply Method " Url="html/M_WhetStone_Units_Time_TimeExtentions_Multiply.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="85c00d60-f703-420a-a5d3-b3f95dd69f0c" Title="WhetStone.WordPlay" Url="html/N_WhetStone_WordPlay.htm">
+        <HelpTOCNode Id="c013c0e7-9ab8-4f2e-bf4c-3b4e1c39bc7c" Title="CommonRegex Class" Url="html/T_WhetStone_WordPlay_CommonRegex.htm">
+          <HelpTOCNode Id="49696189-fd24-439e-94bf-72025c0d0f66" Title="CommonRegex Fields" Url="html/Fields_T_WhetStone_WordPlay_CommonRegex.htm">
+            <HelpTOCNode Title="RegexDouble Field" Url="html/F_WhetStone_WordPlay_CommonRegex_RegexDouble.htm" />
+            <HelpTOCNode Title="RegexDoubleNoSign Field" Url="html/F_WhetStone_WordPlay_CommonRegex_RegexDoubleNoSign.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="dc18041a-0545-4ac7-9c5a-7146a560bd14" Title="convertToString Class" Url="html/T_WhetStone_WordPlay_convertToString.htm">
+          <HelpTOCNode Id="b1ee5430-618d-4779-9d58-d4e952099198" Title="convertToString Methods" Url="html/Methods_T_WhetStone_WordPlay_convertToString.htm">
+            <HelpTOCNode Title="ConvertToString Method " Url="html/M_WhetStone_WordPlay_convertToString_ConvertToString.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+        <HelpTOCNode Id="16fc98d2-c23b-49aa-83e4-45a6be6986f9" Title="toString Class" Url="html/T_WhetStone_WordPlay_toString.htm">
+          <HelpTOCNode Id="02b34331-3483-4800-82c2-e7942986644f" Title="toString Methods" Url="html/Methods_T_WhetStone_WordPlay_toString.htm">
+            <HelpTOCNode Title="ToString Method " Url="html/M_WhetStone_WordPlay_toString_ToString.htm" />
+          </HelpTOCNode>
+        </HelpTOCNode>
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Title="Welcome to Whetstone API reference" Url="html/4efa21f4-fab2-4ae5-8888-c59583adb966.htm" />
+</HelpTOC>
