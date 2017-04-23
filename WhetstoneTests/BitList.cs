@@ -111,7 +111,6 @@ namespace Tests
         {
             var val = new BitList(100);
             val[0] = val[1] = val[4] = val[9] = val[16] = val[25] = val[36] = val[49] = val[64] = val[81] = true;
-
             MutableListCheck.check(val);
         }
     }

@@ -185,6 +185,7 @@ namespace WhetStone.SystemExtensions
             {
                 Count--;
                 _int[_int.Count - 1] &= (word)~((word)1 << (index));
+                _checkMinimize();
                 return;
             }
             int shiftMemberInd = index / BITS_IN_CELL;
@@ -226,8 +227,12 @@ namespace WhetStone.SystemExtensions
             _int[shiftMemberInd] = (word)newval;
             Count--;
             
-            if ((Count/(double)BITS_IN_CELL).ceil() < _int.Count)
-                _int.RemoveAt(_int.Count-1);
+            _checkMinimize();
+        }
+        private void _checkMinimize()
+        {
+            if ((Count / (double)BITS_IN_CELL).ceil() < _int.Count)
+                _int.RemoveAt(_int.Count - 1);
         }
         /// <inheritdoc />
         public bool this[int index]

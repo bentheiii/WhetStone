@@ -32,6 +32,8 @@ namespace Tests
 
             if (randomSet)
             {
+                if (orig.Count == 0)
+                    throw new ArgumentException("cannot set into an empty list");
                 if(!set(orig, gen, create))
                     throw new AssertFailedException("setrandom failed, seed: "+realseed);
             }
@@ -125,7 +127,6 @@ namespace Tests
         private static bool wild<T>(IList<T> orig, RandomGenerator gen, Func<RandomGenerator, T> create)
         {
             var check = orig.ToList();
-
             foreach (int _ in range.Range(100))
             {
                 var val = create(gen);
@@ -134,7 +135,6 @@ namespace Tests
                 Action<IList<T>> act;
 
                 var actKind = gen.Int(4);
-
                 switch (actKind)
                 {
                     case 0:
