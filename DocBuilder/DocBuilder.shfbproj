@@ -43,11 +43,19 @@
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <RootNamespaceContainer>True</RootNamespaceContainer>
     <PresentationStyle>VS2013</PresentationStyle>
-    <Preliminary>True</Preliminary>
-    <NamingMethod>Guid</NamingMethod>
+    <Preliminary>False</Preliminary>
+    <NamingMethod>MemberName</NamingMethod>
     <HelpTitle>Whetstone Class reference</HelpTitle>
     <ContentPlacement>BelowNamespaces</ContentPlacement>
     <MissingTags>None</MissingTags>
+    <RootNamespaceTitle>Whetstone</RootNamespaceTitle>
+    <TocParentId>-1</TocParentId>
+    <TocParentVersion>100</TocParentVersion>
+    <TopicVersion>100</TopicVersion>
+    <TocOrder>-1</TocOrder>
+    <MSHelpViewerSdkLinkType>Msdn</MSHelpViewerSdkLinkType>
+    <CatalogVersion>100</CatalogVersion>
+    <CatalogProductId>VS</CatalogProductId>
   </PropertyGroup>
   <!-- There are no properties for these groups.  AnyCPU needs to appear in order for Visual Studio to perform
 			 the build.  The others are optional common platform types that may appear. -->

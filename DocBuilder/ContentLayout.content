@@ -1,18 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Topics>
-  <Topic id="4efa21f4-fab2-4ae5-8888-c59583adb966" visible="True" isDefault="true" isSelected="true" title="Welcome to the [TODO: Add project name]">
+  <Topic id="4efa21f4-fab2-4ae5-8888-c59583adb966" visible="True" isDefault="true" isSelected="true" title="Welcome to Whetstone API reference">
     <HelpKeywords>
       <HelpKeyword index="K" term="Welcome" />
     </HelpKeywords>
-  </Topic>
-  <Topic id="abee2441-bdfe-4ca1-89ea-0ddc59077781" visible="True" isExpanded="true" title="Version History">
-    <HelpKeywords>
-      <HelpKeyword index="K" term="version, history" />
-    </HelpKeywords>
-    <Topic id="21f66761-2e7e-4216-a816-36738ffef96a" visible="True" title="Version 1.0.0.0">
-      <HelpKeywords>
-        <HelpKeyword index="K" term="version, 1.0.0.0" />
-      </HelpKeywords>
-    </Topic>
   </Topic>
 </Topics>
