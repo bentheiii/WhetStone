@@ -28,7 +28,10 @@ namespace WhetStone.SystemExtensions
     public class BitList : IList<bool>
     {
         private readonly List<word> _int;
-        private const int BITS_IN_CELL = 8*sizeof(word);
+        /// <summary>
+        /// How many bits are in a single inner data value. Used to confirm optimality.
+        /// </summary>
+        public const int BITS_IN_CELL = 8*sizeof(word);
         /// <summary>
         /// constructor. All elements are initialized to false.
         /// </summary>

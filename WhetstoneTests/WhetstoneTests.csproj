@@ -95,6 +95,7 @@
     <Compile Include="StrConcat.cs" />
     <Compile Include="TallyTest.cs" />
     <Compile Include="ToArray.cs" />
+    <Compile Include="topologicalSort.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WhetStone\WhetStone.csproj">

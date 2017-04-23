@@ -313,7 +313,7 @@ namespace WhetStone.Looping
             }
             public override bool Contains(T item)
             {
-                return IndexOf(item) > 0;
+                return IndexOf(item) >= 0;
             }
             public override void CopyTo(T[] array, int arrayIndex)
             {
