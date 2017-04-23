@@ -11,7 +11,7 @@ System.Byte
 #elif WIN64
 System.UInt64
 #elif WIN32
-System.UIint32
+System.UInt32
 #else
 #error word not defined, you must define either BYTEWORD, WIN64, or WIN32
 #endif
@@ -201,15 +201,7 @@ namespace WhetStone.SystemExtensions
             }
 
             ulong unshifted;
-            ulong shifted;
-            if (removedmemberind == BITS_IN_CELL-1)
-            {
-                shifted = 0;
-            }
-            else
-            {
-                shifted = (word)((_int[shiftMemberInd] >> (removedmemberind)) << (removedmemberind));
-            }
+            ulong shifted = (word)((_int[shiftMemberInd] >> (removedmemberind)) << (removedmemberind));
             if (removedmemberind == 0)
             {
                 unshifted = 0;
@@ -218,7 +210,14 @@ namespace WhetStone.SystemExtensions
             {
                 unshifted = _int[shiftMemberInd] & ~shifted;
             }
-            shifted = (word)((_int[shiftMemberInd] >> (removedmemberind+1)) << (removedmemberind+1));
+            if (removedmemberind == BITS_IN_CELL - 1)
+            {
+                shifted = 0;
+            }
+            else
+            {
+                shifted = (word)((_int[shiftMemberInd] >> (removedmemberind+1)) << (removedmemberind+1));
+            }
             var newval = (shifted >> 1) | unshifted;
             if (carry)
                 newval |= carrymask;
