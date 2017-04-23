@@ -73,7 +73,8 @@ namespace WhetStone.SystemExtensions
             }
             else
             {
-                _int[_int.Count - 1] |= (word)((word)1 << lmod);
+                if (item)
+                    _int[_int.Count - 1] |= (word)((word)1 << lmod);
             }
             Count++;
         }
@@ -157,7 +158,7 @@ namespace WhetStone.SystemExtensions
             {
                 unshifted = _int[shiftMemberInd] & ~shifted;
             }
-            var newval = (shifted << 1) | unshifted;
+            word newval = (word)((word)((word)shifted << 1) | unshifted);
             if (item)
                 newval |= (word)((word)1 << newmemberind);
             else
@@ -171,8 +172,8 @@ namespace WhetStone.SystemExtensions
                     _int[ind] |= 1;
                 carry = newcarry;
             }
-            if (carry)
-                _int.Add(1);
+            if (Count%BITS_IN_CELL == 0)
+                _int.Add(carry.Indicator((word)1, (word)0));
             Count++;
         }
         /// <inheritdoc />
@@ -201,13 +202,13 @@ namespace WhetStone.SystemExtensions
 
             ulong unshifted;
             ulong shifted;
-            if (removedmemberind == 63)
+            if (removedmemberind == BITS_IN_CELL-1)
             {
                 shifted = 0;
             }
             else
             {
-                shifted = (word)((_int[shiftMemberInd] >> removedmemberind) << removedmemberind);
+                shifted = (word)((_int[shiftMemberInd] >> (removedmemberind)) << (removedmemberind));
             }
             if (removedmemberind == 0)
             {
@@ -217,6 +218,7 @@ namespace WhetStone.SystemExtensions
             {
                 unshifted = _int[shiftMemberInd] & ~shifted;
             }
+            shifted = (word)((_int[shiftMemberInd] >> (removedmemberind+1)) << (removedmemberind+1));
             var newval = (shifted >> 1) | unshifted;
             if (carry)
                 newval |= carrymask;
