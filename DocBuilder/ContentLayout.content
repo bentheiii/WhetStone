@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Topics>
-  <Topic id="4efa21f4-fab2-4ae5-8888-c59583adb966" visible="True" isDefault="true" isSelected="true" title="Welcome to Whetstone API reference">
-    <HelpKeywords>
-      <HelpKeyword index="K" term="Welcome" />
-    </HelpKeywords>
-  </Topic>
-</Topics>
