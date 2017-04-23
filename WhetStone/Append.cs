@@ -38,7 +38,7 @@ namespace WhetStone.Looping
             toAdd.ThrowIfNull(nameof(toAdd));
             var oldlen = @this.Length;
             Array.Resize(ref @this, @this.Length + toAdd.Count());
-            if (default(T).Enumerate().Concat(toAdd).AllEqual())
+            if (toAdd.AllEqual(default(T)))
                 return;
             var l = toAdd.AsCollection(false);
             if (l != null)

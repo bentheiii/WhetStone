@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WhetStone.SystemExtensions;
 
 namespace WhetStone.Looping
@@ -32,6 +33,21 @@ namespace WhetStone.Looping
                 }
             }
             return true;
+        }
+        /// <summary>
+        /// Checks whether all members of an <see cref="IEnumerable{T}"/> are equal to a value.
+        /// </summary>
+        /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>.</typeparam>
+        /// <param name="this">The <see cref="IEnumerable{T}"/> to check.</param>
+        /// <param name="value">The value to compare all elements to.</param>
+        /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to use, to check all the elements all are the same.</param>
+        /// <returns>Whether all the elements in <paramref name="this"/> are equal to <paramref name="value"/>.</returns>
+        /// <remarks><para>If <paramref name="this"/> is empty, <see langword="true"/> is returned.</para></remarks>
+        public static bool AllEqual<T>(this IEnumerable<T> @this, T value, IEqualityComparer<T> comp = null)
+        {
+            @this.ThrowIfNull(nameof(@this));
+            comp = comp ?? EqualityComparer<T>.Default;
+            return @this.All(a => comp.Equals(value, a));
         }
     }
 }
