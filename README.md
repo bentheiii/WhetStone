@@ -5,7 +5,7 @@ Whetstone seeks to do what the .NET standard library and the C# language doesn't
 
 Whetstone focuses on optimization, versatility, and usability, all while keeping LINQ-style deferred execution in mind.
 
-The API can be found [here](TBD)
+The API can be found [https://bentheiii.github.io/WhetStone/index](TBD)
 
 Let's dive right in to what Whetstone provides:
 ## I: Locked Structures and List and Collection Specialization
