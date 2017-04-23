@@ -194,13 +194,13 @@ public void Foo(IEnumerable<double> input){
     var tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0) //get the sum of an ienumerable
 					.TallyAny(a=>a<0) //also, get whether any of the elemnts are negative
 					.TallyCount(); //also get the count.
-    //you can also set the tally to break if any of the sub-tallies (called talliers)
-    tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0,a=>a>1) //break is sum exceeds one
-            .TallyAny(a=>a<0, true) //break if an element is negative
+    //you can also set the tally to break if any of the sub-tallies (called talliers) are of a certain value
+    tally = new TypeTally<double>().TallyAggregate((a,b)=>a+b,0.0, break: a=>a>1) //break if sum exceeds one
+            .TallyAny(a=>a<0, break: true) //break if an element is negative
             .TallyCount();
     Tuple<double,bool,int> result = tally.Do(input) //The tuple is (sum, anyNegatives, count)
     //These lines can also be done in a LINQ-style query in 1 line:
-    result = input.Tally().TallyAggregate((a,b)=>a+b,0.0,a=>a>1).TallyAny(a=>a<0, true).TallyCount().Do;
+    result = input.Tally().TallyAggregate((a,b)=>a+b,0.0,a=>a>1).TallyAny(a=>a<0, true).TallyCount().Do();
     if (result.Item1 > 1)
         throw new ArgumentException("input sum exceeds 1");
     if (result.Item2)
@@ -220,16 +220,10 @@ lists.Select(a=>a.Count).AllEqual(); //checks that all members of an enumerable 
 var bigRange = range.Range(50);
 bigRange.Chunk(10); //{0..9,10..19,20..29,30..39,40..49}
 
-public static IEnumerable<bool> Lucky(Random r, double odds)
-{
-    while (r.NextDouble() < odds)
-    {
-        yield return true;
-    }
-}
-var lucky1 = Lucky(new Random(),0.5);
-var lucky2 = Lucky(new Random(),0.99);//this guy could take a while...
-lucky1.CompareCount(lucky2); //but now we don't have to wait for it!
+var enumerable1 = Enumerable.Range(0, 10);//I want to see which of these is longer
+var enumerable2 = Enumerable.Range(0, 10000);//But this guy could take a while to count fully...
+enumerable1.CompareCount(enumerable2); //But now we don't have to wait for it! Combare lengths by first-terminating-compared with one line!
+enumerable2.CountAtLeast(100); //We can also make sure that it has enough elements without enumerating the whole thing!
 
 new int[]{2,3,5,7}.Trail(2);//{ {2,3},{3,5},{5,7} }
 
