@@ -197,7 +197,7 @@ namespace NumberStone
                     num *= v;
                 }
             }
-            return new BigRational(num,den,false);
+            return new BigRational(num,den);
         }
     }
 }
