@@ -8,7 +8,8 @@
     <owners>Ben Avrahami</owners>
     <projectUrl>https://github.com/bentheiii/WhetStone</projectUrl>
 	<licenseUrl>https://raw.githubusercontent.com/bentheiii/WhetStone/master/LICENSE.txt</licenseUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<iconUrl>https://raw.githubusercontent.com/bentheiii/WhetStone/master/Icon/Icon.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2017</copyright>
     <tags>LINQ generic fields tally hooking</tags>
