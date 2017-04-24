@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Bentheiii.$id$</id>
+    <version>$version$</version>
+    <title>Bentheiii.$title$</title>
+    <authors>Ben Avrahami</authors>
+    <owners>Ben Avrahami</owners>
+    <projectUrl>https://github.com/bentheiii/WhetStone</projectUrl>
+	<licenseUrl>https://raw.githubusercontent.com/bentheiii/WhetStone/master/LICENSE.txt</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2017</copyright>
+    <tags>LINQ generic fields tally hooking</tags>
+	<language></language>
+  </metadata>
+</package>
