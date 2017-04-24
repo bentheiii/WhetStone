@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Numerics;
-using Numerics;
 
 namespace WhetStone.SystemExtensions
 {
@@ -171,27 +170,6 @@ namespace WhetStone.SystemExtensions
             return half;
         }
         /// <summary>
-        /// Approximate one <see cref="BigRational"/> to the power of another.
-        /// </summary>
-        /// <param name="a">The base of the power.</param>
-        /// <param name="pow">The exponent of the power.</param>
-        /// <param name="delta">The delta tolerance for root convergence.</param>
-        /// <returns><paramref name="a"/> raised to <paramref name="pow"/> to within <paramref name="delta"/> tolerance.</returns>
-        public static BigRational pow(this BigRational a, BigRational pow, BigRational delta)
-        {
-            return a.pow(pow.Numerator).root(a.Denominator, delta);
-        }
-        /// <summary>
-        /// Get one <see cref="BigRational"/> to the power of an <see cref="BigInteger"/>.
-        /// </summary>
-        /// <param name="a">The base of the power.</param>
-        /// <param name="exponent">The exponent of the power.</param>
-        /// <returns><paramref name="a"/> raised to <paramref name="exponent"/>.</returns>
-        public static BigRational pow(this BigRational a, BigInteger exponent)
-        {
-            return BigRational.Pow(a, exponent);
-        }
-        /// <summary>
         /// Get one <see cref="BigInteger"/> to the power of another.
         /// </summary>
         /// <param name="a">The base of the power.</param>
@@ -277,34 +255,6 @@ namespace WhetStone.SystemExtensions
         public static int floor(this double a)
         {
             return (int)Math.Floor(a);
-        }
-        /// <summary>
-        /// Approximate a root of an <see cref="BigRational"/>.
-        /// </summary>
-        /// <param name="this">The <see cref="BigRational"/> to root.</param>
-        /// <param name="n">The degree of the root.</param>
-        /// <param name="delta">The maximum tolerance for convergence.</param>
-        /// <returns><paramref name="this"/>^(1/<paramref name="n"/>) to within <paramref name="delta"/> tolerance.</returns>
-        public static BigRational root(this BigRational @this, BigInteger n, BigRational delta)
-        {
-            return @this.Numerator.root(n, delta) / @this.Denominator.root(n, delta);
-        }
-        /// <summary>
-        /// Approximate a root of an <see cref="BigInteger"/>.
-        /// </summary>
-        /// <param name="this">The <see cref="BigInteger"/> to root.</param>
-        /// <param name="n">The degree of the root.</param>
-        /// <param name="delta">The maximum tolerance for convergence.</param>
-        /// <returns><paramref name="this"/>^(1/<paramref name="n"/>) to within <paramref name="delta"/> tolerance.</returns>
-        public static BigRational root(this BigInteger @this, BigInteger n, BigRational delta)
-        {
-            BigRational prev = -@this, ret = @this;
-            while (BigRational.Abs(prev - @this) >= delta)
-            {
-                prev = ret;
-                ret = new BigRational(BigInteger.One, n) * ((n - 1) * ret + @this / ret.pow(n - 1));
-            }
-            return ret;
         }
     }
 }

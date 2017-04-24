@@ -7,7 +7,6 @@ using WhetStone.Looping;
 using WhetStone.SystemExtensions;
 using WhetStone.WordPlay;
 using Microsoft.CSharp.RuntimeBinder;
-using Numerics;
 namespace WhetStone.Fielding {
     /// <summary>
     /// A non-generic interface for all <see cref="Field{T}"/>s to use.
@@ -236,11 +235,7 @@ namespace WhetStone.Fielding {
         /// </summary>
         /// <param name="a">The double to generate the element from.</param>
         /// <returns>An element corresponding to a double <paramref name="a"/>.</returns>
-        public virtual T fromFraction(double a)
-        {
-            var f = new BigRational(a);
-            return fromFraction((int)f.Numerator, (int)f.Denominator);
-        }
+        public abstract T fromFraction(double a);
         /// <summary>
         /// Returns an element from a fraction.
         /// </summary>
@@ -341,6 +336,10 @@ namespace WhetStone.Fielding {
             public override T mod(T a, T b)
             {
                 return a % (dynamic)b;
+            }
+            public override T fromFraction(double a)
+            {
+                return (T)(dynamic)a;
             }
             public override double? toDouble(T a)
             {
@@ -1134,52 +1133,6 @@ namespace WhetStone.Fielding {
             public override char Min => char.MaxValue;
             public override char Max => char.MinValue;
         }
-        private class BigRationalField : Field<BigRational>
-        {
-            public override BigRational one { get; } = 1;
-            public override BigRational zero { get; } = 0;
-            public override BigRational add(BigRational a, BigRational b) => a + b;
-            public override BigRational pow(BigRational a, BigRational b) => a.pow(b,new BigRational(1,a.Denominator));
-            public override int Compare(BigRational x, BigRational y) => x.CompareTo(y);
-            public override BigRational fromInt(int x) => x;
-            public override BigRational fromInt(ulong x) => x;
-            public override BigRational abs(BigRational x) => BigRational.Abs(x);
-            public override BigRational divide(BigRational a, BigRational b) => a / b;
-            public override BigRational mod(BigRational a, BigRational b) => a % b;
-            public override BigRational fromFraction(int numerator, int denumerator) => numerator / (BigRational)denumerator;
-            public override BigRational Invert(BigRational x) => 1 / x;
-            public override bool isNegative(BigRational x) => x.Sign < 0;
-            public override BigRational multiply(BigRational a, BigRational b) => a * b;
-            public override BigRational Negate(BigRational x) => -x;
-            public override BigRational subtract(BigRational a, BigRational b) => a - b;
-            public override double? toDouble(BigRational a) => (double)a;
-            public override BigRational Parse(string s)
-            {
-                return new BigRational(double.Parse(s));
-            }
-            public override GenerationType GenType => GenerationType.FromRange;
-            public override BigRational Generate(IEnumerable<byte> bytes, Tuple<BigRational, BigRational> bounds = null, object special = null)
-            {
-                bounds = bounds ?? Tuple.Create(BigRational.Zero, BigRational.One);
-                if (bounds.Item1.Numerator.IsZero && bounds.Item2 == 1)
-                {
-                    return getField<decimal>().Generate(bytes);
-                }
-                var max = bounds.Item2;
-                var min = bounds.Item1;
-                var @base = Generate(bytes);
-                @base *= (max - min);
-                return @base + min;
-            }
-            public override BigRational fromFraction(double a)
-            {
-                return a;
-            }
-            public override BigRational log(BigRational a, BigRational b)
-            {
-                return Math.Log((double)a, (double)b);
-            }
-        }
         private class BigIntegerField : Field<BigInteger>
         {
             public override BigInteger one { get; } = 1;
@@ -1312,7 +1265,6 @@ namespace WhetStone.Fielding {
             setField(new ShortField());
             setField(new UshortField());
             setField(new StringField());
-            setField(new BigRationalField());
             setField(new BigIntegerField());
             setField(new BoolField());
             setField(new CharField());

@@ -45,7 +45,7 @@ namespace NumberStone
             {
                 ret.DivideFactorial(i);
             }
-            return ret.toFraction().Numerator;
+            return ret.toFraction().Item1;
         }
     }
 }
