@@ -231,7 +231,7 @@ namespace WhetStone.SystemExtensions
         }
         private void _checkMinimize()
         {
-            if ((Count / (double)BITS_IN_CELL).ceil() < _int.Count)
+            while ((Count / (double)BITS_IN_CELL).ceil() < _int.Count)
                 _int.RemoveAt(_int.Count - 1);
         }
         /// <inheritdoc />
