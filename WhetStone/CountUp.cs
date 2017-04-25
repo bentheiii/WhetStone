@@ -88,12 +88,31 @@ namespace WhetStone.Looping
         }
         /// <overloads>Get an infinite enumerable counting up from a value</overloads>
         /// <summary>
+        /// Get an infinite <see cref="IList{T}"/> of <see cref="int"/>s counting up from 0 in steps of 1. 
+        /// </summary>
+        /// <returns>A read-only, infinite <see cref="IList{T}"/> of <see cref="int"/>s.</returns>
+        public static IList<int> CountUp()
+        {
+            return CountUp(0);
+        }
+        /// <overloads>Get an infinite enumerable counting up from a value</overloads>
+        /// <summary>
+        /// Get an infinite <see cref="IList{T}"/> of <see cref="int"/>s counting up from <paramref name="start"/> in steps of 1. 
+        /// </summary>
+        /// <param name="start">The first element of the <see cref="IList{T}"/></param>
+        /// <returns>A read-only, infinite <see cref="IList{T}"/> of <see cref="int"/>s.</returns>
+        public static IList<int> CountUp(int start)
+        {
+            return CountUp(start, 1);
+        }
+        /// <overloads>Get an infinite enumerable counting up from a value</overloads>
+        /// <summary>
         /// Get an infinite <see cref="IList{T}"/> of <see cref="int"/>s counting up from <paramref name="start"/> in steps of <paramref name="step"/>. 
         /// </summary>
         /// <param name="start">The first element of the <see cref="IList{T}"/></param>
         /// <param name="step">The difference between any two consecutive elements.</param>
         /// <returns>A read-only, infinite <see cref="IList{T}"/> of <see cref="int"/>s.</returns>
-        public static IList<int> CountUp(int start = 0, int step = 1)
+        public static IList<int> CountUp(int start, int step)
         {
             if (step == 0)
                 throw new ArgumentOutOfRangeException(nameof(step));

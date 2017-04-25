@@ -24,7 +24,7 @@ namespace WhetStone.Looping
                 _end = end;
                 _step = step.ToFieldWrapper();
                 var gap = end - _start;
-                var ratio = (double?)(gap/_step);
+                var ratio = ((double?)gap / (double?)_step);
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
                 Count = ratio.Value <= 0 ? 0 : ratio.Value.ceil();
@@ -116,7 +116,7 @@ namespace WhetStone.Looping
                 _end = end;
                 _step = step.ToFieldWrapper();
                 var gap = end - _start;
-                var ratio = (double?)(gap / -_step);
+                var ratio = ((double?)gap / -(double?)_step);
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
                 Count = ratio.Value.ceil();
@@ -208,7 +208,7 @@ namespace WhetStone.Looping
                 _end = end;
                 _step = step.ToFieldWrapper();
                 var gap = end - _start;
-                var ratio = (double?)(gap / _step);
+                var ratio = (double?)gap / (double?)_step;
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
                 Count = ratio.Value < 0 ? 0 : ratio.Value.floor()+1;
@@ -283,7 +283,7 @@ namespace WhetStone.Looping
                 {
                     if (index < 0 || index >= Count)
                         throw new IndexOutOfRangeException();
-                    return this._start - this._step * index;
+                    return this._start + this._step * index;
                 }
             }
         }
@@ -300,7 +300,7 @@ namespace WhetStone.Looping
                 _end = end;
                 _step = step.ToFieldWrapper();
                 var gap = end - _start;
-                var ratio = (double?)(gap / -_step);
+                var ratio = (double?)gap / -(double?)_step;
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
                 Count = ratio.Value < 0 ? 0 : ratio.Value.floor() + 1;
@@ -426,9 +426,19 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="start">The first element of the returned value.</param>
         /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
+        public static IList<int> Range(int start, int max)
+        {
+            return Range(start, max, 1);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
         /// <param name="step">The difference between consecutive elements.</param>
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
-        public static IList<int> Range(int start, int max, int step = 1)
+        public static IList<int> Range(int start, int max, int step)
         {
             step.ThrowIfAbsurd(nameof(step),false,allowNeg:true);
             if (step < 0)
@@ -491,9 +501,19 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="start">The first element of the returned value.</param>
         /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
+        public static IList<int> IRange(int start, int max)
+        {
+            return IRange(start, max, 1);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of an arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
         /// <param name="step">The difference between consecutive elements.</param>
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
-        public static IList<int> IRange(int start, int max, int step=1)
+        public static IList<int> IRange(int start, int max, int step)
         {
             if (step < 0)
                 return RIRange(start, max, -step);
@@ -543,9 +563,19 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="start">The first element of the returned value.</param>
         /// <param name="max">The maximum value of the elements. Exclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
+        public static IList<int> RRange(int start, int max)
+        {
+            return RRange(start, max, 1);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Exclusive.</param>
         /// <param name="step">The difference between consecutive elements.</param>
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
-        public static IList<int> RRange(int start, int max, int step = 1)
+        public static IList<int> RRange(int start, int max, int step)
         {
             step.ThrowIfAbsurd(nameof(step), false, allowNeg: true);
             if (step < 0)
@@ -588,9 +618,19 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="start">The first element of the returned value.</param>
         /// <param name="max">The maximum value of the elements. Inclusive.</param>
+        /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of 1.</returns>
+        public static IList<int> RIRange(int start, int max)
+        {
+            return RIRange(start, max, 1);
+        }
+        /// <summary>
+        /// Get an <see cref="IList{T}"/> of a descending arithmetic series of <see cref="int"/>s. 
+        /// </summary>
+        /// <param name="start">The first element of the returned value.</param>
+        /// <param name="max">The maximum value of the elements. Inclusive.</param>
         /// <param name="step">The difference between consecutive elements.</param>
         /// <returns>A read-only <see cref="IList{T}"/> with elements from <paramref name="start"/> to <paramref name="max"/> in steps of <paramref name="step"/>.</returns>
-        public static IList<int> RIRange(int start, int max, int step = 1)
+        public static IList<int> RIRange(int start, int max, int step)
         {
             step.ThrowIfAbsurd(nameof(step), false, allowNeg: true);
             if (step < 0)

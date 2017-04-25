@@ -21,7 +21,13 @@ namespace WhetStone.Comparison
                 if (t.Item1 == null || t.Item2 == null || t.Item3 == null)
                     return false;
                 int ind = t.Item3.Item1;
-                if (!new [] { @this[ind], other[ind], t.Item1.Item1, t.Item2.Item1 }.AllEqual(_int))
+
+                var tind = @this[ind];
+                var oind = other[ind];
+                var tnum = t.Item1.Item1;
+                var onum = t.Item2.Item1;
+
+                if (!new [] { tind,oind,tnum,onum }.AllEqual(_int))
                     return false;
             }
             return true;
