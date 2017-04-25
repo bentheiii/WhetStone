@@ -13,6 +13,7 @@
     <description>$description$</description>
     <copyright>Copyright 2017</copyright>
     <tags>LINQ generic fields tally hooking</tags>
+	<summary>A library to improve on LINQ  and provide more flexible generic capabilities. See the project page for details.</summary>
 	<language></language>
   </metadata>
 </package>
