@@ -14,11 +14,11 @@
   <HelpKINode Title="accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_accessed.htm" />
   <HelpKINode Title="AccesType property" Url="html/P_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs_AccesType.htm" />
   <HelpKINode Title="Add method">
-    <HelpKINode Title="BitList.Add Method " Url="html/M_WhetStone_SystemExtensions_BitList_Add.htm" />
-    <HelpKINode Title="GenericTally(T).Add Method " Url="html/M_WhetStone_Looping_GenericTally_1_Add.htm" />
     <HelpKINode Title="cache.IListCache(T).Add Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Add.htm" />
     <HelpKINode Title="InfiniteList(T).Add Method " Url="html/M_WhetStone_Looping_InfiniteList_1_Add.htm" />
     <HelpKINode Title="KahanSum(T).Add Method " Url="html/M_NumberStone_KahanSum_1_Add.htm" />
+    <HelpKINode Title="BitList.Add Method " Url="html/M_WhetStone_SystemExtensions_BitList_Add.htm" />
+    <HelpKINode Title="GenericTally(T).Add Method " Url="html/M_WhetStone_Looping_GenericTally_1_Add.htm" />
     <HelpKINode Title="KahanSum.Add Method " Url="html/M_NumberStone_KahanSum_Add.htm" />
     <HelpKINode Title="LazyList(T).Add Method " Url="html/M_WhetStone_Looping_LazyList_1_Add.htm" />
     <HelpKINode Title="MultiCollection(T).Add Method " Url="html/Overload_WhetStone_Looping_MultiCollection_1_Add.htm" />
@@ -2085,15 +2085,11 @@
     <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_SystemExtensions_throwIf.htm" />
   </HelpKINode>
   <HelpKINode Title="throwIf.ThrowIfAbsurd method" Url="html/Overload_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd.htm" />
-  <HelpKINode Title="throwIf.throwIfAbsurd(Of T) method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfAbsurd__1.htm" />
-  <HelpKINode Title="throwIf.throwIfAbsurd&lt;T&gt; method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfAbsurd__1.htm" />
-  <HelpKINode Title="throwIf.ThrowIfNull(Of T) method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfNull__1.htm" />
-  <HelpKINode Title="throwIf.ThrowIfNull&lt;T&gt; method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfNull__1.htm" />
+  <HelpKINode Title="throwIf.ThrowIfNull(Of T) method" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfNull__1.htm" />
+  <HelpKINode Title="throwIf.ThrowIfNull&lt;T&gt; method" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfNull__1.htm" />
   <HelpKINode Title="ThrowIfAbsurd method" Url="html/Overload_WhetStone_SystemExtensions_throwIf_ThrowIfAbsurd.htm" />
-  <HelpKINode Title="throwIfAbsurd(Of T) method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfAbsurd__1.htm" />
-  <HelpKINode Title="throwIfAbsurd&lt;T&gt; method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfAbsurd__1.htm" />
-  <HelpKINode Title="ThrowIfNull(Of T) method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfNull__1.htm" />
-  <HelpKINode Title="ThrowIfNull&lt;T&gt; method" Url="html/M_WhetStone_SystemExtensions_throwIf_throwIfNull__1.htm" />
+  <HelpKINode Title="ThrowIfNull(Of T) method" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfNull__1.htm" />
+  <HelpKINode Title="ThrowIfNull&lt;T&gt; method" Url="html/M_WhetStone_SystemExtensions_throwIf_ThrowIfNull__1.htm" />
   <HelpKINode Title="TimeExtentions class">
     <HelpKINode Title="TimeExtentions Class" Url="html/T_WhetStone_Units_Time_TimeExtentions.htm" />
     <HelpKINode Title="about TimeExtentions class" Url="html/T_WhetStone_Units_Time_TimeExtentions.htm" />
