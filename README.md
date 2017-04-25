@@ -27,7 +27,7 @@ The concept of an IList or ICollections that cannot be edited is scary in the c#
 * C# arrays are partially immutable, throwing exception when one tries to insert items into them.
 * IReadOnlyList or IReadOnlyCollection inputs don't trigger LINQ's special checks.
 
-This means that **whenever a list or collection is to be edited, the user must first be sure it isn't read-only** (although, in most most cases, it can known beforehand, see Mutability Passing Functions, below).
+This means that **whenever a list or collection is to be edited, the user must first be sure it isn't read-only** (although, in most cases, it can known beforehand, see Mutability Passing Functions, below).
 
 ### \#2- Compile-Time Specilization
 It was decided that the specialized LINQ methods (the ones introduced in this module). Will both return and recieve specilized IEnumerables **explicitly**. This means Two things:
@@ -35,10 +35,10 @@ It was decided that the specialized LINQ methods (the ones introduced in this mo
 * When you use Whetstone's functions, you can be certain you are getting back an ICollection or IList, it's the return value's type. This avoid a lot of cumbersome casting and unnecessary converting. It also allows LINQ-style list-function piping like this:
 ```csharp
 var list = new int[]{2,3,5,7}.Select(x=>x*x) //{4,9,25,49}
-            .SelectMany(x=>new int[]{x,x*2}) //{4,8,9,18,25,50,49,98}
-            .Zip(new int[]{0,1,2,3,4,5,6,7}) //{(4,0),(8,1),(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
-            .Skip(2)                         //{(9,2),(18,3),(25,4),(50,5),(49,6),(98,7)}
-            .Select(a=>a.Item1-a.Item2);     //{7,15,21,45,43,91}
+            .Concat(new int[]{25,30,5,1}) //{4,9,25,49,25,30,5,1}
+            .Zip(new int[]{0,1,2,3,4,5,6,7}) //{(4,0),(9,1),(25,2),(49,3),(25,4),(30,5),(5,6),(1,7)}
+            .Skip(2)                         //{(25,2),(49,3),(25,4),(30,5),(5,6),(1,7)}
+            .Select(a=>a.Item1-a.Item2);     //{23,46,21,25,-1,-6}
             //Still a List!
 ```
 ### \#3-Clarifications and Repercussions
@@ -233,3 +233,4 @@ new int[]{2,3,5,7}.Trail(2);//{ {2,3},{3,5},{5,7} }
 And much, much more.
 
 I hope you'll give Whetstone a try. It's sure to be one of your go-to C# libraries.
+more
