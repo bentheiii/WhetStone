@@ -4,28 +4,21 @@
     <HelpKINode Title="Field(T).abs Method " Url="html/M_WhetStone_Fielding_Field_1_abs.htm" />
     <HelpKINode Title="FieldWrapper(T).abs Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_abs.htm" />
   </HelpKINode>
-  <HelpKINode Title="absolutePathToRelative class">
-    <HelpKINode Title="absolutePathToRelative Class" Url="html/T_WhetStone_Path_absolutePathToRelative.htm" />
-    <HelpKINode Title="about absolutePathToRelative class" Url="html/T_WhetStone_Path_absolutePathToRelative.htm" />
-    <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_Path_absolutePathToRelative.htm" />
-  </HelpKINode>
-  <HelpKINode Title="AbsolutePathToRelative method" Url="html/M_WhetStone_Path_absolutePathToRelative_AbsolutePathToRelative.htm" />
-  <HelpKINode Title="absolutePathToRelative.AbsolutePathToRelative method" Url="html/M_WhetStone_Path_absolutePathToRelative_AbsolutePathToRelative.htm" />
   <HelpKINode Title="accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_accessed.htm" />
   <HelpKINode Title="AccesType property" Url="html/P_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs_AccesType.htm" />
+  <HelpKINode Title="add method" Url="html/M_WhetStone_Fielding_Field_1_add.htm" />
   <HelpKINode Title="Add method">
+    <HelpKINode Title="BitList.Add Method " Url="html/M_WhetStone_SystemExtensions_BitList_Add.htm" />
     <HelpKINode Title="cache.IListCache(T).Add Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Add.htm" />
+    <HelpKINode Title="GenericTally(T).Add Method " Url="html/M_WhetStone_Looping_GenericTally_1_Add.htm" />
     <HelpKINode Title="InfiniteList(T).Add Method " Url="html/M_WhetStone_Looping_InfiniteList_1_Add.htm" />
     <HelpKINode Title="KahanSum(T).Add Method " Url="html/M_NumberStone_KahanSum_1_Add.htm" />
-    <HelpKINode Title="BitList.Add Method " Url="html/M_WhetStone_SystemExtensions_BitList_Add.htm" />
-    <HelpKINode Title="GenericTally(T).Add Method " Url="html/M_WhetStone_Looping_GenericTally_1_Add.htm" />
     <HelpKINode Title="KahanSum.Add Method " Url="html/M_NumberStone_KahanSum_Add.htm" />
     <HelpKINode Title="LazyList(T).Add Method " Url="html/M_WhetStone_Looping_LazyList_1_Add.htm" />
     <HelpKINode Title="MultiCollection(T).Add Method " Url="html/Overload_WhetStone_Looping_MultiCollection_1_Add.htm" />
     <HelpKINode Title="ResizingArray(T).Add Method " Url="html/M_WhetStone_Looping_ResizingArray_1_Add.htm" />
     <HelpKINode Title="TypeTally(T, T0, T1, T2, T3, T4).Add Method " Url="html/M_WhetStone_Looping_TypeTally_6_Add.htm" />
   </HelpKINode>
-  <HelpKINode Title="add method" Url="html/M_WhetStone_Fielding_Field_1_add.htm" />
   <HelpKINode Title="Add(Of T0) method" Url="html/M_WhetStone_Looping_TypeTally_1_Add__1.htm" />
   <HelpKINode Title="Add(Of T1) method" Url="html/M_WhetStone_Looping_TypeTally_2_Add__1.htm" />
   <HelpKINode Title="Add(Of T2) method" Url="html/M_WhetStone_Looping_TypeTally_3_Add__1.htm" />
@@ -1529,13 +1522,6 @@
   </HelpKINode>
   <HelpKINode Title="Loop method" Url="html/Overload_WhetStone_Streams_loop_Loop.htm" />
   <HelpKINode Title="loop.Loop method" Url="html/Overload_WhetStone_Streams_loop_Loop.htm" />
-  <HelpKINode Title="macAddress class">
-    <HelpKINode Title="macAddress Class" Url="html/T_WhetStone_Enviroment_macAddress.htm" />
-    <HelpKINode Title="about macAddress class" Url="html/T_WhetStone_Enviroment_macAddress.htm" />
-    <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_Enviroment_macAddress.htm" />
-  </HelpKINode>
-  <HelpKINode Title="MacAddress method" Url="html/M_WhetStone_Enviroment_macAddress_MacAddress.htm" />
-  <HelpKINode Title="macAddress.MacAddress method" Url="html/M_WhetStone_Enviroment_macAddress_MacAddress.htm" />
   <HelpKINode Title="Max property" Url="html/P_WhetStone_Fielding_Field_1_Max.htm" />
   <HelpKINode Title="merge class">
     <HelpKINode Title="merge Class" Url="html/T_WhetStone_Looping_merge.htm" />
@@ -2367,8 +2353,6 @@
   <HelpKINode Title="WhetStone.Comparison.TupleEqualityComparer(Of T1, T2, T3) class" Url="html/T_WhetStone_Comparison_TupleEqualityComparer_3.htm" />
   <HelpKINode Title="WhetStone.Comparison.TupleEqualityComparer&lt;T1, T2, T3&gt; class" Url="html/T_WhetStone_Comparison_TupleEqualityComparer_3.htm" />
   <HelpKINode Title="WhetStone.Comparison.TupleEqualityComparer&lt;T1, T2&gt; class" Url="html/T_WhetStone_Comparison_TupleEqualityComparer_2.htm" />
-  <HelpKINode Title="WhetStone.Enviroment namespace" Url="html/N_WhetStone_Enviroment.htm" />
-  <HelpKINode Title="WhetStone.Enviroment.macAddress class" Url="html/T_WhetStone_Enviroment_macAddress.htm" />
   <HelpKINode Title="WhetStone.Fielding namespace" Url="html/N_WhetStone_Fielding.htm" />
   <HelpKINode Title="WhetStone.Fielding.Field interface" Url="html/T_WhetStone_Fielding_Field.htm" />
   <HelpKINode Title="WhetStone.Fielding.Field(Of T) class" Url="html/T_WhetStone_Fielding_Field_1.htm" />
@@ -2529,8 +2513,6 @@
   <HelpKINode Title="WhetStone.Looping.yieldAggregate class" Url="html/T_WhetStone_Looping_yieldAggregate.htm" />
   <HelpKINode Title="WhetStone.Looping.zip class" Url="html/T_WhetStone_Looping_zip.htm" />
   <HelpKINode Title="WhetStone.Looping.zipUnBound class" Url="html/T_WhetStone_Looping_zipUnBound.htm" />
-  <HelpKINode Title="WhetStone.Path namespace" Url="html/N_WhetStone_Path.htm" />
-  <HelpKINode Title="WhetStone.Path.absolutePathToRelative class" Url="html/T_WhetStone_Path_absolutePathToRelative.htm" />
   <HelpKINode Title="WhetStone.Processes namespace" Url="html/N_WhetStone_Processes.htm" />
   <HelpKINode Title="WhetStone.Processes.timeout class" Url="html/T_WhetStone_Processes_timeout.htm" />
   <HelpKINode Title="WhetStone.Random namespace" Url="html/N_WhetStone_Random.htm" />
