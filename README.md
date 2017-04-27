@@ -7,6 +7,8 @@ Whetstone focuses on optimization, versatility, and usability, all while keeping
 
 The API can be found [here](https://bentheiii.github.io/WhetStone/index)
 
+Whetstone is available on [Nuget](https://www.nuget.org/packages/Bentheiii.WhetStone)
+
 Let's dive right in to what Whetstone provides:
 ## I: Locked Structures and List and Collection Specialization
 To understand the motivation behind Locked Structures, we need to understand the problem this module tackles:
