@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Numerics;
+using WhetStone.Fielding;
 
 namespace WhetStone.SystemExtensions
 {
@@ -15,14 +16,15 @@ namespace WhetStone.SystemExtensions
         /// <returns>1 if <paramref name="this"/> is <see langword="true"/>, or 0 otherwise.</returns>
         public static int Indicator(this bool @this) => @this ? 1 : 0;
         /// <summary>
-        /// Get a value depending on a <see cref="bool"/>.
+        /// Get 0 or 1 depending on a <see cref="bool"/>.
         /// </summary>
-        /// <typeparam name="T">The type of value to return.</typeparam>
         /// <param name="this">The <see cref="bool"/> to use.</param>
-        /// <param name="then">The value to return if <see langword="true"/>.</param>
-        /// <param name="else">The value to return if <see langword="false"/>.</param>
-        /// <returns><paramref name="then"/> if <paramref name="this"/> is <see langword="true"/>, or <paramref name="else"/> otherwise.</returns>
-        public static T Indicator<T>(this bool @this, T then, T @else) => @this ? then : @else;
+        /// <returns>1 if <paramref name="this"/> is <see langword="true"/>, or 0 otherwise.</returns>
+        public static T Indicator<T>(this bool @this)
+        {
+            var f = Fields.getField<T>();
+            return @this ? f.one : f.zero;
+        }
         /// <summary>
         /// Get one <see cref="decimal"/> to the power of another.
         /// </summary>

@@ -35,7 +35,7 @@ It was decided that the specialized LINQ methods (the ones introduced in this mo
 * When you use Whetstone's functions, you can be certain you are getting back an ICollection or IList, it's the return value's type. This avoid a lot of cumbersome casting and unnecessary converting. It also allows LINQ-style list-function piping like this:
 ```csharp
 var list = new int[]{2,3,5,7}.Select(x=>x*x) //{4,9,25,49}
-            .Concat(new int[]{25,30,5,1}) //{4,9,25,49,25,30,5,1}
+            .Concat(new int[]{25,30,5,1})    //{4,9,25,49,25,30,5,1}
             .Zip(new int[]{0,1,2,3,4,5,6,7}) //{(4,0),(9,1),(25,2),(49,3),(25,4),(30,5),(5,6),(1,7)}
             .Skip(2)                         //{(25,2),(49,3),(25,4),(30,5),(5,6),(1,7)}
             .Select(a=>a.Item1-a.Item2);     //{23,46,21,25,-1,-6}
@@ -53,7 +53,7 @@ Wherever possible, and without sacrificing complexity or memory, Whetstone striv
 ## II: Mutability Passing Functions
 As stated above, it's usually pretty easy to tell in advance when a returned IList or ICollection is read-only or not. But sometimes it's not that simple.
 ```csharp
-var originalList = new List<int>(new int[]{2,3,7,11});
+var originalList = new List<int>(){2,3,7,11};
 var slice = originalList.Skip(2); //Still a list!
 slice.Insert(0,5);//wait...
 ```
@@ -73,7 +73,7 @@ TYPE Abs(TYPE value){
 }
 ```
 The reason is clear: **C# generics don't allow static functions and, by extension, operators**. Whetstone's solution is to use **fields**.
-Fields are like referencable static classes. The same way that an IComparer provides a way to compare types, Field can add, subtract, negate, and a whole lot of other things to any type.
+Fields are like referenceable static classes. The same way that an IComparer provides a way to compare types, Field can add, subtract, negate, and a whole lot of other things to any type.
 ### \#1- Instant Lookup
 There is a central dictionary of fields, one for each type (much like `Comparer<T>.Default`). Meaning you don't have to provide the same integer field every time you want to use field operations.
 You can also transform your object into a Field-Wrapped object, letting you use operators and the like with generic lookups instead of a dictionary lookup.

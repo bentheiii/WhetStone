@@ -89,7 +89,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbsolutePathToRelative.cs" />
     <Compile Include="All.cs" />
     <Compile Include="AllEqual.cs" />
     <Compile Include="AnyAndAll.cs" />
@@ -155,7 +154,6 @@
     <Compile Include="LogarithmicProgresser.cs" />
     <Compile Include="LongestCommonPrefix.cs" />
     <Compile Include="Loop.cs" />
-    <Compile Include="MacAddress.cs" />
     <Compile Include="Merge.cs" />
     <Compile Include="MinMax.cs" />
     <Compile Include="MultiCollection.cs" />

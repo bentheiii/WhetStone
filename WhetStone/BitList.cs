@@ -69,7 +69,7 @@ namespace WhetStone.SystemExtensions
             var lmod = Count%BITS_IN_CELL;
             if (lmod == 0)
             {
-                _int.Add(item.Indicator((word)1,(word)0));
+                _int.Add(item.Indicator<word>());
             }
             else
             {
@@ -173,7 +173,7 @@ namespace WhetStone.SystemExtensions
                 carry = newcarry;
             }
             if (Count%BITS_IN_CELL == 0)
-                _int.Add(carry.Indicator((word)1, (word)0));
+                _int.Add(carry.Indicator<word>());
             Count++;
         }
         /// <inheritdoc />

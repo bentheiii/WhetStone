@@ -90,7 +90,6 @@
     <Compile Include="Primes.cs" />
     <Compile Include="Spectypes.cs" />
     <Compile Include="Splice.cs" />
-    <Compile Include="AbsolutePathToRelative.cs" />
     <Compile Include="SplitAt.cs" />
     <Compile Include="SplitCapture.cs" />
     <Compile Include="StrConcat.cs" />
