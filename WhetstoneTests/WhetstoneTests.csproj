@@ -70,6 +70,7 @@
     <Compile Include="BooleanBinarySearch.cs" />
     <Compile Include="Cache.cs" />
     <Compile Include="Chunk.cs" />
+    <Compile Include="CountAtLeast.cs" />
     <Compile Include="Cover.cs" />
     <Compile Include="Divisibility.cs" />
     <Compile Include="Duplicates.cs" />

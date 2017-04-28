@@ -24,15 +24,35 @@ namespace WhetStone.Looping
             @this.ThrowIfNull(nameof(@this));
             if (minCount <= 0)
                 return true;
-            if (predicate != null)
-                @this = @this.Where(predicate);
-            else
+            var rec = @this.RecommendCount();
+            if(predicate == null)
             {
-                var rec = @this.RecommendCount();
                 if (rec.HasValue)
                     return rec.Value >= minCount;
+                return @this.Skip(minCount - 1).Any();
             }
-            return @this.Skip(minCount - 1).Any();
+            if (!rec.HasValue)
+                return @this.Where(predicate).Skip(minCount - 1).Any();
+            var left = rec.Value;
+            var need = minCount;
+            using (var tor = @this.GetEnumerator())
+            {
+                while (left >= need)
+                {
+                    if (!tor.MoveNext())
+                        return false;
+                    if (predicate(tor.Current))
+                    {
+                        need--;
+                    }
+                    if (need <= 0)
+                    {
+                        return true;
+                    }
+                    left--;
+                }
+            }
+            return false;
         }
     }
 }
