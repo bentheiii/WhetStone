@@ -32,14 +32,14 @@ namespace WhetStone.Looping
             }
             public override bool Contains(T item)
             {
-                return (_step.Field.subtract(item,_start) % _step).isZero;
+                return (_step.Field.Difference(item,_start) % _step).isZero;
             }
             public override int Count { get; } = int.MaxValue;
             public override int IndexOf(T item)
             {
                 if (!Contains(item))
                     return -1;
-                return (int)(_step.Field.subtract(item, _start) / _step);
+                return (int)(_step.Field.Difference(item, _start) / _step);
             }
             public override T this[int index]
             {

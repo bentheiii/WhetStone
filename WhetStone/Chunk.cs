@@ -23,7 +23,7 @@ namespace WhetStone.Looping
             {
                 return Chunk((IEnumerable<T>)_source, _chunksize).GetEnumerator();
             }
-            public override int Count => (_source.Count/(double)_chunksize).ceil();
+            public override int Count => (_source.Count/(double)_chunksize).Ceil();
             public override IList<T> this[int index]
             {
                 get

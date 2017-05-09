@@ -245,7 +245,7 @@ namespace NumberStone
             x.ThrowIfAbsurd(nameof(x), false);
             generator.ThrowIfNull(nameof(generator));
             int a = generator.Int(1, x);
-            return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && a.powmod(x - 1, x) == 1;
+            return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && a.PowMod(x - 1, x) == 1;
         }
         /// <summary>
         /// Performs a statistical trial to check for primality.
@@ -258,7 +258,7 @@ namespace NumberStone
             x.ThrowIfAbsurd(nameof(x), false);
             generator.ThrowIfNull(nameof(generator));
             int a = generator.Int(1, (int)Math.Min(int.MaxValue, x));
-            return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && ((long)a).powmod(x - 1, x) == 1;
+            return greatestCommonDivisor.GreatestCommonDivisor(a, x) == 1 && ((long)a).PowMod(x - 1, x) == 1;
         }
         /// <summary>
         /// Performs statistic trials to check whether the number is prime.

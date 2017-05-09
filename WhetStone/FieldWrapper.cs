@@ -87,35 +87,35 @@ namespace WhetStone.Fielding
         /// </summary>
         /// <param name="base">The base for the logarithm function.</param>
         /// <returns>The logarithm of <see cref="val"/> and <paramref name="base"/>.</returns>
-        public FieldWrapper<T> log(T @base)
+        public FieldWrapper<T> Log(T @base)
         {
-            return _field.log(val, @base);
+            return _field.Log(val, @base);
         } 
         /// <summary>
         /// Get the absolute value of the element.
         /// </summary>
         /// <returns><see cref="val"/>'s absolute value.</returns>
-        public FieldWrapper<T> abs()
+        public FieldWrapper<T> Abs()
         {
-            return _field.abs(val);
+            return _field.Abs(val);
         }
         /// <summary>
         /// Get the element raised to an exponent.
         /// </summary>
         /// <param name="p">The exponent.</param>
         /// <returns><see cref="val"/> rasied to <paramref name="p"/>.</returns>
-        public FieldWrapper<T> pow(FieldWrapper<T> p)
+        public FieldWrapper<T> Pow(FieldWrapper<T> p)
         {
-            return _field.pow(val, p);
+            return _field.Pow(val, p);
         }
         /// <summary>
         /// Get the element raised to an exponent.
         /// </summary>
         /// <param name="p">The exponent.</param>
         /// <returns><see cref="val"/> raised to <paramref name="p"/>.</returns>
-        public FieldWrapper<T> pow(int p)
+        public FieldWrapper<T> PowInt(int p)
         {
-            return _field.Pow(val, p);
+            return _field.PowInt(val, p);
         }
         /// <summary>
         /// Gets the inverted value of <see cref="val"/>.
@@ -161,7 +161,7 @@ namespace WhetStone.Fielding
         /// <returns>The sum of <paramref name="w1"/> and <paramref name="w2"/>.</returns>
         public static FieldWrapper<T> operator +(FieldWrapper<T> w1, FieldWrapper<T> w2)
         {
-            return _field.add(w1, w2);
+            return _field.Sum(w1, w2);
         }
         /// <summary>
         /// Multiplies two <see cref="FieldWrapper{T}"/>s.
@@ -171,7 +171,7 @@ namespace WhetStone.Fielding
         /// <returns>The product of <paramref name="w1"/> and <paramref name="w2"/>.</returns>
         public static FieldWrapper<T> operator *(FieldWrapper<T> w1, FieldWrapper<T> w2)
         {
-            return _field.multiply(w1, w2);
+            return _field.Product(w1, w2);
         }
         /// <summary>
         /// Subtracts two <see cref="FieldWrapper{T}"/>s.
@@ -181,7 +181,7 @@ namespace WhetStone.Fielding
         /// <returns>The difference of <paramref name="w1"/> and <paramref name="w2"/>.</returns>
         public static FieldWrapper<T> operator -(FieldWrapper<T> w1, FieldWrapper<T> w2)
         {
-            return _field.subtract(w1, w2);
+            return _field.Difference(w1, w2);
         }
         /// <summary>
         /// Negates a <see cref="FieldWrapper{T}"/>.
@@ -200,7 +200,7 @@ namespace WhetStone.Fielding
         /// <returns>The quotient of <paramref name="w1"/> and <paramref name="w2"/>.</returns>
         public static FieldWrapper<T> operator /(FieldWrapper<T> w1, FieldWrapper<T> w2)
         {
-            return _field.divide(w1, w2);
+            return _field.Quotient(w1, w2);
         }
         /// <summary>
         /// Modulo two <see cref="FieldWrapper{T}"/>s.
@@ -210,7 +210,7 @@ namespace WhetStone.Fielding
         /// <returns>The modulo of <paramref name="w1"/> and <paramref name="w2"/>.</returns>
         public static FieldWrapper<T> operator %(FieldWrapper<T> w1, FieldWrapper<T> w2)
         {
-            return _field.mod(w1, w2);
+            return _field.Modulo(w1, w2);
         }
         /// <summary>
         /// Raises a <see cref="FieldWrapper{T}"/> to the power of another.
@@ -220,7 +220,7 @@ namespace WhetStone.Fielding
         /// <returns>The power of <paramref name="w1"/> and <paramref name="w2"/>.</returns>
         public static FieldWrapper<T> operator ^(FieldWrapper<T> w1, FieldWrapper<T> w2)
         {
-            return _field.pow(w1, w2);
+            return _field.Pow(w1, w2);
         }
         /// <summary>
         /// Raises a <see cref="FieldWrapper{T}"/> to the power of an integer.
@@ -230,7 +230,7 @@ namespace WhetStone.Fielding
         /// <returns>The power of <paramref name="w1"/> and <paramref name="w2"/>.</returns>
         public static FieldWrapper<T> operator ^(FieldWrapper<T> w1, int w2)
         {
-            return _field.Pow(w1, w2);
+            return _field.PowInt(w1, w2);
         }
         /// <summary>
         /// Compare two <see cref="FieldWrapper{T}"/>s.
@@ -315,7 +315,7 @@ namespace WhetStone.Fielding
         /// <summary>
         /// Get whether the element is strictly negative.
         /// </summary>
-        public bool IsNegative
+        public bool isNegative
         {
             get
             {
@@ -325,7 +325,7 @@ namespace WhetStone.Fielding
         /// <summary>
         /// Get whether the element is strictly positive.
         /// </summary>
-        public bool IsPositive
+        public bool isPositive
         {
             get
             {

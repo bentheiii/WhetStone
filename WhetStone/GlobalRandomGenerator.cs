@@ -19,7 +19,7 @@ namespace WhetStone.Random
         {
             var ret = _dic.ContainsKey(t);
             if (!ret)
-                reset(t);
+                Reset(t);
         }
         /// <inheritdoc />
         public override byte[] Bytes(int length)
@@ -56,7 +56,7 @@ namespace WhetStone.Random
         /// </summary>
         /// <param name="thread">The thread instance for which to reset the generator.</param>
         /// <param name="seed">The new seed for which to reset the generator. <see langword="null"/> for a pseudo-random seed.</param>
-        public static void reset(Thread thread = null, int? seed = null)
+        public static void Reset(Thread thread = null, int? seed = null)
         {
             _dic[thread ?? Thread.CurrentThread] =
                 new LocalRandomGenerator(seed);

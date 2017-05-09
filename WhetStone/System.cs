@@ -31,7 +31,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static decimal pow(this decimal powbase, decimal powpower)
+        public static decimal Pow(this decimal powbase, decimal powpower)
         {
             return (decimal)Math.Pow((double)powbase, (double)powpower);
         }
@@ -41,7 +41,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static double pow(this double powbase, double powpower)
+        public static double Pow(this double powbase, double powpower)
         {
             return Math.Pow(powbase, powpower);
         }
@@ -51,7 +51,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static float pow(this float powbase, float powpower)
+        public static float Pow(this float powbase, float powpower)
         {
             return (float)Math.Pow(powbase, powpower);
         }
@@ -61,9 +61,9 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static int pow(this int powbase, int powpower)
+        public static int Pow(this int powbase, int powpower)
         {
-            return (int)((double)powbase).pow(powpower);
+            return (int)((double)powbase).Pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="byte"/> to the power of another.
@@ -71,9 +71,9 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static byte pow(this byte powbase, byte powpower)
+        public static byte Pow(this byte powbase, byte powpower)
         {
-            return (byte)((double)powbase).pow(powpower);
+            return (byte)((double)powbase).Pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="sbyte"/> to the power of another.
@@ -81,9 +81,9 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static sbyte pow(this sbyte powbase, sbyte powpower)
+        public static sbyte Pow(this sbyte powbase, sbyte powpower)
         {
-            return (sbyte)((double)powbase).pow(powpower);
+            return (sbyte)((double)powbase).Pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="short"/> to the power of another.
@@ -91,9 +91,9 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static short pow(this short powbase, short powpower)
+        public static short Pow(this short powbase, short powpower)
         {
-            return (short)((double)powbase).pow(powpower);
+            return (short)((double)powbase).Pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="ushort"/> to the power of another.
@@ -101,9 +101,9 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static ushort pow(this ushort powbase, ushort powpower)
+        public static ushort Pow(this ushort powbase, ushort powpower)
         {
-            return (ushort)((double)powbase).pow(powpower);
+            return (ushort)((double)powbase).Pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="uint"/> to the power of another.
@@ -111,9 +111,9 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static uint pow(this uint powbase, uint powpower)
+        public static uint Pow(this uint powbase, uint powpower)
         {
-            return (uint)((double)powbase).pow(powpower);
+            return (uint)((double)powbase).Pow(powpower);
         }
         /// <summary>
         /// Get one <see cref="long"/> to the power of another.
@@ -121,7 +121,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static long pow(this long powbase, long powpower)
+        public static long Pow(this long powbase, long powpower)
         {
             switch (powbase)
             {
@@ -139,7 +139,7 @@ namespace WhetStone.SystemExtensions
                 case 1:
                     return powbase;
             }
-            var half = powbase.pow(powpower / 2);
+            var half = powbase.Pow(powpower / 2);
             half *= half;
             if (powpower % 2 == 1)
                 half *= powbase;
@@ -151,7 +151,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="powbase">The base of the power.</param>
         /// <param name="powpower">The exponent of the power.</param>
         /// <returns><paramref name="powbase"/> raised to <paramref name="powpower"/>.</returns>
-        public static ulong pow(this ulong powbase, ulong powpower)
+        public static ulong Pow(this ulong powbase, ulong powpower)
         {
             switch (powbase)
             {
@@ -165,7 +165,7 @@ namespace WhetStone.SystemExtensions
                 case 1:
                     return powbase;
             }
-            var half = powbase.pow(powpower / 2);
+            var half = powbase.Pow(powpower / 2);
             half *= half;
             if (powpower % 2 == 1)
                 half *= powbase;
@@ -177,7 +177,7 @@ namespace WhetStone.SystemExtensions
         /// <param name="a">The base of the power.</param>
         /// <param name="b">The exponent of the power.</param>
         /// <returns><paramref name="a"/> raised to <paramref name="b"/>.</returns>
-        public static BigInteger pow(this BigInteger a, BigInteger b)
+        public static BigInteger Pow(this BigInteger a, BigInteger b)
         {
             /*
              * So BigInt only allows BigInt^int so what we do is this (m=int max value):
@@ -189,7 +189,7 @@ namespace WhetStone.SystemExtensions
             BigInteger divpow = BigInteger.One;
             if (!div.IsZero)
             {
-                divpow = BigInteger.Pow(a.pow(div), int.MaxValue);
+                divpow = BigInteger.Pow(a.Pow(div), int.MaxValue);
             }
             BigInteger modPow = BigInteger.Pow(a, (int)rem);
             return divpow * modPow;
@@ -201,14 +201,14 @@ namespace WhetStone.SystemExtensions
         /// <param name="power">The exponent of the exponential.</param>
         /// <param name="modulo">The modulo for the exponential.</param>
         /// <returns><paramref name="powbase"/> to the power of <paramref name="power"/> modulo <paramref name="modulo"/></returns>
-        public static int powmod(this int powbase, int power, int modulo)
+        public static int PowMod(this int powbase, int power, int modulo)
         {
             if (power < 0)
                 throw new ArithmeticException("cannot modpow to a negative power");
             if (power == 0)
                 return 1;
             powbase %= modulo;
-            int halfpow = powmod(powbase, power / 2, modulo);
+            int halfpow = PowMod(powbase, power / 2, modulo);
             int ret = (halfpow * halfpow) % modulo;
             if (power % 2 == 1)
             {
@@ -224,14 +224,14 @@ namespace WhetStone.SystemExtensions
         /// <param name="power">The exponent of the exponential.</param>
         /// <param name="modulo">The modulo for the exponential.</param>
         /// <returns><paramref name="powbase"/> to the power of <paramref name="power"/> modulo <paramref name="modulo"/></returns>
-        public static long powmod(this long powbase, long power, long modulo)
+        public static long PowMod(this long powbase, long power, long modulo)
         {
             if (power < 0)
                 throw new ArithmeticException("cannot modpow to a negative power");
             if (power == 0)
                 return 1;
             powbase %= modulo;
-            long halfpow = powmod(powbase, power / 2, modulo);
+            long halfpow = PowMod(powbase, power / 2, modulo);
             long ret = (halfpow * halfpow) % modulo;
             if (power % 2 == 1)
             {
@@ -245,7 +245,7 @@ namespace WhetStone.SystemExtensions
         /// </summary>
         /// <param name="a">The <see cref="double"/> to round.</param>
         /// <returns><paramref name="a"/> rounded up.</returns>
-        public static int ceil(this double a)
+        public static int Ceil(this double a)
         {
             return (int)Math.Ceiling(a);
         }
@@ -254,7 +254,7 @@ namespace WhetStone.SystemExtensions
         /// </summary>
         /// <param name="a">The <see cref="double"/> to round.</param>
         /// <returns><paramref name="a"/> rounded down.</returns>
-        public static int floor(this double a)
+        public static int Floor(this double a)
         {
             return (int)Math.Floor(a);
         }

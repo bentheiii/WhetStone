@@ -127,7 +127,7 @@ namespace NumberStone
         /// </summary>
         /// <param name="p">The power to raise the <see cref="BigProduct"/>'s value by.</param>
         /// <exception cref="InvalidOperationException">In case an attempt is made to raise zero by the power of zero.</exception>
-        public void pow(int p)
+        public void Pow(int p)
         {
             if (sign == 0)
                 return;
@@ -161,7 +161,7 @@ namespace NumberStone
             {
                 if (factor.Value < 0)
                     throw new InvalidOperationException("Cannot return num of non-integer value.");
-                ret *= factor.Key.pow(factor.Value);
+                ret *= factor.Key.Pow(factor.Value);
             }
             return ret;
         }
@@ -186,7 +186,7 @@ namespace NumberStone
             BigInteger den = BigInteger.One;
             foreach (var factor in _factors)
             {
-                var v = ((BigInteger)factor.Key).pow(factor.Value);
+                var v = ((BigInteger)factor.Key).Pow(factor.Value);
                 if (factor.Value < 0)
                 {
                     den *= v;

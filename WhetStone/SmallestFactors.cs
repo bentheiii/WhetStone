@@ -183,7 +183,7 @@ namespace NumberStone
             {
                 return value;
             }
-            IEnumerable<int> primesToCheck = primes.Primes(Math.Sqrt(value).floor() + 1).Skip(1);
+            IEnumerable<int> primesToCheck = primes.Primes(Math.Sqrt(value).Floor() + 1).Skip(1);
             if (start.HasValue)
             {
                 var aslist = primesToCheck.AsList();
@@ -212,7 +212,7 @@ namespace NumberStone
                 return 2;
             if (value < int.MaxValue)
                 return SmallestFactor((int)value, (int?)start);
-            IEnumerable<int> primesToCheck = primes.Primes(Math.Sqrt(value).floor() + 1).Skip(1);
+            IEnumerable<int> primesToCheck = primes.Primes(Math.Sqrt(value).Floor() + 1).Skip(1);
             if (start.HasValue)
             {
                 var aslist = primesToCheck.AsList();

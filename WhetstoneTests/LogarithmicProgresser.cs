@@ -28,7 +28,7 @@ namespace Tests
                     var addant = gen.Int(3000);
                     val.Increment(addant);
                     total += addant;
-                    Assert.AreEqual(Math.Log(total,@base).floor(), val.log, $"seed = {seed}");
+                    Assert.AreEqual(Math.Log(total,@base).Floor(), val.log, $"seed = {seed}");
                     Assert.AreEqual(total, val.value, $"seed = {seed}");
                 }
 
@@ -39,7 +39,7 @@ namespace Tests
                     if (total <= 0)
                         break;
                     val.Decrement(addant);
-                    Assert.AreEqual(Math.Log(total, @base).floor(), val.log, $"seed = {seed}");
+                    Assert.AreEqual(Math.Log(total, @base).Floor(), val.log, $"seed = {seed}");
                     Assert.AreEqual(total, val.value, $"seed = {seed}");
                 }
             }

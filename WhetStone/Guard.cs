@@ -184,30 +184,30 @@ namespace WhetStone.Guard
         {
             get
             {
-	            this.accessed?.Invoke(this, new EventGuardAccessArgs(EventGuardAccessArgs.AccessType.Get));
-	            this.drawn?.Invoke(this, EventArgs.Empty);
+	            this.Accessed?.Invoke(this, new EventGuardAccessArgs(EventGuardAccessArgs.AccessType.Get));
+	            this.Drawn?.Invoke(this, EventArgs.Empty);
 	            return this.value;
             }
             set
             {
                 T temp = this.value;
                 this.value = value;
-	            this.accessed?.Invoke(this, new EventGuardAccessArgs(EventGuardAccessArgs.AccessType.Set));
-	            this.changed?.Invoke(this,new EventGuardSetArgs(temp, value));
+	            this.Accessed?.Invoke(this, new EventGuardAccessArgs(EventGuardAccessArgs.AccessType.Set));
+	            this.Changed?.Invoke(this,new EventGuardSetArgs(temp, value));
             }
         }
 	    /// <summary>
         /// is called when the direct value is changed, first parameter([0]) is the new value, second parameter ([1]) is the old value, third is whether the value is equal to the old value
         /// </summary>
-        public event GuardSetHandler changed;
+        public event GuardSetHandler Changed;
         /// <summary>
         /// is called whenever the value is accessed, first parameter dictates whether the value was accessed from get or set ("get","set")
         /// </summary>
-        public event GuardAccessedHandler accessed;
+        public event GuardAccessedHandler Accessed;
         /// <summary>
         /// is called whenever the value is looked at, has no parameters
         /// </summary>
-        public event GuardGetHandler drawn;
+        public event GuardGetHandler Drawn;
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -221,9 +221,9 @@ namespace WhetStone.Guard
         {
             var ret = new EventGuard<T>(value)
             {
-                accessed = this.accessed.Copy(),
-                changed = this.changed.Copy(),
-                drawn = this.drawn.Copy()
+                Accessed = this.Accessed.Copy(),
+                Changed = this.Changed.Copy(),
+                Drawn = this.Drawn.Copy()
             };
             return ret;
         }

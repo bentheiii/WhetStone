@@ -24,7 +24,7 @@ namespace WhetStone.Looping
         {
             @this.ThrowIfNull(nameof(@this));
             var f = Fields.getField<T>();
-            return @this.YieldAggregate(f.add, f.zero);
+            return @this.YieldAggregate(f.Sum, f.zero);
         }
         /// <summary>
         /// Get the partial sums of an <see cref="IEnumerable{T}"/> while compensating for floating-point errors.

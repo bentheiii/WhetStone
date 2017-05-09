@@ -27,7 +27,7 @@ namespace WhetStone.Looping
                 var ratio = ((double?)gap / (double?)_step);
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
-                Count = ratio.Value <= 0 ? 0 : ratio.Value.ceil();
+                Count = ratio.Value <= 0 ? 0 : ratio.Value.Ceil();
             }
             public override IEnumerator<T> GetEnumerator()
             {
@@ -71,7 +71,7 @@ namespace WhetStone.Looping
                 _step = step;
                 var gap = end - _start;
                 var ratio = (gap / (double)_step);
-                Count = ratio <= 0 ? 0 : ratio.ceil();
+                Count = ratio <= 0 ? 0 : ratio.Ceil();
             }
             public override IEnumerator<int> GetEnumerator()
             {
@@ -119,7 +119,7 @@ namespace WhetStone.Looping
                 var ratio = ((double?)gap / -(double?)_step);
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
-                Count = ratio.Value.ceil();
+                Count = ratio.Value.Ceil();
             }
             public override IEnumerator<T> GetEnumerator()
             {
@@ -163,7 +163,7 @@ namespace WhetStone.Looping
                 _step = step;
                 var gap = end - _start;
                 var ratio = (gap / (double)-_step);
-                Count = ratio <= 0 ? 0 : ratio.ceil();
+                Count = ratio <= 0 ? 0 : ratio.Ceil();
             }
             public override IEnumerator<int> GetEnumerator()
             {
@@ -211,7 +211,7 @@ namespace WhetStone.Looping
                 var ratio = (double?)gap / (double?)_step;
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
-                Count = ratio.Value < 0 ? 0 : ratio.Value.floor()+1;
+                Count = ratio.Value < 0 ? 0 : ratio.Value.Floor()+1;
             }
             public override IEnumerator<T> GetEnumerator()
             {
@@ -255,7 +255,7 @@ namespace WhetStone.Looping
                 _step = step;
                 var gap = end - _start;
                 var ratio = (gap / (double)_step);
-                Count = ratio < 0 ? 0 : ratio.floor()+1;
+                Count = ratio < 0 ? 0 : ratio.Floor()+1;
             }
             public override IEnumerator<int> GetEnumerator()
             {
@@ -303,7 +303,7 @@ namespace WhetStone.Looping
                 var ratio = (double?)gap / -(double?)_step;
                 if (ratio == null)
                     throw new Exception("gap is nonlinear!");
-                Count = ratio.Value < 0 ? 0 : ratio.Value.floor() + 1;
+                Count = ratio.Value < 0 ? 0 : ratio.Value.Floor() + 1;
             }
             public override IEnumerator<T> GetEnumerator()
             {
@@ -347,7 +347,7 @@ namespace WhetStone.Looping
                 _step = step;
                 var gap = end - _start;
                 var ratio = (gap / (double)-_step);
-                Count = ratio < 0 ? 0 : ratio.floor() + 1;
+                Count = ratio < 0 ? 0 : ratio.Floor() + 1;
             }
             public override IEnumerator<int> GetEnumerator()
             {
@@ -392,7 +392,7 @@ namespace WhetStone.Looping
         /// <remarks>uses fielding.</remarks>
         public static IList<T> Range<T>(T start, T max, T step)
         {
-            if (step.ToFieldWrapper().IsNegative)
+            if (step.ToFieldWrapper().isNegative)
                 return RRange(start,max,(-step.ToFieldWrapper()).val);
             return new RangeListExPos<T>(start, max, step);
         }
@@ -467,7 +467,7 @@ namespace WhetStone.Looping
         /// <remarks>uses fielding.</remarks>
         public static IList<T> IRange<T>(T start, T max, T step)
         {
-            if (step.ToFieldWrapper().IsNegative)
+            if (step.ToFieldWrapper().isNegative)
                 return RIRange(start, max, (-step.ToFieldWrapper()).val);
             return new RangeListInPos<T>(start, max, step);
         }
@@ -541,7 +541,7 @@ namespace WhetStone.Looping
         /// <remarks>uses fielding.</remarks>
         public static IList<T> RRange<T>(T start, T max, T step)
         {
-            if (step.ToFieldWrapper().IsNegative)
+            if (step.ToFieldWrapper().isNegative)
                 return Range(start, max, (-step.ToFieldWrapper()).val);
             return new RangeListExNeg<T>(start, max, step);
         }
@@ -596,7 +596,7 @@ namespace WhetStone.Looping
         // ReSharper disable InconsistentNaming
         public static IList<T> RIRange<T>(T start, T max, T step)
         {
-            if (step.ToFieldWrapper().IsNegative)
+            if (step.ToFieldWrapper().isNegative)
                 return IRange(start, max, (-step.ToFieldWrapper()).val);
             return new RangeListInNeg<T>(start, max, step);
         }

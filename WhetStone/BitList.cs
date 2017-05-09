@@ -39,7 +39,7 @@ namespace WhetStone.SystemExtensions
         public BitList(int size=0)
         {
             size.ThrowIfAbsurd(nameof(size));
-            _int = new List<word>(range.Range((size/(double)BITS_IN_CELL).ceil()).Select(a=>(word)0));
+            _int = new List<word>(range.Range((size/(double)BITS_IN_CELL).Ceil()).Select(a=>(word)0));
             Count = size;
         }
         /// <inheritdoc />
@@ -231,7 +231,7 @@ namespace WhetStone.SystemExtensions
         }
         private void _checkMinimize()
         {
-            while ((Count / (double)BITS_IN_CELL).ceil() < _int.Count)
+            while ((Count / (double)BITS_IN_CELL).Ceil() < _int.Count)
                 _int.RemoveAt(_int.Count - 1);
         }
         /// <inheritdoc />
@@ -262,8 +262,8 @@ namespace WhetStone.SystemExtensions
                 throw new ArgumentOutOfRangeException(nameof(start));
             length.ThrowIfAbsurd(nameof(length));
             word fill = value ? word.MaxValue : (word)0;
-            int fillStart = (start/(double)BITS_IN_CELL).ceil();
-            int fillEnd = ((start+length) / (double)BITS_IN_CELL).floor();
+            int fillStart = (start/(double)BITS_IN_CELL).Ceil();
+            int fillEnd = ((start+length) / (double)BITS_IN_CELL).Floor();
 
             _int.Fill(new[] {fill}, fillStart,fillEnd-fillStart);
 

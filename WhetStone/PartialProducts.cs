@@ -23,7 +23,7 @@ namespace WhetStone.Looping
         {
             @this.ThrowIfNull(nameof(@this));
             var f = Fields.getField<T>();
-            return @this.YieldAggregate(f.multiply, f.one);
+            return @this.YieldAggregate(f.Product, f.one);
         }
     }
 }

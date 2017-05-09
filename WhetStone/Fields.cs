@@ -70,7 +70,7 @@ namespace WhetStone.Fielding {
         /// If addition and multiplication are defined, the following should be true for any a of type <typeparamref name="T"/>:
         /// a*<c>negative one</c> + a == <c>zero</c>
         /// </remarks>
-        public virtual T negativeone => Negate(one);
+        public virtual T negativeOne => Negate(one);
         /// <summary>
         /// Get the negative of an object.
         /// </summary>
@@ -78,7 +78,7 @@ namespace WhetStone.Fielding {
         /// <returns>The negative value of <paramref name="x"/>.</returns>
         public virtual T Negate(T x)
         {
-            return subtract(zero,x);
+            return Difference(zero,x);
         }
         /// <summary>
         /// Get the inverse of an object.
@@ -87,7 +87,7 @@ namespace WhetStone.Fielding {
         /// <returns>The inverse value of <paramref name="x"/>.</returns>
         public virtual T Invert(T x)
         {
-            return divide(one,x);
+            return Quotient(one,x);
         }
         /// <summary>
         /// Get the product of two elements.
@@ -95,49 +95,49 @@ namespace WhetStone.Fielding {
         /// <param name="a">The first multiplicand.</param>
         /// <param name="b">The second multiplicand.</param>
         /// <returns>The product of <paramref name="a"/> and <paramref name="b"/>.</returns>
-        public abstract T multiply(T a, T b);
+        public abstract T Product(T a, T b);
         /// <summary>
         /// Get the quotient of two elements.
         /// </summary>
         /// <param name="a">The dividend.</param>
         /// <param name="b">The divisor.</param>
         /// <returns>The quotient <paramref name="a"/> and <paramref name="b"/>.</returns>
-        public abstract T divide(T a, T b);
+        public abstract T Quotient(T a, T b);
         /// <summary>
         /// Get the sum of two elements.
         /// </summary>
         /// <param name="a">The first addend.</param>
         /// <param name="b">The second addend.</param>
         /// <returns>The sum of <paramref name="a"/> and <paramref name="b"/></returns>
-        public abstract T add(T a, T b);
+        public abstract T Sum(T a, T b);
         /// <summary>
         /// Get the difference between two elements.
         /// </summary>
         /// <param name="a">The minuend.</param>
         /// <param name="b">The subtrahend.</param>
         /// <returns>The difference between <paramref name="a"/> and <paramref name="b"/>.</returns>
-        public abstract T subtract(T a, T b);
+        public abstract T Difference(T a, T b);
         /// <summary>
         /// Get the power of two elements.
         /// </summary>
         /// <param name="a">The base.</param>
         /// <param name="b">The exponential.</param>
         /// <returns><paramref name="a"/> to the power of <paramref name="b"/>.</returns>
-        public abstract T pow(T a, T b);
+        public abstract T Pow(T a, T b);
         /// <summary>
         /// Get the logarithm of two elements.
         /// </summary>
         /// <param name="a">The antilogarithm.</param>
         /// <param name="b">The base.</param>
         /// <returns>The logarithm of <paramref name="a"/> in base <paramref name="b"/>.</returns>
-        public abstract T log(T a, T b);
+        public abstract T Log(T a, T b);
         /// <summary>
         /// Get the modulo of two elements.
         /// </summary>
         /// <param name="a">The dividend.</param>
         /// <param name="b">The divisor.</param>
         /// <returns>The modulo of <paramref name="a"/> and <paramref name="b"/>.</returns>
-        public abstract T mod(T a, T b);
+        public abstract T Modulo(T a, T b);
         /// <summary>
         /// Attempts to convert an element to <see cref="double"/>.
         /// </summary>
@@ -197,7 +197,7 @@ namespace WhetStone.Fielding {
         /// </summary>
         /// <param name="x">The element to turn to absolute value.</param>
         /// <returns><paramref name="x"/>'s absolute value.</returns>
-        public virtual T abs(T x)
+        public virtual T Abs(T x)
         {
             return isNegative(x) && this.Negatable ? Negate(x) : x;
         }
@@ -216,9 +216,9 @@ namespace WhetStone.Fielding {
                     return this.one;
             }
             T h = fromInt(x / 2);
-            T sum = add(h, h);
+            T sum = Sum(h, h);
             if (x % 2 == 1)
-                sum = add(sum, one);
+                sum = Sum(sum, one);
             return sum;
         }
         /// <summary>
@@ -244,7 +244,7 @@ namespace WhetStone.Fielding {
         /// <returns>An element corresponding to the fraction of <paramref name="numerator"/> and <paramref name="denominator"/>.</returns>
         public virtual T fromFraction(int numerator, int denominator)
         {
-            return divide(fromInt(numerator), fromInt(denominator));
+            return Quotient(fromInt(numerator), fromInt(denominator));
         }
         /// <summary>
         /// Returns an element raised to an integer power.
@@ -252,9 +252,9 @@ namespace WhetStone.Fielding {
         /// <param name="base">The element to raise.</param>
         /// <param name="x">The integer exponent.</param>
         /// <returns><paramref name="base"/> raised to <paramref name="x"/>.</returns>
-        public virtual T Pow(T @base, int x)
+        public virtual T PowInt(T @base, int x)
         {
-            return pow(@base, fromInt(x));
+            return Pow(@base, fromInt(x));
         }
         /// <inheritdoc />
         public bool Equals(T x, T y)
@@ -306,23 +306,23 @@ namespace WhetStone.Fielding {
         {
             public override T zero => (T)(dynamic)0;
             public override T one => (T)(dynamic)1;
-            public override T multiply(T a, T b)
+            public override T Product(T a, T b)
             {
                 return a * (dynamic)b;
             }
-            public override T divide(T a, T b)
+            public override T Quotient(T a, T b)
             {
                 return a / (dynamic)b;
             }
-            public override T add(T a, T b)
+            public override T Sum(T a, T b)
             {
                 return a + (dynamic)b;
             }
-            public override T subtract(T a, T b)
+            public override T Difference(T a, T b)
             {
                 return a - (dynamic)b;
             }
-            public override T pow(T a, T b)
+            public override T Pow(T a, T b)
             {
                 try
                 {
@@ -333,7 +333,7 @@ namespace WhetStone.Fielding {
                     return (dynamic)a^b;
                 }
             }
-            public override T mod(T a, T b)
+            public override T Modulo(T a, T b)
             {
                 return a % (dynamic)b;
             }
@@ -352,7 +352,7 @@ namespace WhetStone.Fielding {
                     return null;
                 }
             }
-            public override T log(T a, T b)
+            public override T Log(T a, T b)
             {
                 return ((dynamic)a).log(b);
             }
@@ -361,21 +361,21 @@ namespace WhetStone.Fielding {
         {
             public override double one { get; } = 1;
             public override double zero { get; } = 0;
-            public override double add(double a, double b) => a+b;
-            public override double pow(double a, double b) => Math.Pow(a,b);
+            public override double Sum(double a, double b) => a+b;
+            public override double Pow(double a, double b) => Math.Pow(a,b);
             public override int Compare(double x, double y) => x.CompareTo(y);
             public override double fromInt(int x) => x;
             public override double fromInt(ulong x) => x;
-            public override double abs(double x) => Math.Abs(x);
-            public override double divide(double a, double b) => a/b;
-            public override double mod(double a, double b) => a%b;
+            public override double Abs(double x) => Math.Abs(x);
+            public override double Quotient(double a, double b) => a/b;
+            public override double Modulo(double a, double b) => a%b;
             public override double fromFraction(int numerator, int denumerator) => numerator/(double)denumerator;
             public override double Invert(double x) => 1/x;
             public override bool isNegative(double x) => x < 0;
-            public override double log(double a, double b) => Math.Log(a, b);
-            public override double multiply(double a, double b) => a*b;
+            public override double Log(double a, double b) => Math.Log(a, b);
+            public override double Product(double a, double b) => a*b;
             public override double Negate(double x) => -x;
-            public override double subtract(double a, double b) => a-b;
+            public override double Difference(double a, double b) => a-b;
             public override double? toDouble(double a) => a;
             public override double Parse(string s)
             {
@@ -414,21 +414,21 @@ namespace WhetStone.Fielding {
         {
             public override float one { get; } = 1;
             public override float zero { get; } = 0;
-            public override float add(float a, float b) => a + b;
-            public override float pow(float a, float b) => a.pow(b);
+            public override float Sum(float a, float b) => a + b;
+            public override float Pow(float a, float b) => a.Pow(b);
             public override int Compare(float x, float y) => x.CompareTo(y);
             public override float fromInt(int x) => x;
             public override float fromInt(ulong x) => x;
-            public override float abs(float x) => Math.Abs(x);
-            public override float divide(float a, float b) => a / b;
-            public override float mod(float a, float b) => a % b;
+            public override float Abs(float x) => Math.Abs(x);
+            public override float Quotient(float a, float b) => a / b;
+            public override float Modulo(float a, float b) => a % b;
             public override float fromFraction(int numerator, int denumerator) => numerator / (float)denumerator;
             public override float Invert(float x) => 1 / x;
             public override bool isNegative(float x) => x < 0;
-            public override float log(float a, float b) => (float)Math.Log(a, b);
-            public override float multiply(float a, float b) => a * b;
+            public override float Log(float a, float b) => (float)Math.Log(a, b);
+            public override float Product(float a, float b) => a * b;
             public override float Negate(float x) => -x;
-            public override float subtract(float a, float b) => a - b;
+            public override float Difference(float a, float b) => a - b;
             public override double? toDouble(float a) => a;
             public override float Parse(string s)
             {
@@ -467,21 +467,21 @@ namespace WhetStone.Fielding {
         {
             public override decimal one { get; } = 1;
             public override decimal zero { get; } = 0;
-            public override decimal add(decimal a, decimal b) => a + b;
-            public override decimal pow(decimal a, decimal b) => a.pow(b);
+            public override decimal Sum(decimal a, decimal b) => a + b;
+            public override decimal Pow(decimal a, decimal b) => a.Pow(b);
             public override int Compare(decimal x, decimal y) => x.CompareTo(y);
             public override decimal fromInt(int x) => x;
             public override decimal fromInt(ulong x) => x;
-            public override decimal abs(decimal x) => Math.Abs(x);
-            public override decimal divide(decimal a, decimal b) => a / b;
-            public override decimal mod(decimal a, decimal b) => a % b;
+            public override decimal Abs(decimal x) => Math.Abs(x);
+            public override decimal Quotient(decimal a, decimal b) => a / b;
+            public override decimal Modulo(decimal a, decimal b) => a % b;
             public override decimal fromFraction(int numerator, int denumerator) => numerator / (decimal)denumerator;
             public override decimal Invert(decimal x) => 1 / x;
             public override bool isNegative(decimal x) => x < 0;
-            public override decimal log(decimal a, decimal b) => (decimal)Math.Log((double)a, (double)b);
-            public override decimal multiply(decimal a, decimal b) => a * b;
+            public override decimal Log(decimal a, decimal b) => (decimal)Math.Log((double)a, (double)b);
+            public override decimal Product(decimal a, decimal b) => a * b;
             public override decimal Negate(decimal x) => -x;
-            public override decimal subtract(decimal a, decimal b) => a - b;
+            public override decimal Difference(decimal a, decimal b) => a - b;
             public override double? toDouble(decimal a) => (double) a;
             public override decimal Parse(string s)
             {
@@ -520,23 +520,23 @@ namespace WhetStone.Fielding {
         {
             public override int one { get; } = 1;
             public override int zero { get; } = 0;
-            public override int add(int a, int b) => a + b;
-            public override int pow(int a, int b) => a.pow(b);
+            public override int Sum(int a, int b) => a + b;
+            public override int Pow(int a, int b) => a.Pow(b);
             public override int Compare(int x, int y) => x.CompareTo(y);
             public override int fromInt(int x) => x;
             public override int fromInt(ulong x) => (int)x;
-            public override int abs(int x) => Math.Abs(x);
-            public override int divide(int a, int b) => a / b;
+            public override int Abs(int x) => Math.Abs(x);
+            public override int Quotient(int a, int b) => a / b;
             public override int fromFraction(int numerator, int denumerator) => numerator / denumerator;
             public override int Invert(int x) => 1 / x;
             public override bool isNegative(int x) => x < 0;
-            public override int multiply(int a, int b) => a * b;
-            public override int mod(int a, int b) => a % b;
+            public override int Product(int a, int b) => a * b;
+            public override int Modulo(int a, int b) => a % b;
             public override int Negate(int x) => -x;
-            public override int subtract(int a, int b) => a - b;
+            public override int Difference(int a, int b) => a - b;
             public override double? toDouble(int a) => a;
             public override bool Invertible => false;
-            public override int log(int a, int b)
+            public override int Log(int a, int b)
             {
                 return (int)Math.Log(a, b);
             }
@@ -573,20 +573,20 @@ namespace WhetStone.Fielding {
         {
             public override long one { get; } = 1;
             public override long zero { get; } = 0;
-            public override long add(long a, long b) => a + b;
-            public override long pow(long a, long b) => a.pow(b);
+            public override long Sum(long a, long b) => a + b;
+            public override long Pow(long a, long b) => a.Pow(b);
             public override int Compare(long x, long y) => x.CompareTo(y);
             public override long fromInt(int x) => x;
             public override long fromInt(ulong x) => (long) x;
-            public override long abs(long x) => Math.Abs(x);
-            public override long divide(long a, long b) => a / b;
-            public override long mod(long a, long b) => a % b;
+            public override long Abs(long x) => Math.Abs(x);
+            public override long Quotient(long a, long b) => a / b;
+            public override long Modulo(long a, long b) => a % b;
             public override long fromFraction(int numerator, int denumerator) => numerator / (long)denumerator;
             public override long Invert(long x) => 1 / x;
             public override bool isNegative(long x) => x < 0;
-            public override long multiply(long a, long b) => a * b;
+            public override long Product(long a, long b) => a * b;
             public override long Negate(long x) => -x;
-            public override long subtract(long a, long b) => a - b;
+            public override long Difference(long a, long b) => a - b;
             public override double? toDouble(long a) => a;
             public override bool Invertible => false;
             public override long Parse(string s)
@@ -611,7 +611,7 @@ namespace WhetStone.Fielding {
             {
                 return (long)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override long log(long a, long b)
+            public override long Log(long a, long b)
             {
                 return (long)Math.Log(a, b);
             }
@@ -626,8 +626,8 @@ namespace WhetStone.Fielding {
         {
             public override uint one { get; } = 1;
             public override uint zero { get; } = 0;
-            public override uint add(uint a, uint b) => a + b;
-            public override uint pow(uint a, uint b) => a.pow(b);
+            public override uint Sum(uint a, uint b) => a + b;
+            public override uint Pow(uint a, uint b) => a.Pow(b);
             public override int Compare(uint x, uint y) => x.CompareTo(y);
             public override uint fromInt(int x)
             {
@@ -636,20 +636,20 @@ namespace WhetStone.Fielding {
                 return (uint) x;
             }
             public override uint fromInt(ulong x) => (uint)x;
-            public override uint abs(uint x) => x;
-            public override uint divide(uint a, uint b) => a / b;
-            public override uint mod(uint a, uint b) => a % b;
+            public override uint Abs(uint x) => x;
+            public override uint Quotient(uint a, uint b) => a / b;
+            public override uint Modulo(uint a, uint b) => a % b;
             public override uint fromFraction(int numerator, int denumerator) => (uint) (numerator / denumerator);
             public override uint Invert(uint x) => 1 / x;
             public override bool isNegative(uint x) => false;
-            public override uint multiply(uint a, uint b) => a * b;
+            public override uint Product(uint a, uint b) => a * b;
             public override uint Negate(uint x)
             {
                 if (x == 0)
                     return 0;
                 throw new Exception("cannot negate unsigned");
             }
-            public override uint subtract(uint a, uint b) => a - b;
+            public override uint Difference(uint a, uint b) => a - b;
             public override double? toDouble(uint a) => a;
             public override bool Invertible => false;
             public override bool Negatable => false;
@@ -673,7 +673,7 @@ namespace WhetStone.Fielding {
             {
                 return (uint)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override uint log(uint a, uint b)
+            public override uint Log(uint a, uint b)
             {
                 return (uint)Math.Log(a, b);
             }
@@ -688,8 +688,8 @@ namespace WhetStone.Fielding {
         {
             public override ulong one { get; } = 1;
             public override ulong zero { get; } = 0;
-            public override ulong add(ulong a, ulong b) => a + b;
-            public override ulong pow(ulong a, ulong b) => a.pow(b);
+            public override ulong Sum(ulong a, ulong b) => a + b;
+            public override ulong Pow(ulong a, ulong b) => a.Pow(b);
             public override int Compare(ulong x, ulong y) => x.CompareTo(y);
             public override ulong fromInt(int x)
             {
@@ -698,20 +698,20 @@ namespace WhetStone.Fielding {
                 return (ulong)x;
             }
             public override ulong fromInt(ulong x) => x;
-            public override ulong abs(ulong x) => x;
-            public override ulong divide(ulong a, ulong b) => a / b;
-            public override ulong mod(ulong a, ulong b) => a % b;
+            public override ulong Abs(ulong x) => x;
+            public override ulong Quotient(ulong a, ulong b) => a / b;
+            public override ulong Modulo(ulong a, ulong b) => a % b;
             public override ulong fromFraction(int numerator, int denumerator) => (ulong)(numerator / denumerator);
             public override ulong Invert(ulong x) => 1 / x;
             public override bool isNegative(ulong x) => false;
-            public override ulong multiply(ulong a, ulong b) => a * b;
+            public override ulong Product(ulong a, ulong b) => a * b;
             public override ulong Negate(ulong x)
             {
                 if (x == 0)
                     return 0;
                 throw new Exception("cannot negate unsigned");
             }
-            public override ulong subtract(ulong a, ulong b) => a - b;
+            public override ulong Difference(ulong a, ulong b) => a - b;
             public override double? toDouble(ulong a) => a;
             public override bool Invertible => false;
             public override bool Negatable => false;
@@ -735,7 +735,7 @@ namespace WhetStone.Fielding {
             {
                 return (ulong)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override ulong log(ulong a, ulong b)
+            public override ulong Log(ulong a, ulong b)
             {
                 return (ulong)Math.Log(a, b);
             }
@@ -750,8 +750,8 @@ namespace WhetStone.Fielding {
         {
             public override byte one { get; } = 1;
             public override byte zero { get; } = 0;
-            public override byte add(byte a, byte b) => (byte)(a + b);
-            public override byte pow(byte a, byte b) => a.pow(b);
+            public override byte Sum(byte a, byte b) => (byte)(a + b);
+            public override byte Pow(byte a, byte b) => a.Pow(b);
             public override int Compare(byte x, byte y) => x.CompareTo(y);
             public override byte fromInt(int x)
             {
@@ -760,20 +760,20 @@ namespace WhetStone.Fielding {
                 return (byte)x;
             }
             public override byte fromInt(ulong x) => (byte)x;
-            public override byte abs(byte x) => x;
-            public override byte divide(byte a, byte b) => (byte)(a / b);
-            public override byte mod(byte a, byte b) => (byte)(a % b);
+            public override byte Abs(byte x) => x;
+            public override byte Quotient(byte a, byte b) => (byte)(a / b);
+            public override byte Modulo(byte a, byte b) => (byte)(a % b);
             public override byte fromFraction(int numerator, int denumerator) => (byte)(numerator / denumerator);
             public override byte Invert(byte x) => (byte)(1 / x);
             public override bool isNegative(byte x) => false;
-            public override byte multiply(byte a, byte b) => (byte)(a * b);
+            public override byte Product(byte a, byte b) => (byte)(a * b);
             public override byte Negate(byte x)
             {
                 if (x == 0)
                     return 0;
                 throw new Exception("cannot negate unsigned");
             }
-            public override byte subtract(byte a, byte b) => (byte)(a - b);
+            public override byte Difference(byte a, byte b) => (byte)(a - b);
             public override double? toDouble(byte a) => a;
             public override bool Invertible => false;
             public override bool Negatable => false;
@@ -797,7 +797,7 @@ namespace WhetStone.Fielding {
             {
                 return (byte)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override byte log(byte a, byte b)
+            public override byte Log(byte a, byte b)
             {
                 return (byte)Math.Log(a, b);
             }
@@ -812,26 +812,26 @@ namespace WhetStone.Fielding {
         {
             public override sbyte one { get; } = 1;
             public override sbyte zero { get; } = 0;
-            public override sbyte add(sbyte a, sbyte b) => (sbyte)(a + b);
-            public override sbyte pow(sbyte a, sbyte b) => a.pow(b);
+            public override sbyte Sum(sbyte a, sbyte b) => (sbyte)(a + b);
+            public override sbyte Pow(sbyte a, sbyte b) => a.Pow(b);
             public override int Compare(sbyte x, sbyte y) => x.CompareTo(y);
             public override sbyte fromInt(int x)
             {
                 return (sbyte)x;
             }
             public override sbyte fromInt(ulong x) => (sbyte)x;
-            public override sbyte abs(sbyte x) => Math.Abs(x);
-            public override sbyte divide(sbyte a, sbyte b) => (sbyte)(a / b);
-            public override sbyte mod(sbyte a, sbyte b) => (sbyte)(a % b);
+            public override sbyte Abs(sbyte x) => Math.Abs(x);
+            public override sbyte Quotient(sbyte a, sbyte b) => (sbyte)(a / b);
+            public override sbyte Modulo(sbyte a, sbyte b) => (sbyte)(a % b);
             public override sbyte fromFraction(int numerator, int denumerator) => (sbyte)(numerator / denumerator);
             public override sbyte Invert(sbyte x) => (sbyte)(1 / x);
             public override bool isNegative(sbyte x) => x < 0;
-            public override sbyte multiply(sbyte a, sbyte b) => (sbyte)(a * b);
+            public override sbyte Product(sbyte a, sbyte b) => (sbyte)(a * b);
             public override sbyte Negate(sbyte x)
             {
                 return (sbyte)-x;
             }
-            public override sbyte subtract(sbyte a, sbyte b) => (sbyte)(a - b);
+            public override sbyte Difference(sbyte a, sbyte b) => (sbyte)(a - b);
             public override double? toDouble(sbyte a) => a;
             public override bool Invertible => false;
             public override bool Negatable => true;
@@ -857,7 +857,7 @@ namespace WhetStone.Fielding {
             {
                 return (sbyte)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override sbyte log(sbyte a, sbyte b)
+            public override sbyte Log(sbyte a, sbyte b)
             {
                 return (sbyte)Math.Log(a, b);
             }
@@ -872,26 +872,26 @@ namespace WhetStone.Fielding {
         {
             public override short one { get; } = 1;
             public override short zero { get; } = 0;
-            public override short add(short a, short b) => (short)(a + b);
-            public override short pow(short a, short b) => a.pow(b);
+            public override short Sum(short a, short b) => (short)(a + b);
+            public override short Pow(short a, short b) => a.Pow(b);
             public override int Compare(short x, short y) => x.CompareTo(y);
             public override short fromInt(int x)
             {
                 return (short)x;
             }
             public override short fromInt(ulong x) => (short)x;
-            public override short abs(short x) => x;
-            public override short divide(short a, short b) => (short)(a / b);
-            public override short mod(short a, short b) => (short)(a % b);
+            public override short Abs(short x) => x;
+            public override short Quotient(short a, short b) => (short)(a / b);
+            public override short Modulo(short a, short b) => (short)(a % b);
             public override short fromFraction(int numerator, int denumerator) => (short)(numerator / denumerator);
             public override short Invert(short x) => (short)(1 / x);
             public override bool isNegative(short x) => x < 0;
-            public override short multiply(short a, short b) => (short)(a * b);
+            public override short Product(short a, short b) => (short)(a * b);
             public override short Negate(short x)
             {
                 return (short)-x;
             }
-            public override short subtract(short a, short b) => (short)(a - b);
+            public override short Difference(short a, short b) => (short)(a - b);
             public override double? toDouble(short a) => a;
             public override bool Invertible => false;
             public override bool Negatable => true;
@@ -917,7 +917,7 @@ namespace WhetStone.Fielding {
             {
                 return (short)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override short log(short a, short b)
+            public override short Log(short a, short b)
             {
                 return (short)Math.Log(a, b);
             }
@@ -928,8 +928,8 @@ namespace WhetStone.Fielding {
         {
             public override ushort one { get; } = 1;
             public override ushort zero { get; } = 0;
-            public override ushort add(ushort a, ushort b) => (ushort)(a + b);
-            public override ushort pow(ushort a, ushort b) => a.pow(b);
+            public override ushort Sum(ushort a, ushort b) => (ushort)(a + b);
+            public override ushort Pow(ushort a, ushort b) => a.Pow(b);
             public override int Compare(ushort x, ushort y) => x.CompareTo(y);
             public override ushort fromInt(int x)
             {
@@ -938,20 +938,20 @@ namespace WhetStone.Fielding {
                 return (ushort)x;
             }
             public override ushort fromInt(ulong x) => (ushort)x;
-            public override ushort abs(ushort x) => x;
-            public override ushort divide(ushort a, ushort b) => (ushort)(a / b);
-            public override ushort mod(ushort a, ushort b) => (ushort)(a % b);
+            public override ushort Abs(ushort x) => x;
+            public override ushort Quotient(ushort a, ushort b) => (ushort)(a / b);
+            public override ushort Modulo(ushort a, ushort b) => (ushort)(a % b);
             public override ushort fromFraction(int numerator, int denumerator) => (ushort)(numerator / denumerator);
             public override ushort Invert(ushort x) => (ushort)(1 / x);
             public override bool isNegative(ushort x) => false;
-            public override ushort multiply(ushort a, ushort b) => (ushort)(a * b);
+            public override ushort Product(ushort a, ushort b) => (ushort)(a * b);
             public override ushort Negate(ushort x)
             {
                 if (x == 0)
                     return 0;
                 throw new Exception("cannot negate unsigned");
             }
-            public override ushort subtract(ushort a, ushort b) => (ushort)(a - b);
+            public override ushort Difference(ushort a, ushort b) => (ushort)(a - b);
             public override double? toDouble(ushort a) => a;
             public override bool Invertible => false;
             public override bool Negatable => false;
@@ -975,7 +975,7 @@ namespace WhetStone.Fielding {
             {
                 return (ushort)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override ushort log(ushort a, ushort b)
+            public override ushort Log(ushort a, ushort b)
             {
                 return (ushort)Math.Log(a, b);
             }
@@ -990,8 +990,8 @@ namespace WhetStone.Fielding {
         {
             public override string one { get; } = "";
             public override string zero { get; } = "";
-            public override string add(string a, string b) => a + b;
-            public override string pow(string a, string b)
+            public override string Sum(string a, string b) => a + b;
+            public override string Pow(string a, string b)
             {
                 throw new NotSupportedException();
             }
@@ -1004,8 +1004,8 @@ namespace WhetStone.Fielding {
             {
                 return new string(' ', (int)x);
             }
-            public override string abs(string x) => x;
-            public override string divide(string a, string b)
+            public override string Abs(string x) => x;
+            public override string Quotient(string a, string b)
             {
                 throw new NotSupportedException();
             }
@@ -1018,11 +1018,11 @@ namespace WhetStone.Fielding {
                 throw new NotSupportedException();
             }
             public override bool isNegative(string x) => false;
-            public override string multiply(string a, string b)
+            public override string Product(string a, string b)
             {
                 throw new NotSupportedException();
             }
-            public override string mod(string a, string b)
+            public override string Modulo(string a, string b)
             {
                 throw new NotSupportedException();
             }
@@ -1030,7 +1030,7 @@ namespace WhetStone.Fielding {
             {
                 throw new NotSupportedException();
             }
-            public override string subtract(string a, string b)
+            public override string Difference(string a, string b)
             {
                 throw new NotSupportedException();
             }
@@ -1062,7 +1062,7 @@ namespace WhetStone.Fielding {
             {
                 return a.ToString();
             }
-            public override string log(string a, string b)
+            public override string Log(string a, string b)
             {
                 throw new NotSupportedException();
             }
@@ -1071,8 +1071,8 @@ namespace WhetStone.Fielding {
         {
             public override char one { get; } = '\u0001';
             public override char zero { get; } = '\u0000';
-            public override char add(char a, char b) => (char)(a + b);
-            public override char pow(char a, char b)
+            public override char Sum(char a, char b) => (char)(a + b);
+            public override char Pow(char a, char b)
             {
                 throw new NotSupportedException();
             }
@@ -1085,8 +1085,8 @@ namespace WhetStone.Fielding {
             {
                 return (char)x;
             }
-            public override char abs(char x) => x;
-            public override char divide(char a, char b) => (char)(a / b);
+            public override char Abs(char x) => x;
+            public override char Quotient(char a, char b) => (char)(a / b);
             public override char fromFraction(int numerator, int denumerator)
             {
                 throw new NotSupportedException();
@@ -1096,10 +1096,10 @@ namespace WhetStone.Fielding {
                 throw new NotSupportedException();
             }
             public override bool isNegative(char x) => false;
-            public override char multiply(char a, char b) => (char)(a * b);
-            public override char mod(char a, char b) => (char)(a % b);
+            public override char Product(char a, char b) => (char)(a * b);
+            public override char Modulo(char a, char b) => (char)(a % b);
             public override char Negate(char x) => (char)(char.MaxValue - x);
-            public override char subtract(char a, char b) => (char)(a - b);
+            public override char Difference(char a, char b) => (char)(a - b);
             public override double? toDouble(char a)
             {
                 return a;
@@ -1126,7 +1126,7 @@ namespace WhetStone.Fielding {
             {
                 return (char)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override char log(char a, char b)
+            public override char Log(char a, char b)
             {
                 throw new NotSupportedException();
             }
@@ -1137,20 +1137,20 @@ namespace WhetStone.Fielding {
         {
             public override BigInteger one { get; } = 1;
             public override BigInteger zero { get; } = 0;
-            public override BigInteger add(BigInteger a, BigInteger b) => a + b;
-            public override BigInteger pow(BigInteger a, BigInteger b) => a.pow(b);
+            public override BigInteger Sum(BigInteger a, BigInteger b) => a + b;
+            public override BigInteger Pow(BigInteger a, BigInteger b) => a.Pow(b);
             public override int Compare(BigInteger x, BigInteger y) => x.CompareTo(y);
             public override BigInteger fromInt(int x) => x;
             public override BigInteger fromInt(ulong x) => x;
-            public override BigInteger abs(BigInteger x) => BigInteger.Abs(x);
-            public override BigInteger divide(BigInteger a, BigInteger b) => a / b;
-            public override BigInteger mod(BigInteger a, BigInteger b) => a % b;
+            public override BigInteger Abs(BigInteger x) => BigInteger.Abs(x);
+            public override BigInteger Quotient(BigInteger a, BigInteger b) => a / b;
+            public override BigInteger Modulo(BigInteger a, BigInteger b) => a % b;
             public override BigInteger fromFraction(int numerator, int denumerator) => numerator / (BigInteger)denumerator;
             public override BigInteger Invert(BigInteger x) => 1 / x;
             public override bool isNegative(BigInteger x) => x < 0;
-            public override BigInteger multiply(BigInteger a, BigInteger b) => a * b;
+            public override BigInteger Product(BigInteger a, BigInteger b) => a * b;
             public override BigInteger Negate(BigInteger x) => -x;
-            public override BigInteger subtract(BigInteger a, BigInteger b) => a - b;
+            public override BigInteger Difference(BigInteger a, BigInteger b) => a - b;
             public override double? toDouble(BigInteger a) => (double) a;
             public override bool Invertible => false;
             public override BigInteger Parse(string s)
@@ -1174,7 +1174,7 @@ namespace WhetStone.Fielding {
             {
                 return (BigInteger)Math.Round(a, 0, MidpointRounding.AwayFromZero);
             }
-            public override BigInteger log(BigInteger a, BigInteger b)
+            public override BigInteger Log(BigInteger a, BigInteger b)
             {
                 return (BigInteger)Math.Log((double)a, (double)b);
             }
@@ -1183,26 +1183,26 @@ namespace WhetStone.Fielding {
         {
             public override bool one { get; } = true;
             public override bool zero { get; } = false;
-            public override bool pow(bool a, bool b)
+            public override bool Pow(bool a, bool b)
             {
                 if (!a && !b)
                     throw new ArithmeticException("can't raise 0 by 0");
                 return !b || a;
             }
-            public override bool add(bool a, bool b) => a ^ b;
+            public override bool Sum(bool a, bool b) => a ^ b;
             public override int Compare(bool x, bool y)
             {
                 return x == y ? 0 : (x ? 1 : -1);
             }
-            public override bool Pow(bool @base, int x) => @base && x%2 == 1;
-            public override bool abs(bool x) => x;
-            public override bool divide(bool a, bool b)
+            public override bool PowInt(bool @base, int x) => @base && x%2 == 1;
+            public override bool Abs(bool x) => x;
+            public override bool Quotient(bool a, bool b)
             {
                 if (!b)
                     throw new ArithmeticException("division by 0");
                 return a;
             }
-            public override bool mod(bool a, bool b)
+            public override bool Modulo(bool a, bool b)
             {
                 if (!b)
                     throw new ArithmeticException("division by 0");
@@ -1217,9 +1217,9 @@ namespace WhetStone.Fielding {
             }
             public override bool fromInt(ulong x) => x % 2 == 1;
             public override bool isNegative(bool x) => false;
-            public override bool multiply(bool a, bool b) => a & b;
+            public override bool Product(bool a, bool b) => a & b;
             public override bool Negate(bool x) => x;
-            public override bool subtract(bool a, bool b) => a ^ !b;
+            public override bool Difference(bool a, bool b) => a ^ !b;
             public override double? toDouble(bool a)
             {
                 return a ? 1 : 0;
@@ -1237,7 +1237,7 @@ namespace WhetStone.Fielding {
             {
                 return ((int)Math.Round(a, 0, MidpointRounding.AwayFromZero))%2 == 1;
             }
-            public override bool log(bool a, bool b)
+            public override bool Log(bool a, bool b)
             {
                 throw new NotSupportedException();
             }

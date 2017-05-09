@@ -57,17 +57,17 @@ namespace WhetStone.Looping
             if (reccount.HasValue)
             {
                 count = reccount.Value;
-                product = tosearch.Aggregate(f.one, f.multiply);
+                product = tosearch.Aggregate(f.one, f.Product);
             }
             else
             {
                 IGuard<int> cg = new Guard<int>();
-                product = tosearch.HookCount(cg).Aggregate(f.one,f.multiply);
+                product = tosearch.HookCount(cg).Aggregate(f.one,f.Product);
                 count = cg.value;
             }
             if (count == 0)
                 throw new InvalidOperationException("IEnumerable is empty");
-            return f.pow(product, f.Invert(f.fromInt(count)));
+            return f.Pow(product, f.Invert(f.fromInt(count)));
         }
     }
 }

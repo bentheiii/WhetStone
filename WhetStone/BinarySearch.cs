@@ -93,11 +93,11 @@ namespace WhetStone.Looping
             {
                 var i = (fmin + max) / 2;
                 var res = searcher(i).ToFieldWrapper();
-                if (res.abs() < tolerance)
+                if (res.Abs() < tolerance)
                     return i;
                 if (i.Equals(fmin))
                     break;
-                if (res.IsNegative)
+                if (res.isNegative)
                     fmin = i;
                 else
                     max = i;

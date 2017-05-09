@@ -22,7 +22,7 @@ namespace WhetStone.Looping
         {
             toAdd.ThrowIfNull(nameof(toAdd));
             var f = Fields.getField<T>();
-            return toAdd.Aggregate(f.zero, f.add);
+            return toAdd.Aggregate(f.zero, f.Sum);
         }
         /// <summary>
         /// Get the sum of all elements in an <see cref="IEnumerable{T}"/> with floating point compensation.

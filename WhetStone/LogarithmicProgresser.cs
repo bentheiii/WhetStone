@@ -32,8 +32,8 @@ namespace NumberStone
             initialValue.ThrowIfAbsurd(nameof(initialValue),false);
             this.@base = @base;
             value = initialValue;
-            log = Math.Log(value,@base).floor();
-            _nextNewLog = @base.pow(log + 1);
+            log = Math.Log(value,@base).Floor();
+            _nextNewLog = @base.Pow(log + 1);
         }
         /// <summary>
         /// increases the antilogarithm.

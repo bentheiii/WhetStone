@@ -21,7 +21,7 @@ namespace WhetStone.Looping
         {
             toAdd.ThrowIfNull(nameof(toAdd));
             var f = Fields.getField<T>();
-            return toAdd.Aggregate(f.one, f.multiply);
+            return toAdd.Aggregate(f.one, f.Product);
         }
     }
 }

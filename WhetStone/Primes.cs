@@ -24,8 +24,8 @@ namespace NumberStone
             {
                 yield return p;
             }
-            List<int> ret = new List<int>(isPrime.PrimeList);
-            int i = ret.Last();
+            List<int> ret = new List<int>();
+            int i = isPrime.PrimeList.Last();
             var log = new LogarithmicProgresser(2,i);
             var gen = new LocalRandomGenerator();
             using (var steps = new[] {2, 6, 4, 2, 4, 2, 4, 6}.Cycle().GetEnumerator())
@@ -37,8 +37,8 @@ namespace NumberStone
                     log.Increment(steps.Current);
                     if (!i.isProbablyPrime(log.log,gen))
                         continue;
-                    int sqrt = Math.Sqrt(i).ceil() + 1;
-                    if (ret.TakeWhile(a => a < sqrt + 1).All(a => i%a != 0))
+                    int sqrt = Math.Sqrt(i).Ceil() + 1;
+                    if (isPrime.PrimeList.Concat(ret).TakeWhile(a => a < sqrt + 1).All(a => i%a != 0))
                     {
                         ret.Add(i);
                         yield return i;

@@ -222,7 +222,7 @@ namespace WhetStone.Random
         /// <para>This function uses fielding.</para>
         /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.FromBytes"/> generation.</para>
         /// </remarks>
-        public T FromField<T>()
+        public T fromField<T>()
         {
             var f = Fields.getField<T>();
             if (f.GenType == GenerationType.Never || f.GenType == GenerationType.Special)
@@ -240,7 +240,7 @@ namespace WhetStone.Random
         /// <para>This function uses fielding.</para>
         /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.FromRange"/> generation.</para>
         /// </remarks>
-        public T FromField<T>(T min, T max)
+        public T fromField<T>(T min, T max)
         {
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.FromRange)
@@ -259,7 +259,7 @@ namespace WhetStone.Random
         /// <para>This function uses fielding.</para>
         /// <para>The field for type <typeparamref name="T"/> must support <see cref="GenerationType.Special"/> generation.</para>
         /// </remarks>
-        public T FromField<T>(T min, T max, object special)
+        public T fromField<T>(T min, T max, object special)
         {
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.Special)
