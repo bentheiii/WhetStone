@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpKI>
-  <HelpKINode Title="abs method">
-    <HelpKINode Title="Field(T).abs Method " Url="html/M_WhetStone_Fielding_Field_1_abs.htm" />
-    <HelpKINode Title="FieldWrapper(T).abs Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_abs.htm" />
+  <HelpKINode Title="Abs method">
+    <HelpKINode Title="Field(T).Abs Method " Url="html/M_WhetStone_Fielding_Field_1_Abs.htm" />
+    <HelpKINode Title="FieldWrapper(T).Abs Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_Abs.htm" />
   </HelpKINode>
-  <HelpKINode Title="accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_accessed.htm" />
+  <HelpKINode Title="Accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_Accessed.htm" />
   <HelpKINode Title="AccesType property" Url="html/P_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs_AccesType.htm" />
-  <HelpKINode Title="add method" Url="html/M_WhetStone_Fielding_Field_1_add.htm" />
   <HelpKINode Title="Add method">
     <HelpKINode Title="BitList.Add Method " Url="html/M_WhetStone_SystemExtensions_BitList_Add.htm" />
     <HelpKINode Title="cache.IListCache(T).Add Method " Url="html/M_WhetStone_Looping_cache_IListCache_1_Add.htm" />
@@ -135,7 +134,7 @@
   <HelpKINode Title="BigProduct.isInteger method" Url="html/M_NumberStone_BigProduct_isInteger.htm" />
   <HelpKINode Title="BigProduct.Multiply method" Url="html/M_NumberStone_BigProduct_Multiply.htm" />
   <HelpKINode Title="BigProduct.MultiplyFactorial method" Url="html/M_NumberStone_BigProduct_MultiplyFactorial.htm" />
-  <HelpKINode Title="BigProduct.pow method" Url="html/M_NumberStone_BigProduct_pow.htm" />
+  <HelpKINode Title="BigProduct.Pow method" Url="html/M_NumberStone_BigProduct_Pow.htm" />
   <HelpKINode Title="BigProduct.sign property" Url="html/P_NumberStone_BigProduct_sign.htm" />
   <HelpKINode Title="BigProduct.toFraction method" Url="html/M_NumberStone_BigProduct_toFraction.htm" />
   <HelpKINode Title="BigProduct.toNum method" Url="html/M_NumberStone_BigProduct_toNum.htm" />
@@ -267,8 +266,8 @@
   <HelpKINode Title="cacheCount.CacheCount(Of T) method" Url="html/M_WhetStone_Looping_cacheCount_CacheCount__1.htm" />
   <HelpKINode Title="cacheCount.CacheCount&lt;T&gt; method" Url="html/M_WhetStone_Looping_cacheCount_CacheCount__1.htm" />
   <HelpKINode Title="CacheCount&lt;T&gt; method" Url="html/M_WhetStone_Looping_cacheCount_CacheCount__1.htm" />
-  <HelpKINode Title="ceil method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_ceil.htm" />
-  <HelpKINode Title="changed event" Url="html/E_WhetStone_Guard_EventGuard_1_changed.htm" />
+  <HelpKINode Title="Ceil method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_Ceil.htm" />
+  <HelpKINode Title="Changed event" Url="html/E_WhetStone_Guard_EventGuard_1_Changed.htm" />
   <HelpKINode Title="choose class">
     <HelpKINode Title="choose Class" Url="html/T_NumberStone_choose.htm" />
     <HelpKINode Title="about choose class" Url="html/T_NumberStone_choose.htm" />
@@ -453,6 +452,7 @@
   </HelpKINode>
   <HelpKINode Title="Detach method" Url="html/Overload_WhetStone_Looping_detach_Detach.htm" />
   <HelpKINode Title="detach.Detach method" Url="html/Overload_WhetStone_Looping_detach_Detach.htm" />
+  <HelpKINode Title="Difference method" Url="html/M_WhetStone_Fielding_Field_1_Difference.htm" />
   <HelpKINode Title="Dispose method" Url="html/M_WhetStone_Random_ShaGenerator_Dispose.htm" />
   <HelpKINode Title="distinct class">
     <HelpKINode Title="distinct Class" Url="html/T_WhetStone_Looping_distinct.htm" />
@@ -467,7 +467,6 @@
     <HelpKINode Title="BigProduct.Divide Method " Url="html/M_NumberStone_BigProduct_Divide.htm" />
     <HelpKINode Title="TimeExtentions.Divide Method " Url="html/Overload_WhetStone_Units_Time_TimeExtentions_Divide.htm" />
   </HelpKINode>
-  <HelpKINode Title="divide method" Url="html/M_WhetStone_Fielding_Field_1_divide.htm" />
   <HelpKINode Title="DivideFactorial method" Url="html/M_NumberStone_BigProduct_DivideFactorial.htm" />
   <HelpKINode Title="divisibility class">
     <HelpKINode Title="divisibility Class" Url="html/T_NumberStone_divisibility.htm" />
@@ -502,7 +501,7 @@
   </HelpKINode>
   <HelpKINode Title="Double to FieldWrapper(Of T) conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit.htm" />
   <HelpKINode Title="Double to FieldWrapper&lt;T&gt; conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit.htm" />
-  <HelpKINode Title="drawn event" Url="html/E_WhetStone_Guard_EventGuard_1_drawn.htm" />
+  <HelpKINode Title="Drawn event" Url="html/E_WhetStone_Guard_EventGuard_1_Drawn.htm" />
   <HelpKINode Title="duplicates class">
     <HelpKINode Title="duplicates Class" Url="html/T_WhetStone_Looping_duplicates.htm" />
     <HelpKINode Title="about duplicates class" Url="html/T_WhetStone_Looping_duplicates.htm" />
@@ -670,10 +669,10 @@
     <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_Guard_EventGuard_1.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_WhetStone_Guard_EventGuard_1.htm" />
   </HelpKINode>
-  <HelpKINode Title="EventGuard(Of T).accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_accessed.htm" />
-  <HelpKINode Title="EventGuard(Of T).changed event" Url="html/E_WhetStone_Guard_EventGuard_1_changed.htm" />
+  <HelpKINode Title="EventGuard(Of T).Accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_Accessed.htm" />
+  <HelpKINode Title="EventGuard(Of T).Changed event" Url="html/E_WhetStone_Guard_EventGuard_1_Changed.htm" />
   <HelpKINode Title="EventGuard(Of T).Clone method" Url="html/M_WhetStone_Guard_EventGuard_1_Clone.htm" />
-  <HelpKINode Title="EventGuard(Of T).drawn event" Url="html/E_WhetStone_Guard_EventGuard_1_drawn.htm" />
+  <HelpKINode Title="EventGuard(Of T).Drawn event" Url="html/E_WhetStone_Guard_EventGuard_1_Drawn.htm" />
   <HelpKINode Title="EventGuard(Of T).EventGuard constructor" Url="html/M_WhetStone_Guard_EventGuard_1__ctor.htm" />
   <HelpKINode Title="EventGuard(Of T).EventGuardAccessArgs class">
     <HelpKINode Title="EventGuard(T).EventGuardAccessArgs Class" Url="html/T_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs.htm" />
@@ -704,10 +703,10 @@
     <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_Guard_EventGuard_1.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_WhetStone_Guard_EventGuard_1.htm" />
   </HelpKINode>
-  <HelpKINode Title="EventGuard&lt;T&gt;.accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_accessed.htm" />
-  <HelpKINode Title="EventGuard&lt;T&gt;.changed event" Url="html/E_WhetStone_Guard_EventGuard_1_changed.htm" />
+  <HelpKINode Title="EventGuard&lt;T&gt;.Accessed event" Url="html/E_WhetStone_Guard_EventGuard_1_Accessed.htm" />
+  <HelpKINode Title="EventGuard&lt;T&gt;.Changed event" Url="html/E_WhetStone_Guard_EventGuard_1_Changed.htm" />
   <HelpKINode Title="EventGuard&lt;T&gt;.Clone method" Url="html/M_WhetStone_Guard_EventGuard_1_Clone.htm" />
-  <HelpKINode Title="EventGuard&lt;T&gt;.drawn event" Url="html/E_WhetStone_Guard_EventGuard_1_drawn.htm" />
+  <HelpKINode Title="EventGuard&lt;T&gt;.Drawn event" Url="html/E_WhetStone_Guard_EventGuard_1_Drawn.htm" />
   <HelpKINode Title="EventGuard&lt;T&gt;.EventGuard constructor" Url="html/M_WhetStone_Guard_EventGuard_1__ctor.htm" />
   <HelpKINode Title="EventGuard&lt;T&gt;.EventGuardAccessArgs class">
     <HelpKINode Title="EventGuard(T).EventGuardAccessArgs Class" Url="html/T_WhetStone_Guard_EventGuard_1_EventGuardAccessArgs.htm" />
@@ -760,10 +759,9 @@
     <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_Fielding_Field_1.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_WhetStone_Fielding_Field_1.htm" />
   </HelpKINode>
-  <HelpKINode Title="Field(Of T).abs method" Url="html/M_WhetStone_Fielding_Field_1_abs.htm" />
-  <HelpKINode Title="Field(Of T).add method" Url="html/M_WhetStone_Fielding_Field_1_add.htm" />
+  <HelpKINode Title="Field(Of T).Abs method" Url="html/M_WhetStone_Fielding_Field_1_Abs.htm" />
   <HelpKINode Title="Field(Of T).Compare method" Url="html/M_WhetStone_Fielding_Field_1_Compare.htm" />
-  <HelpKINode Title="Field(Of T).divide method" Url="html/M_WhetStone_Fielding_Field_1_divide.htm" />
+  <HelpKINode Title="Field(Of T).Difference method" Url="html/M_WhetStone_Fielding_Field_1_Difference.htm" />
   <HelpKINode Title="Field(Of T).Equals method" Url="html/Overload_WhetStone_Fielding_Field_1_Equals.htm" />
   <HelpKINode Title="Field(Of T).Field constructor" Url="html/M_WhetStone_Fielding_Field_1__ctor.htm" />
   <HelpKINode Title="Field(Of T).fromFraction method" Url="html/Overload_WhetStone_Fielding_Field_1_fromFraction.htm" />
@@ -775,19 +773,21 @@
   <HelpKINode Title="Field(Of T).Invertible property" Url="html/P_WhetStone_Fielding_Field_1_Invertible.htm" />
   <HelpKINode Title="Field(Of T).isNegative method" Url="html/M_WhetStone_Fielding_Field_1_isNegative.htm" />
   <HelpKINode Title="Field(Of T).isPositive method" Url="html/M_WhetStone_Fielding_Field_1_isPositive.htm" />
-  <HelpKINode Title="Field(Of T).log method" Url="html/M_WhetStone_Fielding_Field_1_log.htm" />
+  <HelpKINode Title="Field(Of T).Log method" Url="html/M_WhetStone_Fielding_Field_1_Log.htm" />
   <HelpKINode Title="Field(Of T).Max property" Url="html/P_WhetStone_Fielding_Field_1_Max.htm" />
   <HelpKINode Title="Field(Of T).Min property" Url="html/P_WhetStone_Fielding_Field_1_Min.htm" />
-  <HelpKINode Title="Field(Of T).mod method" Url="html/M_WhetStone_Fielding_Field_1_mod.htm" />
-  <HelpKINode Title="Field(Of T).multiply method" Url="html/M_WhetStone_Fielding_Field_1_multiply.htm" />
+  <HelpKINode Title="Field(Of T).Modulo method" Url="html/M_WhetStone_Fielding_Field_1_Modulo.htm" />
   <HelpKINode Title="Field(Of T).Negatable property" Url="html/P_WhetStone_Fielding_Field_1_Negatable.htm" />
   <HelpKINode Title="Field(Of T).Negate method" Url="html/M_WhetStone_Fielding_Field_1_Negate.htm" />
-  <HelpKINode Title="Field(Of T).negativeone property" Url="html/P_WhetStone_Fielding_Field_1_negativeone.htm" />
+  <HelpKINode Title="Field(Of T).negativeOne property" Url="html/P_WhetStone_Fielding_Field_1_negativeOne.htm" />
   <HelpKINode Title="Field(Of T).one property" Url="html/P_WhetStone_Fielding_Field_1_one.htm" />
   <HelpKINode Title="Field(Of T).Parse method" Url="html/M_WhetStone_Fielding_Field_1_Parse.htm" />
-  <HelpKINode Title="Field(Of T).pow method" Url="html/M_WhetStone_Fielding_Field_1_Pow.htm" />
+  <HelpKINode Title="Field(Of T).Pow method" Url="html/M_WhetStone_Fielding_Field_1_Pow.htm" />
+  <HelpKINode Title="Field(Of T).PowInt method" Url="html/M_WhetStone_Fielding_Field_1_PowInt.htm" />
+  <HelpKINode Title="Field(Of T).Product method" Url="html/M_WhetStone_Fielding_Field_1_Product.htm" />
+  <HelpKINode Title="Field(Of T).Quotient method" Url="html/M_WhetStone_Fielding_Field_1_Quotient.htm" />
   <HelpKINode Title="Field(Of T).SubjectType property" Url="html/P_WhetStone_Fielding_Field_1_SubjectType.htm" />
-  <HelpKINode Title="Field(Of T).subtract method" Url="html/M_WhetStone_Fielding_Field_1_subtract.htm" />
+  <HelpKINode Title="Field(Of T).Sum method" Url="html/M_WhetStone_Fielding_Field_1_Sum.htm" />
   <HelpKINode Title="Field(Of T).toDouble method" Url="html/M_WhetStone_Fielding_Field_1_toDouble.htm" />
   <HelpKINode Title="Field(Of T).zero property" Url="html/P_WhetStone_Fielding_Field_1_zero.htm" />
   <HelpKINode Title="Field.SubjectType property" Url="html/P_WhetStone_Fielding_Field_SubjectType.htm" />
@@ -798,10 +798,9 @@
     <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_Fielding_Field_1.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_WhetStone_Fielding_Field_1.htm" />
   </HelpKINode>
-  <HelpKINode Title="Field&lt;T&gt;.abs method" Url="html/M_WhetStone_Fielding_Field_1_abs.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.add method" Url="html/M_WhetStone_Fielding_Field_1_add.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Abs method" Url="html/M_WhetStone_Fielding_Field_1_Abs.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Compare method" Url="html/M_WhetStone_Fielding_Field_1_Compare.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.divide method" Url="html/M_WhetStone_Fielding_Field_1_divide.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Difference method" Url="html/M_WhetStone_Fielding_Field_1_Difference.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Equals method" Url="html/Overload_WhetStone_Fielding_Field_1_Equals.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Field constructor" Url="html/M_WhetStone_Fielding_Field_1__ctor.htm" />
   <HelpKINode Title="Field&lt;T&gt;.fromFraction method" Url="html/Overload_WhetStone_Fielding_Field_1_fromFraction.htm" />
@@ -813,19 +812,21 @@
   <HelpKINode Title="Field&lt;T&gt;.Invertible property" Url="html/P_WhetStone_Fielding_Field_1_Invertible.htm" />
   <HelpKINode Title="Field&lt;T&gt;.isNegative method" Url="html/M_WhetStone_Fielding_Field_1_isNegative.htm" />
   <HelpKINode Title="Field&lt;T&gt;.isPositive method" Url="html/M_WhetStone_Fielding_Field_1_isPositive.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.log method" Url="html/M_WhetStone_Fielding_Field_1_log.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Log method" Url="html/M_WhetStone_Fielding_Field_1_Log.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Max property" Url="html/P_WhetStone_Fielding_Field_1_Max.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Min property" Url="html/P_WhetStone_Fielding_Field_1_Min.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.mod method" Url="html/M_WhetStone_Fielding_Field_1_mod.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.multiply method" Url="html/M_WhetStone_Fielding_Field_1_multiply.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Modulo method" Url="html/M_WhetStone_Fielding_Field_1_Modulo.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Negatable property" Url="html/P_WhetStone_Fielding_Field_1_Negatable.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Negate method" Url="html/M_WhetStone_Fielding_Field_1_Negate.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.negativeone property" Url="html/P_WhetStone_Fielding_Field_1_negativeone.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.negativeOne property" Url="html/P_WhetStone_Fielding_Field_1_negativeOne.htm" />
   <HelpKINode Title="Field&lt;T&gt;.one property" Url="html/P_WhetStone_Fielding_Field_1_one.htm" />
   <HelpKINode Title="Field&lt;T&gt;.Parse method" Url="html/M_WhetStone_Fielding_Field_1_Parse.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.pow method" Url="html/M_WhetStone_Fielding_Field_1_Pow.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Pow method" Url="html/M_WhetStone_Fielding_Field_1_Pow.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.PowInt method" Url="html/M_WhetStone_Fielding_Field_1_PowInt.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Product method" Url="html/M_WhetStone_Fielding_Field_1_Product.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Quotient method" Url="html/M_WhetStone_Fielding_Field_1_Quotient.htm" />
   <HelpKINode Title="Field&lt;T&gt;.SubjectType property" Url="html/P_WhetStone_Fielding_Field_1_SubjectType.htm" />
-  <HelpKINode Title="Field&lt;T&gt;.subtract method" Url="html/M_WhetStone_Fielding_Field_1_subtract.htm" />
+  <HelpKINode Title="Field&lt;T&gt;.Sum method" Url="html/M_WhetStone_Fielding_Field_1_Sum.htm" />
   <HelpKINode Title="Field&lt;T&gt;.toDouble method" Url="html/M_WhetStone_Fielding_Field_1_toDouble.htm" />
   <HelpKINode Title="Field&lt;T&gt;.zero property" Url="html/P_WhetStone_Fielding_Field_1_zero.htm" />
   <HelpKINode Title="Fields class">
@@ -850,7 +851,7 @@
   <HelpKINode Title="FieldWrapper(Of T) to Double conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Explicit_1.htm" />
   <HelpKINode Title="FieldWrapper(Of T) to Nullable(Of Double) conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Explicit.htm" />
   <HelpKINode Title="FieldWrapper(Of T) to T conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_4.htm" />
-  <HelpKINode Title="FieldWrapper(Of T).abs method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_abs.htm" />
+  <HelpKINode Title="FieldWrapper(Of T).Abs method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Abs.htm" />
   <HelpKINode Title="FieldWrapper(Of T).Addition operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Addition.htm" />
   <HelpKINode Title="FieldWrapper(Of T).CompareTo method" Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_CompareTo.htm" />
   <HelpKINode Title="FieldWrapper(Of T).Deconstruct method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Deconstruct.htm" />
@@ -863,16 +864,17 @@
   <HelpKINode Title="FieldWrapper(Of T).GreaterThan operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThan.htm" />
   <HelpKINode Title="FieldWrapper(Of T).GreaterThanOrEqual operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThanOrEqual.htm" />
   <HelpKINode Title="FieldWrapper(Of T).Invert method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Invert.htm" />
-  <HelpKINode Title="FieldWrapper(Of T).IsNegative property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsNegative.htm" />
+  <HelpKINode Title="FieldWrapper(Of T).isNegative property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isNegative.htm" />
   <HelpKINode Title="FieldWrapper(Of T).isOne property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isOne.htm" />
-  <HelpKINode Title="FieldWrapper(Of T).IsPositive property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsPositive.htm" />
+  <HelpKINode Title="FieldWrapper(Of T).isPositive property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isPositive.htm" />
   <HelpKINode Title="FieldWrapper(Of T).isZero property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isZero.htm" />
   <HelpKINode Title="FieldWrapper(Of T).LessThan operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_LessThan.htm" />
   <HelpKINode Title="FieldWrapper(Of T).LessThanOrEqual operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_LessThanOrEqual.htm" />
-  <HelpKINode Title="FieldWrapper(Of T).log method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_log.htm" />
+  <HelpKINode Title="FieldWrapper(Of T).Log method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Log.htm" />
   <HelpKINode Title="FieldWrapper(Of T).Modulus operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Modulus.htm" />
   <HelpKINode Title="FieldWrapper(Of T).Multiply operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Multiply.htm" />
-  <HelpKINode Title="FieldWrapper(Of T).pow method" Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_pow.htm" />
+  <HelpKINode Title="FieldWrapper(Of T).Pow method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Pow.htm" />
+  <HelpKINode Title="FieldWrapper(Of T).PowInt method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_PowInt.htm" />
   <HelpKINode Title="FieldWrapper(Of T).Subtraction operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Subtraction.htm" />
   <HelpKINode Title="FieldWrapper(Of T).ToString method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_ToString.htm" />
   <HelpKINode Title="FieldWrapper(Of T).UnaryNegation operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_UnaryNegation.htm" />
@@ -888,7 +890,7 @@
   <HelpKINode Title="FieldWrapper&lt;T&gt; to Double conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Explicit_1.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt; to Nullable&lt;Double&gt; conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Explicit.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt; to T conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_4.htm" />
-  <HelpKINode Title="FieldWrapper&lt;T&gt;.abs method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_abs.htm" />
+  <HelpKINode Title="FieldWrapper&lt;T&gt;.Abs method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Abs.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.Addition operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Addition.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.CompareTo method" Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_CompareTo.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.Deconstruct method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Deconstruct.htm" />
@@ -901,16 +903,17 @@
   <HelpKINode Title="FieldWrapper&lt;T&gt;.GreaterThan operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThan.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.GreaterThanOrEqual operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThanOrEqual.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.Invert method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Invert.htm" />
-  <HelpKINode Title="FieldWrapper&lt;T&gt;.IsNegative property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsNegative.htm" />
+  <HelpKINode Title="FieldWrapper&lt;T&gt;.isNegative property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isNegative.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.isOne property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isOne.htm" />
-  <HelpKINode Title="FieldWrapper&lt;T&gt;.IsPositive property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsPositive.htm" />
+  <HelpKINode Title="FieldWrapper&lt;T&gt;.isPositive property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isPositive.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.isZero property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isZero.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.LessThan operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_LessThan.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.LessThanOrEqual operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_LessThanOrEqual.htm" />
-  <HelpKINode Title="FieldWrapper&lt;T&gt;.log method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_log.htm" />
+  <HelpKINode Title="FieldWrapper&lt;T&gt;.Log method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Log.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.Modulus operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Modulus.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.Multiply operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Multiply.htm" />
-  <HelpKINode Title="FieldWrapper&lt;T&gt;.pow method" Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_pow.htm" />
+  <HelpKINode Title="FieldWrapper&lt;T&gt;.Pow method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_Pow.htm" />
+  <HelpKINode Title="FieldWrapper&lt;T&gt;.PowInt method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_PowInt.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.Subtraction operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Subtraction.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.ToString method" Url="html/M_WhetStone_Fielding_FieldWrapper_1_ToString.htm" />
   <HelpKINode Title="FieldWrapper&lt;T&gt;.UnaryNegation operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_UnaryNegation.htm" />
@@ -930,9 +933,9 @@
   <HelpKINode Title="First enumeration member" Url="html/T_WhetStone_Looping_positionBind_Position.htm" />
   <HelpKINode Title="first.FirstOrDefault method" Url="html/Overload_WhetStone_Looping_first_FirstOrDefault.htm" />
   <HelpKINode Title="FirstOrDefault method" Url="html/Overload_WhetStone_Looping_first_FirstOrDefault.htm" />
-  <HelpKINode Title="floor method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_floor.htm" />
+  <HelpKINode Title="Floor method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_Floor.htm" />
   <HelpKINode Title="FromBytes enumeration member" Url="html/T_WhetStone_Fielding_GenerationType.htm" />
-  <HelpKINode Title="FromField method" Url="html/Overload_WhetStone_Random_RandomGenerator_FromField.htm" />
+  <HelpKINode Title="fromField method" Url="html/Overload_WhetStone_Random_RandomGenerator_fromField.htm" />
   <HelpKINode Title="fromFraction method" Url="html/Overload_WhetStone_Fielding_Field_1_fromFraction.htm" />
   <HelpKINode Title="fromInt method" Url="html/Overload_WhetStone_Fielding_Field_1_fromInt.htm" />
   <HelpKINode Title="FromRange enumeration member" Url="html/T_WhetStone_Fielding_GenerationType.htm" />
@@ -1081,7 +1084,7 @@
   <HelpKINode Title="GlobalRandomGenerator.Double method" Url="html/Overload_WhetStone_Random_GlobalRandomGenerator_Double.htm" />
   <HelpKINode Title="GlobalRandomGenerator.GlobalRandomGenerator constructor" Url="html/M_WhetStone_Random_GlobalRandomGenerator__ctor.htm" />
   <HelpKINode Title="GlobalRandomGenerator.Int method" Url="html/Overload_WhetStone_Random_GlobalRandomGenerator_Int.htm" />
-  <HelpKINode Title="GlobalRandomGenerator.reset method" Url="html/M_WhetStone_Random_GlobalRandomGenerator_reset.htm" />
+  <HelpKINode Title="GlobalRandomGenerator.Reset method" Url="html/M_WhetStone_Random_GlobalRandomGenerator_Reset.htm" />
   <HelpKINode Title="GlobalRandomGenerator.ThreadLocal method" Url="html/M_WhetStone_Random_GlobalRandomGenerator_ThreadLocal.htm" />
   <HelpKINode Title="GreaterThan operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThan.htm" />
   <HelpKINode Title="GreaterThanOrEqual operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_GreaterThanOrEqual.htm" />
@@ -1290,10 +1293,10 @@
   <HelpKINode Title="IRange method" Url="html/Overload_WhetStone_Looping_range_IRange.htm" />
   <HelpKINode Title="isInteger method" Url="html/M_NumberStone_BigProduct_isInteger.htm" />
   <HelpKINode Title="isNegative method" Url="html/M_WhetStone_Fielding_Field_1_isNegative.htm" />
-  <HelpKINode Title="IsNegative property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsNegative.htm" />
+  <HelpKINode Title="isNegative property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isNegative.htm" />
   <HelpKINode Title="isOne property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isOne.htm" />
   <HelpKINode Title="isPositive method" Url="html/M_WhetStone_Fielding_Field_1_isPositive.htm" />
-  <HelpKINode Title="IsPositive property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_IsPositive.htm" />
+  <HelpKINode Title="isPositive property" Url="html/P_WhetStone_Fielding_FieldWrapper_1_isPositive.htm" />
   <HelpKINode Title="isPrime class">
     <HelpKINode Title="isPrime Class" Url="html/T_NumberStone_isPrime.htm" />
     <HelpKINode Title="about isPrime class" Url="html/T_NumberStone_isPrime.htm" />
@@ -1489,9 +1492,9 @@
   <HelpKINode Title="LocalRandomGenerator.Double method" Url="html/Overload_WhetStone_Random_LocalRandomGenerator_Double.htm" />
   <HelpKINode Title="LocalRandomGenerator.Int method" Url="html/Overload_WhetStone_Random_LocalRandomGenerator_Int.htm" />
   <HelpKINode Title="LocalRandomGenerator.LocalRandomGenerator constructor" Url="html/Overload_WhetStone_Random_LocalRandomGenerator__ctor.htm" />
-  <HelpKINode Title="log method">
-    <HelpKINode Title="Field(T).log Method " Url="html/M_WhetStone_Fielding_Field_1_log.htm" />
-    <HelpKINode Title="FieldWrapper(T).log Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_log.htm" />
+  <HelpKINode Title="Log method">
+    <HelpKINode Title="Field(T).Log Method " Url="html/M_WhetStone_Fielding_Field_1_Log.htm" />
+    <HelpKINode Title="FieldWrapper(T).Log Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_Log.htm" />
   </HelpKINode>
   <HelpKINode Title="log property" Url="html/P_NumberStone_LogarithmicProgresser_log.htm" />
   <HelpKINode Title="LogarithmicProgresser class">
@@ -1539,7 +1542,7 @@
   </HelpKINode>
   <HelpKINode Title="MinMax method" Url="html/Overload_WhetStone_Comparison_minmax_MinMax.htm" />
   <HelpKINode Title="minmax.MinMax method" Url="html/Overload_WhetStone_Comparison_minmax_MinMax.htm" />
-  <HelpKINode Title="mod method" Url="html/M_WhetStone_Fielding_Field_1_mod.htm" />
+  <HelpKINode Title="Modulo method" Url="html/M_WhetStone_Fielding_Field_1_Modulo.htm" />
   <HelpKINode Title="Modulus operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Modulus.htm" />
   <HelpKINode Title="MultiCollection(Of T) class">
     <HelpKINode Title="MultiCollection(T) Class" Url="html/T_WhetStone_Looping_MultiCollection_1.htm" />
@@ -1579,12 +1582,11 @@
     <HelpKINode Title="BigProduct.Multiply Method " Url="html/M_NumberStone_BigProduct_Multiply.htm" />
     <HelpKINode Title="TimeExtentions.Multiply Method " Url="html/M_WhetStone_Units_Time_TimeExtentions_Multiply.htm" />
   </HelpKINode>
-  <HelpKINode Title="multiply method" Url="html/M_WhetStone_Fielding_Field_1_multiply.htm" />
   <HelpKINode Title="Multiply operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Multiply.htm" />
   <HelpKINode Title="MultiplyFactorial method" Url="html/M_NumberStone_BigProduct_MultiplyFactorial.htm" />
   <HelpKINode Title="Negatable property" Url="html/P_WhetStone_Fielding_Field_1_Negatable.htm" />
   <HelpKINode Title="Negate method" Url="html/M_WhetStone_Fielding_Field_1_Negate.htm" />
-  <HelpKINode Title="negativeone property" Url="html/P_WhetStone_Fielding_Field_1_negativeone.htm" />
+  <HelpKINode Title="negativeOne property" Url="html/P_WhetStone_Fielding_Field_1_negativeOne.htm" />
   <HelpKINode Title="Never enumeration member" Url="html/T_WhetStone_Fielding_GenerationType.htm" />
   <HelpKINode Title="newInd property" Url="html/P_WhetStone_Looping_editDistance_Insert_1_newInd.htm" />
   <HelpKINode Title="newVal property">
@@ -1674,13 +1676,17 @@
   <HelpKINode Title="PositionBind method" Url="html/Overload_WhetStone_Looping_positionBind_PositionBind.htm" />
   <HelpKINode Title="positionBind.Position enumeration" Url="html/T_WhetStone_Looping_positionBind_Position.htm" />
   <HelpKINode Title="positionBind.PositionBind method" Url="html/Overload_WhetStone_Looping_positionBind_PositionBind.htm" />
-  <HelpKINode Title="pow method">
-    <HelpKINode Title="BigProduct.pow Method " Url="html/M_NumberStone_BigProduct_pow.htm" />
-    <HelpKINode Title="Field(T).pow Method " Url="html/M_WhetStone_Fielding_Field_1_Pow.htm" />
-    <HelpKINode Title="FieldWrapper(T).pow Method " Url="html/Overload_WhetStone_Fielding_FieldWrapper_1_pow.htm" />
-    <HelpKINode Title="SystemExtension.pow Method " Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_pow.htm" />
+  <HelpKINode Title="Pow method">
+    <HelpKINode Title="BigProduct.Pow Method " Url="html/M_NumberStone_BigProduct_Pow.htm" />
+    <HelpKINode Title="Field(T).Pow Method " Url="html/M_WhetStone_Fielding_Field_1_Pow.htm" />
+    <HelpKINode Title="FieldWrapper(T).Pow Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_Pow.htm" />
+    <HelpKINode Title="SystemExtension.Pow Method " Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_Pow.htm" />
   </HelpKINode>
-  <HelpKINode Title="powmod method" Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_powmod.htm" />
+  <HelpKINode Title="PowInt method">
+    <HelpKINode Title="Field(T).PowInt Method " Url="html/M_WhetStone_Fielding_Field_1_PowInt.htm" />
+    <HelpKINode Title="FieldWrapper(T).PowInt Method " Url="html/M_WhetStone_Fielding_FieldWrapper_1_PowInt.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PowMod method" Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_PowMod.htm" />
   <HelpKINode Title="primeFactors class">
     <HelpKINode Title="primeFactors Class" Url="html/T_NumberStone_primeFactors.htm" />
     <HelpKINode Title="about primeFactors class" Url="html/T_NumberStone_primeFactors.htm" />
@@ -1712,6 +1718,8 @@
   </HelpKINode>
   <HelpKINode Title="PriorityComparer&lt;T&gt;.Compare method" Url="html/M_WhetStone_Comparison_PriorityComparer_1_Compare.htm" />
   <HelpKINode Title="PriorityComparer&lt;T&gt;.PriorityComparer constructor" Url="html/M_WhetStone_Comparison_PriorityComparer_1__ctor.htm" />
+  <HelpKINode Title="Product method" Url="html/M_WhetStone_Fielding_Field_1_Product.htm" />
+  <HelpKINode Title="Quotient method" Url="html/M_WhetStone_Fielding_Field_1_Quotient.htm" />
   <HelpKINode Title="RandomGenerator class">
     <HelpKINode Title="RandomGenerator Class" Url="html/T_WhetStone_Random_RandomGenerator.htm" />
     <HelpKINode Title="about RandomGenerator class" Url="html/T_WhetStone_Random_RandomGenerator.htm" />
@@ -1722,7 +1730,7 @@
   <HelpKINode Title="RandomGenerator.Byte method" Url="html/M_WhetStone_Random_RandomGenerator_Byte.htm" />
   <HelpKINode Title="RandomGenerator.Bytes method" Url="html/Overload_WhetStone_Random_RandomGenerator_Bytes.htm" />
   <HelpKINode Title="RandomGenerator.Double method" Url="html/Overload_WhetStone_Random_RandomGenerator_Double.htm" />
-  <HelpKINode Title="RandomGenerator.FromField method" Url="html/Overload_WhetStone_Random_RandomGenerator_FromField.htm" />
+  <HelpKINode Title="RandomGenerator.fromField method" Url="html/Overload_WhetStone_Random_RandomGenerator_fromField.htm" />
   <HelpKINode Title="RandomGenerator.Int method" Url="html/Overload_WhetStone_Random_RandomGenerator_Int.htm" />
   <HelpKINode Title="RandomGenerator.Long method" Url="html/Overload_WhetStone_Random_RandomGenerator_Long.htm" />
   <HelpKINode Title="RandomGenerator.RandomGenerator constructor" Url="html/M_WhetStone_Random_RandomGenerator__ctor.htm" />
@@ -1771,7 +1779,7 @@
     <HelpKINode Title="LazyList(T).RemoveAt Method " Url="html/M_WhetStone_Looping_LazyList_1_RemoveAt.htm" />
     <HelpKINode Title="ResizingArray(T).RemoveAt Method " Url="html/M_WhetStone_Looping_ResizingArray_1_RemoveAt.htm" />
   </HelpKINode>
-  <HelpKINode Title="reset method" Url="html/M_WhetStone_Random_GlobalRandomGenerator_reset.htm" />
+  <HelpKINode Title="Reset method" Url="html/M_WhetStone_Random_GlobalRandomGenerator_Reset.htm" />
   <HelpKINode Title="ResizeTo method" Url="html/M_WhetStone_Looping_ResizingArray_1_ResizeTo.htm" />
   <HelpKINode Title="ResizingArray(Of T) class">
     <HelpKINode Title="ResizingArray(T) Class" Url="html/T_WhetStone_Looping_ResizingArray_1.htm" />
@@ -1999,9 +2007,9 @@
     <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_Looping_editDistance_Substitute_1.htm" />
     <HelpKINode Title="properties" Url="html/Properties_T_WhetStone_Looping_editDistance_Substitute_1.htm" />
   </HelpKINode>
-  <HelpKINode Title="subtract method" Url="html/M_WhetStone_Fielding_Field_1_subtract.htm" />
   <HelpKINode Title="Subtraction operator" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Subtraction.htm" />
   <HelpKINode Title="success method" Url="html/M_WhetStone_Random_RandomGenerator_success.htm" />
+  <HelpKINode Title="Sum method" Url="html/M_WhetStone_Fielding_Field_1_Sum.htm" />
   <HelpKINode Title="Sum property">
     <HelpKINode Title="KahanSum(T).Sum Property " Url="html/P_NumberStone_KahanSum_1_Sum.htm" />
     <HelpKINode Title="KahanSum.Sum Property " Url="html/P_NumberStone_KahanSum_Sum.htm" />
@@ -2012,11 +2020,11 @@
     <HelpKINode Title="about SystemExtension class" Url="html/T_WhetStone_SystemExtensions_SystemExtension.htm" />
     <HelpKINode Title="methods" Url="html/Methods_T_WhetStone_SystemExtensions_SystemExtension.htm" />
   </HelpKINode>
-  <HelpKINode Title="SystemExtension.ceil method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_ceil.htm" />
-  <HelpKINode Title="SystemExtension.floor method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_floor.htm" />
+  <HelpKINode Title="SystemExtension.Ceil method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_Ceil.htm" />
+  <HelpKINode Title="SystemExtension.Floor method" Url="html/M_WhetStone_SystemExtensions_SystemExtension_Floor.htm" />
   <HelpKINode Title="SystemExtension.Indicator method" Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_Indicator.htm" />
-  <HelpKINode Title="SystemExtension.pow method" Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_pow.htm" />
-  <HelpKINode Title="SystemExtension.powmod method" Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_powmod.htm" />
+  <HelpKINode Title="SystemExtension.Pow method" Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_Pow.htm" />
+  <HelpKINode Title="SystemExtension.PowMod method" Url="html/Overload_WhetStone_SystemExtensions_SystemExtension_PowMod.htm" />
   <HelpKINode Title="T to FieldWrapper(Of T) conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_3.htm" />
   <HelpKINode Title="T to FieldWrapper&lt;T&gt; conversion" Url="html/M_WhetStone_Fielding_FieldWrapper_1_op_Implicit_3.htm" />
   <HelpKINode Title="take class">
