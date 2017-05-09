@@ -243,7 +243,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-*.htm
 *.json
 *.png
 *.gif
