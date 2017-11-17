@@ -1,6 +1,7 @@
 ﻿using System;
-// ReSharper disable once RedundantUsingDirective
+#if NOPARAMCHECK
 using System.Diagnostics;
+#endif
 #if RESHARPER
 using JetBrains.Annotations;
 #endif
@@ -73,10 +74,11 @@ namespace WhetStone.SystemExtensions
         /// <param name="allowNegInfity">Whether to allow negative infinity.</param>
         /// <param name="allowNan">Whether to allow NAN.</param>
         /// <param name="allowZero">Whether to allow 0.</param>
+        /// <param name="allowNegative">Whether to allow negative values.</param>
 #if NOPARAMCHECK
         [Conditional("FALSE")]
 #endif
-        public static void ThrowIfAbsurd(this double @this, string paramName = "parameter", bool allowPosInfinity = false, bool allowNegInfity = false, bool allowNan = false, bool allowZero = true)
+        public static void ThrowIfAbsurd(this double @this, string paramName = "parameter", bool allowPosInfinity = false, bool allowNegInfity = false, bool allowNan = false, bool allowZero = true, bool allowNegative = true)
         {
             if (!allowNan && double.IsNaN(@this))
                 throw new ArgumentException(paramName + " cannot be NAN");
@@ -86,6 +88,8 @@ namespace WhetStone.SystemExtensions
                 throw new ArgumentException(paramName + " cannot be negative infinity");
             if (!allowZero && @this == 0.0)
                 throw new ArgumentException(paramName + " cannot be zero");
+            if (!allowNegative && @this  < 0)
+                throw new ArgumentException(paramName + " cannot be negative");
         }
         /// <summary>
         /// Throw a <see cref="ArgumentNullException"/> if an int is not positive.

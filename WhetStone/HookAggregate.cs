@@ -25,7 +25,9 @@ namespace WhetStone.Looping
             @this.ThrowIfNull(nameof(@this));
             sink.ThrowIfNull(nameof(sink));
             aggregator.ThrowIfNull(nameof(aggregator));
+#pragma warning disable CS0618 // Type or member is obsolete
             return @this.AttachAggregate(aggregator,seed).Detach(sink);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }

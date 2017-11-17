@@ -184,8 +184,7 @@ namespace WhetStone.SystemExtensions
              * a^b = (a^[b/m])^m + a^(b%m)
              * note that a^[b/m] is recursive. Max stack size is log(b)/32
              */
-            BigInteger rem;
-            var div = BigInteger.DivRem(b, new BigInteger(int.MaxValue), out rem);
+            var div = BigInteger.DivRem(b, new BigInteger(int.MaxValue), out BigInteger rem);
             BigInteger divpow = BigInteger.One;
             if (!div.IsZero)
             {
@@ -245,8 +244,10 @@ namespace WhetStone.SystemExtensions
         /// </summary>
         /// <param name="a">The <see cref="double"/> to round.</param>
         /// <returns><paramref name="a"/> rounded up.</returns>
+        /// <remarks></remarks>
         public static int Ceil(this double a)
         {
+            a.ThrowIfAbsurd(nameof(a));
             return (int)Math.Ceiling(a);
         }
         /// <summary>
@@ -256,6 +257,7 @@ namespace WhetStone.SystemExtensions
         /// <returns><paramref name="a"/> rounded down.</returns>
         public static int Floor(this double a)
         {
+            a.ThrowIfAbsurd(nameof(a));
             return (int)Math.Floor(a);
         }
     }

@@ -53,9 +53,9 @@ namespace WhetStone.Streams
                 throw new ArgumentException("stream is unreadable");
             if (cache == null)
                 cache = @this.CanSeek ? -1 : 0;
-            var ret = generate.Generate(@this.ReadByte).TakeWhile(a => a > 0).Select(a => (byte)a);
+            var ret = generate.Generate(@this.ReadByte).TakeWhile(a => a != -1).Select(a => (byte)a);
             if (@this.CanSeek)
-                ret.EnumerationHook(begin: () => @this.Seek(0,SeekOrigin.Begin));
+                ret = ret.EnumerationHook(begin: () => @this.Seek(0,SeekOrigin.Begin));
             if (cache >= 0)
             {
                 ret = cache == 0 ? ret.Cache() : ret.Cache(cache);

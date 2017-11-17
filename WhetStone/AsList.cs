@@ -78,13 +78,16 @@ namespace WhetStone.Looping
                 return ret;
             }
             @this.ThrowIfNull(nameof(@this));
-            var l = @this as IList<T>;
-            if (l != null)
-                return l;
-            var r = @this as IReadOnlyList<T>;
-            if (r != null)
-                return r.ToLockedList();
+            switch (@this)
+            {
+                case IList<T> l:
+                    return l;
+                case IReadOnlyList<T> r:
+                    return r.ToLockedList();
+            }
+#pragma warning disable IDE0019 // Use pattern matching
             var s = @this as string;
+#pragma warning restore IDE0019 // Use pattern matching
             if (s != null && typeof(T) == typeof(char))
                 return (IList<T>)new LockedListStringAdaptor(s);
             return force ? @this.ToList() : null;

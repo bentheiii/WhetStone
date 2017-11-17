@@ -63,11 +63,12 @@ namespace WhetStone.Comparison
         public int GetHashCode(IEnumerable<T> obj)
         {
             obj.ThrowIfNull(nameof(obj));
+            var bias = obj.GetHashCode();
             if (_eq == null)
-                throw new InvalidOperationException("A comparer cannot hash with its equality comparer unset");
+                return bias;
             if (_hashtake.HasValue)
                 obj = obj.Take(_hashtake.Value);
-            return obj.Select(a => _eq.GetHashCode(a)).Aggregate((a, b) => a ^ b);
+            return bias ^ obj.Select(a => _eq.GetHashCode(a)).Aggregate((a, b) => a ^ b);
         }
     }
 }

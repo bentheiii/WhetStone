@@ -78,6 +78,7 @@ namespace NumberStone
         /// <returns>The greatest common divisor of <paramref name="val"/>.</returns>
         public static long GreatestCommonDivisor(IList<long> val)
         {
+            val = val.Select(Math.Abs);
             while (true)
             {
                 switch (val.Count)
@@ -89,10 +90,6 @@ namespace NumberStone
                     case 2:
                         var a = val[0];
                         var b = val[1];
-                        if (a < 0)
-                            a *= -1;
-                        if (b < 0)
-                            b *= -1;
                         minmax.MinMax(ref b, ref a);
                         while (b != 0)
                         {

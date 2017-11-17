@@ -161,7 +161,7 @@ namespace NumberStone
             {
                 if (factor.Value < 0)
                     throw new InvalidOperationException("Cannot return num of non-integer value.");
-                ret *= factor.Key.Pow(factor.Value);
+                ret = checked(ret * factor.Key.Pow(factor.Value));
             }
             return ret;
         }
