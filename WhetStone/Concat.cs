@@ -21,13 +21,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    foreach (var t in v)
-                    {
-                        yield return t;
-                    }
-                }
+                return _source.SelectMany(v => v).GetEnumerator();
             }
             public override int Count
             {
@@ -46,13 +40,7 @@ namespace WhetStone.Looping
             }
             public override IEnumerator<T> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    foreach (var t in v)
-                    {
-                        yield return t;
-                    }
-                }
+                return _source.SelectMany(v => v).GetEnumerator();
             }
             public override int Count
             {
@@ -88,13 +76,7 @@ namespace WhetStone.Looping
             }
             public IEnumerator<T> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    foreach (var t in v)
-                    {
-                        yield return t;
-                    }
-                }
+                return Enumerable.SelectMany(_source, v => v).GetEnumerator();
             }
             public void Add(T item)
             {
@@ -195,13 +177,7 @@ namespace WhetStone.Looping
             private int smallCount => _source[0].Count;
             public override IEnumerator<T> GetEnumerator()
             {
-                foreach (var v in _source)
-                {
-                    foreach (var t in v)
-                    {
-                        yield return t;
-                    }
-                }
+                return Enumerable.SelectMany(_source, v => v).GetEnumerator();
             }
             public override int Count
             {

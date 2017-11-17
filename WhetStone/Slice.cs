@@ -33,8 +33,9 @@ namespace WhetStone.Looping
                 max = length*steps + start;
             if (max == null)
                 max = @this.Count;
-            var s = @this as ListSlice<T>;
-            var ret = s != null ? s.ReSlice(start, max.Value, steps) : new ListSlice<T>(@this, start, max.Value, steps);
+            var ret = @this is ListSlice<T> s 
+                ? s.ReSlice(start, max.Value, steps) 
+                : new ListSlice<T>(@this, start, max.Value, steps);
             if (ret.Count < 0)
                 throw new ArgumentOutOfRangeException();
             return ret;

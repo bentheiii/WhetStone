@@ -4,9 +4,9 @@ using System.Diagnostics;
 #endif
 #if RESHARPER
 using JetBrains.Annotations;
-#endif
-
+// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Global
 // ReSharper disable UnusedParameter.Global
+#endif
 
 namespace WhetStone.SystemExtensions
 {

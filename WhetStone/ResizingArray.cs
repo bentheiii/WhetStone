@@ -7,9 +7,9 @@ using WhetStone.SystemExtensions;
 namespace WhetStone.Looping
 {
     /// <summary>
-    /// Represents a list array whose internal <see cref="Array"/> can be taken by reference, without need to copy it to a new <see cref="Array"/>.
+    /// Represents a list array whose internal <see cref="T:System.Array" /> can be taken by reference, without need to copy it to a new <see cref="T:System.Array" />.
     /// </summary>
-    /// <typeparam name="T">The type of the <see cref="IList{T}"/>.</typeparam>
+    /// <typeparam name="T">The type of the <see cref="T:System.Collections.Generic.IList`1" />.</typeparam>
     public class ResizingArray<T> : IList<T>, IReadOnlyList<T>
     {
         /// <summary>
@@ -41,7 +41,7 @@ namespace WhetStone.Looping
             RemoveAt(ind);
             return true;
         }
-        /// <inheritdoc />
+        /// <inheritdoc cref="ICollection{T}.Count" />
         public int Count { get; private set; } = 0;
         /// <inheritdoc />
         public bool IsReadOnly
@@ -156,7 +156,7 @@ namespace WhetStone.Looping
                 Array.Resize(ref _arr, _arr.Length/2);
             }
         }
-        /// <inheritdoc />
+        /// <inheritdoc cref="IList{T}.this" />
         public T this[int index]
         {
             get

@@ -81,8 +81,7 @@ namespace WhetStone.Looping
         public bool Remove(T item, int amount)
         {
             amount.ThrowIfAbsurd(nameof(amount));
-            int oldval;
-            if (!_occurance.TryGetValue(item, out oldval))
+            if (!_occurance.TryGetValue(item, out var oldval))
                 return false;
             if (oldval <= amount)
                 _occurance.Remove(item);

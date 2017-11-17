@@ -51,8 +51,7 @@ namespace WhetStone.Looping
         public static T GetMin<T>(this IEnumerable<T> tosearch, IComparer<T> compare = null)
         {
             tosearch.ThrowIfNull(nameof(tosearch));
-            int prox;
-            return tosearch.GetMin(compare ?? Comparer<T>.Default, out prox);
+            return tosearch.GetMin(compare ?? Comparer<T>.Default, out _);
         }
         /// <summary>
         /// Get the smallest element in an <see cref="IEnumerable{T}"/>.

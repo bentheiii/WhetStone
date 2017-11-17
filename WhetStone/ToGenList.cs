@@ -49,7 +49,7 @@ namespace WhetStone.SystemExtensions
             }
             public bool Contains(object value)
             {
-                return value is T && _inner.Contains((T)value);
+                return value is T t && _inner.Contains(t);
             }
             public void Clear()
             {
