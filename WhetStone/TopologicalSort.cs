@@ -20,7 +20,7 @@ namespace WhetStone.Looping
         /// <returns>All the elements in <paramref name="elements"/> ordered topologically.</returns>
         /// <exception cref="ArgumentException">If <paramref name="elements"/> contains cyclical dependencies or a dependency that does not exist in <paramref name="elements"/>.</exception>
         /// <remarks>A dependency collection can be empty or <see langword="null"/> to indicate no dependency.</remarks>
-        public static IEnumerable<T> TopologicalSort<T, TDependencies>(this IEnumerable<Tuple<T, TDependencies>> elements, bool allowMissingDependancy = false) where TDependencies:IEnumerable<T>
+        public static IEnumerable<T> TopologicalSort<T, TDependencies>(this IEnumerable<(T, TDependencies)> elements, bool allowMissingDependancy = false) where TDependencies:IEnumerable<T>
         {
             elements.ThrowIfNull(nameof(elements));
 

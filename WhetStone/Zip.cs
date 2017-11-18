@@ -138,7 +138,7 @@ namespace WhetStone.Looping
         /// <param name="b">The second <see cref="IEnumerable{T}"/>.</param>
         /// <returns>The <see cref="IEnumerable{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IEnumerable<Tuple<T1, T2>> Zip<T1, T2>(this IEnumerable<T1> a, IEnumerable<T2> b)
+        public static IEnumerable<(T1, T2)> Zip<T1, T2>(this IEnumerable<T1> a, IEnumerable<T2> b)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -155,7 +155,7 @@ namespace WhetStone.Looping
         /// <param name="c">The third <see cref="IEnumerable{T}"/>.</param>
         /// <returns>The <see cref="IEnumerable{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IEnumerable<Tuple<T1, T2, T3>> Zip<T1, T2, T3>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c)
+        public static IEnumerable<(T1, T2, T3)> Zip<T1, T2, T3>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -175,7 +175,7 @@ namespace WhetStone.Looping
         /// <param name="d">The fourth <see cref="IEnumerable{T}"/>.</param>
         /// <returns>The <see cref="IEnumerable{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IEnumerable<Tuple<T1, T2, T3, T4>> Zip<T1, T2, T3, T4>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c, IEnumerable<T4> d)
+        public static IEnumerable<(T1, T2, T3, T4)> Zip<T1, T2, T3, T4>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c, IEnumerable<T4> d)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -198,7 +198,7 @@ namespace WhetStone.Looping
         /// <param name="e">The fifth <see cref="IEnumerable{T}"/>.</param>
         /// <returns>The <see cref="IEnumerable{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IEnumerable<Tuple<T1, T2, T3, T4, T5>> Zip<T1, T2, T3, T4, T5>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c, IEnumerable<T4> d, IEnumerable<T5> e)
+        public static IEnumerable<(T1, T2, T3, T4, T5)> Zip<T1, T2, T3, T4, T5>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c, IEnumerable<T4> d, IEnumerable<T5> e)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -217,7 +217,7 @@ namespace WhetStone.Looping
         /// <param name="b">The second <see cref="IList{T}"/>.</param>
         /// <returns>The <see cref="IList{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IList<Tuple<T1, T2>> Zip<T1, T2>(this IList<T1> a, IList<T2> b)
+        public static IList<(T1, T2)> Zip<T1, T2>(this IList<T1> a, IList<T2> b)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -234,7 +234,7 @@ namespace WhetStone.Looping
         /// <param name="c">The third <see cref="IList{T}"/>.</param>
         /// <returns>The <see cref="IList{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IList<Tuple<T1, T2,T3>> Zip<T1, T2, T3>(this IList<T1> a, IList<T2> b, IList<T3> c)
+        public static IList<(T1, T2,T3)> Zip<T1, T2, T3>(this IList<T1> a, IList<T2> b, IList<T3> c)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -254,7 +254,7 @@ namespace WhetStone.Looping
         /// <param name="d">The fourth <see cref="IList{T}"/>.</param>
         /// <returns>The <see cref="IList{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IList<Tuple<T1, T2, T3, T4>> Zip<T1, T2, T3, T4>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d)
+        public static IList<(T1, T2, T3, T4)> Zip<T1, T2, T3, T4>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -277,7 +277,7 @@ namespace WhetStone.Looping
         /// <param name="e">The fifth <see cref="IList{T}"/>.</param>
         /// <returns>The <see cref="IList{T}"/>s, spliced together.</returns>
         /// <remarks>The result is only as long as the shortest input</remarks>
-        public static IList<Tuple<T1, T2, T3, T4, T5>> Zip<T1, T2, T3, T4, T5>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d, IList<T5> e)
+        public static IList<(T1, T2, T3, T4, T5)> Zip<T1, T2, T3, T4, T5>(this IList<T1> a, IList<T2> b, IList<T3> c, IList<T4> d, IList<T5> e)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));

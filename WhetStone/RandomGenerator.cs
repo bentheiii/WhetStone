@@ -67,7 +67,7 @@ namespace WhetStone.Random
         {
             if (min >= max)
                 throw new ArgumentException(nameof(min)+" must be less than "+nameof(max));
-            return Fields.getField<int>().Generate(Bytes(sizeof(int)), Tuple.Create(min, max));
+            return Fields.getField<int>().Generate(Bytes(sizeof(int)), (min, max));
         }
         /// <summary>
         /// Get a random <see cref="int"/>.
@@ -102,7 +102,7 @@ namespace WhetStone.Random
         {
             if (min >= max)
                 throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
-            return Fields.getField<long>().Generate(Bytes(sizeof(long)), Tuple.Create(min, max));
+            return Fields.getField<long>().Generate(Bytes(sizeof(long)), (min, max));
         }
         /// <summary>
         /// Get a random <see cref="long"/>.
@@ -138,7 +138,7 @@ namespace WhetStone.Random
         {
             if (min >= max)
                 throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
-            return Fields.getField<ulong>().Generate(Bytes(sizeof(ulong)), Tuple.Create(min, max));
+            return Fields.getField<ulong>().Generate(Bytes(sizeof(ulong)), (min, max));
         }
         /// <summary>
         /// Get a random <see cref="ulong"/>.
@@ -183,7 +183,7 @@ namespace WhetStone.Random
         {
             if (min >= max)
                 throw new ArgumentException(nameof(min) + " must be less than " + nameof(max));
-            return Fields.getField<double>().Generate(Bytes(sizeof(double)), Tuple.Create(min, max));
+            return Fields.getField<double>().Generate(Bytes(sizeof(double)), (min, max));
         }
         /// <summary>
         /// get a random <see cref="bool"/>.
@@ -245,7 +245,7 @@ namespace WhetStone.Random
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.FromRange)
                 throw new NotSupportedException("Field does not support this generation");
-            return f.Generate(Bytes(), Tuple.Create(min, max));
+            return f.Generate(Bytes(), (min, max));
         }
         /// <summary>
         /// Generate a random element of a generic type using fielding.
@@ -264,7 +264,7 @@ namespace WhetStone.Random
             var f = Fields.getField<T>();
             if (f.GenType != GenerationType.Special)
                 throw new NotSupportedException("Field does not support this generation");
-            return f.Generate(Bytes(), Tuple.Create(min, max), special);
+            return f.Generate(Bytes(), (min, max), special);
         }
     }
 }

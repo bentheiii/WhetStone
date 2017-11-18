@@ -122,7 +122,7 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public int IndexOf(T item)
         {
-            return arr.CountBind().FirstOrDefault(a => a.Item1.Equals(item),Tuple.Create(default(T),-1)).Item2;
+            return arr.CountBind().FirstOrDefault(a => a.Item1.Equals(item),(default(T),-1)).Item2;
         }
         /// <inheritdoc />
         public void Insert(int index, T item)

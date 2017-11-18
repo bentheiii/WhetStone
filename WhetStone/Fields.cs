@@ -181,7 +181,7 @@ namespace WhetStone.Fielding {
         /// <param name="bounds">The bounds in which to constrain the created element. The first element is inclusive, the second is exclusive.</param>
         /// <param name="special">Special constraints for the created element.</param>
         /// <returns>An element created from the bytes and the constraints.</returns>
-        public virtual T Generate(IEnumerable<byte> bytes, Tuple<T, T> bounds = null, object special = null)
+        public virtual T Generate(IEnumerable<byte> bytes, (T, T)? bounds = null, object special = null)
         {
             throw new NotSupportedException();
         }
@@ -382,9 +382,9 @@ namespace WhetStone.Fielding {
                 return double.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override double Generate(IEnumerable<byte> bytes, Tuple<double, double> bounds = null, object special = null)
+            public override double Generate(IEnumerable<byte> bytes, (double, double)? nbounds = null, object special = null)
             {
-                bounds = bounds ?? new Tuple<double, double>(0, 1);
+                var bounds = nbounds ?? (0, 1);
                 if (bounds.Item1 == 0 && bounds.Item2 == 1)
                 {
                     var seedn = bytes.Take(sizeof(ulong));
@@ -435,9 +435,9 @@ namespace WhetStone.Fielding {
                 return float.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override float Generate(IEnumerable<byte> bytes, Tuple<float, float> bounds = null, object special = null)
+            public override float Generate(IEnumerable<byte> bytes, (float, float)? nbounds = null, object special = null)
             {
-                bounds = bounds ?? new Tuple<float, float>(0, 1);
+                var bounds = nbounds ?? (0, 1);
                 if (bounds.Item1 == 0 && bounds.Item2 == 1)
                 {
                     var seedn = bytes.Take(sizeof(ulong));
@@ -488,9 +488,9 @@ namespace WhetStone.Fielding {
                 return decimal.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override decimal Generate(IEnumerable<byte> bytes, Tuple<decimal, decimal> bounds = null, object special = null)
+            public override decimal Generate(IEnumerable<byte> bytes, (decimal, decimal)? nbounds = null, object special = null)
             {
-                bounds = bounds ?? new Tuple<decimal, decimal>(0, 1);
+                var bounds = nbounds ?? (0, 1);
                 if (bounds.Item1 == 0 && bounds.Item2 == 1)
                 {
                     var seedn = bytes.Take(sizeof(ulong));
@@ -545,7 +545,7 @@ namespace WhetStone.Fielding {
                 return int.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override int Generate(IEnumerable<byte> bytes, Tuple<int, int> bounds = null, object special = null)
+            public override int Generate(IEnumerable<byte> bytes, (int, int)? bounds = null, object special = null)
             {
                 var @base = BitConverter.ToInt32(bytes.Take(sizeof(int)).ToArray(),0);
                 if (@base < 0)
@@ -594,7 +594,7 @@ namespace WhetStone.Fielding {
                 return long.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override long Generate(IEnumerable<byte> bytes, Tuple<long, long> bounds = null, object special = null)
+            public override long Generate(IEnumerable<byte> bytes, (long, long)? bounds = null, object special = null)
             {
                 var @base = BitConverter.ToInt64(bytes.Take(sizeof(long)).ToArray(), 0);
                 if (@base < 0)
@@ -658,7 +658,7 @@ namespace WhetStone.Fielding {
                 return uint.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override uint Generate(IEnumerable<byte> bytes, Tuple<uint, uint> bounds = null, object special = null)
+            public override uint Generate(IEnumerable<byte> bytes, (uint, uint)? bounds = null, object special = null)
             {
                 var @base = BitConverter.ToUInt32(bytes.Take(sizeof(uint)).ToArray(), 0);
                 var max = bounds?.Item2 ?? 0;
@@ -720,7 +720,7 @@ namespace WhetStone.Fielding {
                 return ulong.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override ulong Generate(IEnumerable<byte> bytes, Tuple<ulong, ulong> bounds = null, object special = null)
+            public override ulong Generate(IEnumerable<byte> bytes, (ulong, ulong)? bounds = null, object special = null)
             {
                 var @base = BitConverter.ToUInt64(bytes.Take(sizeof(ulong)).ToArray(), 0);
                 var max = bounds?.Item2 ?? 0;
@@ -782,7 +782,7 @@ namespace WhetStone.Fielding {
                 return byte.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override byte Generate(IEnumerable<byte> bytes, Tuple<byte, byte> bounds = null, object special = null)
+            public override byte Generate(IEnumerable<byte> bytes, (byte, byte)? bounds = null, object special = null)
             {
                 var @base = bytes.First();
                 var max = bounds?.Item2 ?? 0;
@@ -840,7 +840,7 @@ namespace WhetStone.Fielding {
                 return sbyte.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override sbyte Generate(IEnumerable<byte> bytes, Tuple<sbyte, sbyte> bounds = null, object special = null)
+            public override sbyte Generate(IEnumerable<byte> bytes, (sbyte, sbyte)? bounds = null, object special = null)
             {
                 var @base = (sbyte)bytes.First();
                 if (@base < 0)
@@ -900,7 +900,7 @@ namespace WhetStone.Fielding {
                 return short.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override short Generate(IEnumerable<byte> bytes, Tuple<short, short> bounds = null, object special = null)
+            public override short Generate(IEnumerable<byte> bytes, (short, short)? bounds = null, object special = null)
             {
                 var @base = BitConverter.ToInt16(bytes.Take(sizeof(short)).ToArray(),0);
                 if (@base < 0)
@@ -960,7 +960,7 @@ namespace WhetStone.Fielding {
                 return ushort.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override ushort Generate(IEnumerable<byte> bytes, Tuple<ushort, ushort> bounds = null, object special = null)
+            public override ushort Generate(IEnumerable<byte> bytes, (ushort, ushort)? bounds = null, object special = null)
             {
                 var @base = BitConverter.ToUInt16(bytes.Take(sizeof(short)).ToArray(), 0);
                 var max = bounds?.Item2 ?? 0;
@@ -1046,14 +1046,18 @@ namespace WhetStone.Fielding {
                 return s;
             }
             public override GenerationType GenType => GenerationType.Special;
-            public override string Generate(IEnumerable<byte> bytes, Tuple<string, string> bounds = null, object special = null)
+            public override string Generate(IEnumerable<byte> bytes, (string, string)? nbounds = null, object special = null)
             {
                 int length = special as int? ?? 0;
                 if (length == 0)
                     return "";
-                Tuple<char, char> charbounds = null;
-                if (!string.IsNullOrEmpty(bounds?.Item1) && !string.IsNullOrEmpty(bounds.Item2))
-                    charbounds = Tuple.Create(bounds.Item1[0], bounds.Item2[0]);
+                (char, char)? charbounds = null;
+                if (nbounds.HasValue)
+                {
+                    var bounds = nbounds.Value;
+                    if (!string.IsNullOrEmpty(bounds.Item1) && !string.IsNullOrEmpty(bounds.Item2))
+                        charbounds = (bounds.Item1[0], bounds.Item2[0]);
+                }
                 var cf = getField<char>();
                 return bytes.Chunk(sizeof(char)).Select(a => cf.Generate(a,charbounds)).Take(length).ConvertToString();
             }
@@ -1110,7 +1114,7 @@ namespace WhetStone.Fielding {
                 return s[0];
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override char Generate(IEnumerable<byte> bytes, Tuple<char, char> bounds = null, object special = null)
+            public override char Generate(IEnumerable<byte> bytes, (char, char)? bounds = null, object special = null)
             {
                 var @base = BitConverter.ToChar(bytes.Take(sizeof(char)).ToArray(), 0);
                 var max = bounds?.Item2 ?? 0;
@@ -1157,9 +1161,9 @@ namespace WhetStone.Fielding {
                 return BigInteger.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromRange;
-            public override BigInteger Generate(IEnumerable<byte> bytes, Tuple<BigInteger, BigInteger> bounds = null, object special = null)
+            public override BigInteger Generate(IEnumerable<byte> bytes, (BigInteger, BigInteger)? nbounds = null, object special = null)
             {
-                bounds = bounds ?? Tuple.Create(BigInteger.Zero, (BigInteger)2);
+                var bounds = nbounds ?? (BigInteger.Zero, (BigInteger)2);
                 int bytecount = Math.Max(bounds.Item1.ToByteArray().Length, bounds.Item2.ToByteArray().Length);
                 var max = bounds.Item2;
                 var min = bounds.Item1;
@@ -1228,7 +1232,7 @@ namespace WhetStone.Fielding {
                 return bool.Parse(s);
             }
             public override GenerationType GenType => GenerationType.FromBytes;
-            public override bool Generate(IEnumerable<byte> bytes, Tuple<bool, bool> bounds = null, object special = null)
+            public override bool Generate(IEnumerable<byte> bytes, (bool, bool)? bounds = null, object special = null)
             {
                 return (bytes.First()&1) == 1;
             }

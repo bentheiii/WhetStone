@@ -22,21 +22,30 @@ namespace WhetStone.Looping
         {
             @this.ThrowIfNull(nameof(@this));
             capacity.ThrowIfAbsurd(nameof(capacity));
-            T[] ret = new T[capacity];
-            int i = 0;
-            foreach (T t in @this)
+            if (!limitToCapacity && @this is IList<T> l)
             {
-                if (ret.Length <= i)
-                {
-                    if (limitToCapacity)
-                        return ret;
-                    Array.Resize(ref ret, Math.Max(ret.Length * 2,1));
-                }
-                ret[i] = t;
-                i++;
+                var ret = new T[l.Count];
+                l.Take(capacity).CopyTo(ret,0);
+                return ret;
             }
-            Array.Resize(ref ret, i);
-            return ret;
+            else
+            {
+                T[] ret = new T[capacity];
+                int i = 0;
+                foreach (T t in @this)
+                {
+                    if (ret.Length <= i)
+                    {
+                        if (limitToCapacity)
+                            return ret;
+                        Array.Resize(ref ret, Math.Max(ret.Length * 2, 1));
+                    }
+                    ret[i] = t;
+                    i++;
+                }
+                Array.Resize(ref ret, i);
+                return ret;
+            }
         }
     }
 }

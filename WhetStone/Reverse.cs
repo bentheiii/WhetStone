@@ -68,7 +68,7 @@ namespace WhetStone.Looping
             public bool IsReadOnly => _source.IsReadOnly;
             public int IndexOf(T item)
             {
-                return this.CountBind().FirstOrDefault(a => a.Equals(item), Tuple.Create(default(T), -1)).Item2;
+                return this.CountBind().FirstOrDefault(a => a.element.Equals(item), (element: default(T), index: -1)).index;
             }
             public void Insert(int index, T item)
             {

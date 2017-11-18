@@ -16,7 +16,7 @@ namespace Tests
             Assert.IsTrue(val[1].SequenceEqualIndices(3, 4, 5));
             Assert.IsTrue(val[2].SequenceEqualIndices(6, 7, 8));
             Assert.IsTrue(val[3].SequenceEqualIndices(9, 10, 11));
-            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.Item1, val[a.Item2])).All(a => a.Item1.SequenceEqual(a.Item2)));
+            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.element, val[a.index])).All(a => a.Item1.SequenceEqual(a.Item2)));
         }
     }
 }

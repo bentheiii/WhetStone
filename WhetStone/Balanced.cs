@@ -32,8 +32,8 @@ namespace WhetStone.Looping
                 int c = @this.Count(opener);
                 return c % 2 == 0 && (!maxdepth.HasValue || c == 0 || maxdepth >= 1);
             }
-            var openerindicies = @this.Trail(opener.Count()).CountBind().Where(a => a.Item1.SequenceEqual(opener)).Select(a => a.Item2);
-            var closerindicies = @this.Trail(closer.Count()).CountBind().Where(a => a.Item1.SequenceEqual(closer)).Select(a => a.Item2);
+            var openerindicies = @this.Trail(opener.Count()).CountBind().Where(a => a.element.SequenceEqual(opener)).Select(a => a.index);
+            var closerindicies = @this.Trail(closer.Count()).CountBind().Where(a => a.element.SequenceEqual(closer)).Select(a => a.index);
             var parenonly = openerindicies.Attach(a => 0).Concat(closerindicies.Attach(a => 1)).OrderBy(a => a.Item1).Select(a => a.Item2);
             return parenonly.Balanced(0, 1, maxdepth);
         }
@@ -62,8 +62,8 @@ namespace WhetStone.Looping
             int ret = 0;
             foreach (var tu in @this.CountBind())
             {
-                var t = tu.Item1;
-                var index = tu.Item2;
+                var t = tu.element;
+                var index = tu.index;
                 if (t.Equals(opener))
                 {
                     ret++;
@@ -91,7 +91,7 @@ namespace WhetStone.Looping
         /// <returns>Whether <paramref name="this"/> is balanced, and it's maximum depth is no more than <paramref name="maxdepth"/>, if one is stated.</returns>
         /// <remarks>In case of an <see cref="ICollection{T}"/> or <see cref="asCollection.AsCollection{T}"/>-compatible <paramref name="this"/> type, the algorithm might break the enumeration if it detects that balance is impossible. 
         /// For example: <c>"((((((the next parentheses will not be enumerated)))"</c></remarks>
-        public static bool Balanced<T>(this IEnumerable<T> @this, IEnumerable<Tuple<T, T>> couples, int? maxdepth = null)
+        public static bool Balanced<T>(this IEnumerable<T> @this, IEnumerable<(T, T)> couples, int? maxdepth = null)
         {
             @this.ThrowIfNull(nameof(@this));
             couples.ThrowIfNull(nameof(couples));

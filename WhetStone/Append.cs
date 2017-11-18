@@ -49,7 +49,7 @@ namespace WhetStone.Looping
             {
                 foreach (var t in toAdd.CountBind(oldlen))
                 {
-                    @this[t.Item2] = t.Item1;
+                    @this[t.index] = t.element;
                 }
             }
         }

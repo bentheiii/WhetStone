@@ -27,7 +27,7 @@ namespace WhetStone.Streams
                 return ret;
             }
             @this.ThrowIfNull(nameof(@this));
-            initialchunksize.ThrowIfAbsurd(nameof(initialchunksize),allowZero: false);
+            initialchunksize.ThrowIfAbsurd(nameof(initialchunksize),false);
             bufferGrowthCoefficient.ThrowIfAbsurd(nameof(bufferGrowthCoefficient), allowNegative:false, allowZero:false);
             if (!@this.CanRead)
                 throw new ArgumentException("stream is unreadable");

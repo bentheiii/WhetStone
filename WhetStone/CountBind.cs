@@ -17,8 +17,8 @@ namespace WhetStone.Looping
         /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/></typeparam>
         /// <param name="a">The <see cref="IEnumerable{T}"/> to attach to.</param>
         /// <param name="start">The initial index to count from.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
-        public static IEnumerable<Tuple<T, int>> CountBind<T>(this IEnumerable<T> a, int start = 0)
+        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="ValueTuple{T1,T2}"/>, the second element of which is the index.</returns>
+        public static IEnumerable<(T element, int index)> CountBind<T>(this IEnumerable<T> a, int start = 0)
         {
             a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));
@@ -30,14 +30,14 @@ namespace WhetStone.Looping
         /// <typeparam name="C">The type of the index to attach.</typeparam>
         /// <param name="a">The <see cref="IEnumerable{T}"/> to attach to.</param>
         /// <param name="start">The initial index to count from.</param>
-        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
+        /// <returns>An <see cref="IEnumerable{T}"/> of <see cref="ValueTuple{T1,T2}"/>, the second element of which is the index.</returns>
         /// <remarks>This function uses fielding to increment the index.</remarks>
-        public static IEnumerable<Tuple<T, C>> CountBind<T, C>(this IEnumerable<T> a, C start)
+        public static IEnumerable<(T, C)> CountBind<T, C>(this IEnumerable<T> a, C start)
         {
             a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));
         }
-        private class CountBindCollection<T> : LockedCollection<Tuple<T,int>>
+        private class CountBindCollection<T> : LockedCollection<(T,int)>
         {
             private readonly ICollection<T> _source;
             private readonly int _start;
@@ -46,13 +46,13 @@ namespace WhetStone.Looping
                 _source = source;
                 _start = start;
             }
-            public override IEnumerator<Tuple<T, int>> GetEnumerator()
+            public override IEnumerator<(T, int)> GetEnumerator()
             {
                 return _source.Zip(countUp.CountUp(_start)).GetEnumerator();
             }
             public override int Count => _source.Count;
         }
-        private class CountBindCollection<T,G> : LockedCollection<Tuple<T, G>>
+        private class CountBindCollection<T,G> : LockedCollection<(T, G)>
         {
             private readonly ICollection<T> _source;
             private readonly G _start;
@@ -61,7 +61,7 @@ namespace WhetStone.Looping
                 _source = source;
                 _start = start;
             }
-            public override IEnumerator<Tuple<T, G>> GetEnumerator()
+            public override IEnumerator<(T, G)> GetEnumerator()
             {
                 return _source.Zip(countUp.CountUp(_start)).GetEnumerator();
             }
@@ -73,8 +73,8 @@ namespace WhetStone.Looping
         /// <typeparam name="T">The type of the <see cref="ICollection{T}"/></typeparam>
         /// <param name="a">The <see cref="ICollection{T}"/> to attach to.</param>
         /// <param name="start">The initial index to count from.</param>
-        /// <returns>An <see cref="ICollection{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
-        public static ICollection<Tuple<T, int>> CountBind<T>(this ICollection<T> a, int start = 0)
+        /// <returns>An <see cref="ICollection{T}"/> of <see cref="ValueTuple{T1,T2}"/>, the second element of which is the index.</returns>
+        public static ICollection<(T, int)> CountBind<T>(this ICollection<T> a, int start = 0)
         {
             a.ThrowIfNull(nameof(a));
             return new CountBindCollection<T>(a,start);
@@ -86,9 +86,9 @@ namespace WhetStone.Looping
         /// <typeparam name="C">The type of the index to attach.</typeparam>
         /// <param name="a">The <see cref="ICollection{T}"/> to attach to.</param>
         /// <param name="start">The initial index to count from.</param>
-        /// <returns>An <see cref="ICollection{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
+        /// <returns>An <see cref="ICollection{T}"/> of <see cref="ValueTuple{T1,T2}"/>, the second element of which is the index.</returns>
         /// <remarks>This function uses fielding to increment the index.</remarks>
-        public static ICollection<Tuple<T, C>> CountBind<T, C>(this ICollection<T> a, C start)
+        public static ICollection<(T, C)> CountBind<T, C>(this ICollection<T> a, C start)
         {
             a.ThrowIfNull(nameof(a));
             return new CountBindCollection<T,C>(a, start);
@@ -99,8 +99,8 @@ namespace WhetStone.Looping
         /// <typeparam name="T">The type of the <see cref="IList{T}"/></typeparam>
         /// <param name="a">The <see cref="IList{T}"/> to attach to.</param>
         /// <param name="start">The initial index to count from.</param>
-        /// <returns>An <see cref="IList{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
-        public static IList<Tuple<T, int>> CountBind<T>(this IList<T> a, int start = 0)
+        /// <returns>An <see cref="IList{T}"/> of <see cref="ValueTuple{T1,T2}"/>, the second element of which is the index.</returns>
+        public static IList<(T element, int index)> CountBind<T>(this IList<T> a, int start = 0)
         {
             a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));
@@ -112,9 +112,9 @@ namespace WhetStone.Looping
         /// <typeparam name="C">The type of the index to attach.</typeparam>
         /// <param name="a">The <see cref="IList{T}"/> to attach to.</param>
         /// <param name="start">The initial index to count from.</param>
-        /// <returns>An <see cref="IList{T}"/> of <see cref="Tuple{T1,T2}"/>, the second element of which is the index.</returns>
+        /// <returns>An <see cref="IList{T}"/> of <see cref="ValueTuple{T1,T2}"/>, the second element of which is the index.</returns>
         /// <remarks>This function uses fielding to increment the index.</remarks>
-        public static IList<Tuple<T, C>> CountBind<T, C>(this IList<T> a, C start)
+        public static IList<(T element, C index)> CountBind<T, C>(this IList<T> a, C start)
         {
             a.ThrowIfNull(nameof(a));
             return a.Zip(countUp.CountUp(start));

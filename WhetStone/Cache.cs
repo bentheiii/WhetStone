@@ -46,26 +46,28 @@ namespace WhetStone.Looping
 
         private class EnumerableCacheBound<T> : LockedList<T>
         {
-            private readonly IEnumerator<Tuple<T,int>> _tor;
+            private readonly IEnumerator<(T,int)> _tor;
             private readonly IEnumerable<T> _source;
+            private bool _torInitialized = false;
             private readonly T[] _cache;
             private int _initcount = 0;
             public EnumerableCacheBound(IEnumerable<T> tor, int bound)
             {
                 _source = tor.CountBind().Select(a =>
                 {
-                    if (a.Item2 >= _initcount)
-                        _initcount = a.Item2+1;
-                    if (a.Item2 < bound)
-                        _cache[a.Item2] = a.Item1;
-                    return a.Item1;
+                    if (a.index >= _initcount)
+                        _initcount = a.index+1;
+                    if (a.index < bound)
+                        _cache[a.index] = a.element;
+                    return a.element;
                 });
                 _tor = tor.CountBind().Select(a =>
                 {
-                    if(a.Item2 >= _initcount)
-                        _initcount = a.Item2 + 1;
-                    if (a.Item2 < bound)
-                        _cache[a.Item2] = a.Item1;
+                    _torInitialized = true;
+                    if(a.index >= _initcount)
+                        _initcount = a.index + 1;
+                    if (a.index < bound)
+                        _cache[a.index] = a.element;
                     return a;
                 }).GetEnumerator();
                 _cache = new T[bound];
@@ -85,9 +87,9 @@ namespace WhetStone.Looping
                 {
                     yield return t;
                 }
-                if (_tor.Current == null || _tor.Current.Item2 <= cachesize)
+                if (!_torInitialized || _tor.Current.Item2 <= cachesize)
                 {
-                    while (_tor.Current == null || _tor.Current.Item2 < cachesize)
+                    while (!_torInitialized || _tor.Current.Item2 < cachesize)
                     {
                         _tor.MoveNext();
                     }

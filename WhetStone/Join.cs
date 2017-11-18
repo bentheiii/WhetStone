@@ -47,19 +47,19 @@ namespace WhetStone.Looping
         /// <param name="a">The <see cref="IEnumerable{T}"/> to multiply.</param>
         /// <param name="t">The <see cref="CartesianType"/> of the multiplication.</param>
         /// <returns>A new <see cref="IEnumerable{T}"/> with the Cartesian multiple of <paramref name="a"/> by itself.</returns>
-        public static IEnumerable<Tuple<T, T>> Join<T>(this IEnumerable<T> a, CartesianType t = CartesianType.AllPairs)
+        public static IEnumerable<(T, T)> Join<T>(this IEnumerable<T> a, CartesianType t = CartesianType.AllPairs)
         {
             a.ThrowIfNull(nameof(a));
             foreach (var v0 in a.CountBind())
             {
                 var iEnumerable = a.CountBind();
                 if (t.HasFlag(CartesianType.NoSymmatry))
-                    iEnumerable = iEnumerable.Take(v0.Item2 + 1);
+                    iEnumerable = iEnumerable.Take(v0.index + 1);
                 foreach (var v1 in iEnumerable)
                 {
-                    if (t.HasFlag(CartesianType.NoReflexive) && v0.Item2 == v1.Item2)
+                    if (t.HasFlag(CartesianType.NoReflexive) && v0.index == v1.index)
                         continue;
-                    yield return new Tuple<T, T>(v0.Item1, v1.Item1);
+                    yield return (v0.element, v1.element);
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace WhetStone.Looping
         /// <param name="a">The first <see cref="IEnumerable{T}"/>.</param>
         /// <param name="b">The second <see cref="IEnumerable{T}"/>.</param>
         /// <returns>The Cartesian multiple of <paramref name="a"/> and <paramref name="b"/>.</returns>
-        public static IEnumerable<Tuple<T1, T2>> Join<T1, T2>(this IEnumerable<T1> a, IEnumerable<T2> b)
+        public static IEnumerable<(T1, T2)> Join<T1, T2>(this IEnumerable<T1> a, IEnumerable<T2> b)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -79,7 +79,7 @@ namespace WhetStone.Looping
             {
                 foreach (T2 v1 in b)
                 {
-                    yield return new Tuple<T1, T2>(v0, v1);
+                    yield return (v0, v1);
                 }
             }
         }
@@ -93,7 +93,7 @@ namespace WhetStone.Looping
         /// <param name="b">The second <see cref="IEnumerable{T}"/>.</param>
         /// <param name="c">The third <see cref="IEnumerable{T}"/></param>
         /// <returns>The Cartesian multiple of <paramref name="a"/>, <paramref name="b"/> and <paramref name="c"/>.</returns>
-        public static IEnumerable<Tuple<T1, T2, T3>> Join<T1, T2, T3>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c)
+        public static IEnumerable<(T1, T2, T3)> Join<T1, T2, T3>(this IEnumerable<T1> a, IEnumerable<T2> b, IEnumerable<T3> c)
         {
             a.ThrowIfNull(nameof(a));
             b.ThrowIfNull(nameof(b));
@@ -104,7 +104,7 @@ namespace WhetStone.Looping
                 {
                     foreach (T3 v2 in c)
                     {
-                        yield return Tuple.Create(v0, v1, v2);
+                        yield return (v0, v1, v2);
                     }
                 }
             }
@@ -143,7 +143,7 @@ namespace WhetStone.Looping
                 if (tors.Any(a => !a.MoveNext()))
                     yield break;
             //yield initial
-            yield return tors.Select(a => a.Current.Item1).ToArray();
+            yield return tors.Select(a => a.Current.element).ToArray();
             while (true)
             {
                 int nexttorind = 0;
@@ -164,7 +164,7 @@ namespace WhetStone.Looping
                             bool retry = false;
                             foreach (var i in range.Range(0, nexttorind))
                             {
-                                if (range.Range(tors[nexttorind].Current.Item2).Any(i1 => !tors[nexttorind - i - 1].MoveNext()))
+                                if (range.Range(tors[nexttorind].Current.index).Any(i1 => !tors[nexttorind - i - 1].MoveNext()))
                                 {
                                     retry = true;
                                 }
@@ -185,7 +185,7 @@ namespace WhetStone.Looping
                         break;
                     }
                 }
-                yield return tors.Select(a => a.Current.Item1).ToArray();
+                yield return tors.Select(a => a.Current.element).ToArray();
             }
         }
         private static IEnumerable<T[]> JoinDescendingPairs<T>(this IEnumerable<T> @this, int cartesLength)
@@ -194,14 +194,14 @@ namespace WhetStone.Looping
             //initialization
             foreach (var enumerator in tors.CountBind())
             {
-                foreach (var i in range.Range(tors.Length - enumerator.Item2))
+                foreach (var i in range.Range(tors.Length - enumerator.index))
                 {
-                    if (!enumerator.Item1.MoveNext())
+                    if (!enumerator.element.MoveNext())
                         yield break;
                 }
             }
             //yield initial
-            yield return tors.Select(a => a.Current.Item1).ToArray();
+            yield return tors.Select(a => a.Current.element).ToArray();
             while (true)
             {
                 int nexttorind = 0;
@@ -222,7 +222,7 @@ namespace WhetStone.Looping
                             bool retry = false;
                             foreach (var i in range.Range(0, nexttorind))
                             {
-                                if (range.Range(tors[nexttorind].Current.Item2 + i + 1).Any(i1 => !tors[nexttorind - i - 1].MoveNext()))
+                                if (range.Range(tors[nexttorind].Current.index + i + 1).Any(i1 => !tors[nexttorind - i - 1].MoveNext()))
                                 {
                                     retry = true;
                                 }
@@ -243,7 +243,7 @@ namespace WhetStone.Looping
                         break;
                     }
                 }
-                yield return tors.Select(a => a.Current.Item1).ToArray();
+                yield return tors.Select(a => a.Current.element).ToArray();
             }
         }
         private static IEnumerable<T[]> JoinNoReflexive<T>(this IEnumerable<T> @this, int cartesLength)
@@ -252,14 +252,14 @@ namespace WhetStone.Looping
             //initialization
                 foreach (var enumerator in tors.CountBind())
                 {
-                    foreach (var i in range.Range(tors.Length - enumerator.Item2))
+                    foreach (var i in range.Range(tors.Length - enumerator.index))
                     {
-                        if (!enumerator.Item1.MoveNext())
+                        if (!enumerator.element.MoveNext())
                             yield break;
                     }
                 }
             //yield initial
-            yield return tors.Select(a => a.Current.Item1).ToArray();
+            yield return tors.Select(a => a.Current.element).ToArray();
             while (true)
             {
                 int nexttorind = 0;
@@ -279,11 +279,11 @@ namespace WhetStone.Looping
                     }
                 }
                 if (tors.Join(CartesianType.NoReflexive | CartesianType.NoSymmatry).Any(
-                            a => a.Item1.Current.Item2 == a.Item2.Current.Item2))
+                            a => a.Item1.Current.index == a.Item2.Current.index))
                 {
                     continue;
                 }
-                yield return tors.Select(a => a.Current.Item1).ToArray();
+                yield return tors.Select(a => a.Current.element).ToArray();
             }
         }
         /// <summary>
@@ -351,7 +351,7 @@ namespace WhetStone.Looping
             }
         }
 
-        private class JointList<T1,T2> : LockedList<Tuple<T1,T2>>
+        private class JointList<T1,T2> : LockedList<(T1,T2)>
         {
             private readonly IList<T1> _source1;
             private readonly IList<T2> _source2;
@@ -360,23 +360,35 @@ namespace WhetStone.Looping
                 _source1 = source1;
                 _source2 = source2;
             }
-            public override IEnumerator<Tuple<T1, T2>> GetEnumerator()
+            public override IEnumerator<(T1, T2)> GetEnumerator()
             {
                 foreach (T2 t2 in _source2)
                 {
                     foreach (T1 t1 in _source1)
                     {
-                        yield return Tuple.Create(t1, t2);
+                        yield return (t1, t2);
                     }
                 }
             }
             public override int Count => _source1.Count*_source2.Count;
-            public override Tuple<T1, T2> this[int index]
+            public override (T1, T2) this[int index]
             {
                 get
                 {
-                    return Tuple.Create(_source1[index%_source1.Count], _source2[index/_source1.Count]);
+                    return (_source1[index%_source1.Count], _source2[index/_source1.Count]);
                 }
+            }
+            public override bool Contains((T1, T2) item)
+            {
+                return _source1.Contains(item.Item1) && _source2.Contains(item.Item2);
+            }
+            public override int IndexOf((T1, T2) item)
+            {
+                int ind1 = _source1.IndexOf(item.Item1);
+                int ind2 = _source2.IndexOf(item.Item2);
+                if (ind1 < 0 || ind2 < 0)
+                    return -1;
+                return ind2 * _source1.Count + ind1;
             }
         }
         private class JointList<T> : LockedList<T[]>
@@ -727,7 +739,7 @@ namespace WhetStone.Looping
         /// <param name="this">The first <see cref="IList{T}"/>.</param>
         /// <param name="other">The second <see cref="IList{T}"/>.</param>
         /// <returns>The Cartesian multiple of <paramref name="this"/> and <paramref name="other"/>.</returns>
-        public static IList<Tuple<T1, T2>> Join<T1, T2>(this IList<T1> @this, IList<T2> other)
+        public static IList<(T1, T2)> Join<T1, T2>(this IList<T1> @this, IList<T2> other)
         {
             @this.ThrowIfNull(nameof(@this));
             other.ThrowIfNull(nameof(other));
@@ -794,10 +806,10 @@ namespace WhetStone.Looping
         /// <param name="this">The <see cref="IList{T}"/> to multiply.</param>
         /// <param name="t">The <see cref="CartesianType"/> of the multiplication.</param>
         /// <returns>A new <see cref="IList{T}"/> with the Cartesian multiple of <paramref name="this"/> by itself.</returns>
-        public static IList<Tuple<T,T>> Join<T>(this IList<T> @this, CartesianType t = CartesianType.AllPairs)
+        public static IList<(T,T)> Join<T>(this IList<T> @this, CartesianType t = CartesianType.AllPairs)
         {
             @this.ThrowIfNull(nameof(@this));
-            return @this.Join(2, t).Select(a => Tuple.Create(a[0],a[1]));
+            return @this.Join(2, t).Select(a => (a[0],a[1]));
         }
 
     }

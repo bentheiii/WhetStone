@@ -55,7 +55,7 @@ namespace WhetStone.Looping
         /// <inheritdoc />
         public int IndexOf(T item)
         {
-            foreach (Tuple<T, int> tuple in this.CountBind())
+            foreach ((T, int) tuple in this.CountBind())
             {
                 if (tuple.Item1.Equals(item))
                     return tuple.Item2;

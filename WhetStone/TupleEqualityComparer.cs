@@ -4,11 +4,11 @@ using System.Collections.Generic;
 namespace WhetStone.Comparison
 {
     /// <summary>
-    /// An <see cref="IEqualityComparer{T}"/> for <see cref="Tuple{T1,T2}"/>
+    /// An <see cref="IEqualityComparer{T}"/> for <see cref="ValueTuple{T1,T2}"/>
     /// </summary>
     /// <typeparam name="T1">The first type of the tuple.</typeparam>
     /// <typeparam name="T2">The second type of the tuple.</typeparam>
-    public class TupleEqualityComparer<T1, T2> : IEqualityComparer<Tuple<T1, T2>>
+    public class TupleEqualityComparer<T1, T2> : IEqualityComparer<(T1, T2)>
     {
         private readonly IEqualityComparer<T1> _c1;
         private readonly IEqualityComparer<T2> _c2;
@@ -23,12 +23,12 @@ namespace WhetStone.Comparison
             _c2 = c2 ?? EqualityComparer<T2>.Default;
         }
         /// <inheritdoc />
-        public bool Equals(Tuple<T1, T2> x, Tuple<T1, T2> y)
+        public bool Equals((T1, T2) x, (T1, T2) y)
         {
             return _c1.Equals(x.Item1, y.Item1) && _c2.Equals(x.Item2, x.Item2);
         }
         /// <inheritdoc />
-        public int GetHashCode(Tuple<T1, T2> obj)
+        public int GetHashCode((T1, T2) obj)
         {
             return _c1.GetHashCode(obj.Item1) ^ _c2.GetHashCode(obj.Item2);
         }

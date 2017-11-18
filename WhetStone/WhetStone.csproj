@@ -96,6 +96,7 @@
     <Compile Include="AllEqual.cs" />
     <Compile Include="AnyAndAll.cs" />
     <Compile Include="Append.cs" />
+    <Compile Include="AsArray.cs" />
     <Compile Include="AsyncDo.cs" />
     <Compile Include="Attach.cs" />
     <Compile Include="AttachAggregate.cs" />

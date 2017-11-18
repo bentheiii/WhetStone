@@ -175,13 +175,13 @@ namespace NumberStone
             return sign == 0 || _factors.Values.All(a => a > 0);
         }
         /// <summary>
-        /// Get the value of the <see cref="BigProduct"/> as a <see cref="Tuple{T1,T2}"/> of numerator and denominator.
+        /// Get the value of the <see cref="BigProduct"/> as a <see cref="ValueTuple{T1,T2}"/> of numerator and denominator.
         /// </summary>
-        /// <returns>The value of the <see cref="BigProduct"/> as a <see cref="Tuple{T1,T2}"/> of numerator and denominator.</returns>
-        public Tuple<BigInteger, BigInteger> toFraction()
+        /// <returns>The value of the <see cref="BigProduct"/> as a <see cref="ValueTuple{T1,T2}"/> of numerator and denominator.</returns>
+        public (BigInteger, BigInteger) toFraction()
         {
             if (sign == 0)
-                return Tuple.Create<BigInteger, BigInteger>(0,1);
+                return ValueTuple.Create<BigInteger,BigInteger>(0,1);
             BigInteger num = sign == 1 ?BigInteger.One : BigInteger.MinusOne;
             BigInteger den = BigInteger.One;
             foreach (var factor in _factors)
@@ -196,7 +196,7 @@ namespace NumberStone
                     num *= v;
                 }
             }
-            return Tuple.Create(num,den);
+            return (num,den);
         }
     }
 }

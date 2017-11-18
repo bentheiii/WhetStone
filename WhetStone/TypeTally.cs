@@ -114,7 +114,7 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="source">The <see cref="IEnumerable{T}"/> to tally, or <see langword="null"/> for default.</param>
         /// <returns>The Tallier's return values in a tuple.</returns>
-        public Tuple<T0,T1> Do(IEnumerable<T> source = null)
+        public (T0,T1) Do(IEnumerable<T> source = null)
         {
             return _int.Do(source).ToTuple<T0, T1>();
         }
@@ -160,7 +160,7 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="source">The <see cref="IEnumerable{T}"/> to tally, or <see langword="null"/> for default.</param>
         /// <returns>The Tallier's return values in a tuple.</returns>
-        public Tuple<T0, T1, T2> Do(IEnumerable<T> source = null)
+        public (T0, T1, T2) Do(IEnumerable<T> source = null)
         {
             return _int.Do(source).ToTuple<T0, T1, T2>();
         }
@@ -207,7 +207,7 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="source">The <see cref="IEnumerable{T}"/> to tally, or <see langword="null"/> for default.</param>
         /// <returns>The Tallier's return values in a tuple.</returns>
-        public Tuple<T0, T1, T2, T3> Do(IEnumerable<T> source = null)
+        public (T0, T1, T2, T3) Do(IEnumerable<T> source = null)
         {
             return _int.Do(source).ToTuple<T0, T1, T2, T3>();
         }
@@ -255,7 +255,7 @@ namespace WhetStone.Looping
         /// </summary>
         /// <param name="source">The <see cref="IEnumerable{T}"/> to tally, or <see langword="null"/> for default.</param>
         /// <returns>The Tallier's return values in a tuple.</returns>
-        public Tuple<T0, T1, T2, T3, T4> Do(IEnumerable<T> source = null)
+        public (T0, T1, T2, T3, T4) Do(IEnumerable<T> source = null)
         {
             return _int.Do(source).ToTuple<T0, T1, T2, T3, T4>();
         }

@@ -88,7 +88,7 @@ namespace WhetStone.Looping
                     }
                     foreach (var tuple in @this.CountBind())
                     {
-                        if (nextCoverInd.HasValue && nextCoverInd.Value == tuple.Item2)
+                        if (nextCoverInd.HasValue && nextCoverInd.Value == tuple.index)
                         {
                             yield return nextCover;
                             if (!itor.MoveNext())
@@ -108,7 +108,7 @@ namespace WhetStone.Looping
                         }
                         else
                         {
-                            yield return tuple.Item1;
+                            yield return tuple.element;
                         }
                     }
                 }

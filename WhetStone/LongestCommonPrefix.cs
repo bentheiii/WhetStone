@@ -55,7 +55,7 @@ namespace WhetStone.Looping
         /// <param name="other">The second <see cref="IEnumerable{T}"/>.</param>
         /// <param name="comp">The <see cref="IEqualityComparer{T}"/> to compare prefix elements. <see langword="null"/> for the default <see cref="IEqualityComparer{T}"/>.</param>
         /// <returns>The Longest common prefixes shared by <paramref name="this"/> and <paramref name="other"/> under <paramref name="comp"/>.</returns>
-        public static IEnumerable<Tuple<T, T>> LongestCommonPrefix<T>(this IEnumerable<T> @this, IEnumerable<T> other, IEqualityComparer<T> comp)
+        public static IEnumerable<(T, T)> LongestCommonPrefix<T>(this IEnumerable<T> @this, IEnumerable<T> other, IEqualityComparer<T> comp)
         {
             @this.ThrowIfNull(nameof(@this));
             other.ThrowIfNull(nameof(other));

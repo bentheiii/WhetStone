@@ -14,17 +14,17 @@ namespace Tests
             var val1 = new[] {0, 1, 2, 3, 4};
             var val2 = new[] {'a', 'b', 'c'};
             var val = val1.Join(val2);
-            Assert.IsTrue(val[0].Equals(Tuple.Create(0,'a')));
-            Assert.IsTrue(val[6].Equals(Tuple.Create(1, 'b')));
-            Assert.IsTrue(val[14].Equals(Tuple.Create(4, 'c')));
+            Assert.IsTrue(val[0].Equals((0,'a')));
+            Assert.IsTrue(val[6].Equals((1, 'b')));
+            Assert.IsTrue(val[14].Equals((4, 'c')));
 
             Assert.AreEqual(val.Count, 15);
 
             Assert.IsTrue(val.SequenceEqual( new []
             {
-                Tuple.Create(0,'a'),Tuple.Create(1,'a'),Tuple.Create(2,'a'),Tuple.Create(3,'a'),Tuple.Create(4,'a'),
-                Tuple.Create(0,'b'),Tuple.Create(1,'b'),Tuple.Create(2,'b'),Tuple.Create(3,'b'),Tuple.Create(4,'b'),
-                Tuple.Create(0,'c'),Tuple.Create(1,'c'),Tuple.Create(2,'c'),Tuple.Create(3,'c'),Tuple.Create(4,'c'),
+                (0,'a'),(1,'a'),(2,'a'),(3,'a'),(4,'a'),
+                (0,'b'),(1,'b'),(2,'b'),(3,'b'),(4,'b'),
+                (0,'c'),(1,'c'),(2,'c'),(3,'c'),(4,'c'),
             }, new TupleEqualityComparer<int,char>()));
         }
         [TestMethod]
@@ -58,7 +58,7 @@ namespace Tests
             Assert.AreEqual(val.Count,125);
 
             Assert.IsTrue(val.Select(a=>a[0]+a[1]*5+a[2]*25).SequenceEqualIndices(range.Range(125)));
-            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.Item1, val[a.Item2])).All(a => a.Item1.SequenceEqual(a.Item2)));
+            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.element, val[a.index])).All(a => a.Item1.SequenceEqual(a.Item2)));
 
         }
         [TestMethod]
@@ -72,7 +72,7 @@ namespace Tests
             Assert.AreEqual(val.Count, 35);
 
             Assert.IsTrue(val.Select(a => a[0] + a[1] * 10 + a[2] * 100).SequenceEqualIndices(0, 1, 2, 3, 4, 11, 12, 13, 14, 22, 23, 24, 33, 34, 44, 111, 112, 113, 114, 122, 123, 124, 133, 134, 144, 222, 223, 224, 233, 234, 244, 333, 334, 344, 444));
-            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.Item1, val[a.Item2])).All(a => a.Item1.SequenceEqual(a.Item2)));
+            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.element, val[a.index])).All(a => a.Item1.SequenceEqual(a.Item2)));
 
         }
         [TestMethod]
@@ -86,7 +86,7 @@ namespace Tests
             Assert.AreEqual(val.Count, 10);
 
             Assert.IsTrue(val.Select(a => a[0] + a[1] * 10 + a[2] * 100).SequenceEqualIndices(12, 13, 14, 23, 24, 34, 123, 124, 134, 234));
-            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.Item1, val[a.Item2])).All(a => a.Item1.SequenceEqual(a.Item2)));
+            Assert.IsTrue(val.CountBind().Select(a => Tuple.Create(a.element, val[a.index])).All(a => a.Item1.SequenceEqual(a.Item2)));
 
         }
         [TestMethod]
@@ -101,7 +101,7 @@ namespace Tests
 
             Assert.IsTrue(val.Select(a => a[0] + a[1]*10 + a[2]*100).SequenceEqualIndices(12, 13, 14, 21, 23, 24, 31, 32, 34, 41, 42, 43, 102, 103, 104, 120, 123, 124, 130, 132, 134, 140, 142, 143, 201, 203, 204, 210, 213, 214, 230, 231, 234, 240, 241, 243, 301, 302, 304, 310, 312, 314, 320, 321, 324, 340, 341, 342, 401, 402, 403, 410, 412, 413, 420, 421, 423, 430, 431, 432));
 
-            Assert.IsTrue(val.CountBind().Select(a=>Tuple.Create(a.Item1,val[a.Item2])).All(a=>a.Item1.SequenceEqual(a.Item2)));
+            Assert.IsTrue(val.CountBind().Select(a=>Tuple.Create(a.element,val[a.index])).All(a=>a.Item1.SequenceEqual(a.Item2)));
         }
         [TestMethod] public void keepsorder()
         {

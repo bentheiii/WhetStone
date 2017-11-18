@@ -24,14 +24,14 @@ namespace WhetStone.Looping
         /// var indexedTriangleNumbers = range.Range(10).AttachAggregate((a,b)=>a+b);
         /// </code> 
         /// </example>
-        public static IEnumerable<Tuple<T, R>> AttachAggregate<T, R>(this IEnumerable<T> @this, Func<T, R, R> aggregator, R seed = default(R))
+        public static IEnumerable<(T, R)> AttachAggregate<T, R>(this IEnumerable<T> @this, Func<T, R, R> aggregator, R seed = default(R))
         {
             @this.ThrowIfNull(nameof(@this));
             aggregator.ThrowIfNull(nameof(aggregator));
             foreach (var t in @this)
             {
                 seed = aggregator(t, seed);
-                yield return Tuple.Create(t, seed);
+                yield return (t, seed);
             }
         }
     }

@@ -116,13 +116,13 @@ namespace WhetStone.Looping
                 }
             }
             public bool IsReadOnly => false;
-            private Tuple<IList<T>, int> ind(int index)
+            private (IList<T>, int) ind(int index)
             {
                 foreach (var l in _source)
                 {
                     var c = l.Count;
                     if (index < c)
-                        return Tuple.Create(l, index);
+                        return (l, index);
                     index -= c;
                 }
                 throw new IndexOutOfRangeException();

@@ -38,7 +38,8 @@ namespace Tests
 
             foreach (int i in range.Range(10))
             {
-                Assert.AreEqual(src.Take(10).Sum(), 45);
+                var arr = src.Take(10).ToArray();
+                Assert.AreEqual(arr.Sum(), 45);
                 Assert.AreEqual(src.ElementAt(i), i);
                 Assert.IsTrue(count <= 10);
             }

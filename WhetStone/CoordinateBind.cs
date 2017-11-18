@@ -81,9 +81,9 @@ namespace WhetStone.Looping
             @this.ThrowIfNull(nameof(@this));
             foreach (var t1 in @this.CountBind())
             {
-                foreach (var t0 in t1.Item1.CountBind())
+                foreach (var t0 in t1.element.CountBind())
                 {
-                    yield return Tuple.Create(t0.Item1, Tuple.Create(t1.Item2, t0.Item2));
+                    yield return Tuple.Create(t0.element, Tuple.Create(t1.index, t0.index));
                 }
             }
         }
@@ -98,11 +98,11 @@ namespace WhetStone.Looping
             @this.ThrowIfNull(nameof(@this));
             foreach (var t2 in @this.CountBind())
             {
-                foreach (var t1 in t2.Item1.CountBind())
+                foreach (var t1 in t2.element.CountBind())
                 {
-                    foreach (var t0 in t1.Item1.CountBind())
+                    foreach (var t0 in t1.element.CountBind())
                     {
-                        yield return Tuple.Create(t0.Item1, Tuple.Create(t2.Item2, t1.Item2, t0.Item2));
+                        yield return Tuple.Create(t0.element, Tuple.Create(t2.index, t1.index, t0.index));
                     }
                 }
             }

@@ -27,8 +27,8 @@ namespace WhetStone.Looping
             var ret = default(T);
             foreach (var tu in tosearch.CountBind())
             {
-                var t = tu.Item1;
-                var ind = tu.Item2;
+                var t = tu.element;
+                var ind = tu.index;
                 if (index < 0 || compare.Compare(t, ret) < 0)
                 {
                     index = ind;

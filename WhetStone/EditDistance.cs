@@ -198,9 +198,9 @@ namespace WhetStone.Looping
                     throw new ArgumentException("No edit path found.");
                 foreach (var t in @this.Zip(other).CountBind())
                 {
-                    if (comp.Equals(t.Item1.Item1,t.Item1.Item2))
+                    if (comp.Equals(t.element.Item1,t.element.Item2))
                         continue;
-                    yield return new Substitute<T>(t.Item1.Item2,t.Item2);
+                    yield return new Substitute<T>(t.element.Item2,t.index);
                 }
                 yield break;
             }
@@ -232,23 +232,23 @@ namespace WhetStone.Looping
             const int sub = 2;
             const int non = 3;
             const int err = 4;
-            IList<Tuple<int, double>>[] v = new IList<Tuple<int, double>>[@this.Count()+1];
+            IList<(int, double)>[] v = new IList<(int, double)>[@this.Count()+1];
 
             v[0] =
-                Tuple.Create(non, 0.0).Enumerate().Concat(allowIns
-                    ? range.IRange(1.0, other.Count(), 1).Select(a => Tuple.Create(ins, a))
-                    : Tuple.Create(err, -2.0).Enumerate(other.Count()));
+                (non, 0.0).Enumerate().Concat(allowIns
+                    ? range.IRange(1.0, other.Count(), 1).Select(a => (ins, a))
+                    : (err, -2.0).Enumerate(other.Count()));
 
             foreach (var t in @this.CountBind(1))
             {
-                int i = t.Item2;
-                var tv = t.Item1;
-                var newarr = new Tuple<int, double>[other.Count()+1];
-                newarr[0] = allowDel ? Tuple.Create(del, (double)i) : Tuple.Create(err, -2.0);
+                int i = t.index;
+                var tv = t.element;
+                var newarr = new (int, double)[other.Count()+1];
+                newarr[0] = allowDel ? (del, (double)i) : (err, -2.0);
                 foreach (var z in other.CountBind(1))
                 {
-                    int j = z.Item2;
-                    var ov = z.Item1;
+                    int j = z.index;
+                    var ov = z.element;
                     double cost = subWeight;
                     if (comp.Equals(tv, ov))
                         cost = 0;
@@ -266,22 +266,22 @@ namespace WhetStone.Looping
                     var mincost = costs.Any() ? costs.Min() : -2;
                     if (mincost == inscost)
                     {
-                        newarr[j] = Tuple.Create(ins, inscost);
+                        newarr[j] = (ins, inscost);
                     }
                     else if (mincost == delcost)
                     {
-                        newarr[j] = Tuple.Create(del, delcost);
+                        newarr[j] = (del, delcost);
                     }
                     else if (mincost == subcost)
                     {
                         if (cost == 1)
-                            newarr[j] = Tuple.Create(sub, subcost);
+                            newarr[j] = (sub, subcost);
                         else
-                            newarr[j] = Tuple.Create(non, subcost);
+                            newarr[j] = (non, subcost);
                     }
                     else
                     {
-                        newarr[j] = Tuple.Create(err, -2.0);
+                        newarr[j] = (err, -2.0);
                     }
                 }
                 v[i] = newarr;
@@ -355,8 +355,8 @@ namespace WhetStone.Looping
                 temp[0] = allowDel ? v[0] + 1 : -2;
                 foreach (var ou in other.CountBind(1))
                 {
-                    var o = ou.Item1;
-                    var i = ou.Item2;
+                    var o = ou.element;
+                    var i = ou.index;
                     int cost = 1;
                     if (comp.Equals(t, o))
                         cost = 0;

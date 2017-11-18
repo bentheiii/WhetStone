@@ -16,7 +16,7 @@ namespace WhetStone.Comparison
         {
             if (@this.Count != other.Count)
                 return false;
-            foreach (Tuple<Tuple<T>,Tuple<T>,Tuple<int>> t in @this.ZipUnBoundTuple(other,@this.Indices()))
+            foreach ((Tuple<T>,Tuple<T>,Tuple<int>) t in @this.ZipUnBoundTuple(other,@this.Indices()))
             {
                 if (t.Item1 == null || t.Item2 == null || t.Item3 == null)
                     return false;

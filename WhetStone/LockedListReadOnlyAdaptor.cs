@@ -24,7 +24,7 @@ namespace WhetStone.LockedStructures
         }
         public override int IndexOf(T item)
         {
-            return _inner.CountBind().FirstOrDefault(a=>a.Item1.Equals(item),Tuple.Create(default(T),-1)).Item2;
+            return _inner.CountBind().FirstOrDefault(a=>a.element.Equals(item),(element: default(T), index: -1)).index;
         }
         public override T this[int index]
         {
