@@ -35,13 +35,7 @@ namespace WhetStone.Looping
         /// <returns>The number of sub-enumerables in <paramref name="this"/> that are equal to <paramref name="target"/> by <paramref name="comp"/>.</returns>
         public static int Count<T>(this IEnumerable<T> @this, IEnumerable<T> target, IEqualityComparer<IEnumerable<T>> comp = null)
         {
-            @this.ThrowIfNull(nameof(@this));
-            target.ThrowIfNull(nameof(target));
-            comp = comp ?? new EnumerableCompararer<T>();
-            var qcount = target.Count();
-            if (qcount == 0)
-                throw new ArgumentException(nameof(target)+" is empty!");
-            return @this.Trail(qcount).Count(a => comp.Equals(@this,a));
+            return @this.SearchForSub(target, comp).Count();
         }
     }
 }

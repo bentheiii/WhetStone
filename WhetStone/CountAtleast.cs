@@ -34,8 +34,10 @@ namespace WhetStone.Looping
                     return rec.Value >= minCount;
                 return @this.Skip(minCount - 1).Any();
             }
+            //predicate definatly exists
             if (!rec.HasValue)
                 return @this.Where(predicate).Skip(minCount - 1).Any();
+            //both pred and rec definatly exist
             var left = rec.Value;
             var need = minCount;
             using (var tor = @this.GetEnumerator())
@@ -54,8 +56,8 @@ namespace WhetStone.Looping
                     }
                     left--;
                 }
+                return false;
             }
-            return false;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Tests
         public void LimitToCap()
         {
             var val = countUp.CountUp();
-            Assert.IsTrue(range.Range(10).SequenceEqual(val.ToArray(10,true)));
+            Assert.IsTrue(range.Range(10).SequenceEqual(val.ToArray(10,toArray.OverflowPolicy.End)));
         }
     }
 }

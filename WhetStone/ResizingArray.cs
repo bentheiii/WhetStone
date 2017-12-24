@@ -22,7 +22,7 @@ namespace WhetStone.Looping
             _arr = new T[capacity];
         }
         /// <summary>
-        /// Get the internal array reference.
+        /// Get the internal array reference, resizing it to an appropriate size beforehand.
         /// </summary>
         public T[] arr
         {
@@ -90,6 +90,18 @@ namespace WhetStone.Looping
             {
                 _arr[i.Item1] = i.Item2;
             }
+            Count += c;
+        }
+        /// <summary>
+        /// Adds multiple elements at once.
+        /// </summary>
+        /// <param name="x">The elements to add.</param>
+        public void AddRange(ICollection<T> x)
+        {
+            x.ThrowIfNull(nameof(x));
+            int c = x.Count;
+            ResizeTo(Count + c);
+            x.CopyTo(_arr, Count);
             Count += c;
         }
         /// <inheritdoc />
@@ -174,6 +186,26 @@ namespace WhetStone.Looping
                 if (index >= Count)
                     throw new ArgumentOutOfRangeException();
                 _arr[index] = value;
+            }
+        }
+        /// <summary>
+        /// return a view of the internal array without actually minimizing it.
+        /// </summary>
+        public IList<T> arrView
+        {
+            get
+            {
+                return this._arr.Take(Count);
+            }
+        }
+        /// <summary>
+        /// return the inner internal array without resizing it at all.
+        /// </summary>
+        public T[] arrRaw
+        {
+            get
+            {
+                return this._arr;
             }
         }
     }

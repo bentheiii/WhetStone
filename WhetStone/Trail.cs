@@ -17,18 +17,20 @@ namespace WhetStone.Looping
             public TrailList(IList<T> source, int trailLength)
             {
                 _source = source;
-                this._trailLength = trailLength;
+                _trailLength = trailLength;
             }
             public override IEnumerator<IList<T>> GetEnumerator()
             {
-                return Trail((IEnumerable<T>)_source, _trailLength).GetEnumerator();
+                return range.Range(Count)
+                    .Select(a => this[a])
+                    .GetEnumerator();
             }
             public override int Count => _source.Count - _trailLength + 1;
             public override IList<T> this[int index]
             {
                 get
                 {
-                    return _source.Slice(index, _trailLength).ToArray();
+                    return _source.Slice(index, length: _trailLength);
                 }
             }
         }

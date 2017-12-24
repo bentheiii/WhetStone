@@ -86,6 +86,8 @@
     <Compile Include="LogarithmicProgresser.cs" />
     <Compile Include="MutableListCheck.cs" />
     <Compile Include="Ranges.cs" />
+    <Compile Include="ResizingArray.cs" />
+    <Compile Include="SearchForSub.cs" />
     <Compile Include="SequenceEqual.cs" />
     <Compile Include="SequenceEqualIndices.cs" />
     <Compile Include="SequenceIndexEquator.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="TallyTest.cs" />
     <Compile Include="ToArray.cs" />
     <Compile Include="topologicalSort.cs" />
+    <Compile Include="Trail.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WhetStone\WhetStone.csproj">

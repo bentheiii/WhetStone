@@ -17,11 +17,13 @@ namespace WhetStone.Looping
             public ChunkList(IList<T> source, int chunksize)
             {
                 _source = source;
-                this._chunksize = chunksize;
+                _chunksize = chunksize;
             }
             public override IEnumerator<IList<T>> GetEnumerator()
             {
-                return Chunk((IEnumerable<T>)_source, _chunksize).GetEnumerator();
+                return range.Range(Count)
+                    .Select(a => this[a])
+                    .GetEnumerator();
             }
             public override int Count => (_source.Count/(double)_chunksize).Ceil();
             public override IList<T> this[int index]

@@ -6,9 +6,9 @@ using WhetStone.SystemExtensions;
 namespace WhetStone.Comparison
 {
     /// <summary>
-    /// A comparer that compares <see cref="IEnumerable{T}"/>s, element-wise, then length-wise.
+    /// A comparer that compares <see cref="T:System.Collections.Generic.IEnumerable`1" />s, element-wise, then length-wise.
     /// </summary>
-    /// <typeparam name="T">The type of the <see cref="IEnumerable{T}"/>s to compare.</typeparam>
+    /// <typeparam name="T">The type of the <see cref="T:System.Collections.Generic.IEnumerable`1" />s to compare.</typeparam>
     public class EnumerableCompararer<T> : IComparer<IEnumerable<T>>, IEqualityComparer<IEnumerable<T>>
     {
         private readonly IComparer<T> _int;
@@ -58,7 +58,7 @@ namespace WhetStone.Comparison
                 });
             return Compare(x, y) == 0;
         }
-        /// <inheritdoc />
+        /// <inheritdoc cref = "IEqualityComparer{T}.GetHashCode(T)"/>
         public int GetHashCode(IEnumerable<T> obj)
         {
             obj.ThrowIfNull(nameof(obj));
